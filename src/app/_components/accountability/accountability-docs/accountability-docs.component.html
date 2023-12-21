@@ -1,0 +1,5 @@
+<div class="docs">
+  <ng-container *ngFor="let file of docs; let index = index">
+    <app-file-card [file]="file" (onRemove)="onDocRemove(index)"></app-file-card>
+  </ng-container>
+</div>

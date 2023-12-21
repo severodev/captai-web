@@ -1,0 +1,49 @@
+<div class="container">
+  <app-confirm-alert></app-confirm-alert>
+  <app-breadcrumb [pages]="breadcrumbPages"></app-breadcrumb>
+
+  <div class="page-title">
+    <div class="title">
+      COLABORADORES
+    </div>
+    <div class="buttons">
+      <button type="button" class="btn btn-primary" (click)="download()">
+        <i class="icon ic-arrow-download"></i> Baixar em Planilha
+      </button>
+      <button type="button" class="btn btn-primary" [routerLink]="['/create-collaborator']">
+        <i class="icon ic-user-add"></i> Cadastrar Colaborador
+      </button>
+    </div>
+  </div>
+  <div class="filter-buttons">
+    <button type="button" class="btn btn-icon-link" (click)="showInputSearch = !showInputSearch">
+      <i class="icon ic-search"></i>
+    </button>
+    <div>
+      <input class="form-control search-input"  [class.show-input-search]="showInputSearch"
+      type="text" aria-label="Buscar Colaborador" placeholder="Buscar Colaborador"
+      [(ngModel)]="search" (keydown.enter)="loadCollaboratorsFiltered();">
+    </div>
+    <button type="button" class="btn btn-icon-link" (click)="toggleViewSort();">
+      <i class="icon ic-view-sort-list" id="icon-view"></i>
+    </button>
+    <button type="button" class="btn btn-icon-link" (click)="toggleOrderByTime();">
+      <i class="icon ic-clock-arrow-left" id="icon-clock"></i>
+    </button>
+    <button type="button" class="btn btn-icon-link" (click)="toggleOrderByTitle();">
+      <i class="icon ic-sort-A-Z" id="icon-sort"></i>
+    </button>
+    <app-collaborator-filter-options (applyFilterEvent)="applyFilter($event);"></app-collaborator-filter-options>
+  </div>
+
+  <div class="card-deck" *ngIf="viewSort === 'grid'">
+    <app-collaborator-card *ngFor="let collaborator of collaborators | paginate: config" [collaborator]="collaborator" style="padding: 8px; width: 16.66%;"></app-collaborator-card>
+  </div>
+  <div class="card-deck" *ngIf="viewSort === 'list'">
+    <app-collaborator-thin-card *ngFor="let collaborator of collaborators | paginate: config" [collaborator]="collaborator" style="padding: 8px; width: 33.3%; min-width: 260px;"></app-collaborator-thin-card>
+  </div>
+  <app-pagination-template [config]="config" (changePageEvent)="changePage($event)"></app-pagination-template>
+
+
+
+</div>

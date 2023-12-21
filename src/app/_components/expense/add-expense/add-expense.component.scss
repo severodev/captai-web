@@ -1,0 +1,63 @@
+.add-expense-form {
+  box-shadow: 0px 3px 6px #00000029;
+  padding: 24px;
+  position: relative;
+}
+
+.title {
+  font: normal normal bold 28px/34px Roboto;
+  letter-spacing: 0px;
+  color: #444444;
+  margin-bottom: 14px;
+}
+
+.options {
+  display: none;
+  opacity: 0;
+  animation: fade 0.5s ease-out;
+}
+
+.show-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  opacity: 1;
+}
+
+.list-group-header {
+  font-weight: bold;
+}
+
+.list-group-item {
+  transition: background 0.5s;
+}
+
+.list-group-item-selected {
+  background: #E7F2FB;
+}
+
+.btn-icon-link {
+  font-size: 16px !important;
+}
+.blue {
+  color: #007DB8 !important;
+}
+.red {
+  color: #AD0E20 !important;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.section-title {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.shares:last-child {
+  font-weight: bold;
+  background-color: #fafafa;
+}

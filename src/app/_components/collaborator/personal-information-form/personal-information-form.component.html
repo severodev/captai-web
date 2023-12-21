@@ -1,0 +1,238 @@
+<form #personalForm="ngForm">
+
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputName">Nome Completo <span class="label-required">*</span></label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputName" #collaboratorName="ngModel" required placeholder="Nome completo do colaborador"
+        [(ngModel)]="collaborator.name" name="collaboratorName" notEmpty validationKey="Nome completo do colaborador">
+        <small [hidden]="collaboratorName.valid || collaboratorName.pristine || personalForm.errors?.emptyInput" *ngIf="canEdit" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputSocialName">Nome Social</label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputSocialName" placeholder="Nome social do colaborador"
+        [(ngModel)]="collaborator.socialName" name="collaboratorSocialName">
+    </div>
+
+    <div class="form-group col-md-2">
+      <label for="inputCPF">CPF <span class="label-required">*</span></label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputCPF" #collaboratorCpf="ngModel" required placeholder="000.000.000-00"
+        mask="000.000.000-00" [dropSpecialCharacters]="false" notEmpty
+        [(ngModel)]="collaborator.cpf" name="collaboratorCpf"
+        (focusout)="getCollaboratorByCpf(collaborator.cpf)">
+      <small [hidden]="collaboratorCpf.valid || collaboratorCpf.pristine || personalForm.errors?.emptyInput" *ngIf="canEdit" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-2">
+      <label for="inputPIS">PIS</label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputPIS" placeholder="PIS"
+        [(ngModel)]="collaborator.pis" name="collaboratorPis" #collaboratorPis="ngModel">      
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <label for="inputRG">Identidade <span class="label-required">*</span></label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputRG" maxlength="20" placeholder="0000000000000"
+        [(ngModel)]="collaborator.rg" name="collaboratorRg" #collaboratorRg="ngModel" required notEmpty>
+      <small [hidden]="collaboratorRg.valid || collaboratorRg.pristine || personalForm.errors?.emptyInput" *ngIf="canEdit" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-2">
+      <label for="inputEmitter">Órgão Emissor</label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputEmitter" placeholder="SSP-CE"
+        [(ngModel)]="collaborator.rgEmitter" name="collaboratorRgEmitter">
+    </div>
+
+    <div class="form-group col-md-2">
+      <label for="inputMaritalStatus">Estado Civil <span class="label-required">*</span></label>
+      <select [disabled]="!canEdit" id="inputMaritalStatus" class="form-control"
+        [(ngModel)]="collaborator.maritalStatus" name="collaboratorMaritalStatus" #collaboratorMaritalStatus="ngModel" required>
+        <option value="" disabled selected>Estado Civil</option>
+        <option value="Solteiro">Solteiro</option>
+        <option value="Casado">Casado</option>
+        <option value="Viúvo">Viúvo</option>
+        <option value="Separado judicialmente">Separado judicialmente</option>
+        <option value="Divorciado">Divorciado</option>
+      </select>
+      <small [hidden]="collaboratorMaritalStatus.valid || collaboratorMaritalStatus.pristine" *ngIf="canEdit" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-2">
+      <label for="inputNationality">Nacionalidade <span class="label-required">*</span></label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputNationality" #collaboratorNationality="ngModel" required placeholder="Brasileira"
+        [(ngModel)]="collaborator.nationality" name="collaboratorNationality" notEmpty>
+      <small [hidden]="collaboratorNationality.valid || collaboratorNationality.pristine || personalForm.errors?.emptyInput" *ngIf="canEdit" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-2">
+      <label for="inputBirthdate">Data de Nascimento <span class="label-required">*</span></label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputBirthdate" #collaboratorBirthdate="ngModel" required placeholder="00/00/0000"
+        mask="00/00/0000" [dropSpecialCharacters]="false" notEmpty validBirthday
+        [(ngModel)]="collaborator.birthdate" name="collaboratorBirthdate">
+        <small *ngIf="canEdit && !collaboratorBirthdate.pristine && !collaboratorBirthdate.valid && !personalForm.errors?.emptyInput && !collaboratorBirthdate.errors?.invalidBirthday" class="invalid-alert">Campo obrigatório</small>
+        <small *ngIf="collaboratorBirthdate.errors?.invalidBirthday" class="invalid-alert">Data Inválida</small>
+    </div>
+
+    <div class="form-group col-md-2">
+      <label for="inputPhone">Telefone <span class="label-required">*</span></label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputPhone" #collaboratorPhone="ngModel" required placeholder="(--) ----- ----"
+        mask="(00) 00000-0000" [dropSpecialCharacters]="false" notEmpty
+        [(ngModel)]="collaborator.phone" name="collaboratorPhone">
+      <small [hidden]="collaboratorPhone.valid || collaboratorPhone.pristine || personalForm.errors?.emptyInput" *ngIf="canEdit" class="invalid-alert">Campo obrigatório</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail">E-mail Interno</label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputEmail" #collaboratorEmail="ngModel" placeholder="E-mail interno do colaborador"
+        [(ngModel)]="collaborator.email" name="collaboratorEmail">
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="inputPersonalEmail">E-mail Pessoal <span class="label-required">*</span></label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputPersonalEmail" #collaboratorPersonalEmail="ngModel" required placeholder="E-mail pessoal do colaborador"
+        [(ngModel)]="collaborator.personalEmail" name="collaboratorPersonalEmail" notEmpty>
+      <small [hidden]="collaboratorPersonalEmail.valid || collaboratorPersonalEmail.pristine || personalForm.errors?.emptyInput" *ngIf="canEdit" class="invalid-alert">Campo obrigatório</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputMothersName">Nome da Mãe <span class="label-required">*</span></label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputMothersName" #collaboratorMotherName="ngModel" required placeholder="Nome completo da mãe do colaborador"
+        [(ngModel)]="collaborator.motherName" name="collaboratorMotherName" notEmpty>
+      <small [hidden]="collaboratorMotherName.valid || collaboratorMotherName.pristine || personalForm.errors?.emptyInput" *ngIf="canEdit" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="inputFathersName">Nome do Pai </label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputFathersName" placeholder="Nome completo do pai do colaborador"
+        [(ngModel)]="collaborator.fatherName" name="collaboratorFatherName">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputAddress">Endereço <span class="label-required">*</span></label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputAddress" #collaboratorAddress="ngModel" required placeholder="Rua e número em que o colaborador reside"
+        [(ngModel)]="collaborator.address" name="collaboratorAddress" notEmpty>
+      <small [hidden]="collaboratorAddress.valid || collaboratorAddress.pristine || personalForm.errors?.emptyInput" *ngIf="canEdit" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputNeighborhood">Bairro <span class="label-required">*</span></label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputNeighborhood" #collaboratorDistrict="ngModel" required placeholder="Bairro em que o colaborador reside"
+        [(ngModel)]="collaborator.district" name="collaboratorDistrict" notEmpty>
+      <small [hidden]="collaboratorDistrict.valid || collaboratorDistrict.pristine || personalForm.errors?.emptyInput" *ngIf="canEdit" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputCEP">CEP <span class="label-required">*</span></label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputCEP" #collaboratorCep="ngModel" required placeholder="00.000-000"
+        mask="00.000-000" [dropSpecialCharacters]="false" notEmpty
+        [(ngModel)]="collaborator.cep" name="collaboratorCep">
+      <small [hidden]="collaboratorCep.valid || collaboratorCep.pristine || personalForm.errors?.emptyInput" *ngIf="canEdit" class="invalid-alert">Campo obrigatório</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputState">Estado <span class="label-required">*</span></label>
+      <select id="inputState" class="form-control" [(ngModel)]="collaborator.state"
+        name="inputState" [disabled]="!canEdit" required (change)="loadCitiesDropdown($event.target.value)">
+        <option value="undefined" disabled selected>Seleciona o estado em que o colaborador reside</option>
+        <option *ngFor="let state of statesDropdown" [value]="state.id">{{ state.name }}</option>
+      </select>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="inputCity">Cidade <span class="label-required">*</span></label>
+      <select id="inputCity" class="form-control" [(ngModel)]="collaborator.city"
+        name="inputCity" [disabled]="!canEdit" required>
+        <option value="undefined" disabled selected>Selecione a cidade em que o colaborador reside</option>
+        <option *ngFor="let city of citiesDropdown" [ngValue]="city.id">{{ city.name }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-row" >
+    <div class="form-group col-md-4">
+      <label for="inputDegree">Titulação Acadêmica <span class="label-required">*</span></label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputDegree" #collaboratorAcademicDegree="ngModel" required placeholder="Titulação acadêmica"
+        [(ngModel)]="collaborator.academicDegree" name="collaboratorAcademicDegree" notEmpty>
+      <small [hidden]="collaboratorAcademicDegree.valid || collaboratorAcademicDegree.pristine || personalForm.errors?.emptyInput" *ngIf="canEdit" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputInstitution">Instituição de Ensino <span class="label-required">*</span></label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputInstitution" #collaboratorUniversity="ngModel" required placeholder="Nome da instituição de ensino"
+        [(ngModel)]="collaborator.university" name="collaboratorUniversity" notEmpty>
+      <small [hidden]="collaboratorUniversity.valid || collaboratorUniversity.pristine || personalForm.errors?.emptyInput" *ngIf="canEdit" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputLattes">Curriculo Lattes</label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputLattes" #collaboratorLattes="ngModel"
+        placeholder="Link do curriculo lattes" [(ngModel)]="collaborator.lattes" name="collaboratorLattes">      
+    </div>
+  </div>
+
+  <hr class="mb-4">
+
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputEmergencyName1">Nome do Contato de Emergência 1</label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputEmergencyName1" #collaboratorEmergencyContactName1="ngModel" placeholder="Nome do Contato de Emergência 1"
+        [(ngModel)]="collaborator.emergencyContactName1" name="collaboratorEmergencyContactName1">      
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputEmergencyParentage1">Parentesco do Contato de Emergência 1</label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputEmergencyParentage1" #collaboratorEmergencyParentage1="ngModel" placeholder="Parentesco do Contato de Emergência 1"
+        [(ngModel)]="collaborator.emergencyParentage1" name="collaboratorEmergencyParentage1">      
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputEmergencyContact1">Contato de Emergência 1</label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputEmergencyContact1" #collaboratorEmergencyContactPhone1="ngModel" placeholder="(00) 00000-0000"
+        mask="(00) 00000-0000" [dropSpecialCharacters]="false"
+        [(ngModel)]="collaborator.emergencyContactPhone1" name="collaboratorEmergencyContactPhone1">
+      
+    </div>
+  </div>
+
+  <div class="form-row mb-3">
+    <div class="form-group col-md-4">
+      <label for="inputEmergencyName2">Nome do Contato de Emergência 2</label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputEmergencyName2" #collaboratorEmergencyContactName2="ngModel" placeholder="Nome do Contato de Emergência 2"
+        [(ngModel)]="collaborator.emergencyContactName2" name="collaboratorEmergencyContactName2">      
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputEmergencyParentage2">Parentesco do Contato de Emergência 2</label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputEmergencyParentage2" #collaboratorEmergencyParentage2="ngModel" placeholder="Parentesco do Contato de Emergência 2"
+        [(ngModel)]="collaborator.emergencyParentage2" name="collaboratorEmergencyParentage2">      
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputEmergencyContact2">Contato de Emergência 2</label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputEmergencyContact2" #collaboratorEmergencyContactPhone2="ngModel" placeholder="(00) 00000-0000"
+        mask="(00) 00000-0000" [dropSpecialCharacters]="false"
+        [(ngModel)]="collaborator.emergencyContactPhone2" name="collaboratorEmergencyContactPhone2">      
+    </div>
+  </div>
+
+  <div class="form-row " style="border-top: 1px solid #888888;" *ngIf="showDependentForm">
+    <div class="form-group col-md-12 dependent-form-title" data-toggle="collapse" [attr.data-target]="'#collapseDependentsForm'"
+      [attr.aria-expanded]="true" [attr.aria-controls]="'collapseDependentsForm'" (click)="toggleChev('chevDependents');">
+      Adicionar Dependentes
+      <i class="icon ic-chev-down" [attr.id]="'chevDependents'"></i>
+    </div>
+    <div class="collapse show dependent-form-container" [attr.id]="'collapseDependentsForm'">
+      <app-dependent-form [collaborator]="collaborator"></app-dependent-form>
+    </div>
+  </div>
+
+</form>

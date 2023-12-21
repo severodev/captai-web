@@ -1,0 +1,69 @@
+<form *ngIf="canEdit" #documentForm="ngForm">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputDoc">Tipo de Documento <span class="label-required">*</span></label>
+      <select id="inputDoc" class="form-control not-valid-form" [(ngModel)]="selectedDocTypeId" required name="inputDoc">
+        <option value="" disabled selected>Selecione o tipo de documento</option>
+        <option *ngFor="let dt of documentsType" [value]="dt.id">{{ dt.name }}</option>
+      </select>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="inputFileComponent">&nbsp;</label>
+      <app-input-file #inputFile id="inputFileComponent" (fileSelectedEvent)="setFileToUpload($event)"></app-input-file>
+      <div class="input-info">
+        Tamanho máximo permitido: 50mb
+      </div>
+    </div>
+
+    <div class="form-group col-md-2 add-button">
+      <label for="inputStartDate">&nbsp;</label>
+      <button class="btn btn-primary" (click)="addDoc();" [disabled]="documentForm.form.invalid || fileToUpload == null">
+        <i class="icon ic-add-circ"></i> Adicionar
+      </button>
+    </div>
+  </div>
+</form>
+
+<ul class="list-group">
+  <li class="list-group-item">
+    <div class="row list-group-header">
+      <div class="col-md-1"></div>
+      <div class="col-md-4">Nome do Arquivo</div>
+      <div class="col-md-2">Tipo de Documento</div>
+      <div class="col-md-2">Data de Envio</div>
+      <div class="col-md-2">Tamanho do Arquivo</div>
+      <div class="col-md-1"></div>
+    </div>
+  </li>
+
+  <li class="list-group-item text-center" *ngIf="submittedDocuments && submittedDocuments.length === 0">Nenhum registro foi adicionado.</li>
+
+  <li class="list-group-item" [class.list-group-item-selected]="item.selected" *ngFor="let item of submittedDocuments; let idx = index">
+    <div class="row">
+      <div class="col-md-1">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input"
+            [id]="'checkbox'+item.id" [(ngModel)]="item.selected">
+          <label class="custom-control-label" [for]="'checkbox'+item.id"></label>
+        </div>
+      </div>
+      <div class="col-md-4">{{ item.filename }}</div>
+      <div class="col-md-2">{{ item.documentType.name }}</div>
+      <div class="col-md-2">{{ item.createdAt }}</div>
+      <div class="col-md-2">{{ item.size }}</div>
+      <div class="col-md-1">
+        <div class="options" [class.show-options]="item.selected">
+          <button type="button" class="btn btn-icon-link blue" (click)="downloadDoc(item.url)">
+            <i class="icon ic-arrow-download"></i>
+          </button>
+          <button type="button" *ngIf="canEdit"
+            class="btn btn-icon-link red" (click)="deleteDoc(item, idx)">
+            <i class="icon ic-delete-can"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </li>
+
+</ul>

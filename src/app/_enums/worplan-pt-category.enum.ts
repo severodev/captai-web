@@ -1,0 +1,20 @@
+export enum WorkplanPtCategory {
+  RH_DIRECT = 'RH Direto',
+  RH_INDIRECT = 'RH Indireto',
+  TRIP = 'Viagem',
+  TRAINING = 'Treinamento',
+  SERVICE_TECHNOLOGY = 'Serviços de Tecnologia',
+  // SERVICE_OTHER = 'Serviços Outros',
+  EQUIPMENT_TECHNOLOGY = 'Equipamentos Tecnológicos',
+  EQUIPMENT_AND_SOFTWARE = "Equipamentos e Softwares",
+  // EQUIPMENT_OTHER = 'Equipamentos Outros',
+  SOFTWARE_LICENSES = 'Licença de Software',
+  SUPPLIES_CONSUMPTION = 'Material de Consumo',
+  SUPPLIES_PROTOTYPE = 'Material de Protótipo',
+  BOOKS_JOURNALS = 'Livros / Periódicos Tecnológicos',
+  CIVIL_ENGINEERING = 'Obra Civil / Construções',
+  // CORRELATED_INFRASTRUCTURE = 'Correlatos (Infraestrutura)',
+  CORRELATED_OTHER = 'Outros Correlatos',
+  INSTITUTE_COST = 'Custo Incorridos pela Instituição',
+  // DONATION = 'Doação'
+}

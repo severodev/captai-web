@@ -1,0 +1,145 @@
+.grid {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+}
+
+.grid-line-labels {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-flow: column;
+  width: 20%;
+
+  .grid-head-label {
+    height: 82px;
+  }
+
+  .grid-expense-label {
+    width: 100%;
+    padding: 15px 0px;
+    padding-right: 10px;
+    margin-bottom: 5px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    font: normal normal bold 16px/19px Roboto;
+    letter-spacing: 0px;
+    color: #0076CE;
+  }
+
+  .grid-expense-label-secondary {
+    width: 100%;
+    padding: 20px 0px;
+    padding-right: 10px;
+    // margin-bottom: 5px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    font: normal normal normal 14px/17px Roboto;
+    letter-spacing: 0px;
+    color: #707070;
+  }
+}
+
+.grid-lines {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-flow: column;
+  width: 80%;
+  overflow-x: auto;
+}
+
+.grid-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 125px;
+  min-height: 50px;
+  padding: 8px 0px;
+  margin: 0 10px;
+}
+
+.grid-head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0px;
+  margin: 0 10px;
+}
+
+.head-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+
+  .month-label {
+    color: #0076ce;
+    font: normal normal normal 26px/32px Roboto;
+    text-transform: uppercase;
+  }
+
+  .year-label {
+    color: #444;
+    font: normal normal 300 15px/18px Roboto;
+  }
+}
+
+.grid-expense {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #B2B2B2;
+  margin-bottom: 5px;
+  padding: 0 5px;
+  &:hover {
+    background-color: #f9b708;    
+    .expense-item.current-secondary {
+      color: #fff;
+      background-color: #0076CE;      
+    }
+  }
+}
+
+.expense-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font: normal normal bold 16px/19px Roboto;
+  color: #0076CE;
+}
+
+.expense-item {
+  color: #444;
+  font: normal normal normal 15px/18px Roboto;
+  padding: 15px 0px;
+}
+
+.expense-item.past {
+  background: #777777;
+  border: 1px solid #777777;
+  color: #fff;
+}
+
+.expense-item.current {
+  background: #6EA204;
+  border: 1px solid #6EA204;
+  color: #fff;
+}
+
+.expense-item.current-secondary {
+  background: #fff;
+  border: 1px solid #0076CE;
+  color: #444;
+}
+
+.expense-item.future {
+  border: 1px solid #707070;
+}

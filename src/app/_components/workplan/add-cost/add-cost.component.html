@@ -1,0 +1,184 @@
+<div class="add-cost">
+
+  <div class="side-menu">
+    <div class="list-group">
+      <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+        data-toggle="collapse" aria-expanded="false"
+        aria-controls="collapseRH" data-target="#collapseRH"
+        (click)="chevRHDown = !chevRHDown;">
+        Recursos Humanos
+        <i class="icon" [class.ic-chev-up]="!chevRHDown" [class.ic-chev-down]="chevRHDown"></i>
+      </button>
+      <div class="list-group-item collapse" id="collapseRH">
+        <button class="list-group-item list-group-item-action"
+          (click)="changeForm('RH_DIRECT')"
+          [class.selected]="openedForm === 'RH_DIRECT'">
+          RH Diretos
+        </button>
+        <button class="list-group-item list-group-item-action"
+          (click)="changeForm('RH_INDIRECT')"
+          [class.selected]="openedForm === 'RH_INDIRECT'">
+          RH Indiretos
+        </button>
+      </div>
+
+      <button class="list-group-item list-group-item-action"
+        (click)="changeForm('TRIP')"
+        [class.selected]="openedForm === 'TRIP'">
+        Viagens
+      </button>
+
+      <button class="list-group-item list-group-item-action"
+        (click)="changeForm('TRAINING')"
+        [class.selected]="openedForm === 'TRAINING'">
+        Treinamento
+      </button>
+
+      <!-- <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+        data-toggle="collapse" aria-expanded="false"
+        aria-controls="collapseServices" data-target="#collapseServices"
+        (click)="chevServicesDown = !chevServicesDown">
+        Serviços
+        <i class="icon" [class.ic-chev-up]="!chevServicesDown" [class.ic-chev-down]="chevServicesDown"></i>
+      </button>
+      <div class="list-group-item collapse" id="collapseServices">
+        <button class="list-group-item list-group-item-action"
+          (click)="changeForm('SERVICE_TECHNOLOGY')"
+          [class.selected]="openedForm === 'SERVICE_TECHNOLOGY'">
+          Serviços Técnicos
+        </button>
+        <button class="list-group-item list-group-item-action"
+          (click)="changeForm('SERVICE_OTHER')"
+          [class.selected]="openedForm === 'SERVICE_OTHER'">
+          Serviços Outros
+        </button>
+      </div> -->
+
+      <button class="list-group-item list-group-item-action"
+        (click)="changeForm('SERVICE_TECHNOLOGY')"
+        [class.selected]="openedForm === 'SERVICE_TECHNOLOGY'">
+        Serviços Técnicos
+      </button>
+
+      <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+        data-toggle="collapse" aria-expanded="false"
+        aria-controls="collapseEquipments" data-target="#collapseEquipments"
+        (click)="chevEquipmentsDown = !chevEquipmentsDown;">
+        Equipamentos e Softwares
+        <i class="icon" [class.ic-chev-up]="!chevEquipmentsDown" [class.ic-chev-down]="chevEquipmentsDown"></i>
+      </button>
+      <div class="list-group-item collapse" id="collapseEquipments">
+        <button class="list-group-item list-group-item-action"
+          (click)="changeForm('EQUIPMENT_TECHNOLOGY')"
+          [class.selected]="openedForm === 'EQUIPMENT_TECHNOLOGY'">
+          Equipamentos (Antigo)
+        </button>
+        <button class="list-group-item list-group-item-action"
+          (click)="changeForm('SOFTWARE_LICENSES')"
+          [class.selected]="openedForm === 'SOFTWARE_LICENSES'">
+          Softwares (Antigo)
+        </button>
+        <button class="list-group-item list-group-item-action"
+          (click)="changeForm('EQUIPMENT_AND_SOFTWARE')"
+          [class.selected]="openedForm === 'EQUIPMENT_AND_SOFTWARE'">
+          Equipamentos e Softwares
+        </button>
+        <!-- <button class="list-group-item list-group-item-action"
+          (click)="changeForm('EQUIPMENT_OTHER')"
+          [class.selected]="openedForm === 'EQUIPMENT_OTHER'">
+          Acessórios Outros
+        </button> -->
+      </div>
+
+      <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+        data-toggle="collapse" aria-expanded="false"
+        aria-controls="collapseStuffs" data-target="#collapseStuffs"
+        (click)="chevStuffsDown = !chevStuffsDown;">
+        Material
+        <i class="icon" [class.ic-chev-up]="!chevStuffsDown" [class.ic-chev-down]="chevStuffsDown"></i>
+      </button>
+      <div class="list-group-item collapse" id="collapseStuffs">
+        <button class="list-group-item list-group-item-action"
+          (click)="changeForm('SUPPLIES_CONSUMPTION')"
+          [class.selected]="openedForm === 'SUPPLIES_CONSUMPTION'">
+          Material de Consumo
+        </button>
+        <button class="list-group-item list-group-item-action"
+          (click)="changeForm('SUPPLIES_PROTOTYPE')"
+          [class.selected]="openedForm === 'SUPPLIES_PROTOTYPE'">
+          Material de Protótipo
+        </button>
+      </div>
+
+      <button class="list-group-item list-group-item-action"
+        (click)="changeForm('BOOKS_JOURNALS')"
+        [class.selected]="openedForm === 'BOOKS_JOURNALS'">
+        Livros / Periódicos Tecnológicos
+      </button>
+
+      <button class="list-group-item list-group-item-action"
+        (click)="changeForm('CIVIL_ENGINEERING')"
+        [class.selected]="openedForm === 'CIVIL_ENGINEERING'">
+        Obra Civil / Construções
+      </button>
+
+      <!-- <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+        data-toggle="collapse" aria-expanded="false"
+        aria-controls="collapseRelated" data-target="#collapseRelated"
+        (click)="chevRelatedDown = !chevRelatedDown;">
+        Correlatos
+        <i class="icon" [class.ic-chev-up]="!chevRelatedDown" [class.ic-chev-down]="chevRelatedDown"></i>
+      </button>
+      <div class="list-group-item collapse" id="collapseRelated">
+        <button class="list-group-item list-group-item-action"
+          (click)="changeForm('CORRELATED_INFRASTRUCTURE')"
+          [class.selected]="openedForm === 'CORRELATED_INFRASTRUCTURE'">
+          Correlatos Infra
+        </button>
+        <button class="list-group-item list-group-item-action"
+          (click)="changeForm('CORRELATED_OTHER')"
+          [class.selected]="openedForm === 'CORRELATED_OTHER'">
+          Correlatos Outros
+        </button>
+      </div> -->
+
+      <button class="list-group-item list-group-item-action"
+        (click)="changeForm('CORRELATED_OTHER')"
+        [class.selected]="openedForm === 'CORRELATED_OTHER'">
+        Outros Correlatos
+      </button>
+
+      <button class="list-group-item list-group-item-action"
+        (click)="changeForm('INSTITUTE_COST')"
+        [class.selected]="openedForm === 'INSTITUTE_COST'">
+        Custos Incorridos pela Instituição
+      </button>
+    </div>
+
+  </div>
+
+  <div class="workplan-forms" *ngIf="openedForm !== 'none'">
+    <app-direct-hr [projectId]="projectId" [project]="project" *ngIf="openedForm === 'RH_DIRECT'" (finishEdition)="openedForm = 'none'"></app-direct-hr>
+    <app-indirect-hr [projectId]="projectId" [project]="project" *ngIf="openedForm === 'RH_INDIRECT'" (finishEdition)="openedForm = 'none'"></app-indirect-hr>
+    <app-travel [projectId]="projectId" [project]="project" *ngIf="openedForm === 'TRIP'" (finishEdition)="openedForm = 'none'"></app-travel>
+    <app-training [projectId]="projectId" [project]="project" *ngIf="openedForm === 'TRAINING'" (finishEdition)="openedForm = 'none'"></app-training>
+    <app-technical-service [projectId]="projectId" [project]="project" *ngIf="openedForm === 'SERVICE_TECHNOLOGY'" (finishEdition)="openedForm = 'none'"></app-technical-service>
+    <!-- <app-other-service [projectId]="projectId" *ngIf="openedForm === 'SERVICE_OTHER'" (finishEdition)="openedForm = 'none'"></app-other-service> -->
+    <app-computer-accessory [projectId]="projectId" [project]="project" *ngIf="openedForm === 'EQUIPMENT_TECHNOLOGY'" (finishEdition)="openedForm = 'none'"></app-computer-accessory>
+    <!-- <app-other-accessory [projectId]="projectId" *ngIf="openedForm === 'EQUIPMENT_OTHER'" (finishEdition)="openedForm = 'none'"></app-other-accessory> -->
+    <app-software-license [projectId]="projectId" [project]="project" *ngIf="openedForm === 'SOFTWARE_LICENSES'" (finishEdition)="openedForm = 'none'"></app-software-license>
+    <app-equipment-and-software [projectId]="projectId" [project]="project" *ngIf="openedForm === 'EQUIPMENT_AND_SOFTWARE'" (finishEdition)="openedForm = 'none'"></app-equipment-and-software>
+    <app-consumption-material [projectId]="projectId" [project]="project" *ngIf="openedForm === 'SUPPLIES_CONSUMPTION'" (finishEdition)="openedForm = 'none'"></app-consumption-material>
+    <app-prototype-material [projectId]="projectId" [project]="project" *ngIf="openedForm === 'SUPPLIES_PROTOTYPE'" (finishEdition)="openedForm = 'none'"></app-prototype-material>
+    <app-technological-journals [projectId]="projectId" [project]="project" *ngIf="openedForm === 'BOOKS_JOURNALS'" (finishEdition)="openedForm = 'none'"></app-technological-journals>
+    <app-civil-work [projectId]="projectId" [project]="project" *ngIf="openedForm === 'CIVIL_ENGINEERING'" (finishEdition)="openedForm = 'none'"></app-civil-work>
+    <!-- <app-infra-related [projectId]="projectId" *ngIf="openedForm === 'CORRELATED_INFRASTRUCTURE'" (finishEdition)="openedForm = 'none'"></app-infra-related> -->
+    <app-other-related [projectId]="projectId" [project]="project" *ngIf="openedForm === 'CORRELATED_OTHER'" (finishEdition)="openedForm = 'none'"></app-other-related>
+    <app-incurred-costs [projectId]="projectId" [project]="project" *ngIf="openedForm === 'INSTITUTE_COST'" (finishEdition)="openedForm = 'none'"></app-incurred-costs>
+  </div>
+
+  <div class="info" *ngIf="openedForm === 'none'">
+    <img src="../../../../assets/images/file.svg">
+    <div class="info-text">Selecione uma jornada ao lado e preencha o formulário.</div>
+  </div>
+</div>

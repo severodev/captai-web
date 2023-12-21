@@ -1,0 +1,96 @@
+<form #informationForm="ngForm">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputProjectName">Identificação do Projeto <span class="label-required">*</span></label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputProjectName" #inputProjectName="ngModel" required placeholder="O nome do projeto"
+        [(ngModel)]="project.name" name="inputProjectName">
+      <small [hidden]="inputProjectName.valid || inputProjectName.pristine" *ngIf="canEdit" class="invalid-alert">Campo obrigatório</small>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputStartDate">Data de Início <span class="label-required">*</span></label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputStartDate" #inputStartDate="ngModel" required placeholder="00/00/0000"
+        [(ngModel)]="project.start" name="inputStartDate" mask="00/00/0000" [dropSpecialCharacters]="false">
+      <small [hidden]="inputStartDate.valid || inputStartDate.pristine" *ngIf="canEdit" class="invalid-alert">Campo obrigatório</small>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputEndDate">Data do Fim <span class="label-required">*</span></label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputEndDate" #inputEndDate="ngModel" required placeholder="00/00/0000"
+        [(ngModel)]="project.end" name="inputEndDate" mask="00/00/0000" [dropSpecialCharacters]="false">
+      <small [hidden]="inputEndDate.valid || inputEndDate.pristine" *ngIf="canEdit" class="invalid-alert">Campo obrigatório</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputInstitute">Instituto Vinculado <span class="label-required">*</span></label>
+      <select [disabled]="!canEdit" id="inputInstitute" class="form-control" [(ngModel)]="project.instituteId"
+        #inputInstituteId="ngModel" required name="inputInstituteId">
+        <option value="" disabled selected>Instituto responsável</option>
+        <option *ngFor="let institute of institutes" [value]="institute.id">{{ institute.abbreviation }}</option>
+      </select>
+      <small [hidden]="inputInstituteId.valid || inputInstituteId.pristine" *ngIf="canEdit" class="invalid-alert">Campo obrigatório</small>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputBudget">Valor Total do Projeto <span class="label-required">*</span></label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputBudget" #inputBudget="ngModel" required placeholder="R$ 00.000,00"
+        [(ngModel)]="project.budget" name="inputBudget" currencyMask >
+      <small [hidden]="inputBudget.valid || inputBudget.pristine" *ngIf="canEdit" class="invalid-alert">Campo obrigatório</small>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputAmendmentTerm">Número do Termo Aditivo do Projeto <span class="label-required">*</span></label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputAmendmentTerm" placeholder="000000"
+        [(ngModel)]="project.amendmentTerm" #inputAmendmentTerm="ngModel" required name="inputAmendmentTerm">
+      <small [hidden]="inputAmendmentTerm.valid || inputAmendmentTerm.pristine" *ngIf="canEdit" class="invalid-alert">Campo obrigatório</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputBankId">Dados Bancários - Banco</label>
+      <select [disabled]="!canEdit" id="inputBankId" class="form-control" [(ngModel)]="project.bankId" name="inputBankId">
+        <option value="" disabled selected>Banco</option>
+        <option *ngFor="let bank of banks" [value]="bank.id">{{ bank.name }}</option>
+      </select>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputBankAgency">Dados Bancários - Número da Agência</label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputBankAgency" placeholder="000000"
+        [(ngModel)]="project.bankAgency" name="inputBankAgency">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputBankAccount">Dados Bancários - Número da Conta</label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputBankAccount" placeholder="000000"
+        [(ngModel)]="project.bankAccount" name="inputBankAccount">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputPaymentOrder">Payment Order</label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputPaymentOrder" placeholder="000000"
+        [(ngModel)]="project.paymentOrder" name="inputPaymentOrder">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputProjectManager">Gerente de Projeto</label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputProjectManager" placeholder="O nome do gerente de projeto"
+        [(ngModel)]="project.projectManager" name="inputProjectManager">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputProjectCoordinator">Coordenador do Projeto</label>
+      <input [disabled]="!canEdit" type="text" class="form-control" id="inputProjectCoordinator" placeholder="O nome do coordenador do projeto"
+        [(ngModel)]="project.projectCoordinator" name="inputProjectCoordinator">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputProjectDescription">Descrição do Projeto</label>
+      <textarea [disabled]="!canEdit" type="text" class="form-control" id="inputProjectDescription"
+        [(ngModel)]="project.description" name="inputProjectDescription"></textarea>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputProjectNotes">Observações</label>
+      <textarea [disabled]="!canEdit" type="text" class="form-control" id="inputProjectNotes"
+        [(ngModel)]="project.notes" name="inputProjectNotes"></textarea>
+    </div>
+  </div>
+</form>

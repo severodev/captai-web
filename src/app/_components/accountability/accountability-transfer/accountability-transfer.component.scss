@@ -1,0 +1,137 @@
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0.5rem;
+}
+
+.value {
+  position: relative;
+  margin-left: 2rem;
+}
+
+.value::before {
+  content: 'R$';
+  font-size: 0.5rem;
+
+  position: absolute;
+  top: -0.5rem;
+  left: -0.5rem;
+}
+
+.modal {
+
+  &-title {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  &-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    padding: 1.5rem 1rem 1rem 3rem;
+
+      div {
+        width: 80%;
+      }
+  }
+
+  &-body {
+    padding: 0 1rem 1rem 3rem;
+    
+    form {
+      display: grid;
+      grid-template-columns: 40% 20%;
+      gap: 0.5rem;
+    }
+  }
+  
+  &-footer {
+    position: relative;
+    border-top: 0;
+    font: normal normal 500 13px/20px Roboto;
+    letter-spacing: 0.52px;
+    padding: 0.75rem 2rem 2rem 3rem;
+    justify-content: flex-start;
+
+    .btn-container {
+      position: absolute;
+      right: 1rem;
+      bottom: 1rem;
+
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    button {
+      font-weight: 500;
+    }
+
+    .cancel {
+      color: #0076ce;
+
+      &:hover {
+        color: #00447c;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.value-available {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  margin-top: 1rem;
+
+  span {
+    position: relative;
+  }
+}
+
+
+.dds__alert-info-cir {
+  color: aqua;
+  cursor: pointer;
+  position: relative;
+}
+
+.dds__alert-info-cir:hover [data-tooltip]::after,
+.dds__alert-info-cir:hover [data-tooltip]::before {
+  opacity: 1;
+}
+
+[data-tooltip]::after {
+  content: 'Saldo anterior: ' attr(data-tooltip);
+  position: absolute;
+  left: 0.75rem;
+  top: -135%;
+  display: block;
+  opacity: 0;
+  padding: 0.5rem;
+  text-align: center;
+  border-radius: 0.25rem;
+  font-style: inherit;
+  background-color: rgb(136, 190, 238);
+  color: #333;
+  pointer-events: none;
+}
+
+[data-tooltip]::before {
+  content: '';
+  position: absolute;
+  display: block;
+  top: 0;
+  right: -1.5rem;
+  opacity: 0;
+  width: 1rem;
+  height: 1rem;
+  background-color: rgb(136, 190, 238);
+  transform: rotate(45deg);
+  pointer-events: none;
+}

@@ -1,0 +1,29 @@
+<header class="profile-header">
+    <img src="../../../../assets/images/man.png"
+        alt="" class="profile-img">
+    <div class="upload-photo">
+        <span>Selecionar foto</span>
+        <button>
+            <i class="icon ic-photo-upload"></i>
+        </button>
+    </div>
+    <ng-container *ngIf="user$ |async as user">
+        <span class="username">{{user.fullname}}</span>
+        <div class="pills">
+            <span>{{user.role}}</span>
+        </div>
+    </ng-container>
+    <form id="edit-user-form" [formGroup]="editUserForm">
+        <fieldset form="user-form" name="user-form">
+            <legend>Usuário</legend>
+            <label for="username">Usuário</label>
+            <input type="text" formControlName="username">
+            <label for="email">Email</label>
+            <input type="email" formControlName="email">
+        </fieldset>
+    </form>
+    <div class="btn-group">
+        <button routerLink="/">Voltar</button>
+        <button type="button" (click)="editUser()">Editar</button>
+    </div>
+</header>

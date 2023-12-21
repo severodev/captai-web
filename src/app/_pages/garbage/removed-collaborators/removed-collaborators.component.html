@@ -1,0 +1,18 @@
+<div class="collaborators-dropdown">
+  <div class="collaborators-header" data-toggle="collapse" data-target="#collapse-removed-collaborators"
+  aria-expanded="true" aria-controls="#collapse-removed-collaborators" (click)="toggleChev('chev-collaborators');">
+    <span class="mr-3">Colaboradores</span>
+    <div class="mr-3 line"></div>
+    <i class="icon ic-chev-down" id="chev-collaborators"></i>
+  </div>
+  <div class="show" id="collapse-removed-collaborators">
+    <div class="collaborators-body card-deck">
+      <app-collaborator-card *ngFor="let collaborator of removedCollaborators | paginate: collaboratorsPaginationcConfig" 
+        (restoreEvent)="loadRemovedCollaboratorsMetadata()" [isActive]="false" [collaborator]="collaborator" style="padding: 8px; width: 16.66%;">
+      </app-collaborator-card>
+    </div>
+    <div class="collaborators-footer">
+      <app-pagination-template [config]="collaboratorsPaginationcConfig" (changePageEvent)="changePage($event)"></app-pagination-template>
+    </div>
+  </div>
+</div>

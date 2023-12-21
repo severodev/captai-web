@@ -1,0 +1,6 @@
+<div class="container">
+    <app-breadcrumb [pages]="breadcrumbPages"></app-breadcrumb>
+
+    <app-add-expense [selectedSupplierId]="supplierId" (finishExpense)="cancel()"></app-add-expense>
+</div>
+<app-confirm-alert></app-confirm-alert>

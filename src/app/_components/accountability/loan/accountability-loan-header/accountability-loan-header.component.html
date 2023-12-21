@@ -1,0 +1,36 @@
+<div class="content">
+    <div class="card">
+      <div class="total">
+        
+        <div class="amount">
+          <span class="amount-symbol">R$</span>
+          <span class="amount-value">{{ infoValues?.totalProject | currency: " ":false }}</span>
+        </div>
+        <div class="title-total-project">
+          Total de Empréstimos
+        </div>
+      </div>
+      <div class="total">
+        
+        <div class="amount">
+          <span class="amount-symbol">R$</span>
+          <span class="amount-value">{{ infoValues?.totalReceived | currency: " ":false }}</span>
+        </div>
+        <div class="title-total-received">
+          Total do Recebido
+        </div>
+      </div>
+      <div class="total">
+        
+        <div class="amount">
+          <span class="amount-symbol">R$</span>
+          <span class="amount-value">{{ infoValues?.totalToBeReturned | currency: " ":false }}</span>
+        </div>
+        <div class="title-total-receivable">
+          Total a Devolver
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  

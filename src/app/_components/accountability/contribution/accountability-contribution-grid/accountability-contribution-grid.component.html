@@ -1,0 +1,25 @@
+<div class="content">
+  <div class="header">
+    <div class="title">Aportes</div>
+
+    <button
+      type="button"
+      class="btn btn-primary btn-new-contribution"
+      (click)="openContributionModal()"
+    >
+      <i class="icon ic-currency-coins"></i> Cadastrar Aporte
+    </button>
+  </div>
+
+  <div class="grid">
+    <div class="none-contribution" *ngIf="noneContributions == true">
+      <img src="../../../../../assets/images/aporte-0.png">
+
+      <div class="title">Nenhum aporte cadastrado</div>
+    </div>
+    <app-accountability-contribution-card (cardChanges)="cardChanges($event)"
+      *ngFor="let item of accountabilityContribuitions"
+      [accountabilityContribuition]="item"
+    ></app-accountability-contribution-card>
+  </div>
+</div>

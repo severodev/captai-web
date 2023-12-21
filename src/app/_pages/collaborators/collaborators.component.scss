@@ -1,0 +1,74 @@
+.container {
+  padding-top: 0;
+}
+
+.page-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #444444;
+  }
+  .buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 -8px;
+    .btn {
+      margin: 0 8px;
+    }
+  }
+}
+.filter-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0px;
+  margin-top: 16px;
+  .btn {
+    margin: 0 8px;
+  }
+}
+
+.btn {
+  height: 35px !important;
+  padding: 0 15px !important;
+}
+
+.btn-icon-link {
+  height: fit-content !important;
+  width: fit-content !important;
+  font-size: 22px !important;
+  padding: 0px !important;
+  color: #0076CE;
+}
+
+.btn-primary {
+  i {
+    margin-right: 8px;
+  }
+}
+
+.card-deck {
+  margin-right: -8px !important;
+  margin-left: -8px !important;
+  margin-top: 6px !important;
+}
+
+.search-input {
+  font-size: 12px;
+  color: #0076CE;
+  border: none;
+  border-bottom: 1px solid #0076CE;
+  border-radius: 0;
+  width: 0px;
+  padding: 0;
+  transition: all 1s;
+}
+
+.show-input-search {
+  width: 220px !important;
+  padding: 0.375rem 0.75rem;
+}

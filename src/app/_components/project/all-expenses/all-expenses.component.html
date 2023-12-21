@@ -1,0 +1,245 @@
+<form #documentForm="ngForm">
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label for="supplierInput">Fornecedor</label>
+      <div class="input-group">
+        <input type="text" name="supplierInput" class="form-control" id="supplierInput"
+          placeholder="Buscar nome do fornecedor" [(ngModel)]="filter.supplierInput">
+        <div class="input-group-append" (click)="search()">
+          <span class="input-group-text"><i class="icon ic-search"></i></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="budgetInput">Rubrica</label>
+      <div class="input-group">
+        <input type="text" name="budgetInput" id="budgetInput" readonly class="form-control dropdown-toggle"
+          data-toggle="dropdown" aria-expanded="false" placeholder="Buscar nome da rubrica"
+          [(ngModel)]="selectedBudgetString">
+
+        <div class="dropdown-menu dropdown-menu-right w-100" aria-labelledby="dropdownMenuButton">
+          <div class="ml-2 my-1" style="max-height: calc(40vh - 60px);overflow-y: auto;">
+            <div class="custom-control custom-checkbox" *ngFor="let budget of budgetCategories">
+              <input type="checkbox" class="custom-control-input" (change)="updateBudgetFilters(budget);"
+                [id]="'check-filter-' + budget.id">
+              <label class="custom-control-label" [for]="'check-filter-' + budget.id">{{ budget.name }}</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group-append" data-toggle="dropdown">
+          <span class="input-group-text"><i class="icon ic-arrow-down-solid"></i></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group col-md-3 pr-4">
+      <label for="valueInput">Valor do Serviço <span class="label-required">*</span></label>
+      <ngx-slider [(value)]="filter.valueMin" [(highValue)]="filter.valueMax" [options]="options"></ngx-slider>
+      <span class="valueRangeSubtitle">R$ {{ filter.valueMin.toFixed(2) }} à R$ {{ filter.valueMax.toFixed(2) }}</span>
+    </div>
+
+    <div class="form-group col-md-2 add-button">
+      <label for="inputStartDate">&nbsp;</label>
+      <button type="button" class="btn btn-primary btn-block" (click)="search();">
+        <i class="icon ic-search"></i> Procurar
+      </button>
+    </div>
+  </div>
+</form>
+
+<div class="all-expenses">
+  <div class="info" *ngIf="project?.expenses.length === 0">
+    <img src="../../../../assets/images/file.svg">
+    <div class="info-text">Nenhum gasto foi adicionado.</div>
+  </div>
+
+  <div class="info h-25" *ngIf="expensesFiltered.length === 0">
+    <div class="info-text">Nenhum gasto foi localizado.</div>
+  </div>
+
+  <div class="expenses" *ngIf="project?.expenses?.length > 0 && expensesFiltered.length > 0">
+    <div class="expenses-title">
+      <div class="expense-info-arrow"></div>
+      <div class="expense-info">Rubrica</div>
+      <div class="expense-info">Fornecedor</div>
+      <div class="expense-info">CNPJ</div>
+      <div class="expense-info">Status</div>
+      <div class="expense-info">Data da Compra</div>
+      <div class="expense-info">Valor</div>
+      <div class="expense-info">Ações</div>
+    </div>
+
+    <div class="expenses-item" [class.opened]="isItemOpended('chev-'+idx)"
+      *ngFor="let item of expensesFiltered; let idx = index;">
+      <div style="width: 100%; display: flex;">
+        <div class="expense-info-arrow">
+          <div class="arrow-button" data-toggle="collapse" [attr.data-target]="'#collapse-'+idx"
+            [attr.aria-expanded]="true" [attr.aria-controls]="'collapse-'+idx" (click)="toggleChev('chev-'+idx);">
+            <i class="icon ic-chev-down" [attr.id]="'chev-'+idx"></i>
+          </div>
+        </div>
+        <div class="expense-info">{{ item.budgetCategory.name }}</div>
+        <div class="expense-info">{{ getExpenseName(item) }}</div>
+        <div class="expense-info">{{ item.supplier?.cnpj }}</div>
+        <div class="expense-info">
+          <div class="pill status-{{getStatusKey(item)}}-pill">
+            {{ item.status }}
+          </div>
+        </div>
+        <div class="expense-info">{{ item.requestDate }}</div>
+        <div *ngIf="item.costShare.length == 1" class="expense-info">{{ item.value | currency:'BRL' }}</div>
+        <div *ngIf="item.costShare.length > 1" class="expense-info">
+          <div *ngFor="let costShare of item.costShare" >
+            <div *ngIf="costShare.project?.id == project.id">{{ costShare.value | currency:'BRL' }}</div>
+          </div>
+        </div>
+        <div class="expense-info">
+          <div *ngIf="item.status != 'Realizado'" title="Confirmar Pagamento" (click)="showConfirmPaymentModal(confirmPaymentModal, item);">
+            <span><img class="confirm-payment " src="assets/icons/charge-back.svg"></span>
+          </div>
+        </div>
+      </div>
+      <div class="expense-details collapse" [attr.id]="'collapse-'+idx">
+        <div class="description">{{ item.description }}</div>
+        <div *ngIf="item.installments?.length > 0" class="installments">
+          <div class="summary">
+            <div>Parcelas:</div>
+            <div class="strong">{{item.installments?.length}}x</div>
+          </div>
+          <div class="instalmment-items row">
+            <div class="item col-md-3" *ngFor="let i of item.installments; let idx = index;">
+              <div class="border-circle"></div>
+              <div class="row installment-info">
+                <div class="installment-order col-md-6">{{idx + 1}}a parcela</div>
+                <div class="dueDate col-md-6">{{getInstallmentDateStr(i)}}</div>
+              </div>
+              <div class="strong installment-value">
+                <span><img [src]="i.isPaid ? 'assets/icons/check.svg' : 'assets/icons/minus-minimize.svg'"></span>
+                R$ {{i.value.toFixed(2)}}
+              </div>
+              <div class="description">{{i.description}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="file-cards">
+          <div class="file-card" *ngFor="let file of item.documents">
+            <div class="file-card-info">
+              <div class="file-card-title">{{ file.documentType.name }}</div>
+              <div class="file-card-subtitle">{{ file.filename }}</div>
+            </div>
+            <div class="file-card-buttons">
+              <div class="file-type">
+                .{{ file.fileType.name}}
+              </div>
+              <button class="btn btn-icon-link" (click)="downloadFile(file.url);">
+                <i class="icon ic-arrow-download"></i>
+              </button>
+              <!-- <button class="btn btn-icon-link">
+                <i class="icon ic-delete-can"></i>
+              </button> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="button" class="btn btn-icon-link blue" (click)="edit(item)">
+            <i class="icon ic-pencil-edit"></i><span>Editar</span>
+          </button>
+          <button type="button" class="btn btn-icon-link red" (click)="delete(item);">
+            <i class="icon ic-delete-can red"></i><span>Excluir</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #confirmPaymentModal>
+  <div class="modal-header">
+    <div class="modal-title pull-left">CONFIRMAR PAGAMENTO</div>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="confirmPaymentModalRef.hide()">
+      <i class="icon ic-close"></i>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <form #confirmPaymentForm="ngForm">
+      <div *ngIf="selectedExpense.installments && selectedExpense.installments.length > 0;else singlePaymentExpense">
+        <div class="form-row">
+
+          <div class="form-group col-md-4">
+            <label for="cpSupplierName">Fornecedor</label>
+            <input type="text" name="cpSupplierName" class="form-control"
+              id="cpSupplierName" disabled [(ngModel)]="selectedExpense.supplier.name" >
+          </div>
+  
+          <div class="form-group col-md-2">
+            <label for="inputInstallment">Parcela <span class="label-required">*</span></label>
+            <select id="inputInstallment" class="form-control" (change)="selectInstallment($event.target.value)" name="inputInstallment"
+              required>
+              <option disabled selected>Selecione a parcela</option>
+              <option *ngFor="let _installment of selectedExpense.installments" [disabled]="_installment.isPaid" [value]="_installment.id">{{ _installment.order }}x {{_installment.isPaid ? ' (Pago)' : ''}}
+              </option>
+            </select>
+          </div>
+  
+          <div class="form-group col-md-2">
+            <label for="cpInstallmentDueDate">Vencimento</label>
+            <input type="text" name="cpInstallmentDueDate" class="form-control"
+              id="cpInstallmentDueDate" disabled [(ngModel)]="selectedInstallment.str_date" >
+          </div>
+  
+          <div class="form-group col-md-4">
+            <label for="cpValue">Valor</label>
+            <input type="text" value="{{ selectedInstallment.value | currency : 'BRL'}}" name="cpValue" class="form-control"
+              id="cpValue" disabled>
+          </div>
+  
+          <div class="form-group col-md-12">
+            <label for="cpInstallmentDescription">Descrição da Parcela</label>
+            <input type="text" [(ngModel)]="selectedInstallment.description" name="cpInstallmentDescription"
+              class="form-control" id="cpInstallmentDescription" disabled>
+          </div>
+        </div>
+      </div>
+      <ng-template #singlePaymentExpense>
+        <div class="form-row">
+
+          <div class="form-group col-md-4">
+            <label for="cpSupplierName">Fornecedor</label>
+            <input type="text" name="cpSupplierName" class="form-control"
+              id="cpSupplierName" disabled [(ngModel)]="selectedExpense.supplier.name" >
+          </div>
+    
+          <div class="form-group col-md-4">
+            <label for="cpInstallmentDueDate">Vencimento</label>
+            <input type="text" name="cpInstallmentDueDate" class="form-control"
+              id="cpInstallmentDueDate" disabled [(ngModel)]="selectedExpense.dueDate" >
+          </div>
+  
+          <div class="form-group col-md-4">
+            <label for="cpValue">Valor</label>
+            <input type="text" [(ngModel)]="selectedExpense.value" name="cpValue" class="form-control"
+              id="cpValue" disabled>
+          </div>
+           
+        </div>
+      </ng-template>      
+
+    </form>
+
+    <div class="form-row" style="padding: 5px; margin-top: 1rem; justify-content: flex-end;">
+      <button type="button" class="btn btn-link" (click)="confirmPaymentModalRef.hide()">
+        Cancelar
+      </button>
+      <button class="btn btn-primary" [disabled]="confirmPaymentForm.form.invalid"
+        (click)="confirmInstallmentPayment(confirmPaymentModal)">
+        Confirmar
+      </button>
+    </div>
+
+  </div>
+</ng-template>

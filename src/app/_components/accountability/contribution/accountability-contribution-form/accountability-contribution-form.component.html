@@ -1,0 +1,75 @@
+<div class="modal-header">
+  <div class="modal-title pull-left">
+    {{ accountabilityContribuition.id ? "editar aporte" : "cadastrar aporte" }}
+  </div>
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <i class="icon ic-close"></i>
+  </button>
+</div>
+<div class="modal-body">
+  <form #accountabilityContribuitionForm="ngForm">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="inputAmount"
+          >Valor do aporte <span class="label-required">*</span></label
+        >
+        <input
+          id="inputAmount"
+          type="text"
+          class="form-control"
+          #inputAmount="ngModel"
+          required          
+          currencyMask          
+          placeholder="Valor Total"
+          name="inputAmount"
+          [(ngModel)]="accountabilityContribuition.amount"
+          autocomplete="off"
+        />
+        <small
+          [hidden]="inputAmount.valid || inputAmount.pristine"
+          class="invalid-alert"
+          >Campo obrigatório</small
+        >
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputDate"
+          >Data de Início <span class="label-required">*</span></label
+        >
+        <input 
+        type="date" 
+        class="form-control"
+        id="inputDate"
+        name="inputDate"
+        #inputDate="ngModel"
+        [(ngModel)]="accountabilityContribuition.receiptDate"
+        required
+        autocomplete="off"
+        />
+        <small
+        [hidden]="inputDate.valid || inputDate.pristine"
+        class="invalid-alert"
+        >Campo obrigatório</small> 
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-default cancel"
+    (click)="cancel()"
+  >
+    Cancelar
+  </button>
+  <button *ngIf="editConfiguration == false" type="button" class="btn btn-primary save" [disabled]="accountabilityContribuitionForm.invalid" (click)="save()">
+    Cadastrar
+  </button>
+  <button *ngIf="editConfiguration == true" type="button" class="btn btn-primary" [disabled]="accountabilityContribuitionForm.invalid" (click)="update()">
+    Atualizar
+  </button>
+</div>

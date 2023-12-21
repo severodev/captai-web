@@ -1,0 +1,70 @@
+.container {
+  padding-top: 0;
+}
+
+.page-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #444444;
+  }
+  .buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 -8px;
+    .btn {
+      margin: 0 8px;
+    }
+  }
+}
+
+.btn {
+  height: 35px !important;
+  padding: 0 15px !important;
+}
+
+
+
+.btn-primary {
+  i {
+    margin-right: 8px;
+  }
+}
+
+.institute-projects {
+  margin-top: 24px;
+  .institute-title {
+    font-size: 16px !important;
+    color: #666666;
+    margin-bottom: 16px;
+    cursor: pointer;
+    .icon {
+      margin-left: 14px;
+    }
+  }
+}
+
+.card-deck {
+  margin-right: -8px !important;
+  margin-left: -8px !important;
+}
+
+.search-project-input {
+  font-size: 12px;
+  color: #0076CE;
+  border: none;
+  border-bottom: 1px solid #0076CE;
+  border-radius: 0;
+  width: 0px;
+  padding: 0;
+  transition: all 1s;
+}
+
+.show-input-search {
+  width: 220px !important;
+  padding: 0.375rem 0.75rem;
+}

@@ -1,0 +1,70 @@
+<div class="card mt-2 mx-2 mb-4 shadow-sm p-3 rounded">
+    <h1 class="card-title">rh direto - bolsas</h1>
+
+    <div class="table-container">
+        <table class="w-100">
+            <tr>
+                <th *ngFor="let col of tableColumns"> {{ col }} </th>
+            </tr>
+            <tr *ngFor="let pm of directInterns">
+                <td> {{ pm.collaborator.name }} </td>
+                <td> {{ pm.collaborator.payments[0].employmentRelationship.name }} </td>
+                <td> {{ pm.collaborator.payments[0].admission | date: 'dd/MM/yyy' }} </td>
+                <td> {{ dismissal(pm) }} </td>
+                <td> {{ pm.collaborator.payments[0].salary | currency: 'BRL' }} </td>
+            </tr>
+            <tr *ngIf="!directInterns.length">
+                <td>Não foram encontrados registros</td>
+            </tr>
+        </table>
+    </div>
+    
+</div>
+
+<div class="card mt-2 mx-2 mb-4 shadow-sm p-3 rounded">
+    <h1 class="card-title">rh direto - Celetista</h1>
+
+    <div class="table-container">
+        <table class="w-100">
+            <tr>
+                <th *ngFor="let col of tableColumns"> {{ col }} </th>
+            </tr>
+            <tr *ngFor="let pm of directCLT">
+                <td> {{ pm.collaborator.name }} </td>
+                <td> {{ pm.collaborator.payments[0].employmentRelationship.name }} </td>
+                <td> {{ pm.collaborator.payments[0].admission | date: 'dd/MM/yyy' }} </td>
+                <td> {{ dismissal(pm) }} </td>
+                <td> {{ pm.collaborator.payments[0].salary | currency: 'BRL' }} </td>
+            </tr>
+            <tr *ngIf="!directCLT.length">
+                <td>Não foram encontrados registros</td>
+            </tr>
+        </table>
+    </div>
+    
+</div>
+
+<div class="card mt-2 mx-2 mb-4 shadow-sm p-3 rounded">
+    <h1 class="card-title">rh indireto</h1>
+
+    <div class="table-container">
+        <table class="w-100">
+            <tr>
+                <th *ngFor="let col of tableColumns"> {{ col }} </th>
+            </tr>
+            <tr *ngFor="let pm of indirect">
+                <td> {{ pm.collaborator.name }} </td>
+                <td> {{ pm.collaborator.payments[0].employmentRelationship.name }} </td>
+                <td> {{ pm.collaborator.payments[0].admission | date: 'dd/MM/yyy' }} </td>
+                <td> {{ dismissal(pm) }} </td>
+                <td> {{ pm.collaborator.payments[0].salary | currency: 'BRL' }} </td>
+            </tr>
+            <tr *ngIf="!indirect.length">
+                <td>Não foram encontrados registros</td>
+            </tr>
+        </table>
+    </div>
+    
+</div>
+
+

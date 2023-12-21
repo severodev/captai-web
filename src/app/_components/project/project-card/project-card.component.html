@@ -1,0 +1,30 @@
+<div class="card">
+  <div class="card-progress" [class.blurred]="!project.workplanComplete">
+    <div class="progress" 
+      [ngStyle]="{ 'width': utilizedFundsPercentage + '%' }">
+    </div>
+  </div>
+
+  <div class="card-header" [class.blurred]="!project.workplanComplete">
+    {{ project.name }}
+  </div>
+  <div class="card-body" [class.blurred]="!project.workplanComplete">
+    <div class="main-content">
+      <div class="currency">R$</div>
+      <div class="d-inline-block text-truncate">
+        <div class="value">{{ formatMoney(project.remainingBudget) }}</div>
+        <div class="legend-value">Margem Disponível</div>
+        <div class="legend-value-percentage">
+          {{ utilizedFundsPercentageText }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button *ngIf="!project.workplanComplete" type="button" class="btn btn-link" (click)="goToWorkplan()">Cadastrar Plano de Trabalho</button>
+
+    <button *ngIf="project.workplanComplete" type="button" class="btn btn-link mr-4" (click)="showProject()">Ver Projeto</button>
+    <button *ngIf="project.workplanComplete" type="button" class="btn btn-link" (click)="goToWorkplan()">Plano de Trabalho</button>
+    <!-- <button *ngIf="project.workplanComplete" type="button" class="btn btn-link" (click)="goToAccountability()">Prestar Contas</button> -->
+  </div>
+</div>

@@ -1,0 +1,181 @@
+<div class="all-costs">
+  <div class="info" *ngIf="projectWorkplanItems?.length === 0">
+    <img src="../../../../assets/images/file.svg">
+    <div class="info-text">Nenhum custo planejado foi adicionado.</div>
+  </div>
+
+  <div class="costs" *ngIf="projectWorkplanItems?.length >= 0">
+    
+    <div class="cost-item">
+      <div class="cost-info">
+        <b>Rubrica</b>
+      </div>
+      <div class="cost-info">
+        <b>Fornecedor</b>
+      </div>
+      <div class="cost-info">
+        <b>Etapa</b>
+      </div>
+      <div class="cost-info">
+        <b>Valor</b>
+      </div>
+      <div class="cost-buttons">
+        &nbsp;
+      </div>
+    </div>
+
+    <div class="cost-item" *ngFor="let item of projectWorkplanItems">
+      <div class="cost-info">
+        {{item.categoryLabel}}
+      </div>
+      <div class="cost-info">
+        {{item.itemLabel}}
+      </div>
+      <div class="cost-info">
+        {{item.projectStage}}
+      </div>
+      <div class="cost-info">
+        {{item.value | currency:'BRL'}}
+      </div>
+      <div class="cost-buttons">
+        <button class="btn btn-icon-link" (click)="editCost(template, item);">
+          <i class="icon ic-pencil-edit"></i>
+        </button>
+        <button class="btn btn-icon-link" (click)="deleteCost(item);" style="color: #666;">
+          <i class="icon ic-delete-can"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="cost-item summary" >
+      <div class="cost-info">
+        &nbsp;
+      </div>
+      <div class="cost-info">
+        &nbsp;
+      </div>
+      <div class="cost-info">        
+        &nbsp;
+      </div>
+      <div class="cost-info">
+        <b>{{totalPlannedItens | currency:'BRL'}}</b>
+      </div>
+      <div class="cost-buttons">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <div class="modal-title pull-left">Editar Custo Planejado de {{ selectedCost.itemLabel }}</div>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <i class="icon ic-close"></i>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-direct-hr
+      *ngIf="selectedCost.category === 'RH_DIRECT'"
+      [workplanItem]="selectedCost" [project]="project"
+      (finishEdition)="modalRef.hide();this.updateWorplanItems.emit();">
+    </app-direct-hr>
+
+    <app-indirect-hr
+      *ngIf="selectedCost.category === 'RH_INDIRECT'"
+      [workplanItem]="selectedCost" [project]="project"
+      (finishEdition)="modalRef.hide();this.updateWorplanItems.emit();">
+    </app-indirect-hr>
+
+    <app-travel
+      *ngIf="selectedCost.category === 'TRIP'"
+      [workplanItem]="selectedCost" [project]="project"
+      (finishEdition)="modalRef.hide();this.updateWorplanItems.emit();">
+    </app-travel>
+
+    <app-training
+      *ngIf="selectedCost.category === 'TRAINING'"
+      [workplanItem]="selectedCost" [project]="project"
+      (finishEdition)="modalRef.hide();this.updateWorplanItems.emit();">
+    </app-training>
+
+    <app-technical-service
+      *ngIf="selectedCost.category === 'SERVICE_TECHNOLOGY'"
+      [workplanItem]="selectedCost" [project]="project"
+      (finishEdition)="modalRef.hide();this.updateWorplanItems.emit();">
+    </app-technical-service>
+
+    <!-- <app-other-service
+      *ngIf="selectedCost.category === 'SERVICE_OTHER'"
+      [workplanItem]="selectedCost"
+      (finishEdition)="modalRef.hide();this.updateWorplanItems.emit();">
+    </app-other-service> -->
+
+    <app-computer-accessory
+      *ngIf="selectedCost.category === 'EQUIPMENT_TECHNOLOGY'"
+      [workplanItem]="selectedCost" [project]="project"
+      (finishEdition)="modalRef.hide();this.updateWorplanItems.emit();">
+    </app-computer-accessory>
+
+    <!-- <app-other-accessory
+      *ngIf="selectedCost.category === 'EQUIPMENT_OTHER'"
+      [workplanItem]="selectedCost"
+      (finishEdition)="modalRef.hide();this.updateWorplanItems.emit();">
+    </app-other-accessory> -->
+
+    <app-software-license
+      *ngIf="selectedCost.category === 'SOFTWARE_LICENSES'"
+      [workplanItem]="selectedCost" [project]="project"
+      (finishEdition)="modalRef.hide();this.updateWorplanItems.emit();">
+    </app-software-license>
+
+    <app-equipment-and-software
+      *ngIf="selectedCost.category === 'EQUIPMENT_AND_SOFTWARE'"
+      [workplanItem]="selectedCost" [project]="project"
+      (finishEdition)="modalRef.hide();this.updateWorplanItems.emit();">
+    </app-equipment-and-software>
+
+    <app-consumption-material
+      *ngIf="selectedCost.category === 'SUPPLIES_CONSUMPTION'"
+      [workplanItem]="selectedCost" [project]="project"
+      (finishEdition)="modalRef.hide();this.updateWorplanItems.emit();">
+    </app-consumption-material>
+
+    <app-prototype-material
+      *ngIf="selectedCost.category === 'SUPPLIES_PROTOTYPE'"
+      [workplanItem]="selectedCost" [project]="project"
+      (finishEdition)="modalRef.hide();this.updateWorplanItems.emit();">
+    </app-prototype-material>
+
+    <app-technological-journals
+      *ngIf="selectedCost.category === 'BOOKS_JOURNALS'"
+      [workplanItem]="selectedCost" [project]="project"
+      (finishEdition)="modalRef.hide();this.updateWorplanItems.emit();">
+    </app-technological-journals>
+
+    <app-civil-work
+      *ngIf="selectedCost.category === 'CIVIL_ENGINEERING'"
+      [workplanItem]="selectedCost" [project]="project"
+      (finishEdition)="modalRef.hide();this.updateWorplanItems.emit();">
+    </app-civil-work>
+
+    <!-- <app-infra-related
+      *ngIf="selectedCost.category === 'CORRELATED_INFRASTRUCTURE'"
+      [workplanItem]="selectedCost"
+      (finishEdition)="modalRef.hide();this.updateWorplanItems.emit();">
+    </app-infra-related> -->
+
+    <app-other-related
+      *ngIf="selectedCost.category === 'CORRELATED_OTHER'"
+      [workplanItem]="selectedCost" [project]="project"
+      (finishEdition)="modalRef.hide();this.updateWorplanItems.emit();">
+    </app-other-related>
+
+    <app-incurred-costs
+      *ngIf="selectedCost.category === 'INSTITUTE_COST'"
+      [workplanItem]="selectedCost" [project]="project"
+      (finishEdition)="modalRef.hide();this.updateWorplanItems.emit();">
+    </app-incurred-costs>
+
+  </div>
+</ng-template>

@@ -1,0 +1,82 @@
+<form #indirectHrForm="ngForm">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputFunction">Função no Projeto <span class="label-required">*</span></label>
+      <input id="inputFunction" type="text"
+        class="form-control" #inputFunction="ngModel" required
+        placeholder="Inserir nome da função" name="inputFunction"
+        [(ngModel)]="workplanItem.wpiHR.jobTitle">
+      <small [hidden]="inputFunction.valid || inputFunction.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputEducationLevel">Formação <span class="label-required">*</span></label>
+      <select id="inputEducationLevel" class="form-control" name="inputEducationLevel"
+        [(ngModel)]="workplanItem.wpiHR.educationLevel" #inputEducationLevel="ngModel" required>
+        <option value="null" disabled selected>Nível de Formação</option>
+        <option *ngFor="let educationLevel of educationLevels" [value]="educationLevel">{{ educationLevel }}</option>
+      </select>
+      <small [hidden]="inputEducationLevel.valid || inputEducationLevel.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputWorkedHours">Horas Trabalhadas <span class="label-required">*</span></label>
+      <input id="inputWorkedHours" type="number"
+        class="form-control" #inputWorkedHours="ngModel" required
+        placeholder="Inserir carga horária" name="inputWorkedHours"
+        [(ngModel)]="workplanItem.wpiHR.workingHours">
+      <small [hidden]="inputWorkedHours.valid || inputWorkedHours.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="inputJustification">Atuação e Justificativa do Projeto <span class="label-required">*</span></label>
+      <textarea type="text" class="form-control" id="inputJustification" style="height: 100px !important;"
+        name="inputJustification" placeholder="Inserir aqui as responsabilidades a serem cumpridas"
+        [(ngModel)]="workplanItem.rationale" #inputJustification="ngModel" required></textarea>
+      <small [hidden]="inputJustification.valid || inputJustification.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputExpenditures">Dispêndios <span class="label-required">*</span></label>
+      <input id="inputExpenditures" type="text" currencyMask
+        class="form-control" #inputExpenditures="ngModel" required         
+        placeholder="Valor Total" name="inputExpenditures"
+        [(ngModel)]="workplanItem.value"
+        autocomplete="off">
+      <small [hidden]="inputExpenditures.valid || inputExpenditures.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="inputStage">Etapa Associada</label>
+      <input id="inputStage" type="text"
+        class="form-control" #inputStage="ngModel"
+        placeholder="Insira a Etapa do Projeto" name="inputStage"
+        [(ngModel)]="workplanItem.projectStage">
+      <small [hidden]="inputStage.valid || inputStage.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col">
+      <app-funds-table [workplanItem]="workplanItem" [project]="project" #appFunds></app-funds-table>
+    </div>
+  </div>
+
+  <div class="form-row" style="padding: 5px; justify-content: flex-end;">
+    <button class="btn btn-primary" (click)="addWorkplan();" [disabled]="indirectHrForm.form.invalid" *ngIf="!isEdition">
+      <i class="icon ic-add-circ"></i>
+      Adicionar
+    </button>
+    <button class="btn btn-outline-primary mr-3" (click)="cancel();" *ngIf="isEdition">
+      Cancelar
+    </button>
+    <button class="btn btn-primary" (click)="updateWorkplanItem();" [disabled]="indirectHrForm.form.invalid" *ngIf="isEdition">
+      Salvar
+    </button>
+  </div>
+</form>
+

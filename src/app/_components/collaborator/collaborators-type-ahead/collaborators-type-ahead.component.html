@@ -1,0 +1,27 @@
+<div>
+  <div class="autocomplete">
+    <input
+      #searchItemInput
+      [(ngModel)]="collaboratorNameInput"
+      name="autocomplete-input"
+      type="text"
+      class="form-control"
+      [id]="componentId"
+      [placeholder]="placeholder"
+      [class.error]="!!collaboratorNameInput && !hasCollaborator(collaboratorNameInput)"
+      (focus)="filterCollaboratorsByName('')"
+      (keydown)="onKeyDown($event)"
+      (input)="filterCollaboratorsByName(searchItemInput.value)"
+    >
+    <div *ngIf="showCollaboratorsAutoComplete && autoCompleteCollaboratorsList.length > 0"
+      id="items-autocomplete-list" class="autocomplete-list">
+      <div class="autocomplete-item"
+        *ngFor="let collaborator of autoCompleteCollaboratorsList; let indexCollaborator = index"
+        [class.autocomplete-active]="indexCollaborator === indexCollaboratorSelected"
+        (click)="selectCollaborator(collaborator, 'Enter')"
+        (mousedown)="selectCollaborator(collaborator, 'Enter')">
+        {{ collaborator.name }}
+      </div>
+    </div>
+  </div>
+</div>

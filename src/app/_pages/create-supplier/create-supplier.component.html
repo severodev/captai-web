@@ -1,0 +1,22 @@
+<div class="container">
+  <app-breadcrumb [pages]="breadcrumbPages"></app-breadcrumb>
+
+  <div class="page-title">
+    <div class="title">
+      NOVO FORNECEDOR
+    </div>
+    <div class="buttons">
+      <button type="button" class="btn btn-secondary" (click)="createSupplier()" [disabled]="appSupplier?.supplierForm?.form?.invalid">
+        <i class="icon ic-cart"></i> Adicionar Fornecedor
+      </button>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <div class="div-form">
+      <app-supplier-form #appSupplier [supplier]="supplier"></app-supplier-form>
+    </div>
+  </div>
+
+</div>
+<app-confirm-alert></app-confirm-alert>

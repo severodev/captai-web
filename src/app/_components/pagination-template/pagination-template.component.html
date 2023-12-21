@@ -1,0 +1,30 @@
+<nav aria-label="Page navigation example" class="justify-content-between d-flex align-items-center" style="margin-top: 8px;">
+  <div class="justify-content-start">
+    <span class="result-list">
+      {{ (config.totalItems > 0) ? (((config.currentPage - 1) * config.itemsPerPage) + 1) : 0 }} – {{isLastPage() ? config.totalItems : config.currentPage * config.itemsPerPage}} de {{config.totalItems}} itens
+    </span>
+  </div>
+  <pagination-template #p="paginationApi" [id]="config.id" [maxSize]="5" (pageChange)="changePage($event)">
+      <ul class="pagination custom-pagination justify-content-end d-flex align-items-center">
+        <li [class.disabled]="isFirstPage()" class="page-item">
+          <a class="page-link align-items-center justify-content-center" (click)="p.previous()" tabindex="-1" aria-disabled="true">
+              <img [src]="isFirstPage() ? 'assets/icons/arrow-pagination-left-inactive.svg' : 'assets/icons/arrow-pagination-left-active.svg'" width="25px" height="25px">
+          </a>
+        </li>
+        <ng-container *ngFor="let page of p.pages; index as i">
+          <li class="page-item" [class.disabled]="p.getCurrent() === page.value">
+            <a [class.active]="p.getCurrent() === page.value"
+              class="page-link align-items-center justify-content-center"
+              (click)="p.setCurrent(page.value);">
+                {{ page.label }}
+            </a>
+          </li>
+        </ng-container>
+        <li [class.disabled]="isLastPage()" class="page-item">
+          <a class="page-link align-items-center justify-content-center" (click)="p.next()" tabindex="-1" aria-disabled="true">
+              <img [src]="isLastPage() ?  'assets/icons/arrow-pagination-right-inactive.svg' : 'assets/icons/arrow-pagination-right-active.svg'" width="25px" height="25px">
+          </a>
+        </li>
+      </ul>
+  </pagination-template>
+</nav>

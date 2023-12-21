@@ -1,0 +1,38 @@
+<div class="grid">
+  <div class="grid-line-labels">
+    <div class="grid-head-label"></div>
+    <div class="grid-margin-label"> MARGEM RESTANTE </div>
+    <div class="grid-margin-label-secondary"
+      *ngFor="let financeHeading of financeHeadings">
+      {{ getWorkplanLabel(financeHeading) }}
+    </div>
+  </div>
+  <div class="grid-lines">
+    <div class="grid-head">
+      <div class="grid-item head-item" *ngFor="let labelItem of monthYearLabels">
+        <div class="month-label">
+          {{ labelItem.monthLabel }}
+        </div>
+        <div class="year-label">
+          {{ labelItem.yearLabel }}
+        </div>
+      </div>
+    </div>
+    <div class="grid-margin">
+      <div class="grid-item margin-item"
+        *ngFor="let marginItem of margins"
+        [class.past]="(currentMonth > getMonthIndex(marginItem.monthLabel)) && (currentYear == marginItem.yearLabel)"
+        [class.current]="(currentMonth === getMonthIndex(marginItem.monthLabel)) && (currentYear == marginItem.yearLabel)"
+        [class.future]="currentMonth < getMonthIndex(marginItem.monthLabel)">
+        {{ marginItem.periodValue | currency:'BRL'}}
+      </div>
+    </div>
+    <div class="grid-margin" *ngFor="let financeHeading of financeHeadings" >
+      <div class="grid-item margin-item"
+        *ngFor="let marginItem of margins"
+        [class.current-secondary]="(currentMonth === getMonthIndex(marginItem.monthLabel)) && (currentYear == marginItem.yearLabel)">
+        {{ marginItem.financeHeadings[financeHeading] | currency:'BRL'}}
+      </div>
+    </div>
+  </div>
+</div>

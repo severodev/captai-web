@@ -1,0 +1,22 @@
+<div class="benefits-section">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="benefits-title">Benefícios <span class="label-required">*</span></div>
+      <div class="benefits-subtitle">
+        Clique nos benefícios atribuídos a esse colaborador ou crie um novo
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 benefits">
+      <div class="benefit" [class.selected]="isSelected(benefit)" (click)="toogleSelectBenefit(benefit)" *ngFor="let benefit of benefits">
+        {{benefit.name}}
+      </div>
+    </div>
+    <div class="col-md-2 create-benefit">
+      <button type="button" class="btn btn-link">
+        Cadastrar Benefício
+      </button>
+    </div>
+  </div>
+</div>

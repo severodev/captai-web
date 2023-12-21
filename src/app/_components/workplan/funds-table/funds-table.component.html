@@ -1,0 +1,90 @@
+<form #fundsForm="ngForm">
+    <table class="w-100">
+      <tr>
+        <th>
+          <input type="checkbox" class="wpi_check" [(ngModel)]="selected" name="check-all" (click)="changeFundsSelectedState()">
+        </th>
+        <th style="width: 38rem">Mês relacionado <span class="text-danger">*</span></th>
+        <th>Dispêndio parcial <span class="text-danger">*</span></th>
+        <th class="d-flex">
+          <button class="btn btn-icon-link mx-1" *ngIf="selected || selectedWpi.length" (click)="editSelectedsFunds()">
+            <i class="icon {{ editing ? 'ic-save green' : 'ic-pencil-edit'}}"></i>
+          </button>
+          <button class="btn btn-icon-link red mx-1" *ngIf="selected || selectedWpi.length > 1" (click)="removeSelectedsFunds()">
+            <i class="icon ic-delete-can"></i>
+          </button>
+        </th>
+      </tr>
+      <tr *ngFor="let wpiFund of workplanItem.wpiFundPerMonth; index as i; trackBy: indexTracker">
+        <td>
+          <input
+            type="checkbox"
+            class="wpi_check"
+            [(ngModel)]="wpiFund.selected"
+            name="select-{{i}}">
+        </td>
+        <td>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="wpiFund.str_date"
+            #inputStr_date="ngModel"
+            name="inputStr_date-{{i}}"
+            mask="00/0000"
+            [dropSpecialCharacters]="false"
+            placeholder="00/0000"
+            autocomplete="off"
+            required
+            (ngModelChange)="parseDate(wpiFund)"
+            [readonly]="!wpiFund.isEditing" 
+          />
+          <small [hidden]="inputStr_date.valid || inputStr_date.pristine" class="invalid-alert">Campo obrigatório</small>
+        </td>
+        <td>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="wpiFund.value"
+            #inputValue="ngModel"
+            name="inputValue-{{i}}"
+            currencyMask
+            thousandSeparator="."
+            placeholder="R$ 00000"
+            autocomplete="off"
+            required
+            [readonly]="!wpiFund.isEditing" 
+          />
+          <small [hidden]="inputValue.valid || inputValue.pristine" class="invalid-alert">Campo obrigatório</small>
+        </td>
+        <td class="d-flex rightButtons">
+          <button class="btn btn-icon-link mx-1" (click)="updateFund(i)">
+            <i class="icon {{ wpiFund.isEditing ? 'ic-save green' : 'ic-pencil-edit'}}"></i>
+          </button>
+          <button class="btn btn-icon-link mx-1 red" (click)="removeFund(i)">
+            <i class="icon ic-delete-can"></i>
+          </button>
+        </td>
+      </tr>
+
+      <tr *ngIf="!workplanItem.wpiFundPerMonth || !workplanItem.wpiFundPerMonth.length">
+        <td></td>
+        <td style="position: relative; left: -80px;">Nenhum registro foi adicionado. É necessário a adição de pelo menos um item.</td>
+        <td></td>
+      </tr>
+
+      <tr *ngIf="workplanItem.wpiFundPerMonth && workplanItem.wpiFundPerMonth.length > 0" class="summary" >
+        <td colspan="3">Total </td>        
+        <td class="rightButtons">{{ getTotalFunds() | currency : 'BRL' }}</td>
+      </tr>
+    </table>
+</form>
+
+<button class="btn btn-outline-primary mt-2 w-100" (click)="addFund()">
+  <i class="icon ic-add-circ"></i>
+  <span>Adicionar gasto mensal</span>
+</button>
+
+<div class="my-2">
+  <app-confirm-alert></app-confirm-alert>
+</div>
+

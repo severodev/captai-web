@@ -1,0 +1,98 @@
+<form #computerForm="ngForm">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputName">Nome do Equipamento <span class="label-required">*</span></label>
+      <input id="inputName" type="text"
+        class="form-control" #inputName="ngModel" required
+        placeholder="Nome do equipamento necessário" name="inputName"
+        [(ngModel)]="workplanItem.wpiEquipment.equipmentName">
+      <small [hidden]="inputName.valid || inputName.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputType">Tipo de Equipamento <span class="label-required">*</span></label>
+      <input id="inputType" type="text"
+        class="form-control" #inputType="ngModel" required
+        placeholder="Inserir tipo de equipamento" name="inputType"
+        [(ngModel)]="workplanItem.wpiEquipment.equipmentType">
+      <small [hidden]="inputType.valid || inputType.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputModel">Modelo de Equipamento</label>
+      <input id="inputModel" type="text"
+        class="form-control"
+        placeholder="Inserir nome do modelo" name="inputModel"
+        [(ngModel)]="workplanItem.wpiEquipment.equipmentModel">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="inputJustification">Finalidade e Justificativa <span class="label-required">*</span></label>
+      <textarea type="text" class="form-control" id="inputJustification" style="height: 100px !important;"
+        name="inputJustification" placeholder="Inserir a justificativa"
+        [(ngModel)]="workplanItem.rationale" #inputJustification="ngModel" required></textarea>
+      <small [hidden]="inputJustification.valid || inputJustification.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label for="inputQuantity">Quantidade <span class="label-required">*</span></label>
+      <input id="inputQuantity" type="number"
+        class="form-control" #inputQuantity="ngModel" required
+        placeholder="Inserir quantidade necessária" name="inputQuantity"
+        [(ngModel)]="workplanItem.wpiEquipment.quantity">
+      <small [hidden]="inputQuantity.valid || inputQuantity.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-3">
+      <label for="inputPurchaseDate">Data Prevista para Compra <span class="label-required">*</span></label>
+      <input id="inputPurchaseDate" type="text" mask="00/0000"
+        [dropSpecialCharacters]="false"
+        class="form-control" #inputPurchaseDate="ngModel" required
+        placeholder="00/0000" name="inputPurchaseDate"
+        [(ngModel)]="workplanItem.wpiEquipment.purchaseDate">
+      <small [hidden]="inputPurchaseDate.valid || inputPurchaseDate.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-3">
+      <label for="inputExpenditures">Dispêndios <span class="label-required">*</span></label>
+      <input id="inputExpenditures" type="text" currencyMask
+        class="form-control" #inputExpenditures="ngModel" required        
+        placeholder="Valor Total" name="inputExpenditures"
+        [(ngModel)]="workplanItem.value"
+        autocomplete="off">
+      <small [hidden]="inputExpenditures.valid || inputExpenditures.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-3">
+      <label for="inputStage">Etapa Associada</label>
+      <input id="inputStage" type="text"
+        class="form-control" #inputStage="ngModel"
+        placeholder="Insira a Etapa do Projeto" name="inputStage"
+        [(ngModel)]="workplanItem.projectStage">
+      <small [hidden]="inputStage.valid || inputStage.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col">
+      <app-funds-table [workplanItem]="workplanItem" [project]="project" #appFunds></app-funds-table>
+    </div>
+  </div>
+
+  <div class="form-row" style="padding: 5px; justify-content: flex-end;">
+    <button class="btn btn-primary" (click)="addWorkplan();" [disabled]="computerForm.form.invalid" *ngIf="!isEdition">
+      <i class="icon ic-add-circ"></i>
+      Adicionar
+    </button>
+    <button class="btn btn-outline-primary mr-3" (click)="cancel();" *ngIf="isEdition">
+      Cancelar
+    </button>
+    <button class="btn btn-primary" (click)="updateWorkplanItem();" [disabled]="computerForm.form.invalid" *ngIf="isEdition">
+      Salvar
+    </button>
+  </div>
+</form>

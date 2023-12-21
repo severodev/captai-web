@@ -1,0 +1,75 @@
+<div class="info">
+  <div class="form-container">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [class.active]="activeForm === 'planejado'"
+          (click)="setShowForm('planejado')"
+        >
+          <i class="dds__icons dds__clipboard-notes" aria-hidden="true"></i> 
+          <span>Planejado</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [class.active]="activeForm === 'realizado'"
+          (click)="setShowForm('realizado')"
+        >
+          <i class="dds__icons dds__clipboard-check" aria-hidden="true"></i> 
+          <span>Realizados</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [class.active]="activeForm === 'arquivo'"
+          (click)="setShowForm('arquivo')"
+        >
+          <i class="dds__icons dds__folder" aria-hidden="true"></i>
+          <span>Arquivos</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [class.active]="activeForm === 'aporte'"
+          (click)="setShowForm('aporte')"
+        >
+          <i class="dds__icons dds__currency-coins" aria-hidden="true"></i>
+          <span>Aportes</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="forms">
+      <div class="div-form" [class.show]="activeForm === 'planejado'" [class.hide]="activeForm !== 'planejado'">
+        <ng-container *ngTemplateOutlet="projectHeaderInfo"></ng-container>
+        <app-accountability-planned-grid [project]="project"></app-accountability-planned-grid>
+      </div>
+      <div class="div-form" [class.show]="activeForm === 'realizado'" [class.hide]="activeForm !== 'realizado'">
+        <ng-container *ngTemplateOutlet="projectHeaderInfo"></ng-container>
+        <app-accountability-accomplished-grid [project]="project"></app-accountability-accomplished-grid>
+      </div>
+      <div class="div-form" [class.show]="activeForm === 'arquivo'" [class.hide]="activeForm !== 'arquivo'">
+        <ng-container *ngTemplateOutlet="projectHeaderInfo"></ng-container>
+        <app-accountability-docs [docs]="project.documentFiles"></app-accountability-docs>
+      </div>
+      <div class="div-form" [class.show]="activeForm === 'aporte'" [class.hide]="activeForm !== 'aporte'">
+        <app-accountability-contribution [project]="project" (cardChangesContributionsEvent)="cardChangesContributionsEvent($event)"></app-accountability-contribution>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #projectHeaderInfo>
+  <div class="project-title">
+    Duração: <strong>{{diff}} meses</strong>
+    <br />
+  </div>
+</ng-template>

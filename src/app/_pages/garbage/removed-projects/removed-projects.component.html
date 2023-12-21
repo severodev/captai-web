@@ -1,0 +1,18 @@
+<div class="projects-dropdown">
+  <div class="projects-header" data-toggle="collapse" data-target="#collapse-removed-projects"
+  aria-expanded="true" aria-controls="#collapse-removed-projects" (click)="toggleChev('chev-projects');">
+    <span class="mr-3">Projetos</span>
+    <div class="mr-3 line"></div>
+    <i class="icon ic-chev-down" id="chev-projects"></i>
+  </div>
+  <div class="show" id="collapse-removed-projects">
+    <div class="projetcs-body card-deck">
+      <app-project-card-small *ngFor="let project of removedProjects | paginate: projectsPaginationcConfig"
+      (restoreEvent)="loadRemovedProjectsMetadata()"
+      [project]="project" style="padding: 8px; width: 25%;"></app-project-card-small>
+    </div>
+    <div class="projects-footer">
+      <app-pagination-template [config]="projectsPaginationcConfig" (changePageEvent)="changePage($event)"></app-pagination-template>
+    </div>
+  </div>
+</div>

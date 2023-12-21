@@ -1,0 +1,16 @@
+<div class="card-container">
+    <header class="card-header">
+        <img src="../../../assets/images/man.png"
+            alt="" class="profile-img">
+        <span class="mx-2">{{ user.fullname }}</span>
+    </header>
+    <nav>
+        <a class="main-dropdown-item" (click)="navigate('EDIT')">Meu Perfil</a>
+        <a *ngIf="user.role == 'ADMIN'" class="main-dropdown-item" (click)="navigate('CREATE')">Criar Perfil</a>
+        <a class="main-dropdown-item" routerLink="users">Usuários e Permissões</a>
+    </nav>
+    <button class="main-dropdown-btn" (click)="logout()">
+        <i class="icon ic-logout"></i>
+        Sair
+    </button>
+</div>

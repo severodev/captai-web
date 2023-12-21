@@ -1,0 +1,217 @@
+<div class="payments">
+  <div class="message" *ngIf="collaborator.payments?.length === 0">
+    Adicione uma remuneração para depois adicionar benefícios.
+  </div>
+  <div class="payment-card" *ngFor="let payment of collaborator.payments; let idxPayment = index">
+    <div class="payment-title">
+      {{ payment.jobTitle }}
+    </div>
+    <div class="payment-info">
+      <div>
+        <b>PERÍODO ADMISSÃO:</b> {{ payment.admission }} - {{ payment.dismissal }}
+      </div>
+      <div>
+        <b>CARGA HORÁRIA:</b> {{ payment.workload }}
+      </div>
+      <div>
+        <b>INSTITUTO:</b> {{ payment.institute.abbreviation }}
+      </div>
+      <div>
+        <b>CONTRATO:</b> {{ payment.employmentRelationship.name }}
+      </div>
+      <div>
+        <b>SALÁRIO:</b> {{ payment.salary | currency: 'BRL'}}
+      </div>
+    </div>
+    <div class="benefits">
+      <div class="benefits-title">
+        <span class="mr-4">BENEFÍCIOS</span>
+        <div class="horizontal-line"></div>
+      </div>
+      <div class="benefits-list">
+        <div class="col-md-3" *ngFor="let benefit of payment.benefits; let idxBenefit = index">
+          <div class="m-1 card">
+            <div class="card-header">
+              <div class="header-info">
+                <span class="title">{{benefit.benefitType.name}}</span>
+              </div>
+              <div *ngIf="canEdit" class="header-button">
+                <button type="button" class="btn btn-icon-link" (click)="removeBenefit(idxPayment, idxBenefit)"><i class="icon ic-remove-circ"></i></button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div>
+                <span *ngIf="benefit.amountType == 'R$'">{{benefit.amountValue < 0 ? 'Valor Dinâmico' : benefit.amountValue | currency:'BRL'}}</span>
+                <span *ngIf="benefit.amountType == '%'">{{benefit.amountValue}} %</span>
+                <span *ngIf="benefit.deductionType == 'R$'"> - Desconto de {{benefit.deductionValue < 0 ? 'Valor Dinâmico' : benefit.deductionValue |
+                  currency:'BRL'}}</span>
+                <span *ngIf="benefit.deductionType == '%'"> - Desconto de {{benefit.deductionValue}} %</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="add-benefit">
+        <button *ngIf="canEdit" class="btn btn-outline-primary" (click)="showSelectBenefitsModal(benefitsModal, payment)">
+          <i class="icon ic-add-circ"></i>
+          Adicionar Benefício
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #benefitsModal>
+  <div class="modal-header">
+    <div class="modal-title pull-left">ADICIONAR BENEFÍCIOS
+      <div class="modal-subtitle">Selecione os benefícios atribuídos a esse colaborador</div>
+    </div>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="selectBenefitsModalRef.hide()">
+      <i class="icon ic-close"></i>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <ul class="list-group">
+      <li class="list-group-item">
+        <div class="row list-group-header">
+          <div class="col-md-1"></div>
+          <div class="col-md-4">Nome do Benefício</div>
+          <div class="col-md-3">Cálculo do Benefício</div>
+          <div class="col-md-3">Desconto sobre Remuneração</div>
+          <div class="col-md-1"></div>
+        </div>
+      </li>
+
+      <li class="list-group-item text-center" *ngIf="availableBenefits && availableBenefits.length === 0">Nenhum
+        registro foi encontrado.</li>
+
+      <li class="list-group-item" [class.list-group-item-selected]="item.selected"
+        *ngFor="let item of availableBenefits; let idx = index">
+        <div class="row">
+          <div class="col-md-1">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" [id]="'benefitCheckbox'+idx"
+                [(ngModel)]="item.selected">
+              <label class="custom-control-label" [for]="'benefitCheckbox'+idx"></label>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            {{ item.benefitType.name }}
+            <span *ngIf="item.hint != ''">&nbsp;<i class="icon ic-info-circ" [title]="item.hint"></i></span>
+          </div>
+          <div class="col-md-3">
+            <span *ngIf="item.amountType == 'R$' && item.amountValue < 0">Calculado dinamicamente</span>
+            <span *ngIf="item.amountType == 'R$' && item.amountValue >= 0">{{ item.amountValue | currency: 'BRL'
+              }}  
+              <span *ngIf="item.amountValue == 0"><i title="ATENÇÃO: Defina o valor deste benefício" class="icon ic-warn-solid missingValue"></i></span>
+            </span>
+            <span *ngIf="item.amountType == '%'"> {{ item.amountValue }}% da remuneração </span>
+          </div>
+          <div class="col-md-3">
+            <span *ngIf="item.deductionType == 'R$' && item.deductionValue < 0">Calculado dinamicamente</span>
+            <span *ngIf="item.deductionType == 'R$' && item.deductionValue >= 0"> {{ item.deductionValue | currency:
+              'BRL' }} </span>
+            <span *ngIf="item.deductionType == '%'"> {{ item.deductionValue }}% da remuneração </span>
+          </div>
+
+          <div class="col-md-1">
+            <div class="options" [class.show-options]="item.selected" *ngIf="item.benefitType.custom">
+              <button type="button" class="btn btn-icon-link" (click)="editBenefit(idx, editBenefitModal)">
+                <i class="icon ic-pencil-edit"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </li>
+
+    </ul>
+
+    <div class="form-row" style="padding: 5px; margin-top: 1rem; justify-content: flex-end;">
+      <button type="button" class="btn btn-link" (click)="selectBenefitsModalRef.hide()">
+        Cancelar
+      </button>
+      <button class="btn btn-primary" [disabled]="!anyBenefitSelected()" (click)="addBenefits()">
+        Cadastrar
+      </button>
+    </div>
+
+  </div>
+</ng-template>
+
+<ng-template #editBenefitModal>
+  <div class="modal-header">
+    <div class="modal-title pull-left">EDITAR BENEFÍCIO
+    </div>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="saveBenefitChanges(benefitsModal)">
+      <i class="icon ic-close"></i>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <form #editBenefitForm="ngForm">
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="benefitName">Nome do Benefício</label>
+          <input type="text" [(ngModel)]="selectedBenefit.benefitType.name" name="benefitName" class="form-control"
+            id="benefitName" disabled>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="inputAmountValue">Valor do benefício <span class="label-required">*</span></label>
+          <div class="input-group">
+            <div *ngIf="selectedBenefit.amountType == 'R$'" class="input-group-append" style="background: #eee;">
+              <span class="input-group-text">{{selectedBenefit.amountType}}</span>
+            </div>
+            <input type="text" [(ngModel)]="selectedBenefit.amountValue" name="inputAmountValue"
+              class="form-control not-valid-form" required currencyMask [options]="{ prefix: ''}" >
+            <div *ngIf="selectedBenefit.amountType == '%'" class="input-group-append" style="background: #eee;">
+              <span class="input-group-text">{{selectedBenefit.amountType}}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="inputDeductionValue">Desconto sobre remuneração <span class="label-required">*</span></label>
+          <div class="input-group">
+            <div *ngIf="selectedBenefit.deductionType == 'R$'" class="input-group-append" style="background: #eee;">
+              <span class="input-group-text">{{selectedBenefit.deductionType}}</span>
+            </div>
+            <input type="text" [(ngModel)]="selectedBenefit.deductionValue" name="inputDeductionValue"
+              class="form-control not-valid-form" required currencyMask [options]="{ prefix: ''}" >
+            <div *ngIf="selectedBenefit.deductionType == '%'" class="input-group-append" style="background: #eee;">
+              <span class="input-group-text">{{selectedBenefit.deductionType}}</span>
+            </div>
+          </div>
+          <!-- <div class="input-group-append">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" 
+              aria-haspopup="true" aria-expanded="false">{{selectedBenefit.deductionType}}</button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" (click)="setSelectedBenefitDeductionType('R$')">R$</a>
+              <a class="dropdown-item" (click)="setSelectedBenefitDeductionType('%')">% da remuneração</a>
+            </div>
+          </div> -->
+        </div>
+
+        <div class="form-group col-md-12">
+          <label for="inputComments">Justificativa</label>
+          <textarea type="text" class="form-control" id="inputComments" style="height: 100px !important;"
+            name="inputComments" #inputDescription="ngModel" [(ngModel)]="selectedBenefit.comments"></textarea>
+        </div>
+      </div>
+
+    </form>
+
+    <div class="form-row" style="padding: 5px; margin-top: 1rem; justify-content: flex-end;">
+      <button type="button" class="btn btn-link" (click)="saveBenefitChanges(benefitsModal)">
+        Cancelar
+      </button>
+      <button class="btn btn-primary" [disabled]="editBenefitForm.form.invalid"
+        (click)="saveBenefitChanges(benefitsModal)">
+        Salvar
+      </button>
+    </div>
+
+  </div>
+</ng-template>

@@ -1,0 +1,52 @@
+<div class="card-deck" *ngIf="project">
+  <div class="text-center my-3 w-100" *ngIf="project.projectMembers.length === 0">Nenhum colaborador foi atribuído a este projeto.</div>
+
+  <div class="form-row col-12 actionsButton" *ngIf="project.projectMembers.length > 0">
+
+    <div class="form-row col-12 center-container">
+      <button class="pill" [class.active]="activeForm == 'collaborators'" (click)="setShowForm('collaborators')">
+        <i class="icon ic-user-group-solid"></i>
+        <span>Colaboradores</span>
+      </button>
+      <button class="pill" [class.active]="activeForm == 'signings'" (click)="setShowForm('signings')">
+        <i class="icon ic-directory-service"></i>
+        <span>Contratações</span>
+      </button>
+      <button class="pill" [class.active]="activeForm == 'payments'" (click)="setShowForm('payments')">
+        <i class="icon ic-clipboard-task-assign"></i>
+        <span>Folha de pagamento</span>
+      </button>
+    </div>
+
+    <div class="form-row col-12 right-container" *ngIf="activeForm == 'collaborators'">
+      <button type="button" class="btn btn-icon-link mr-3" (click)="download()">
+        <div class="d-flex align-items-center">
+          <i class="icon ic-arrow-download"></i>
+          <span class="optionText ml-1"> Baixar lista de colaboradores</span>
+        </div>
+      </button>
+      <button type="button" class="btn btn-icon-link" (click)="viewSort = (viewSort === 'grid' ? 'list' : 'grid')">
+        <div *ngIf="viewSort === 'list'" class="d-flex align-items-center">
+          <i class="icon ic-view-sort-grid" id="icon-view-grid"></i>
+          <span class="optionText ml-1"> Ver em grade</span>
+        </div>
+        <div *ngIf="viewSort === 'grid'" class="d-flex align-items-center">
+          <i class="icon ic-view-sort-list" id="icon-view-list"></i>
+          <span class="optionText ml-1"> Ver em lista</span>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <div class="forms">
+    <div class="div-form" [class.show]="activeForm == 'collaborators'" [class.hide]="activeForm != 'collaborators'" >
+      <app-project-collaborators [members]="project.projectMembers" [viewSort]="viewSort"></app-project-collaborators>
+    </div>
+    <div class="div-form" [class.show]="activeForm == 'signings'" [class.hide]="activeForm != 'signings'">
+      <app-project-signings [signings]="project.projectMembers"></app-project-signings>
+    </div>
+    <div class="div-form" [class.show]="activeForm == 'payments'" [class.hide]="activeForm != 'payments'">
+      <app-project-payments [project]="project"></app-project-payments>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="container">
+  <app-breadcrumb [pages]="breadcrumbPages"></app-breadcrumb>
+
+  <div class="page-title">
+    <div class="title">
+      FORNECEDORES
+    </div>
+    <div class="buttons">
+      <button type="button" class="btn btn-icon-link" (click)="confirmDelete();">
+        <i class="icon ic-delete-can" id="icon-delete-can"></i>
+      </button>
+      <button type="button" class="btn btn-primary" (click)="addExpense();" >
+        <i class="icon ic-cart"></i> Incluir Gasto
+      </button>
+    </div>
+  </div>
+
+  <app-supplier-header [supplier]="supplier"></app-supplier-header>
+  <div style="margin-bottom: 14px;"></div>
+
+  <app-confirm-alert></app-confirm-alert>
+  <div style="margin-bottom: 14px;"></div>
+
+  <app-supplier-info [supplier]="supplier"></app-supplier-info>
+  <div style="margin-bottom: 14px;"></div>
+</div>

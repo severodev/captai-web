@@ -1,0 +1,120 @@
+<form #travelForm="ngForm">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputEvent">Evento <span class="label-required">*</span></label>
+      <input id="inputEvent" type="text"
+        class="form-control" #inputEvent="ngModel" required
+        placeholder="Inserir nome do evento" name="inputEvent"
+        [(ngModel)]="workplanItem.wpiTrip.event">
+      <small [hidden]="inputEvent.valid || inputEvent.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputItinerary">Itinerário <span class="label-required">*</span></label>
+      <input id="inputItinerary" type="text"
+        class="form-control" #inputItinerary="ngModel" required
+        placeholder="Insira o itinerário da viagem" name="inputItinerary"
+        [(ngModel)]="workplanItem.wpiTrip.itinerary">
+      <small [hidden]="inputItinerary.valid || inputItinerary.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputDate">Data <span class="label-required">*</span></label>
+      <input id="inputDate" type="text" mask="00/00/0000"
+        class="form-control" #inputDate="ngModel" required
+        placeholder="Data do evento" name="inputDate"
+        [dropSpecialCharacters]="false"
+        [(ngModel)]="workplanItem.wpiTrip.start">
+      <small [hidden]="inputDate.valid || inputDate.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="inputJustification">Finalidade e Justificativa <span class="label-required">*</span></label>
+      <textarea type="text" class="form-control" id="inputJustification" style="height: 100px !important;"
+        name="inputJustification" placeholder="Inserir aqui as responsabilidades a serem cumpridas"
+        [(ngModel)]="workplanItem.rationale" #inputJustification="ngModel" required></textarea>
+      <small [hidden]="inputJustification.valid || inputJustification.pristine" class="invalid-alert">Campo obrigatório</small>        
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputDays">Quantidade de Dias <span class="label-required">*</span></label>
+      <input id="inputDays" type="number"
+        class="form-control" #inputDays="ngModel" required
+        placeholder="Insira os dias" name="inputDays"
+        [(ngModel)]="workplanItem.wpiTrip.days">
+      <small [hidden]="inputDays.valid || inputDays.pristine" class="invalid-alert">Campo obrigatório</small>        
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputName">Nome do Viajante (opcional)</label>
+      <input id="inputName" type="text"
+        class="form-control"
+        placeholder="Insira o nome do viajente" name="inputName"
+        [(ngModel)]="workplanItem.wpiTrip.passengerName">
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputCPF">CPF do Viajante (opcional)</label>
+      <input id="inputCPF" type="text" mask="000.000.000-00"
+        class="form-control"
+        [validation]="false"
+        placeholder="Insira o CPF do viajente" name="inputCPF"
+        [(ngModel)]="workplanItem.wpiTrip.passengerCpf">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputQuantity">Quantidade de Viagens <span class="label-required">*</span></label>
+      <input id="inputQuantity" type="text"
+        class="form-control" #inputQuantity="ngModel" required
+        placeholder="Insira a quantidade" name="inputQuantity"
+        [(ngModel)]="workplanItem.wpiTrip.quantity">
+      <small [hidden]="inputQuantity.valid || inputQuantity.pristine" class="invalid-alert">Campo obrigatório</small>        
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputTravelCost">Valor Total <span class="label-required">*</span></label>
+      <input id="inputTravelCost" type="text" mask="separator.2"
+        class="form-control" #inputTravelCost="ngModel" required
+        [dropSpecialCharacters]="true" thousandSeparator="."
+        placeholder="Custo total da viagem" name="inputTravelCost"
+        [(ngModel)]="workplanItem.value">
+      <small [hidden]="inputTravelCost.valid || inputTravelCost.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputStage">Etapa Associada</label>
+      <input id="inputStage" type="text"
+        class="form-control" #inputStage="ngModel" 
+        placeholder="Insira a Etapa do Projeto" name="inputStage"
+        [(ngModel)]="workplanItem.projectStage">
+      <small [hidden]="inputStage.valid || inputStage.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col">
+      <app-funds-table [workplanItem]="workplanItem" [project]="project" #appFunds></app-funds-table>
+    </div>
+  </div>
+  
+  <div class="form-row" style="padding: 5px; justify-content: flex-end;">
+    <button class="btn btn-primary" (click)="addWorkplan();" [disabled]="travelForm.form.invalid || appFunds?.fundsForm?.form?.invalid" *ngIf="!isEdition">
+      <i class="icon ic-add-circ"></i>
+      Adicionar
+    </button>
+    <button class="btn btn-outline-primary mr-3" (click)="cancel();" *ngIf="isEdition">
+      Cancelar
+    </button>
+    <button class="btn btn-primary" (click)="updateWorkplanItem();" [disabled]="travelForm.form.invalid" *ngIf="isEdition">
+      Salvar
+    </button>
+  </div>
+</form>
+
+

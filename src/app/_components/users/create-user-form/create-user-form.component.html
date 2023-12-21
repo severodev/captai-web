@@ -1,0 +1,32 @@
+<header class="profile-header">
+  <img src="../../../../assets/images/man.png" alt="" class="profile-img">
+  <div class="upload-photo">
+      <span>Selecionar foto</span>
+      <button>
+        <i class="icon ic-photo-upload"></i>
+      </button>
+  </div>
+  <form id="create-user-form" [formGroup]="createUserForm" (ngSubmit)="createUser()">
+      <fieldset form="user-form" name="user-form">
+          <legend>Usuário</legend>
+          <label for="fullname">Nome do Colaborador *</label>
+          <input type="text" placeholder="Insira o nome do colaborador" (focusout)="checkCollaborator(createUserForm.controls['fullname']?.value)" formControlName="fullname">
+          <label for="username">Nome de Usuário *</label>
+          <input type="text" placeholder="Insira o nome de usuário" formControlName="username">
+          <label for="role-select">Escolha um perfil</label>
+          <select name="role-list" id="role-list" formControlName="role">
+            <option *ngFor="let role of (roles$ | async)" [value]='role.id'>{{role.name}}</option>
+          </select>
+          <label for="email">Email *</label>
+          <input type="email" placeholder="Insira aqui o email" formControlName="email">
+          <label for="email-confirmation">Confirmar Email *</label>
+          <input type="email" placeholder="Confirme o email" formControlName="emailConfirmation">
+          <div class="invalid-message" *ngIf="createUserForm.errors?.emailNotEqual">E-mail não confere</div>
+      </fieldset>
+      <div class="btn-group">
+          <button type="button" routerLink="/">Voltar</button>
+          <button type="submit" [disabled]="!createUserForm.valid">Salvar</button>
+      </div>
+  </form>
+</header>
+<app-confirm-alert></app-confirm-alert>

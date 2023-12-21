@@ -1,0 +1,62 @@
+table {
+    width: 100%;
+
+    tr {
+        border: 1px solid #EEE;
+
+        th,
+        td {
+            padding: 10px;
+            font-size: 13px;
+
+            &:first-of-type {
+                padding-left: 20px ;
+                width: 5rem;
+            }
+        }
+
+        th {
+            .btn-icon-link i {
+                display: flex;
+            }
+        }
+
+        td {
+            input {
+                border: none;
+                padding: 0;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+            .rightButtons {
+                justify-content: end;
+            }
+        }
+
+        &.summary {
+            background-color: #EEE;
+            font-weight: bold;
+        }
+    }
+
+
+    .icon::before {
+        font-size: 16px;
+    }
+
+    .wpi_check {
+        height: 16px;
+        width: 16px;
+    }
+}
+
+
+.red {
+    color: #AD0E20 !important;
+}
+
+.green {
+    color: green;
+}

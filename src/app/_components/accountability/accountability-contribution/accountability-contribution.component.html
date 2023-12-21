@@ -1,0 +1,27 @@
+<div class="boundery">
+  <div class="header">
+    <app-accountability-contribution-header [eventContribution]="contributionChange" [project]="project">
+    </app-accountability-contribution-header>
+  </div>
+  
+  <div class="grid">
+    <app-accountability-contribution-grid (cardChangesContributions)="cardChangesContributions($event)"
+    ></app-accountability-contribution-grid>
+  </div>
+</div>
+
+<div class="boundery">
+<div class="header">
+  <app-accountability-loan-header [eventLoan]="loanChange">
+  </app-accountability-loan-header>
+</div>
+
+<div class="grid">
+  <app-accountability-loan-grid (cardChangesLoans)="cardChangesLoans($event)"
+  ></app-accountability-loan-grid>
+</div>
+</div>
+
+<div class="boundery">
+    <app-accountability-transfer [project]="project" style="width: 100%;"></app-accountability-transfer>
+</div>

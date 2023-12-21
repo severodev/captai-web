@@ -1,0 +1,41 @@
+<div class="container">
+  <app-breadcrumb [pages]="breadcrumbPages"></app-breadcrumb>
+
+  <div class="page-title">
+    <div class="title">
+      PROJETOS
+    </div>
+    <div class="buttons">
+      <button type="button" class="btn btn-icon-link" (click)="showInputSearch = !showInputSearch">
+        <i class="icon ic-search"></i>
+      </button>
+      <div>
+        <input class="form-control search-project-input"  [class.show-input-search]="showInputSearch"
+          type="text" aria-label="Buscar Projeto" placeholder="Buscar Projeto"
+          [(ngModel)]="search"
+          (keydown.enter)="loadInstitutes();" (focusout)="loadInstitutes();">
+      </div>
+      <button type="button" class="btn btn-icon-link" (click)="toggleOrderByTime();">
+        <i class="icon ic-clock-arrow-left" id="icon-clock"></i>
+      </button>
+      <button type="button" class="btn btn-icon-link" (click)="toggleOrderByTitle();">
+        <i class="icon ic-sort-A-Z" id="icon-sort"></i>
+      </button>
+      <button type="button" class="btn btn-primary" [routerLink]="['/create-project']">
+        <i class="icon ic-clipboard-blank"></i> Novo Projeto
+      </button>
+    </div>
+  </div>
+
+  <div class="institute-projects" *ngFor="let institute of institutes">
+    <div class="institute-title" data-toggle="collapse" [attr.data-target]="'#collapse-'+institute.id"
+      [attr.aria-expanded]="true" [attr.aria-controls]="'collapse-'+institute.id" (click)="toggleChev('chev-'+institute.id);">
+      {{ institute.abbreviation }}
+      <i class="icon ic-chev-down" [attr.id]="'chev-'+institute.id"></i>
+    </div>
+    <div class="collapse show card-deck" [attr.id]="'collapse-'+institute.id">
+      <app-project-card *ngFor="let project of institute.projects" [project]="project" style="padding: 8px; width: 25%;"></app-project-card>
+    </div>
+  </div>
+
+</div>

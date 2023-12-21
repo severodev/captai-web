@@ -1,0 +1,38 @@
+<div class="grid">
+  <div class="grid-line-labels">
+    <div class="grid-head-label"></div>
+    <div class="grid-expense-label"> GASTO TOTAL </div>
+    <div class="grid-expense-label-secondary"
+      *ngFor="let budget of budgetCategories">
+      {{budget.name}}
+    </div>
+  </div>
+  <div class="grid-lines">
+    <div class="grid-head">
+      <div class="grid-item head-item" *ngFor="let labelItem of monthYearLabels">
+        <div class="month-label">
+          {{ labelItem.monthLabel }}
+        </div>
+        <div class="year-label">
+          {{ labelItem.yearLabel }}
+        </div>
+      </div>
+    </div>
+    <div class="grid-expense">
+      <div class="grid-item expense-item"
+        *ngFor="let expenseItem of expenses"
+        [class.past]="(currentMonth > getMonthIndex(expenseItem.monthLabel)) && (currentYear == expenseItem.yearLabel)"
+        [class.current]="(currentMonth === getMonthIndex(expenseItem.monthLabel)) && (currentYear == expenseItem.yearLabel)"
+        [class.future]="currentMonth < getMonthIndex(expenseItem.monthLabel)">
+        {{ expenseItem.periodValue | currency:'BRL'}}
+      </div>
+    </div>
+    <div class="grid-expense" *ngFor="let financeHeading of financeHeadings" >
+      <div class="grid-item expense-item"
+        *ngFor="let expenseItem of expenses"
+        [class.current-secondary]="(currentMonth === getMonthIndex(expenseItem.monthLabel)) && (currentYear == expenseItem.yearLabel)">
+        {{ expenseItem.financeHeadings[financeHeading] | currency:'BRL'}}
+      </div>
+    </div>
+  </div>
+</div>

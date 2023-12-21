@@ -1,0 +1,16 @@
+<div class="list-header">
+  <div class="list-title">COLABORADORES</div>
+  <div class="list-buttons">
+    <button type="button" class="btn btn-primary" style="margin-right: 16px;" [routerLink]="['/collaborators']">
+      <i class="icon ic-eye-view" style="margin-right: 8px;"></i> Ver Todos
+    </button>
+    <button type="button" class="btn btn-primary" [routerLink]="['/create-collaborator']">
+      <i class="icon ic-user-add" style="margin-right: 8px;"></i> Cadastrar Colaborador
+    </button>
+  </div>
+</div>
+<div class="card-deck">
+  <app-collaborator-card *ngFor="let collaborator of collaborators | paginate: config" [collaborator]="collaborator" style="padding: 8px; width: 16.66%;"></app-collaborator-card>
+</div>
+<app-pagination-template [config]="config" (changePageEvent)="changePage($event)"></app-pagination-template>
+

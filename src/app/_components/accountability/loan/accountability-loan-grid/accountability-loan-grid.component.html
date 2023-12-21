@@ -1,0 +1,40 @@
+<div class="content">
+  <div class="header">
+    <div class="title">Empréstimos</div>
+
+    <button
+      type="button"
+      class="btn btn-primary btn-new-loan"
+      (click)="openLoanModal()"
+    >
+      <i class="icon ic-currency"></i> Realizar Empréstimo
+    </button>
+  </div>
+
+  <div class="grid">
+  
+    <div class="loan-label">DADOS PARA OUTRO PROJETO:</div>
+    <div class="loans">
+      <div class="none-loan" *ngIf="noneLoansGiven == true">
+        <img src="../../../../../assets/images/emprestimo-0.png">
+        <div class="title">Nenhum empréstimo enviado</div>
+      </div>
+      <app-accountability-loan-card (cardChanges)="cardChanges($event)"
+      *ngFor="let item of accountabilityGivenLoans"
+      [accountabilityLoan]="item"
+      ></app-accountability-loan-card>
+    </div>
+
+    <div class="loan-label">RECEBIDOS DE OUTROS PROJETOS:</div>
+    <div class="loans">
+      <div class="none-loan" *ngIf="noneLoansReceived == true">
+        <img src="../../../../../assets/images/emprestimo-0.png">
+        <div class="title">Nenhum empréstimo recebido</div>
+      </div>
+      <app-accountability-loan-card (cardChanges)="cardChanges($event)"
+      *ngFor="let item of accountabilityReceivedLoans"
+      [accountabilityLoan]="item"
+      ></app-accountability-loan-card>
+    </div>
+  </div>
+</div>

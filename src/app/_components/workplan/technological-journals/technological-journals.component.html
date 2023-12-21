@@ -1,0 +1,68 @@
+<form #technologicalForm="ngForm">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputWorkTitle">Título da Obra</label>
+      <input id="inputWorkTitle" type="text"
+        class="form-control"
+        placeholder="Inserir o título da obra" name="inputWorkTitle"
+        [(ngModel)]="workplanItem.wpiBooksJournals.workTitle">
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="inputQuantity">Quantidade</label>
+      <input id="inputQuantity" type="number"
+        class="form-control"
+        placeholder="Inserir quantidade necessária" name="inputQuantity"
+        [(ngModel)]="workplanItem.wpiBooksJournals.quantity">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="inputJustification">Justificativa e Aplicação <span class="label-required">*</span></label>
+      <textarea type="text" class="form-control" id="inputJustification" style="height: 100px !important;"
+        name="inputJustification" placeholder="Inserir a justificativa"
+        [(ngModel)]="workplanItem.rationale" #inputJustification="ngModel" required></textarea>
+      <small [hidden]="inputJustification.valid || inputJustification.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputStage">Etapa Associada</label>
+      <input id="inputStage" type="text"
+        class="form-control"
+        placeholder="Insira a Etapa do Projeto" name="inputStage"
+        [(ngModel)]="workplanItem.projectStage">
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="inputExpenditures">Dispêndios <span class="label-required">*</span></label>
+      <input id="inputExpenditures" type="text" currencyMask
+        class="form-control" #inputExpenditures="ngModel" required
+        placeholder="Valor Total" name="inputExpenditures"
+        [(ngModel)]="workplanItem.value"
+        autocomplete="off">
+      <small [hidden]="inputExpenditures.valid || inputExpenditures.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col">
+      <app-funds-table [workplanItem]="workplanItem" [project]="project" #appFunds></app-funds-table>
+    </div>
+  </div>
+
+  <div class="form-row" style="padding: 5px; justify-content: flex-end;">
+    <button class="btn btn-primary" (click)="addWorkplan();" [disabled]="technologicalForm.form.invalid" *ngIf="!isEdition">
+      <i class="icon ic-add-circ"></i>
+      Adicionar
+    </button>
+    <button class="btn btn-outline-primary mr-3" (click)="cancel();" *ngIf="isEdition">
+      Cancelar
+    </button>
+    <button class="btn btn-primary" (click)="updateWorkplanItem();" [disabled]="technologicalForm.form.invalid" *ngIf="isEdition">
+      Salvar
+    </button>
+  </div>
+</form>

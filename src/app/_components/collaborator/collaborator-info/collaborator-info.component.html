@@ -1,0 +1,78 @@
+<div class="info">
+  <div class="form-container">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeForm === 'personal'"
+          (click)="showPersonalForm();">
+          DADOS PESSOAIS
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeForm === 'dependent'"
+          (click)="showDependentForm();">
+          DEPENDENTES
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeForm === 'administrative'"
+          (click)="showAdministrativeForm();">
+          DADOS ADMINISTRATIVOS
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeForm === 'remuneration'"
+          (click)="showRemunerationForm();">
+          REMUNERAÇÃO
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeForm === 'benefits'"
+          (click)="showBenefitsForm();">
+          BENEFÍCIOS
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeForm === 'docs'"
+          (click)="showDocsForm();">
+          ANEXAR DOCUMENTOS PESSOAIS
+        </a>
+      </li>
+      <div class="custom-control custom-switch">
+        <div>
+          <input type="checkbox" class="custom-control-input" id="editToogle" [(ngModel)]="canEdit">
+          <label class="custom-control-label" for="editToogle">Editar</label>
+        </div>
+        <div class="save-editions-button">
+          <button type="button" [class.hide-save-btn]="!canEdit"
+            class="btn btn-primary" [disabled]="appInfo?.personalForm?.form?.invalid"
+            (click)="save();">
+            SALVAR
+          </button>
+        </div>
+      </div>
+    </ul>
+
+
+    <div class="forms">
+      <div class="div-form" [class.show]="activeForm === 'personal'" [class.hide]="activeForm !== 'personal'">
+       <app-personal-information-form [collaborator]="collaborator" [showDependentForm]="false" [canEdit]="canEdit"></app-personal-information-form>
+      </div>
+      <div class="div-form" [class.show]="activeForm === 'dependent'" [class.hide]="activeForm !== 'dependent'">
+        <app-dependent-form [collaborator]="collaborator" [canEdit]="canEdit"></app-dependent-form>
+       </div>
+      <div class="div-form" [class.show]="activeForm === 'administrative'" [class.hide]="activeForm !== 'administrative'">
+        <app-administrative-information-form [collaborator]="collaborator" [canEdit]="canEdit"></app-administrative-information-form>
+      </div>
+      <div class="div-form" [class.show]="activeForm === 'remuneration'" [class.hide]="activeForm !== 'remuneration'">
+        <app-remuneration-form [collaborator]="collaborator" [canEdit]="canEdit"></app-remuneration-form>
+      </div>
+      <div class="div-form" [class.show]="activeForm === 'benefits'" [class.hide]="activeForm !== 'benefits'">
+        <app-benefits-form [collaborator]="collaborator" [canEdit]="canEdit"></app-benefits-form>
+      </div>
+      <div class="div-form" [class.show]="activeForm === 'docs'" [class.hide]="activeForm !== 'docs'">
+        <app-collaborator-docs-form [collaborator]="collaborator" [canEdit]="canEdit"></app-collaborator-docs-form>
+      </div>
+    </div>
+
+  </div>
+</div>

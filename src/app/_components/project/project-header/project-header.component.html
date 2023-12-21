@@ -1,0 +1,86 @@
+<div class="card-progress" [class.blurred]="!project?.workplanComplete">
+  <div class="progress"
+    [ngStyle]="{ 'width': (utilizedFundsPercentage || 0) + '%' }">
+  </div>
+</div>
+
+<div class="header" *ngIf="project">
+  <div class="title">
+    {{project.name}}
+  </div>
+
+  <div class="content" *ngIf="!workplanHeader">
+    <div class="expense">
+      <div class="value">
+        <div class="currency-symbol">R$</div>
+        <p>{{ (infoValues?.totalReceived || 0.0) | currency: 'BRL':'' }}</p>
+      </div>
+      <p><small>Aportes Recebidos</small></p>
+    </div>
+
+    <div class="margin">
+      <div class="value">
+        <div class="currency-symbol">R$</div>
+        <p>{{ (project?.expensesGrid?.remainingRealMargin || 0.0) | currency:'BRL':'' }}</p>
+      </div>
+      <p><small>Saldo Financeiro</small></p>
+    </div>
+
+    <div class="expense">
+      <div class="value">
+        <div class="currency-symbol">R$</div>
+        <p>{{ (currentMonthExpenseValue || 0.0)  | currency:'BRL':'' }}</p>
+      </div>
+      <p><small>Total de Despesas do Mês</small></p>
+    </div>
+  </div>
+
+  <div class="content" *ngIf="workplanHeader">
+    <div class="expense">
+      <div class="value">
+        <div class="currency-symbol">R$</div>        
+        <p>{{ (project?.budget || 0.0) | currency: 'BRL':'' }}</p>
+
+      </div>
+      <p><small>Valor Total do Projeto</small></p>
+    </div>
+
+    <div class="margin">
+      <div class="value">
+        <div class="currency-symbol">R$</div>
+        <p>{{ (infoValues?.totalProject || 0.0) | currency: 'BRL':'' }}</p>
+      </div>
+      <p><small>Aportes Recebidos</small></p>
+    </div>
+
+    <div class="expense">
+      <div class="value">
+        <div class="currency-symbol">R$</div>
+        <p>{{ (project?.budget - project?.expensesGrid?.totalExpenses || 0.0)  | currency:'BRL':'' }}</p>
+      </div>
+      <p><small>Saldo Financeiro</small></p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="pill pending-user-pill">
+      <i class="icon ic-currency-coins"></i>
+      <span>{{project?.bankName || 'banco'}}: agencia {{project?.bankAgency || '####'}} | conta {{project?.bankAccount || '####'}} </span>
+    </div>
+
+    <div class="pill pending-user-pill">
+      <i class="icon ic-calendar-month"></i>
+      <span>de: {{project?.start}} até {{project?.end}}</span>
+    </div>
+
+    <div class="pill pending-user-pill">
+      <i class="icon ic-clipboard-task-assign"></i>
+      <span>fgt6258222</span>
+    </div>
+
+    <div class="pill pending-user-pill">
+      <i class="icon ic-data-center-front"></i>
+      <span>{{project?.instituteAbbreviation}}</span>
+    </div>
+  </div>
+</div>

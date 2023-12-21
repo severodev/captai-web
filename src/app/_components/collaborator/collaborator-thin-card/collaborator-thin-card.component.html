@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-header">
+    <div class="collaborator-image">
+      <img [src]="loadImage()">
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="collaborator-name">
+      {{ collaborator.name }}
+    </div>
+    <div class="collaborator-lead-role">
+      {{ collaborator.job }}
+    </div>
+    <div class="incompleteForm" *ngIf="collaborator.dataPercentage !== 100">
+      Pendência no cadastro
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <button type="button" class="btn btn-icon-link" (click)="delete()">
+      <i class="icon ic-delete-can"></i>
+    </button>
+
+    <button type="button" class="btn btn-link" (click)="addInProject()">Atribuir a Projeto</button>
+    <button *ngIf="collaborator.dataPercentage !== 100" type="button" class="btn btn-link" (click)="goToDetails()">Editar Cadastro</button>
+  </div>
+</div>

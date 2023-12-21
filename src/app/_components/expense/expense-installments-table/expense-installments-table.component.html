@@ -1,0 +1,110 @@
+<form #installmentsForm="ngForm">
+    <div class="section-title">Pagamentos</div>
+    <table class="w-100">
+      <tr>
+        <th>
+          <input type="checkbox" class="installment_check" [(ngModel)]="selected" name="check-all" (click)="changeInstallmentSelectedState()">
+        </th>
+        <th style="width: 5rem">Parcela</th>
+        <th >Descrição</th>
+        <th style="width: 10rem">Data <span class="text-danger">*</span></th>
+        <th style="width: 10rem">Valor <span class="text-danger">*</span></th>
+        <th style="width: 20rem">Projeto Vinculado <span class="text-danger">*</span></th>
+        <th class="d-flex">
+          <button class="btn btn-icon-link mx-1" *ngIf="selected || selectedInstallments.length" (click)="editSelectedsInstallments()">
+            <i class="icon {{ editing ? 'ic-save green' : 'ic-pencil-edit'}}"></i>
+          </button>
+          <button class="btn btn-icon-link red mx-1" *ngIf="selected || selectedInstallments.length > 1" (click)="removeSelectedsInstallments()">
+            <i class="icon ic-delete-can"></i>
+          </button>
+        </th>
+      </tr>
+
+      <tr *ngFor="let installment of expenseItem.installments; index as i; trackBy: indexTracker">
+        <td>
+          <input
+            type="checkbox"
+            class="installment_check"
+            [(ngModel)]="installment.selected"
+            name="select-{{i}}">
+        </td>
+        <td>
+          {{installment.order}}x
+        </td>
+        <td>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="installment.description"
+            #inputStr_date="ngModel"
+            name="inputStr_description-{{i}}"            
+            [dropSpecialCharacters]="false"
+            [readonly]="!installment.isEditing"
+          />          
+        </td>  
+        <td>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="installment.str_date"
+            #inputStr_date="ngModel"
+            name="inputStr_date-{{i}}"
+            mask="00/00/0000"
+            [dropSpecialCharacters]="false"
+            placeholder="00/00/0000"
+            autocomplete="off"
+            required
+            (ngModelChange)="parseDate(installment)"
+            [readonly]="!installment.isEditing" 
+          />
+          <small [hidden]="inputStr_date.valid || inputStr_date.pristine" class="invalid-alert">Campo obrigatório</small>
+        </td>                
+        <td>
+          <input
+            id="inputValue-{{i}}"
+            type="text"
+            class="form-control"
+            #inputValue="ngModel"
+            required
+            currencyMask
+            name="inputValue-{{i}}"
+            [(ngModel)]="installment.value"
+            autocomplete="off"
+            [readonly]="!installment.isEditing" 
+          />
+          <small [hidden]="inputValue.valid || inputValue.pristine" class="invalid-alert">Campo obrigatório</small>
+        </td>
+        <td>          
+          <select id="inputProject-{{i}}" class="form-control not-valid-form" name="project-{{i}}" required
+            [disabled]="!installment.isEditing" [class.disabled]="!installment.isEditing"
+            [(ngModel)]="installment.projectId" (ngModelChange)="fillInstallmentProject(i)" >
+            <option value="undefined" disabled selected>Selecione um projeto</option>
+            <option *ngFor="let p of projects" [value]="p.id">{{ p.name }}</option>
+          </select>
+          <!-- <small [hidden]="inputValue.valid || inputValue.pristine" class="invalid-alert">Campo obrigatório</small> -->
+        </td>
+        <td class="d-flex">
+          <button class="btn btn-icon-link mx-1" (click)="updateInstallment(i)">
+            <i class="icon {{ installment.isEditing ? 'ic-save green' : 'ic-pencil-edit'}}"></i>
+          </button>
+          <button class="btn btn-icon-link mx-1 red" (click)="removeInstallment(i)">
+            <i class="icon ic-delete-can"></i>
+          </button>
+        </td>
+      </tr>
+
+      <tr *ngIf="!expenseItem.installments || !expenseItem.installments.length">
+        <td colspan="7" class="text-center">Nenhum registro foi adicionado. É necessário a adição de pelo menos um item.</td>
+      </tr>
+    </table>
+</form>
+
+<button class="btn btn-outline-primary mt-2 w-100" (click)="addInstallment()">
+  <i class="icon ic-add-circ"></i>
+  <span>Adicionar parcela</span>
+</button>
+
+<div>
+  <app-confirm-alert></app-confirm-alert>
+</div>
+

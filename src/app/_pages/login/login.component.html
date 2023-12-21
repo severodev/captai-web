@@ -1,0 +1,39 @@
+<div id="captia-banner">
+  <div class="blue-transparency"></div>
+  <div class="title">CaptIA</div>
+  <div class="logo">
+    <img src="../../../assets/images/dell-lead-branco-e-amarelo@2x.png">
+  </div>
+</div>
+<div id="login-container">
+  <form>
+    <div class="error-message" [class.show]="isInvalidCredentials">
+      Usuário ou senha inválidos, tente novamente!
+    </div>
+    <div class="form-group">
+      <label for="username">Usuário</label>
+      <input type="email" class="form-control" required
+        [(ngModel)]="credentials.username" id="username" name="username"
+        aria-describedby="Digitar usuário" placeholder="Usuário">
+    </div>
+    <div class="form-group password-input">
+      <label for="password">Senha</label>
+      <input type="password" class="form-control" id="password" required
+        [(ngModel)]="credentials.password" name="password"
+        aria-describedby="Digitar senha" placeholder="Senha">
+    </div>
+    <div class="form-group d-flex justify-content-between align-items-center">
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="keepConnectedInput"
+          (keyup.enter)="login();"
+          aria-describedby="Continuar conectado" [(ngModel)]="keepConnected" name="keepConnectedInput">
+        <label class="form-check-label" for="keepConnectedInput">Continuar conectado</label>
+      </div>
+      <div class="password-link">
+        Esqueci a senha
+      </div>
+    </div>
+    <button class="btn-login btn btn-primary" (click)="login();">Log in</button>
+    <br>
+  </form>
+</div>

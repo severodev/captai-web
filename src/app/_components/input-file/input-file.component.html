@@ -1,0 +1,12 @@
+<div class="input-component">
+  <div class="custom-file">
+    <input type="file" class="custom-file-input" id="custom-file" required #inputFile
+      (change)="handleFileInput($event.target.files)">
+    <div class="custom-file-label" for="custom-file">
+      {{ (fileToUpload)? fileToUpload.name : 'Nenhum arquivo selecionado'}}
+    </div>
+  </div>
+  <button type="button" class="btn btn-outline-primary" (click)="triggerInputFileClick()">
+    <i class="icon ic-paper-clip-vert"></i> Escolher Arquivo
+  </button>
+</div>

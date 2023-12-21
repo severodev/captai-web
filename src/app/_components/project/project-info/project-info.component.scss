@@ -1,0 +1,88 @@
+.info {
+  box-shadow: 0px 3px 6px #00000029;
+  padding: 24px;
+  position: relative;
+}
+
+.forms {
+  padding-top: 24px;
+}
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+  color: #0076CE;
+  border-color: #0076CE;
+  border-bottom: 2px solid;
+}
+
+.completed {
+  border-color: #0076CE !important;
+  border-bottom: 2px solid !important;
+}
+
+.nav-tabs .nav-link {
+  border: 0;
+  border-radius: 0;
+  color: #777;
+  cursor: pointer;
+}
+
+.disabled {
+  color: #999 !important;
+  cursor: not-allowed !important;
+}
+
+.custom-switch {
+  position: absolute;
+  right: 25px;
+  top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hide-save-btn {
+  width: 0px !important;
+  padding: 0px !important;
+  border: 0;
+  margin: 0 !important;
+  visibility: hidden;
+}
+
+.save-editions-button {
+  button {
+    margin-left: 12px;
+    width: 100px;
+    transition: all 0.8s, visibility 0.9s;
+  }
+}
+
+.hide {
+  display: none;
+  opacity: 0;
+}
+
+.show {
+  display: block;
+  opacity: 1;
+}
+
+.div-form {
+  animation: fade 1s ease-out;
+}
+
+@keyframes fade {
+  0% {
+      display: none;
+      opacity: 0;
+  }
+
+  1% {
+      display: block;
+      opacity: 0;
+  }
+
+  100% {
+      display: block;
+      opacity: 1;
+  }
+}

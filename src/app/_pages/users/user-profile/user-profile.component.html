@@ -1,0 +1,12 @@
+<div class="container">
+    <app-confirm-alert></app-confirm-alert>
+    <app-breadcrumb [pages]="breadcrumbPages"></app-breadcrumb>
+    <header class="page-title">
+        <h1 *ngIf="(mode | async) == 'EDIT'" class="title">EDITAR PERFIL</h1>
+        <h1 *ngIf="(mode | async) == 'CREATE'" class="title">NOVO USUÁRIO</h1>
+    </header>
+    <app-user-profile-form [user]="user" *ngIf="(mode | async) == 'EDIT'"></app-user-profile-form>
+    <ng-container *ngIf="user.role === 'ADMIN'">
+        <app-create-user-form *ngIf="(mode | async) == 'CREATE'"></app-create-user-form>
+    </ng-container>
+</div>

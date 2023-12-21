@@ -1,0 +1,245 @@
+<div class="add-expense-form">
+  <div class="title">
+    Incluir Viagem
+  </div>
+  <form #tripForm="ngForm">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="inputPassengerName">Nome do Viajante <span class="label-required">*</span></label>
+        <input id="inputPassengerName" type="text"
+          class="form-control" #inputPassengerName="ngModel" required
+          placeholder="Insira o nome" name="inputPassengerName"
+          [(ngModel)]="expense.tripDetails.passengerName">
+        <small [hidden]="inputPassengerName.valid || inputPassengerName.pristine" class="invalid-alert">Campo obrigatório</small>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputPassengerCpf">CPF do Viajante <span class="label-required">*</span></label>
+        <input type="text" class="form-control" id="inputPassengerCpf"
+          required placeholder="000.000.000-00" #inputPassengerCpf="ngModel" required
+          mask="000.000.000-00" [dropSpecialCharacters]="false"
+          [(ngModel)]="expense.tripDetails.passengerCpf" name="inputPassengerCpf">
+        <small [hidden]="inputPassengerCpf.valid || inputPassengerCpf.pristine" class="invalid-alert">Campo obrigatório</small>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputBudgetCategory">Rubrica <span class="label-required">*</span></label>
+        <select id="inputBudgetCategory" class="form-control" name="inputBudgetCategory"
+          disabled required [(ngModel)]="expense.budgetCategoryId">
+          <option *ngFor="let budget of budgetCategories" [value]="budget.id">{{budget.name}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label for="inputDescription">Justificativa/Evento <span class="label-required">*</span></label>
+        <textarea type="text" class="form-control" id="inputDescription" style="height: 100px !important;"
+          name="inputDescription" placeholder="Inserir a Justificativa ou Evento"
+          [(ngModel)]="expense.description" #inputDescription="ngModel" required></textarea>
+        <small [hidden]="inputDescription.valid || inputDescription.pristine" class="invalid-alert">Campo obrigatório</small>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="inputTicketValue">Valor de Passagem <span class="label-required">*</span></label>
+        <input id="inputTicketValue" type="text"
+          class="form-control" required  currencyMask
+          name="inputTicketValue" #inputTicketValue="ngModel" required
+          [(ngModel)]="expense.tripDetails.ticketValue">
+        <small [hidden]="inputTicketValue.valid || inputTicketValue.pristine" class="invalid-alert">Campo obrigatório</small>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputHostingValue">Valor de Hospedagem <span class="label-required">*</span></label>
+        <input id="inputHostingValue" type="text"
+          class="form-control" required currencyMask
+          name="inputHostingValue" #inputHostingValue="ngModel" required
+          [(ngModel)]="expense.tripDetails.hostingValue">
+        <small [hidden]="inputHostingValue.valid || inputHostingValue.pristine" class="invalid-alert">Campo obrigatório</small>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputDailyAllowanceValue">Valor de Ajuda de Custo <span class="label-required">*</span></label>
+        <input id="inputDailyAllowanceValue" type="text"
+          class="form-control" required currencyMask
+          name="inputDailyAllowanceValue" #inputDailyAllowanceValue="ngModel" required
+          [(ngModel)]="expense.tripDetails.dailyAllowanceValue">
+        <small [hidden]="inputDailyAllowanceValue.valid || inputDailyAllowanceValue.pristine" class="invalid-alert">Campo obrigatório</small>
+      </div>
+    </div>
+
+    <hr class="mb-4">
+
+    <div class="form-row">
+      <div class="form-group col">
+        <app-expense-installments-table [expenseItem]="expense" [projects]="projectsDropdown" #appInstallments></app-expense-installments-table>
+      </div>
+    </div>
+
+    <hr class="mb-4">
+
+    <!-- <form class="form-row" #rateioForm="ngForm">
+      <div class="form-group col-md-5">
+        <label for="inputCostShareProjectId">Rateio <small>(Selecione o projeto)</small> <span class="label-required">*</span></label>
+        <select id="inputCostShareProjectId" class="form-control not-valid-form" required
+          name="inputCostShareProjectId" [(ngModel)]="auxCostShare.project">
+          <option [ngValue]="null" disabled selected>Selecione o Projeto</option>
+          <option *ngFor="let projectDropdown of projectsDropdown"
+            [ngValue]="projectDropdown">
+            {{projectDropdown.name}}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-5">
+        <label for="inputCostShareValue">Valor <span class="label-required">*</span></label>
+        <input id="inputCostShareValue" type="text"
+          class="form-control not-valid-form" required mask="separator.2"
+          [dropSpecialCharacters]="true" thousandSeparator="."
+          placeholder="Valor" name="inputCostShareValue"
+          [(ngModel)]="auxCostShare.value">
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="inputAddButton">&nbsp;</label>
+        <button id="inputAddButton" (click)="addCostShare();" class="btn btn-primary"
+          style="width: 100%;" [disabled]="rateioForm.form.invalid">
+          <i class="icon ic-add-circ"></i> Adicionar
+        </button>
+      </div>
+    </form> -->
+
+    <div class="section-title">Rateio</div>
+    <div class="form-row">
+      <ul class="list-group form-group col-md-12">
+        <li class="list-group-item">
+          <div class="row list-group-header">
+            <!-- <div class="col-md-1"></div> -->
+            <div class="col-md-8">Projeto</div>
+            <div class="col-md-4">Valor</div>
+            <!-- <div class="col-md-1"></div> -->
+          </div>
+        </li>
+
+        <li class="list-group-item text-center" *ngIf="expense.costShare && expense.costShare.length === 0">
+          Nenhum registro foi adicionado. Inclua pagamentos para gerar a lista de rateio do gasto.</li>
+
+        <li class="list-group-item" [class.list-group-item-selected]="costShareItem.selected"
+          *ngFor="let costShareItem of expense.costShare; let idx = index">
+          <div class="row">
+            <!-- <div class="col-md-1">
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input"
+                  [id]="'checkboxCostShare'+idx"
+                  [name]="'checkboxCostShare'+idx"
+                  [(ngModel)]="costShareItem.selected">
+                <label class="custom-control-label" [for]="'checkboxCostShare'+idx"></label>
+              </div>
+            </div> -->
+            <div class="col-md-8">{{ costShareItem.project.name }}</div>
+            <div class="col-md-4">{{ costShareItem.value | currency: 'BRL' }}</div>
+            <!-- <div class="col-md-1">
+              <div class="options" [class.show-options]="costShareItem.selected">
+                <button type="button"
+                  class="btn btn-icon-link red" (click)="deleteCostShare(idx)">
+                  <i class="icon ic-delete-can"></i>
+                </button>
+              </div>
+            </div> -->
+          </div>
+        </li>
+        <li class="list-group-item shares">
+          <div class="row">            
+            <div class="col-md-8">Total</div>
+            <div class="col-md-4">{{ expense.value | currency : 'BRL' }}</div>            
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <hr class="mb-4">
+
+    <form class="form-row" #attachmentForm="ngForm">
+      <div class="form-group col-md-4">
+        <label for="inputDoc">Anexos</label>
+        <select id="inputDoc" class="form-control not-valid-form" required [(ngModel)]="selectedDocTypeId" name="docType">
+          <option [ngValue]="undefined" selected disabled>Selecione o tipo de documento</option>
+          <option *ngFor="let dcType of documentTypes" [value]="dcType.id">{{ dcType.name }}</option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="inputFileComponent">&nbsp;</label>
+        <app-input-file #inputFileComponent id="inputFileComponent" (fileSelectedEvent)="setFileToUpload($event)"></app-input-file>
+        <div class="input-info">
+          Tamanho máximo permitido: 50mb
+        </div>
+      </div>
+
+      <div class="form-group col-md-2 add-button">
+        <label for="addDocButton">&nbsp;</label>
+        <button id="addDocButton" class="btn btn-primary"
+          [disabled]="attachmentForm.form.invalid || !this.fileToUpload"
+          style="width: 100%;"
+          (click)="addDoc();">
+          <i class="icon ic-add-circ"></i> Adicionar
+        </button>
+      </div>
+    </form>
+
+    <div class="form-row">
+      <ul class="list-group form-group col-md-12">
+        <li class="list-group-item">
+          <div class="row list-group-header">
+            <div class="col-md-1"></div>
+            <div class="col-md-4">Nome do Arquivo</div>
+            <div class="col-md-2">Tipo do Documento</div>
+            <div class="col-md-2">Data de Envio</div>
+            <div class="col-md-2">Tamanho do Arquivo</div>
+            <div class="col-md-1"></div>
+          </div>
+        </li>
+
+        <li class="list-group-item text-center" *ngIf="documents && documents.length === 0">Nenhum registro foi adicionado.</li>
+
+        <li class="list-group-item"
+          [class.list-group-item-selected]="item.selected"
+          *ngFor="let item of documents; let idx = index">
+          <div class="row">
+            <div class="col-md-1">
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox"
+                  class="custom-control-input"
+                  [name]="'checkbox'+item.id"
+                  [id]="'checkbox'+item.id"
+                  [(ngModel)]="item.selected">
+                <label class="custom-control-label" [for]="'checkbox'+item.id"></label>
+              </div>
+            </div>
+            <div class="col-md-4">{{ item.filename }}</div>
+            <div class="col-md-2">{{ item.documentType?.name }}</div>
+            <div class="col-md-2">{{ item.createdAt }}</div>
+            <div class="col-md-2">{{ item.size }}</div>
+            <div class="col-md-1">
+              <div class="options" [class.show-options]="item.selected">
+                <button type="button" class="btn btn-icon-link blue"
+                  (click)="downloadDoc(item.url)">
+                  <i class="icon ic-arrow-download"></i>
+                </button>
+                <button type="button" class="btn btn-icon-link red"
+                  (click)="deleteDoc(idx)">
+                  <i class="icon ic-delete-can"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-12 buttons">
+        <button class="btn btn-text mr-3" (click)="cancel();">Cancelar</button>
+        <button class="btn btn-primary" [disabled]="tripForm.form.invalid || expense.costShare.length === 0" (click)="save();">Cadastrar</button>
+      </div>
+    </div>
+  </form>
+</div>

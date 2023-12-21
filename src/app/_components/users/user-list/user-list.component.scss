@@ -1,0 +1,45 @@
+.table-container {
+    
+    table {
+        width: 100%;
+        border: 1px solid #E4E4E4;
+        color: #333333;
+        font-size: 0.875em;
+    }
+    
+    thead {
+        padding: 0 2rem;
+    }
+    
+    th {
+        width: fit-content;
+        padding: 0.75rem 1.25rem;
+        border-bottom: 1px solid #E4E4E4;
+    }
+
+    th:nth-last-child(1) {
+        width: 3rem;
+        padding-right: 2rem;
+    }
+
+    td {
+        padding: 0.875rem 1.25rem;
+        border-bottom: 1px solid #E4E4E4;
+    }
+
+    button {
+        background: none;
+        border: none;
+    }
+
+    .icon {
+        height: 1rem;
+        width: 1rem;
+        color: #0076CE;
+        background: none;
+    }
+
+        .ic-delete-can {
+            color: #CE1126;
+        }
+}

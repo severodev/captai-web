@@ -1,0 +1,102 @@
+<ul class="nav nav-tabs">
+    <li class="nav-item" *ngFor="let currentMonth of hrPayments">
+        <a class="nav-link" [class.active]="activeMonth == currentMonth.header" (click)="setShowMonth(currentMonth.header)">{{currentMonth.header}}</a>
+    </li>
+</ul>
+<div class="month-hr-payments">
+    <div class="table-container">
+        <table class="w-100">
+            <tr *ngIf="selectedMonthPayments && selectedMonthPayments.length > 0">
+                <th> Nome </th>
+                <th> Contrato </th>
+                <th> Cargo </th>
+                <th *ngFor="let col of currentTableColumns"> {{ col }} </th>
+                <th class="summary"> Custo Total </th>
+                <th class="center"> Realizado </th>
+            </tr>
+            <tr *ngFor="let item of selectedMonthPayments">
+                <td> {{ item.collaborator.name }} </td>
+                <td> {{ item.employmentRelationship.name }} </td>
+                <td> {{ item.jobTitle }} </td>
+                <td *ngFor="let col of currentTableColumns"> {{ componentValue(item, col) | currency: "BRL" }} </td>
+                <td class="summary"> {{item.totalValue | currency: "BRL"}} </td>
+                <td class="center">
+                  <input type="radio" [id]="'radioPaid_'+item.id"  [checked]="item.paid"                   
+                  (click)="showConfirmPaymentModal($event, confirmPaymentModal, item, false);"
+                  >
+                </td>
+            </tr>
+            <tr class="summary" *ngIf="selectedMonthPayments && selectedMonthPayments.length > 0">
+              <th class="summary" colspan="3"> Total </th>
+              <th class="summary" *ngFor="let col of currentTableColumns"> {{ this.selectedMonthSummary.get(col) | currency: "BRL" }} </th>
+              <th class="summary"> {{summaryTotal() | currency: "BRL"}} </th>
+              <th class="center">
+                <input type="radio" id="allPaymentsPaid" [checked]="isAllPaymentsPaid" 
+                (click)="showConfirmPaymentModal($event, confirmPaymentModal, null, true);" >
+              </th>
+          </tr>
+            <tr *ngIf="!selectedMonthPayments || selectedMonthPayments.length == 0">
+                <td>Não foram encontrados registros</td>
+            </tr>
+        </table>
+    </div>
+  </div>
+
+  <ng-template #confirmPaymentModal>
+    <div class="modal-header">
+      <div class="modal-title pull-left">CONFIRMAR PAGAMENTO</div>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="confirmPaymentModalRef.hide()">
+        <i class="icon ic-close"></i>
+      </button>
+    </div>
+    <div class="modal-body">
+  
+      <form #confirmPaymentForm="ngForm">
+        <div *ngIf="isAllPaymentsUpdate; else singlePayment">
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              Deseja alterar o status de todos os pagamentos para <strong>{{isAllPaymentsPaid ? 'não' : ''}} realizado</strong>?
+            </div>            
+          </div>
+        </div>
+        <ng-template #singlePayment>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    Deseja alterar o status do pagamento abaixo para <strong>{{selectedPayment.paid ? 'não' : ''}} realizado</strong>?
+                  </div>
+                <div class="form-group col-md-4">
+                  <label for="cpCollaboratorName">Colaborador</label>
+                  <input type="text" name="cpCollaboratorName" class="form-control"
+                    id="cpCollaboratorName" disabled [(ngModel)]="selectedPayment.collaborator.name" >
+                </div>
+                <div class="form-group col-md-2">
+                  <label for="cpERName">Vínculo</label>
+                  <input type="text" name="cpERName" class="form-control"
+                    id="cpERName" disabled [(ngModel)]="selectedPayment.employmentRelationship.name" >
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="cpJobTitle">Cargo</label>
+                    <input type="text" name="cpJobTitle" class="form-control"
+                      id="cpJobTitle" disabled [(ngModel)]="selectedPayment.jobTitle" >
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="cpValue">Valor</label>
+                    <input type="text" name="cpValue" class="form-control"
+                    id="cpValue" disabled value="{{selectedPayment.totalValue | currency: 'BRL'}}"> 
+                </div>    
+              </div>
+        </ng-template>      
+  
+      </form>
+  
+      <div class="form-row" style="padding: 5px; margin-top: 1rem; justify-content: flex-end;">
+        <button type="button" class="btn btn-link" (click)="confirmPaymentModalRef.hide()">
+          Cancelar
+        </button>
+        <button class="btn btn-primary" [disabled]="confirmPaymentForm.form.invalid"
+          (click)="confirmHRPayment(confirmPaymentModal)">
+          Confirmar
+        </button>
+      </div>
+    </div>
+  </ng-template>

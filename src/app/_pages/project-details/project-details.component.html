@@ -1,0 +1,60 @@
+<div class="container">
+  <app-confirm-alert></app-confirm-alert>
+  <app-breadcrumb [pages]="breadcrumbPages"></app-breadcrumb>
+
+  <div class="page-title">
+    <div class="title">PROJETOS</div>
+    <div class="buttons">
+      <button
+        type="button"
+        class="btn btn-icon-link"
+        (click)="delete()"
+        *ngIf="toShow == 'projectInfo'"
+      >
+        <i class="icon ic-delete-can" id="icon-delete-can"></i>
+      </button>
+      <button type="button" class="btn btn-primary" (click)="addTravel()">
+        <i class="icon ic-briefcase"></i> Incluir Viagem
+      </button>
+      <button type="button" class="btn btn-primary" (click)="addExpense()">
+        <i class="icon ic-cart"></i> Incluir Gasto
+      </button>
+    </div>
+  </div>
+
+  <app-project-header
+    [project]="project"
+    [workplanHeader]="false"
+    [infoValues]="infoValues"
+  ></app-project-header>
+  <div style="margin-bottom: 14px"></div>
+
+  <app-project-info
+    [project]="project"
+    *ngIf="toShow === 'projectInfo'"
+    [activeForm]="showForm"
+    (showForm)="setShowForm($event)"
+    [editExpense]="editExpense"
+    (emitDeleteToDetails)="deleteExpense($event)"
+    (emitEditToDetails)="editExpense($event)"
+  ></app-project-info>
+
+  <app-add-expense
+    *ngIf="toShow === 'addExpense'"
+    (finishExpense)="showProjectInfo()"
+    [selectedExpense]="selectedExpense"
+    [project]="project"
+  >
+  </app-add-expense>
+
+  <app-add-trip-expense
+    *ngIf="toShow === 'addTravel'"
+    (finishExpense)="showProjectInfo()"
+    [selectedExpense]="selectedExpense"
+    [project]="project"
+  ></app-add-trip-expense>
+</div>
+
+<div class="my-2">
+  <app-confirm-alert></app-confirm-alert>
+</div>

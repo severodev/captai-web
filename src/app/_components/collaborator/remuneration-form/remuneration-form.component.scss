@@ -1,0 +1,74 @@
+.add-button {
+  .btn {
+    width: 100%;
+    i {
+      margin-right: 8px;
+    }
+  }
+}
+
+.list-group-header {
+  font-weight: bold;
+}
+
+.list-group-item {
+  transition: background 0.5s;
+}
+
+.list-group-item-selected {
+  background: #E7F2FB;
+}
+
+.pendent {
+  color: #CE1126;
+}
+
+.project-name {
+  overflow: auto;
+}
+
+.options {
+  display: none;
+  opacity: 0;
+  animation: fade 0.5s ease-out;
+}
+
+.show-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  opacity: 1;
+}
+
+.btn-icon-link {
+  font-size: 16px !important;
+}
+.blue {
+  color: #007DB8 !important;
+}
+.red {
+  color: #AD0E20 !important;
+}
+
+.projectDuration {
+  margin: 10px 0 0 5px;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+@keyframes fade {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}

@@ -1,0 +1,86 @@
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.list-title {
+  font-size: 28px;
+  color: #444444;
+  font-weight: bold;
+}
+
+.list-buttons {
+  display: flex;
+}
+
+.btn {
+  height: 35px !important;
+  padding: 0 15px !important;
+}
+
+.card {
+  max-width: 251px !important;
+  border: 1px solid #E4E4E4;
+  border-radius: 0;
+  box-shadow: 0px 2px 5px #00000014;
+  .card-progress {
+    background: #E4E4E4;
+    height: 8px;
+    width: 100%;
+    .progress {
+      height: 100%;
+      width: 80%;
+      background: #0076CE;
+      border-radius: 0;
+    }
+  }
+  .card-header {
+    background: #fff;
+    padding: 24px 24px 14px 24px;
+    font-size: 18px;
+    color: #333;
+    border-bottom: 1px solid #e4e4e4;
+  }
+  .card-body {
+    background: #fff;
+    padding: 20px 24px;
+    .main-content {
+      display: flex;
+      align-items: flex-start;
+      .currency {
+        font-size: 13px;
+        color: #333333;
+        margin-right: 4px;
+      }
+      .value {
+        font-size: 36px;
+        color: #333333;
+        line-height: 1;
+      }
+      .legend-value {
+        font-size: 14px;
+        color: #333333;
+      }
+    }
+  }
+  .card-footer {
+    background: #fff;
+    padding: 14px 24px;
+  }
+}
+
+.btn-link {
+  font-size: 13px !important;
+  color: #0076CE;
+  padding: 0 !important;
+  height: fit-content !important;
+  letter-spacing: 0.52px !important;
+  font-weight: 500;
+}
+
+.card-deck {
+  margin-right: -8px !important;
+  margin-left: -8px !important;
+}

@@ -1,0 +1,66 @@
+.alertConfirmBar {
+  top: 4.46rem;
+  z-index: 9999;
+
+  .alert {
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border: none;
+    border-radius: 0px;
+    box-shadow: 0 0 12px #999999;
+    margin: 0px 109px 10px 114px;
+  }
+}
+
+.icon {
+  font-size: 25px;
+  margin-top: 5px;
+}
+
+.fadeIn {
+  animation: fadeIn 1s;
+}
+
+.fadeOut {
+  animation: fadeOut 1s;
+}
+
+// Animations
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@include keyframes(fadeIn) {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
+
+@include keyframes(fadeOut) {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}

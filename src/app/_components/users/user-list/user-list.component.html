@@ -1,0 +1,23 @@
+<div class="table-container">
+  <table>
+    <thead>
+      <th>Perfil</th>
+      <th>E-mail</th>
+      <th>Cargo</th>
+      <th>Ações</th>
+    </thead>
+    <tr *ngFor="let user of users | paginate: config, let idx = index">
+      <td>{{user.fullname}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.role}}</td>
+      <td>
+        <button (click)="navigate('EDIT', user)">
+          <i class="icon ic-pencil-edit"></i>
+        </button>
+        <button (click)="deleteUser(user.id)">
+          <i class="icon ic-delete-can"></i>
+        </button>
+      </td>
+  </table>
+  <app-pagination-template [config]="config" (changePageEvent)="changePage($event)"></app-pagination-template>
+</div>

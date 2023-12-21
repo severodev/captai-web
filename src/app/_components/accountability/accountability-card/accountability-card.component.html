@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="card-progress" [class.blurred]="!project.workplanComplete">
+    <div class="progress" 
+      [ngStyle]="{ 'width': utilizedFundsPercentage + '%' }">
+    </div>
+  </div>
+
+  <div class="header">
+    <div class="title">
+      {{project.name}}
+    </div>
+  
+    <div class="content">
+      <div class="expense">
+        <div class="value">
+          <div class="currency-symbol">R$</div>
+          <p>{{ (infoValues?.totalReceived || 0.0) | currency: 'BRL':'' }}</p>
+        </div>
+        <p><small>Aportes Recebidos</small></p>
+      </div>
+
+      <div class="margin">
+        <div class="value">
+          <div class="currency-symbol">R$</div>
+          <p>{{ (project?.remainingBudget ? project?.remainingBudget : 0.0) | currency:'BRL':'' }}</p>
+        </div>
+        <p><small>Saldo Financeiro</small></p>
+      </div>
+
+      <div class="expense">
+        <div class="value">
+          <div class="currency-symbol">R$</div>
+          <p>{{ (project?.totalExpensives ? project?.totalExpensives : 0.0)  | currency:'BRL':'' }}</p>
+        </div>
+        <p><small>Total de Despesas</small></p>
+      </div>
+    </div>
+  
+    <div class="footer">
+      <button type="button" class="btn btn-link" (click)="showProjectAccount()">Prestar Contas</button>
+      <button type="button" class="btn btn-link" (click)="showProject()">Ver Projeto</button>
+    </div>
+  </div>
+</div>
+  

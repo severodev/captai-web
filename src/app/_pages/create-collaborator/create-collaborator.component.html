@@ -1,0 +1,74 @@
+
+<div class="container">
+  <app-breadcrumb [pages]="breadcrumbPages"></app-breadcrumb>
+  <app-confirm-alert></app-confirm-alert>
+
+  <div class="page-title">
+    <div class="title">
+      NOVO COLABORADOR
+    </div>
+    <div class="buttons">
+      <button type="button" (click)="confirmCancel()" class="btn btn-link">
+        Cancelar
+      </button>
+
+      <button type="button" class="btn btn-outline-primary" (click)="back();"
+        *ngIf="activeForm !== 'personal'">
+        Voltar
+      </button>
+
+      <button type="button" class="btn btn-secondary" (click)="next();" *ngIf="activeForm !== 'docs'">
+        Próximo
+      </button>
+
+      <button type="button" class="btn btn-secondary" (click)="createCollaborator()" *ngIf="activeForm === 'docs'"
+        >
+        <i class="icon ic-user-add"></i> Adicionar Colaborador
+      </button>
+
+      <button type="button" class="btn btn-outline-primary" (click)="saveDraftCollaborator()">
+        <i class="icon ic-pen-highlight"></i> Salvar como Inativo
+      </button>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeForm === 'personal'" (click)="showPersonalForm();">DADOS PESSOAIS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeForm === 'administrative'" (click)="showAdministrativeForm();">DADOS ADMINISTRATIVOS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeForm === 'remuneration'" (click)="showRemunerationForm();">REMUNERAÇÃO</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeForm === 'benefits'" (click)="showBenefitsForm();">BENEFÍCIOS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeForm === 'docs'" (click)="showDocsForm();">ANEXAR DOCUMENTOS PESSOAIS</a>
+      </li>
+    </ul>
+
+    <div class="forms">
+      <div class="div-form" [class.show]="activeForm === 'personal'" [class.hide]="activeForm !== 'personal'">
+       <app-personal-information-form #appPersonal [collaborator]="collaborator"></app-personal-information-form>
+      </div>
+      <div class="div-form" [class.show]="activeForm === 'administrative'" [class.hide]="activeForm !== 'administrative'">
+        <app-administrative-information-form [collaborator]="collaborator"></app-administrative-information-form>
+      </div>
+      <div class="div-form" [class.show]="activeForm === 'remuneration'" [class.hide]="activeForm !== 'remuneration'">
+        <app-remuneration-form #appRemuneration [collaborator]="collaborator"></app-remuneration-form>
+      </div>
+      <div class="div-form" [class.show]="activeForm === 'benefits'" [class.hide]="activeForm !== 'benefits'">
+        <app-benefits-form [collaborator]="collaborator"></app-benefits-form>
+      </div>
+      <div class="div-form" [class.show]="activeForm === 'docs'" [class.hide]="activeForm !== 'docs'">
+        <app-collaborator-docs-form [collaborator]="collaborator"></app-collaborator-docs-form>
+      </div>
+    </div>
+
+  </div>
+
+</div>

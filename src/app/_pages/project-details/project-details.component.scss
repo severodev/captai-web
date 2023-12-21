@@ -1,0 +1,47 @@
+.container {
+  padding-top: 0;
+}
+
+.page-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  .title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #444444;
+  }
+  .buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 -8px;
+    .btn {
+      margin: 0 8px;
+    }
+  }
+}
+
+.btn {
+  height: 35px !important;
+  padding: 0 15px !important;
+}
+
+.btn-icon-link {
+  height: fit-content !important;
+  width: fit-content !important;
+  font-size: 18px !important;
+  padding: 0px !important;
+  color: #666;
+}
+
+.btn-icon-link:hover {
+  color: #CE1126;
+}
+
+.btn-primary {
+  i {
+      margin-right: 8px;
+  }
+}

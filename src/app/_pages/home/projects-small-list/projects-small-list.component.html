@@ -1,0 +1,15 @@
+<div class="list-header">
+  <div class="list-title">PROJETOS</div>
+  <div class="list-buttons">
+    <button type="button" class="btn btn-primary" style="margin-right: 16px;" [routerLink]="['/projects']">
+      <i class="icon ic-eye-view" style="margin-right: 8px;"></i> Ver Todos
+    </button>
+    <button type="button" class="btn btn-primary" [routerLink]="['/create-project']">
+      <i class="icon ic-clipboard-blank" style="margin-right: 8px;"></i> Novo Projeto
+    </button>
+  </div>
+</div>
+<div class="card-deck">
+  <app-project-card *ngFor="let project of projects | paginate: config" [project]="project" style="padding: 8px; width: 25%;"></app-project-card>
+</div>
+<app-pagination-template [config]="config" (changePageEvent)="changePage($event)"></app-pagination-template>

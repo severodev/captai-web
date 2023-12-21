@@ -1,0 +1,127 @@
+<form #supplierForm="ngForm">
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputSupplierName">Nome do Fornecedor <span class="label-required">*</span></label>
+      <input type="text" class="form-control" id="inputSupplierName" #inputSupplierName="ngModel" required placeholder="O nome do fornecedor"
+        [(ngModel)]="supplier.name" name="inputSupplierName"
+        [disabled]="!canEdit">
+      <small [hidden]="inputSupplierName.valid || inputSupplierName.pristine" *ngIf="canEdit" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="inputBudgetCategory">Rubrica <span class="label-required">*</span></label>
+      <select id="inputBudgetCategory" class="form-control" [(ngModel)]="supplier.budgetCategory"
+        name="inputBudgetCategory" #inputBudgetCategory="ngModel" required [disabled]="!canEdit">
+        <option value="undefined" disabled selected>Escolha a rubrica</option>
+        <option *ngFor="let bc of budgetCategories" [value]="bc.id">{{ bc.name }}</option>
+      </select>
+      <small [hidden]="inputBudgetCategory.valid || inputBudgetCategory.pristine" *ngIf="canEdit" class="invalid-alert">Campo obrigatório</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCnpj">CNPJ <span class="label-required">*</span></label>
+      <input type="text" class="form-control" id="inputCnpj" #inputCnpj="ngModel" required placeholder="CNPJ do Fornecedor"
+        [(ngModel)]="supplier.cnpj" name="inputCnpj" mask="00.000.000/0000-00"
+        [disabled]="!canEdit" [validation]="false">
+      <small [hidden]="inputCnpj.valid || inputCnpj.pristine" *ngIf="canEdit" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="inputEmail">E-mail de Contato</label>
+      <input type="email" class="form-control" id="inputEmail" placeholder="E-mail do Fornecedor"
+        [(ngModel)]="supplier.email" name="inputEmail"
+        [disabled]="!canEdit">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputSite">Site</label>
+      <input type="text" class="form-control" id="inputSite" placeholder="Site do Fornecedor"
+        [(ngModel)]="supplier.website" name="inputSite"
+        [disabled]="!canEdit">
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputPhoneMain">Telefone Principal</label>
+      <input type="text" class="form-control" id="inputPhoneMain" placeholder="Telefone do Fornecedor"
+        [(ngModel)]="supplier.phoneMain" name="inputPhoneMain" mask="(00) 0000-0000||(00) 0 0000-0000"
+        [disabled]="!canEdit">
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputPhoneSecondary">Telefone Secundário</label>
+      <input type="text" class="form-control" id="inputPhoneSecondary" placeholder="Telefone do Fornecedor"
+        [(ngModel)]="supplier.phoneSecondary" name="inputPhoneSecondary" mask="(00) 0000-0000||(00) 0 0000-0000"
+        [disabled]="!canEdit">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputAddress">Endereço Completo da Empresa</label>
+      <input type="text" class="form-control" id="inputAddress" placeholder="Endereço do Fornecedor"
+        [(ngModel)]="supplier.address" name="inputAddress" [disabled]="!canEdit">
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputPostalCode">CEP</label>
+      <input type="text" class="form-control" id="inputPostalCode" placeholder="CEP do Fornecedor"
+        [(ngModel)]="supplier.postalCode" name="inputPostalCode" mask="00000-000"
+        [disabled]="!canEdit">
+    </div>
+
+    <div class="form-group col-md-1">
+      <label for="inputState">UF</label>
+      <select id="inputState" class="form-control" [(ngModel)]="supplier.state"
+        name="inputState" [disabled]="!canEdit" (change)="loadCitiesDropdown($event.target.value)">
+        <option value="undefined" disabled selected>Seleciona um estado</option>
+        <option *ngFor="let state of statesDropdown" [value]="state.id">{{ state.name }}</option>
+      </select>
+    </div>
+
+    <div class="form-group col-md-3">
+      <label for="inputCity">Cidade</label>
+      <select id="inputCity" class="form-control" [(ngModel)]="supplier.city"
+        name="inputCity" [disabled]="!canEdit">
+        <option value="undefined" disabled selected>Selecione uma cidade</option>
+        <option *ngFor="let city of citiesDropdown" [value]="city.id">{{ city.name }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputBank">Dados Bancários - Banco</label>
+      <select id="inputBank" class="form-control" [(ngModel)]="supplier.bank"
+        name="inputBank" [disabled]="!canEdit">
+        <option value="undefined" disabled selected>Selecione o Banco</option>
+        <option *ngFor="let bank of banksDropdown" [value]="bank.id">{{ bank.name }}</option>
+      </select>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputBankAgency">Dados Bancários - Número da Agência</label>
+      <input type="text" class="form-control" id="inputBankAgency" placeholder="Agência"
+        [(ngModel)]="supplier.bankAgency" name="inputBankAgency" [disabled]="!canEdit">
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputBankAccount">Dados Bancários - Número da Conta</label>
+      <input type="text" class="form-control" id="inputBankAccount" placeholder="Conta"
+        [(ngModel)]="supplier.bankAccount" name="inputBankAccount" [disabled]="!canEdit">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="inputNotes">Observações</label>
+      <textarea [disabled]="!canEdit" type="text" class="form-control" id="inputNotes"
+        [(ngModel)]="supplier.notes" name="inputNotes"></textarea>
+    </div>
+  </div>
+
+</form>

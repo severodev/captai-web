@@ -1,0 +1,71 @@
+div.content {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  
+    .card {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+      gap: 10px;
+  
+      border: none;
+      width: 100%;
+  
+      .total {
+        text-align: center;
+  
+        .title-total-project {
+          font: normal normal normal 22px/20px Roboto;
+          letter-spacing: 0px;
+          color: #0076CE;
+          letter-spacing: 0px;
+          color: #333333;
+          text-align: left;
+          margin-left: 1.5rem;
+          margin-bottom: 1.5rem;
+        }
+  
+        .title-total-received {
+          font: normal normal normal 22px/20px Roboto;
+          letter-spacing: 0px;
+          color: #6EA204;
+          text-align: left;
+          margin-left: 1.5rem;
+          margin-bottom: 1.5rem;
+        }
+  
+        .title-total-receivable {
+          font: normal normal normal 22px/20px Roboto;
+          letter-spacing: 0px;
+          color: #CE1126;
+          text-align: left;
+          margin-left: 1.5rem;
+          margin-bottom: 1.5rem;
+        }
+  
+        .amount {
+          font: normal normal normal 46px/24px Roboto;
+          letter-spacing: 0px;
+          color: #333333;
+          height: 35px;
+  
+          display: flex;
+          align-items: flex-start;
+          gap: 5px;
+  
+          &-symbol {
+            font: normal normal normal 12px/15px Roboto;
+          }
+  
+          &-value {
+            margin-top: 2px;
+          }
+        }
+      }
+    }
+  
+  }
+  

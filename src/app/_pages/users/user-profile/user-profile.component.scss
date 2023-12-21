@@ -1,0 +1,14 @@
+.container {
+    padding-top: 0;
+  }
+  
+  .page-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .title {
+      font-size: 1.75em;
+      font-weight: bold;
+      color: #444444;
+    }
+}

@@ -1,0 +1,6 @@
+<div class="d-block" [class.list]="viewSort == 'list'">
+    <div class="member d-inline-block my-2" *ngFor="let member of members">
+        <app-collaborator-short-card [member]="member" *ngIf="viewSort == 'grid'"></app-collaborator-short-card>
+        <app-collaborator-long-card [member]="member" *ngIf="viewSort == 'list'" ></app-collaborator-long-card>
+    </div>
+</div>

@@ -1,0 +1,271 @@
+<h2>Perfis</h2>
+<div class="row">
+  <div class="col-12 mt-2">
+    <span>Escolha um perfil:</span>
+  </div>
+  <div class="col-12">
+    <select class="p-2 form-select" (change)="setPermissionsByProfile()" [(ngModel)]="currentProfile">
+      <option class="p-2 option" *ngFor="let profileName of profiles" [ngValue]="profileName">{{profileName?.title}}
+      </option>
+    </select>
+  </div>
+</div>
+
+<main class="info mt-5">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" [class.active]="activeForm === 'collaborator'" (click)="showCollaboratorTab();">
+        COLABORADORES
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [class.active]="activeForm === 'projects'" (click)="showProfilesTab();">
+        PROJETOS
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [class.active]="activeForm === 'suppliers'" (click)="showProjectTab();">
+        FORNECEDORES
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [class.active]="activeForm === 'users'" (click)="showUsersTab();">
+        USUÁRIOS E PERMISSÕES
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [class.active]="activeForm === 'trash'" (click)="showTrash();">
+        LIXEIRA
+      </a>
+    </li>
+  </ul>
+
+  <div class="tabs mt-3">
+    <h2 class="mb-3">Permissões</h2>
+    <div class="div-form p-1" [class.show]="activeForm === 'collaborator'" [class.hide]="activeForm !== 'collaborator'">
+      <div class="row d-flex">
+        <div class="col-lg-4 col-md-12">
+          <p class="subtitle">Colaborador</p>
+          <div class="form-check" *ngFor="let collaborator of filterPermissionByKey(permissions, 'collaborator.')">
+            <div *ngIf="collaborator.key.split('.').length == 2" class="p-1 mb-2">
+              <input class="form-check-input" type="checkbox" [(ngModel)]="collaborator.checked" [id]="collaborator?.id"
+                [checked]="collaborator?.checked">
+              <label class="form-check-label" [for]="collaborator?.id">
+                {{collaborator?.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-12">
+          <p class="subtitle">Dependentes</p>
+          <div class="form-check pb-1 mb-2"
+            *ngFor="let collaborator of filterPermissionByKey(permissions, 'collaborator.document.')">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="collaborator.checked" [id]="collaborator?.id"
+              [checked]="collaborator?.checked">
+            <label class="form-check-label" [for]="collaborator?.id">
+              {{collaborator?.name}}
+            </label>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-12">
+          <p class="subtitle">Documento</p>
+          <div class="form-check pb-1 mb-2"
+            *ngFor="let collaborator of filterPermissionByKey(permissions, 'collaborator.document.')">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="collaborator.checked" [id]="collaborator?.id"
+              [checked]="collaborator?.checked">
+            <label class="form-check-label" [for]="collaborator?.id">
+              {{collaborator?.name}}
+            </label>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-12 mt-3">
+          <p class="subtitle">Remuneração</p>
+          <div class="form-check pb-2 mb-2"
+            *ngFor="let collaborator of filterPermissionByKey(permissions, 'collaborator.payroll.')">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="collaborator.checked" [id]="collaborator?.id"
+              [checked]="collaborator?.checked">
+            <label class="form-check-label" [for]="collaborator?.id">
+              {{collaborator?.name}}
+            </label>
+          </div>
+        </div>
+
+        <div class="col-12 d-flex justify-content-end">
+          <button class="btn btn-secondary" type="button" (click)="savePermissions()">Salvar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="div-form p-1" [class.show]="activeForm === 'projects'" [class.hide]="activeForm !== 'projects'">
+      <div class="row d-flex">
+        <div class="col-lg-4 col-md-12">
+          <p class="subtitle">Projetos</p>
+          <div class="form-check" *ngFor="let projects of filterPermissionByKey(permissions, 'projects.')">
+            <div *ngIf="projects.key.split('.').length == 2" class="p-1 mb-2">
+              <input class="form-check-input" type="checkbox" [(ngModel)]="projects.checked" [id]="projects?.id"
+                [checked]="projects?.checked">
+              <label class="form-check-label" [for]="projects?.id">
+                {{projects?.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-12">
+          <p class="subtitle">Documento</p>
+          <div class="form-check pb-1 mb-2"
+            *ngFor="let projects of filterPermissionByKey(permissions, 'collaborator.dependent.')">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="projects.checked" [id]="projects?.id"
+              [checked]="projects?.checked">
+            <label class="form-check-label" [for]="projects?.id">
+              {{projects?.name}}
+            </label>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-12">
+          <p class="subtitle">Plano de trabalho</p>
+          <div class="form-check pb-1 mb-2"
+            *ngFor="let projects of filterPermissionByKey(permissions, 'project.workplan.')">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="projects.checked" [id]="projects?.id"
+              [checked]="projects?.checked">
+            <label class="form-check-label" [for]="projects?.id">
+              {{projects?.name}}
+            </label>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-12 mt-3">
+          <p class="subtitle">Gastos</p>
+          <div class="form-check pb-2 mb-2" *ngFor="let projects of filterPermissionByKey(permissions, 'expense.')">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="projects.checked" [id]="projects?.id"
+              [checked]="projects?.checked">
+            <label class="form-check-label" [for]="projects?.id">
+              {{projects?.name}}
+            </label>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12 mt-3">
+          <p class="subtitle">Aportes</p>
+          <div class="form-check pb-2 mb-2"
+            *ngFor="let projects of filterPermissionByKey(permissions, 'contribution.')">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="projects.checked" [id]="projects?.id"
+              [checked]="projects?.checked">
+            <label class="form-check-label" [for]="projects?.id">
+              {{projects?.name}}
+            </label>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12 mt-3">
+          <p class="subtitle">Empréstimos</p>
+          <div class="form-check pb-2 mb-2" *ngFor="let projects of filterPermissionByKey(permissions, 'loan.')">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="projects.checked" [id]="projects?.id"
+              [checked]="projects?.checked">
+            <label class="form-check-label" [for]="projects?.id">
+              {{projects?.name}}
+            </label>
+          </div>
+        </div>
+        <div class="col-12 d-flex justify-content-end">
+          <button class="btn btn-secondary" type="button" (click)="savePermissions()">Salvar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="div-form p-1" [class.show]="activeForm === 'suppliers'" [class.hide]="activeForm !== 'suppliers'">
+      <div class="row d-flex">
+        <div class="col-lg-4 col-md-12">
+          <p class="subtitle">Fornecedores</p>
+          <div class="form-check" *ngFor="let suppliers of filterPermissionByKey(permissions, 'suppliers.')">
+            <div *ngIf="suppliers.key.split('.').length == 2" class="p-1 mb-2">
+              <input class="form-check-input" type="checkbox" [(ngModel)]="suppliers.checked" [id]="suppliers?.id"
+                [checked]="suppliers?.checked">
+              <label class="form-check-label" [for]="suppliers?.id">
+                {{suppliers?.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 d-flex justify-content-end">
+          <button class="btn btn-secondary" type="button" (click)="savePermissions()">Salvar</button>
+        </div>
+      </div>
+    </div>
+    <div class="div-form p-1" [class.show]="activeForm === 'users'" [class.hide]="activeForm !== 'users'">
+      <div class="row d-flex">
+        <div class="col-lg-4 col-md-12">
+          <p class="subtitle">Usuários</p>
+          <div class="form-check" *ngFor="let users of filterPermissionByKey(permissions, 'user.')">
+            <div *ngIf="users.key.split('.').length == 2" class="p-1 mb-2">
+              <input class="form-check-input" type="checkbox" [(ngModel)]="users.checked" [id]="users?.id"
+                [checked]="users?.checked">
+              <label class="form-check-label" [for]="users?.id">
+                {{users?.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-12">
+          <p class="subtitle">Configurações</p>
+          <div class="form-check pb-1 mb-2" *ngFor="let users of filterPermissionByKey(permissions, 'settings.')">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="users.checked" [id]="users?.id"
+              [checked]="users?.checked">
+            <label class="form-check-label" [for]="users?.id">
+              {{users?.name}}
+            </label>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-12">
+          <p class="subtitle">Perfil</p>
+          <div class="form-check pb-1 mb-2" *ngFor="let settings of filterPermissionByKey(permissions, 'profile.')">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="settings.checked" [id]="settings?.id"
+              [checked]="settings?.checked">
+            <label class="form-check-label" [for]="settings?.id">
+              {{settings?.name}}
+            </label>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-12 mt-3">
+          <p class="subtitle">Permissão</p>
+          <div class="form-check pb-2 mb-2"
+            *ngFor="let permission of filterPermissionByKey(permissions, 'permission.')">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="permission.checked" [id]="permission?.id"
+              [checked]="permission?.checked">
+            <label class="form-check-label" [for]="permission?.id">
+              {{permission?.name}}
+            </label>
+          </div>
+        </div>
+        <div class="col-12 d-flex justify-content-end">
+          <button class="btn btn-secondary" type="button" (click)="savePermissions()">Salvar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="div-form p-1" [class.show]="activeForm === 'trash'" [class.hide]="activeForm !== 'trash'">
+      <div class="row d-flex">
+        <div class="col-lg-4 col-md-12">
+          <p class="subtitle">Lixeira</p>
+          <div class="form-check" *ngFor="let trash of filterPermissionByKey(permissions, 'trash.')">
+            <div *ngIf="trash.key.split('.').length == 2" class="p-1 mb-2">
+              <input class="form-check-input" type="checkbox" [(ngModel)]="trash.checked" [id]="trash?.id"
+                [checked]="trash?.checked">
+              <label class="form-check-label" [for]="trash?.id">
+                {{trash?.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 d-flex justify-content-end">
+          <button class="btn btn-secondary" type="button" (click)="savePermissions()">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

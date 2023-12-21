@@ -1,0 +1,46 @@
+<div class="header">
+  <div class="image">
+    <img src="../../../../assets/images/woman.png">
+    <!-- <img [src]="collaborator?.image"> -->
+  </div>
+  <div class="content">
+    <div class="info">
+      <span class="title">{{ collaborator?.name }}</span>
+    </div>
+    <div class="contact">
+      <!-- <div class="pill pending-user-pill">
+        <i class="icon ic-status-warn-tri"></i>
+        <span>Dados Pendentes</span>
+      </div> -->
+      <!-- <div class="pill">
+        <i class="icon ic-user-single"></i>
+        <span>Colaborador Ativo</span>
+      </div> -->
+      <!-- <div class="pill">
+        TODO: Função
+      </div> -->
+      <!-- <div class="pill">
+        <i class="icon ic-currency-coins"></i>
+        TODO: Salário Total
+      </div> -->
+      <!-- <div class="pill">
+        <i class="icon ic-user-single"></i>
+        <span>Férias: TODO Férias</span>
+      </div> -->
+    </div>
+    <div class="contact mt-1">
+      <div class="pill">
+        <i class="icon ic-phone"></i>
+        {{ collaborator?.phone }}
+      </div>
+      <div class="pill">
+        <i class="icon ic-calendar-month"></i>
+        {{ collaborator?.birthdate }}
+      </div>
+      <div class="pill emergency-pill">
+        <i class="icon ic-clipboard-lines"></i>
+        <b class="mr-1">Contato de Emergência 1: </b> {{ collaborator?.emergencyContactName1 }} {{ collaborator?.emergencyContactPhone1 }} {{ collaborator?.emergencyParentage1 && "- Parentesco: " + collaborator?.emergencyParentage1 }}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,94 @@
+<div class="info" *ngIf="project">
+  <div class="form-container">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeForm === 'info'"
+          (click)="setShowForm('info');">
+          INFORMAÇÕES
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeForm === 'team'"
+          (click)="setShowForm('team');">
+          EQUIPE
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeForm === 'doc'"
+          (click)="setShowForm('doc');">
+          DOCUMENTOS
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeForm === 'marginsGrid'"
+          (click)="setShowForm('marginsGrid');">
+          GRID DE MARGENS
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeForm === 'expensesGrid'"
+          (click)="setShowForm('expensesGrid');">
+          GRID DE GASTOS
+        </a>
+      </li>
+
+      <li class="nav-item disabled">
+        <a class="nav-link" [class.active]="activeForm === 'allExpenses'"
+          (click)="setShowForm('allExpenses');">
+          TODOS OS GASTOS
+        </a>
+      </li>
+
+      <li class="nav-item disabled">
+        <a class="nav-link" [class.active]="activeForm === 'plannedCosts'"
+          (click)="setShowForm('plannedCosts');">
+          CUSTOS PLANEJADOS
+        </a>
+      </li>
+
+      <div class="custom-control custom-switch">
+        <div>
+          <input type="checkbox" class="custom-control-input" id="editToogle" [(ngModel)]="canEdit">
+          <label class="custom-control-label" for="editToogle">Editar</label>
+        </div>
+        <div class="save-editions-button">
+          <button type="button" [class.hide-save-btn]="!canEdit"
+            class="btn btn-primary" [disabled]="appInfo?.informationForm?.form?.invalid || appInfo?.invalidProjectDates"
+            (click)="saveEditions();">
+            SALVAR
+          </button>
+        </div>
+      </div>
+    </ul>
+
+    <div class="forms">
+      <div class="div-form" [class.show]="activeForm === 'info'" [class.hide]="activeForm !== 'info'">
+        <app-informations-form #appInfo [project]="project" [canEdit]="canEdit"></app-informations-form>
+      </div>
+      <div class="div-form" [class.show]="activeForm === 'team'" [class.hide]="activeForm !== 'team'">
+        <app-project-team [project]="project" [canEdit]="canEdit"></app-project-team>
+      </div>
+      <div class="div-form" [class.show]="activeForm === 'doc'" [class.hide]="activeForm !== 'doc'">
+        <app-docs-form [project]="project" [canEdit]="canEdit"></app-docs-form>
+      </div>
+      <div class="div-form" [class.show]="activeForm === 'marginsGrid'" [class.hide]="activeForm !== 'marginsGrid'">
+        <app-margins-grid [project]="project"></app-margins-grid>
+      </div>
+      <div class="div-form" [class.show]="activeForm === 'expensesGrid'" [class.hide]="activeForm !== 'expensesGrid'">
+        <app-expenses-grid [project]="project"></app-expenses-grid>
+      </div>
+      <div class="div-form" [class.show]="activeForm === 'allExpenses'" [class.hide]="activeForm !== 'allExpenses'">
+        <app-all-expenses [project]="project" [editExpense]="editExpense" (emitEditToInfo)="emitEditToDetails.emit($event)" (emitDeleteToInfo)="emitDeleteToDetails.emit($event)" ></app-all-expenses>
+      </div>
+      <div class="div-form" [class.show]="activeForm === 'plannedCosts'" [class.hide]="activeForm !== 'plannedCosts'">
+        <app-all-costs [projectWorkplanItems]="projectWorkplanItems" [project]="project"
+        (updateWorplanItems)="loadProjectWorkplan();"></app-all-costs>
+      </div>
+    </div>
+  </div>
+
+</div>

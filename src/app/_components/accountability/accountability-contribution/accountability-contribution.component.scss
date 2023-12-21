@@ -1,0 +1,22 @@
+.boundery {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  border: 1px solid #E4E4E4;
+  border-radius: 5px;
+  margin-left: 1.2rem;
+  margin-top: 2rem;
+  box-shadow: 2px 2px 0.5em #E4E4E4;
+  padding: 20px 20px 20px 20px;
+}
+
+.grid {
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.header {
+  width: 98% !important;
+  border-bottom: 1px solid #E4E4E4;
+}

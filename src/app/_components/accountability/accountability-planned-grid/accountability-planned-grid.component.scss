@@ -1,0 +1,148 @@
+.table {
+  display: flex;
+  flex-direction: row;
+
+  margin-top: 25px;
+  font: normal normal normal 14px/20px Roboto;
+  color: #666666;
+
+  .th {
+    font-weight: 600;
+  }
+
+  .without-border-right {
+    border-right: 0;
+  }
+
+  &-1 {
+    display: flex;
+    flex-direction: column;
+
+    width: max-content;
+
+    &__header {
+      display: flex;
+      flex-direction: row;
+
+      height: 45px;
+
+      border-bottom: 1px solid #E4E4E4;
+
+      & > div:nth-child(1) {
+        width: 180px;
+      }
+      & > div:nth-child(2) {
+        width: 300px;
+      }
+
+      .table-1__column {
+        height: 45px;
+      }
+    }
+
+    &__row {
+      display: flex;
+      flex-direction: row;
+
+      align-items: center;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid #E4E4E4;
+      }
+
+      & > div:nth-child(1) {
+        width: 180px;
+      }
+      & > div:nth-child(2) {
+        width: 300px;
+      }
+
+      .subtable {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        height: 100%;
+
+        &__row {
+          display: flex;
+          flex-direction: row;
+
+          height: 70px;
+
+          & .table-1__column {
+            height: 70px;
+          }
+
+          &:not(:last-child) {
+            border-bottom: 1px solid #E4E4E4;
+          }
+
+          & > div:nth-child(1) {
+            width: 300px;
+          }
+        }
+      }
+    }
+
+    &__column {
+      padding: 12px;
+      height: 100%;
+
+      border-right: 1px solid #E4E4E4;
+
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &-2 {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+
+    overflow-y: auto;
+
+    &__header {
+      display: flex;
+      flex-direction: row;
+      width: max-content;
+    }
+
+    &__row {
+      display: flex;
+      flex-direction: row;
+      width: max-content;
+
+      align-items: center;
+
+      & > .table-2__column {
+        height: 70px;
+      }
+    }
+
+    &__column {
+      padding: 12px;
+      height: 100%;
+      width: 140px;
+
+      border-right: 1px solid #E4E4E4;
+      border-bottom: 1px solid #E4E4E4;
+
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+.without-border-bottom {
+  border-bottom: 0 !important;
+}
+
+@media (max-width: 1044px) {
+  .table {
+    width: min-content;
+    overflow-x: auto;
+  }
+}

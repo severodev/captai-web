@@ -1,0 +1,54 @@
+.info {
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 10px;
+
+  position: relative;
+
+  padding: 24px;
+}
+
+.nav {
+  justify-content: center;
+  span{
+    padding-left: 7%;
+    font-weight: 400;
+  }
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  color: #0076ce;
+  border-color: #0076ce;
+  border-bottom: 2px solid;
+}
+
+.nav-tabs .nav-link {
+  font: normal normal 500 14px/20px Roboto;
+  color: #444444;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.forms {
+  padding-top: 24px;
+  margin-left: 20px;
+  overflow-y: auto;
+}
+
+.hide {
+  display: none;
+  opacity: 0;
+}
+
+.show {
+  display: block;
+  opacity: 1;
+}
+
+.project-title {
+  font: normal normal normal 17px/20px Roboto;
+  color: #666666;
+  line-height: 30px;
+  margin-bottom: 2.5rem;
+}

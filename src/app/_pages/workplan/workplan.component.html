@@ -1,0 +1,46 @@
+<div class="container">
+  <app-breadcrumb [pages]="breadcrumbPages"></app-breadcrumb>
+
+  <div class="title">
+    PLANO DE TRABALHO
+  </div>
+  <app-project-header [project]="project" [workplanHeader]="true" [infoValues]="infoValues"></app-project-header>
+  <div class="page-title">
+    
+    <div class="buttons" *ngIf="false">
+      <button type="button" class="btn btn-icon-link" (click)="delete();">
+        <i class="icon ic-delete-can"></i> <span>Excluir</span>
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="save();">
+        Finalizar
+      </button>
+      <button type="button" class="btn btn-outline-primary" (click)="saveAsDraft();">
+        <i class="icon ic-pen-highlight"></i> Salvar Rascunho
+      </button>
+    </div>
+  </div>
+
+  <div class="forms">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeTab === 'addCost'"
+          (click)="showAddCostTab();">
+          ADICIONAR CUSTOS
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeTab === 'allCosts'"
+          (click)="showAllCostsTab();">
+          TODOS OS CUSTOS
+        </a>
+      </li>
+    </ul>
+
+    <app-add-cost *ngIf="activeTab === 'addCost'" [projectId]="projectId" [project]="project" ></app-add-cost>
+    <app-all-costs *ngIf="activeTab === 'allCosts'"
+      [projectWorkplanItems]="projectWorkplanItems" [project]="project"
+      (updateWorplanItems)="loadProjectWorkplan();"></app-all-costs>
+  </div>
+</div>
+<app-confirm-alert></app-confirm-alert>

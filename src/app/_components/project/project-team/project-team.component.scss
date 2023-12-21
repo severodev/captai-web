@@ -1,0 +1,188 @@
+@import '../../collaborator/collaborator-card/collaborator-card.component.scss';
+
+.card-deck {
+  margin-right: -8px !important;
+  margin-left: -8px !important;
+  margin-top: -6px !important;
+}
+
+.card {
+  max-width: 155px;
+  min-width: 155px;
+  margin: 8px !important;
+  min-height: 210px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 0px;
+  margin-left: 0px;
+
+  [class*=col-] {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+}
+
+.actionsButton {
+  margin: 0 0 10px;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 8px;
+
+  .left-container, .right-container, .center-container {
+    display: flex;
+  }
+
+  .center-container {
+    justify-content: center;
+    .pill {
+      background-color: white;
+      // border: 1px solid #0076CE;
+      border: none;
+      color: #000;
+
+      &:hover, &.active {
+        // background-color: #0076CE;
+        // color: white;
+        color: #0076CE;
+        cursor: pointer;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .right-container {
+    justify-content: end;
+    animation: fade 1s ease-out;
+  }
+
+  .btn-icon-link {
+    position: inherit !important;
+  }
+
+  .ic-view-sort-grid, .ic-view-sort-list {
+    font-size: 20px;
+  }
+
+  .optionText {
+    font-size: 15px;
+    font-weight: 500;
+  }
+}
+
+.thin-card {
+  height: 110px;
+  margin: 8px 0px !important;
+  border: 1px solid #E4E4E4;
+  border-radius: 0;
+  box-shadow: 0px 2px 5px #00000014;
+  padding: 12px;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+
+  .card-header {
+    width: fit-content;
+    background: none;
+    border: none;
+    padding: 0;
+    .collaborator-image {
+      img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: #0076ce38;
+      }
+    }
+  }
+
+  .card-body {
+    min-width: 100px;
+    padding: 0 12px;
+    width: 25%;
+
+    .collaborator-name {
+      font-size: 21px;
+      font-weight: 600;
+      color: #333333;
+      text-overflow: ellipsis;
+      width: 98%;
+      word-break: break-all;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .collaborator-payroll {
+      font-size: 15px;
+      font-weight: 600;
+      color: #333333;
+      text-overflow: ellipsis;
+      width: 98%;
+      word-break: break-all;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .collaborator-lead-role {
+      font-size: 15px;
+      color: #333333;
+      text-overflow: ellipsis;
+      width: 98%;
+      word-break: break-all;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+
+  .btn-icon-link {
+    height: fit-content !important;
+    font-size: 17px !important;
+    padding: 0px !important;
+    color: #888888;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    margin: 12px;
+  }
+}
+
+.forms {
+  width: 100%;
+}
+
+.div-form {
+  animation: fade 1s ease-out;
+}
+
+.show {
+  display: block;
+  opacity: 1;
+  // padding: 0 8px;
+}
+
+.hide {
+  display: none;
+  opacity: 0;
+}
+
+@keyframes fade {
+  0% {
+      display: none;
+      opacity: 0;
+  }
+
+  1% {
+      display: block;
+      opacity: 0;
+  }
+
+  100% {
+      display: block;
+      opacity: 1;
+  }
+}

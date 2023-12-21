@@ -1,0 +1,33 @@
+<div class="container">
+  <app-breadcrumb [pages]="breadcrumbPages"></app-breadcrumb>
+
+  <div class="page-title">
+    <div class="title">
+      FORNECEDORES
+    </div>
+    <div class="buttons">
+      <button type="button" class="btn btn-icon-link" (click)="showInputSearch = !showInputSearch">
+        <i class="icon ic-search"></i>
+      </button>
+      <div>
+        <input class="form-control search-input"  [class.show-input-search]="showInputSearch"
+          type="text" aria-label="Buscar Fornecedor" placeholder="Buscar Fornecedor"
+          [(ngModel)]="search"
+          (keydown.enter)="loadSuppliers();">
+      </div>
+      <button type="button" class="btn btn-icon-link" (click)="toggleOrderByTime();">
+        <i class="icon ic-clock-arrow-left" id="icon-clock"></i>
+      </button>
+      <button type="button" class="btn btn-icon-link" (click)="toggleOrderByTitle();">
+        <i class="icon ic-sort-A-Z" id="icon-sort"></i>
+      </button>
+      <button type="button" class="btn btn-primary" [routerLink]="['/create-supplier']">
+        <i class="icon ic-cart"></i> Cadastrar Fornecedor
+      </button>
+    </div>
+  </div>
+
+  <div class="card-deck">
+    <app-supplier-card *ngFor="let supplier of suppliers" [supplier]="supplier" style="padding: 8px; width: 24.5%;"></app-supplier-card>
+  </div>
+</div>

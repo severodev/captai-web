@@ -1,0 +1,59 @@
+.all-costs {
+  box-shadow: 0px 3px 6px #00000029;
+  margin-top: 16px;
+  padding: 16px;
+}
+
+.info {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: 150px;
+  }
+  .info-text {
+    width: 300px;
+    padding: 25px;
+    text-align: center;
+    color: #707070;
+    font-size: 16px;
+  }
+}
+
+.costs {
+  color: #666666;
+  font-size: 13px;
+  .cost-item {
+    padding: 8px 16px;
+    padding-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e4e4e4;
+    transition: all 0.3s;
+    .cost-info {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 23%;
+      white-space: pre-wrap;
+    }
+    &.summary {
+      margin: 10px 0 10px 0;
+    }
+  }
+  .cost-item:hover{
+    background-color: #efefef;
+  }
+  .cost-buttons {
+    width: 8%;
+    display: flex;
+    justify-content: space-around;
+    .btn-icon-link {
+      font-size: 18px !important;
+    }
+  }
+}

@@ -1,0 +1,63 @@
+<div id="captia-banner">
+    <div class="blue-transparency"></div>
+    <div class="title">CaptIA</div>
+    <div class="logo">
+      <img src="../../../assets/images/dell-lead-branco-e-amarelo@2x.png">
+    </div>
+  </div>
+
+  <div id="login-container">
+    <form [formGroup]="form" (ngSubmit)="createPassword()">
+      <div class="error-message" [class.show]="isInvalidForm">
+        Preencha todos os campos obrigatórios!
+      </div>
+
+      <div class="error-message" [class.show]="isInvalidPassword">
+        As senhas não conferem!
+      </div>
+
+      <div class="error-message" [class.show]="isError">
+        Ops! Token inválido.
+      </div>
+
+      <div class="form-group">
+        <label for="token">Token</label>
+        <input 
+          id="token" 
+          class="form-control" 
+          type="text" 
+          name="token" 
+          formControlName="token" 
+          aria-describedby="Digitar token" 
+          placeholder="Token" />
+      </div>
+
+      <div class="form-group password-input">
+        <label for="password">Senha</label>
+        <input 
+          id="password" 
+          class="form-control" 
+          type="password" 
+          name="password" 
+          formControlName="password" 
+          aria-describedby="Digitar senha" 
+          placeholder="Senha" />
+      </div>
+
+      <div class="form-group password-input">
+        <label for="conf-password">Confirmar Senha</label>
+        <input 
+          id="conf-password" 
+          class="form-control" 
+          type="password" 
+          name="confPassword" 
+          formControlName="confPassword" 
+          aria-describedby="Digitar confirmação de senha" 
+          placeholder="Confirmar Senha" />
+      </div>
+
+      <button type="submit" class="btn-login btn btn-primary">Salvar</button>
+      <br>
+    </form>
+  </div>
+  

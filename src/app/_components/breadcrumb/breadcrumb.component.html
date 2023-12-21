@@ -1,0 +1,8 @@
+<div class="breadcrump-component">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item" aria-current="page" *ngFor="let page of pages">
+      <a *ngIf="!page.active" [routerLink]="[ page.route, page.params ? page.params : {}]" >{{page.label}}</a>
+      <span *ngIf="page.active" class="active">{{page.label}}</span>
+    </li>
+  </ol>
+</div>

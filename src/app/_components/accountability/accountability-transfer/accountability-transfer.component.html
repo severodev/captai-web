@@ -1,0 +1,59 @@
+<div class="top">
+    <span>
+        Recursos remanescentes
+    </span>
+    <button type="button" class="btn btn-primary" (click)="showTransferModal(transferModal)">
+        <i class="dds__icons dds__charge-back" aria-hidden="true"></i>
+        Remanejar
+    </button>
+</div>
+<hr>
+<div class="bottom">
+    <span>Total a remanejar: </span>
+    <span class="value">{{(updateCurrentValue | async) | currency:'BRL'}}</span>
+</div>
+
+<ng-template #transferModal>
+<div class="modal-header">
+    <div class="modal-title pull-left">
+        Remanejar Margem Remanescente
+    </div>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <i class="icon ic-close"></i>
+    </button>
+    <div>Margem Remanescente disponível em {{project.name}}:</div>
+    <div>{{(updateCurrentValue | async) | currency:'BRL'}}</div>
+</div>
+
+
+<div class="modal-body">
+    <form id="accountability-transfer-form" [formGroup]="transferForm">
+        <label for="receivingProjectId">Projeto *</label>
+        <label for="donatedAmount">Valor a ser remanejado *</label>
+        <select class="form-control" (change)="getReceivingProject()" name="receivingProjectId" id="receivingProjectId" formControlName="receivingProjectId">
+            <option *ngFor="let receivingProject of (projectList$ | async)" [value]='receivingProject.id'>{{receivingProject.name}}</option>
+        </select>
+        <input currencyMask class="form-control" type="text" formControlName="donatedAmount">
+    </form>
+</div>
+
+
+<div class="modal-footer">
+    <div 
+    *ngIf="transferForm.valid">Novo Total disponível em {{receivingProject.name}}
+        <div class="value-available"> {{(updatedValue | async) | currency:'BRL'}}
+            <i *ngIf="transferForm.valid" class="dds__icons dds__alert-info-cir">
+                <span [attr.data-tooltip]="receivingProject.expensesGrid.remainingRealMargin | currency:'BRL':''"></span>
+            </i>
+        </div>
+    </div>
+    <div class="btn-container">
+        <button type="button" class="btn btn-default cancel" (click)="cancel()">
+            Cancelar
+        </button>
+        <button type="button" class="btn btn-primary save" [disabled]="transferForm.invalid" (click)="save()">
+            Salvar
+        </button>
+    </div>
+</div>
+</ng-template>

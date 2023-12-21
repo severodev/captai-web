@@ -1,0 +1,38 @@
+<div class="card">
+  <div class="card-progress" [ngClass]="{ 'whiteBack': collaborator.dataPercentage >= 100 }">
+    <div class="progress" *ngIf="collaborator.dataPercentage < 100"
+      [ngStyle]="{ 'width': collaborator.dataPercentage + '%' }">
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-icon-link mt-1" *ngIf="isActive" (click)="confirmDelete()">
+    <i class="icon ic-delete-can"></i>
+  </button>
+  
+  <div class="card-body">
+    <div class="collaborator-image" (click)="goToDetails();">
+      <img [src]="loadImage()">
+    </div>
+    <div class="collaborator-name" (click)="goToDetails();">
+      {{ collaborator.name }}
+    </div>
+    <div class="collaborator-lead-role">
+      {{ collaborator.job }}
+    </div>
+    <div class="collaborator-employment">
+      {{ collaborator.employment }}
+    </div>
+    <div class="incompleteForm" *ngIf="collaborator.dataPercentage !== 100">
+      Pendência no cadastro
+    </div>
+  </div>
+
+  <div class="card-footer" *ngIf="isActive">
+    <button *ngIf="collaborator.dataPercentage === 100" type="button" class="btn btn-link" (click)="addInProject()">Atribuir a Projeto</button>
+    <button *ngIf="collaborator.dataPercentage !== 100" type="button" class="btn btn-link" (click)="goToDetails()">Editar Cadastro</button>
+  </div>
+
+  <div class="card-footer" *ngIf="!isActive">
+    <button type="button" class="btn btn-link" (click)="restore();">Restaurar</button>
+  </div>
+</div>

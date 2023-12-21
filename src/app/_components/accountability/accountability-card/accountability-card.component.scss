@@ -1,0 +1,109 @@
+
+.card-progress {
+  background: #E4E4E4;
+  height: 8px;
+  width: 100%;
+  
+  .progress {
+    height: 100%;
+    background: #0076CE;
+    border-radius: 0;
+  }
+}
+
+.card {
+  width: 100%;
+  margin: 0 !important;
+  border-radius: 0;
+  box-shadow: 0px 2px 5px #00000014;
+}
+
+.header {
+  padding: 24px;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-bottom: 10px;
+
+  .title {
+    border-bottom: 1px solid #e4e4e4;
+    padding-bottom: 6px;
+    font-weight: normal;
+    width: 100%;
+    text-align: left;
+    font: 18px/25px Roboto !important;
+    letter-spacing: 0px;
+    color: #333333;
+  }
+
+  .content {
+    border-bottom: 1px solid #e4e4e4;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 25px 0;
+
+    .expense {
+      width: 30%;
+      font: normal normal normal 26px/18px Roboto;
+      letter-spacing: 0px;
+      color: #333333;
+      text-align: center;
+      
+      .value {
+        height: 26px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .currency-symbol {
+          align-self: flex-start;
+          margin-right: 2px;
+          font-size: 13px;
+        }
+      }
+    }
+
+    .margin {
+      width: 30%;
+      font: normal normal normal 38px/18px Roboto;
+      letter-spacing: 0px;
+      color: #333333;
+      text-align: center;
+
+      .value {
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .currency-symbol {
+          align-self: flex-start;
+          margin-right: 2px;
+          font-size: 13px;
+        }
+      }
+    }
+
+    p {
+      margin-bottom: 0;
+      small {
+        font-size: 60%;
+      }
+    }
+  }
+
+  .footer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    .btn {
+      padding-left: 0px !important;
+      font-size: 13px !important;
+      color: #0076CE;
+      letter-spacing: 0.52px !important;
+      font-weight: 500;
+    }
+  }
+}

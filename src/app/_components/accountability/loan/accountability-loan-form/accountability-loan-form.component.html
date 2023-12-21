@@ -1,0 +1,178 @@
+<div class="modal-header">
+  <div class="modal-title pull-left">
+    {{ accountabilityLoan.id ? "editar empréstimo" : "realizar empréstimo" }}
+  </div>
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <i class="icon ic-close"></i>
+  </button>
+</div>
+<div class="modal-body">
+  <form #accountabilityLoanForm="ngForm">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="inputAmount"
+          >Valor do empréstimo <span class="label-required">*</span></label
+        >
+        <input
+          id="inputAmount"
+          type="text"
+          class="form-control"
+          #inputAmountId="ngModel"
+          required 
+          currencyMask          
+          placeholder="Digite o valor"
+          name="inputAmount"
+          [(ngModel)]="accountabilityLoan.amount"
+          autocomplete="off"
+        />
+        <small
+          [hidden]="inputAmountId.valid || inputAmountId.pristine"
+          class="invalid-alert"
+          >Campo obrigatório</small
+        >
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputDate"
+          >Data do Empréstimo <span class="label-required">*</span></label
+        >
+        <input
+          type="date"
+          class="form-control"
+          id="inputDateReceipt"
+          #inputDateReceipt="ngModel"
+          required
+          [(ngModel)]="accountabilityLoan.receiptDate"
+          name="inputDateReceipt"
+          autocomplete="off"
+        />
+        <small
+          [hidden]="inputDateReceipt.valid || inputDateReceipt.pristine"
+          class="invalid-alert"
+          >Campo obrigatório</small
+        >
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputDate"
+          >Data de Devolução</label
+        >
+        <input
+          type="date"
+          class="form-control"
+          id="inputDateReturn"
+          #inputDateReturn="ngModel"
+          [(ngModel)]="accountabilityLoan.returnDate"
+          name="inputDateReturn"
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="form-group col-md-8" *ngIf="editConfiguration == false">
+        <label for="inputProjectDebtor"
+          >Projeto Devedor
+          <span class="label-required">*</span></label
+        >
+        <select
+          name="inputProjectDebtorId"
+          [(ngModel)]="accountabilityLoan.targetProject"
+          required
+          id="inputProjectDebtor"
+          #inputProjectDebtorId="ngModel"
+          class="form-control"
+        >
+          <option value="null" disabled selected>Selecione abaixo</option>
+          <option *ngFor="let project of projects" [value]="project.id">
+            {{ project.name }}
+          </option>
+        </select>
+        <small
+          [hidden]="inputProjectDebtorId.valid || inputProjectDebtorId.pristine"
+          class="invalid-alert"
+          >Campo obrigatório</small
+        >
+      </div>
+      
+      <div class="form-group col-md-8" *ngIf="editConfiguration == true && accountabilityLoan.cardType == 'GivenLoans'">
+        <label for="inputProject"
+          >Projeto Origem
+          <span class="label-required">*</span></label
+        >
+        <select
+          id="inputProject"
+          class="form-control"
+          [(ngModel)]="accountabilityLoan.targetProject"
+          #inputProjectId="ngModel"
+          required
+          name="inputProject"
+          placeholder=""
+        >
+          <option [value]="null" disabled selected>Selecione abaixo</option>
+          <option *ngFor="let project of projects" [value]="project.id">
+            {{ project.name }}
+          </option>
+        </select>
+        <small
+          [hidden]="inputProjectId.valid || inputProjectId.pristine"
+          class="invalid-alert"
+          >Campo obrigatório</small
+        >
+      </div>
+      
+      <div class="form-group col-md-8" *ngIf="editConfiguration == true && accountabilityLoan.cardType == 'ReceivedLoans'">
+        <label for="inputProject"
+          >Projeto Origem
+          <span class="label-required">*</span></label
+        >
+        <select
+          id="inputProject"
+          class="form-control"
+          [(ngModel)]="accountabilityLoan.originProject"
+          #inputProjectId="ngModel"
+          required
+          name="inputProject"
+          placeholder=""
+        >
+          <option [value]="null" disabled selected>Selecione baixo</option>
+          <option *ngFor="let project of projects" [value]="project.id">
+            {{ project.name }}
+          </option>
+        </select>
+        
+        <small
+          [hidden]="inputProjectId.valid || inputProjectId.pristine"
+          class="invalid-alert"
+          >Campo obrigatório</small
+        >
+      </div>
+
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-default cancel"
+    (click)="cancel()"
+  >
+    Cancelar
+  </button>
+  <button
+    *ngIf="editConfiguration == false"
+    type="button"
+    class="btn btn-primary save"
+    [disabled]="accountabilityLoanForm.invalid"
+    (click)="save()"
+  >
+    Fazer empréstimo
+  </button>
+  <button 
+    *ngIf="editConfiguration == true" 
+    type="button" class="btn btn-primary" 
+    (click)="update()">
+    Atualizar
+  </button>
+</div>

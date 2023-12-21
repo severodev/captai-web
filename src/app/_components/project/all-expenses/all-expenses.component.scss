@@ -1,0 +1,336 @@
+.all-expenses {
+  box-shadow: 0px 3px 6px #00000029;
+  margin-top: 16px;
+  padding-top: 8px;
+}
+
+.dropdown-menu {
+  transform: none !important;
+  top: 38px !important;
+
+  .custom-control-label {
+    padding-top: 3px;
+  }
+}
+
+.input-group {
+  .form-control {
+    border-right: none !important;
+
+    &.dropdown-toggle {
+      text-align: start;
+      background-color: white;
+      cursor: pointer;
+    }
+  }
+  
+  .input-group-text {
+    background-color: white;
+    border-color: #888888;
+    border-left: none;
+    border-radius: 0rem;
+    cursor: pointer;
+  }
+
+  .ic-arrow-down-solid {
+    font-size: 10px;
+  }
+}
+
+::ng-deep {
+  .ngx-slider {
+    margin: unset !important;
+  }
+
+  .ngx-slider .ngx-slider-bubble {
+    display: none !important;
+  }
+
+  .ngx-slider .ngx-slider-bar {
+    height: 3px !important;
+  }
+
+  .ngx-slider .ngx-slider-selection {
+    background: #0076CE !important;
+  }
+
+  .ngx-slider .ngx-slider-pointer {
+    width: 11px !important;
+    height: 11px !important;
+    top: -4px !important;
+    background-color: #0076CE !important;
+    border-radius: 0px !important;
+  }
+  
+  .ngx-slider .ngx-slider-pointer:after {
+    width: 0px !important;
+    height: 0px !important;
+  }
+}
+
+.valueRangeSubtitle {
+  font-size: 0.8em;
+  color: #777777;
+}
+
+.info {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: 150px;
+  }
+  .info-text {
+    width: 300px;
+    padding: 25px;
+    text-align: center;
+    color: #707070;
+    font-size: 16px;
+  }
+}
+
+.expenses {
+  color: #666666;
+  font-size: 13px;
+  .expenses-title {
+    font-weight: bold;
+    padding: 8px 16px;
+    padding-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e4e4e4;
+    transition: all 0.3s;
+    .expense-info {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 23%;
+    }
+  }
+  .expenses-item {
+    padding: 8px 16px;
+    padding-top: 8px;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e4e4e4;
+    transition: all 0.3s;
+    .expense-info {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 23%;
+    }
+    .confirm-payment {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1px solid #0076CE;
+      padding: 2px;
+      cursor: pointer;
+    }
+    .pill {
+      font-size: 12px !important;
+    }
+    .status-planned-pill {
+      border: 2px solid #006BBD !important;
+      background: #E5F0F8 !important;
+      color: #006BBD !important;
+      font-weight: bold;      
+    }    
+    .status-ongoing-pill {
+      border: 2px solid #946B00 !important;
+      background: #FEF7E6 !important;
+      color: #946B00 !important;
+      font-weight: bold;
+    }
+    .status-finished-pill {
+      border: 2px solid #408001 !important;
+      background: #EDF3E6 !important;
+      color: #408001 !important;
+      font-weight: bold;
+    }
+
+  }
+  .expenses-item:hover{
+    background-color: #efefef;
+  }
+  .opened {
+    background: #E7F2FB;
+    .expense-info {
+      color: #333333;
+      font-weight: bold;
+    }
+  }
+  .expense-info-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 5%;
+  }
+
+  .expense-details {
+    width: 100%;
+    padding-left: 3%;
+    .description {
+      color: #333333;
+      margin-top: 14px;
+      // margin-bottom: 14px;
+      white-space: pre-wrap;
+    }
+    .installments {
+      color: #333333;
+      margin-top: 14px;
+      // margin-bottom: 14px;
+      white-space: pre-wrap;
+      display:  flex;
+      flex-direction: row;
+      justify-content: flex-start;    
+      .summary{
+        min-width: 150px;
+      }
+      .row {
+        margin-left: -24px;
+        margin-right: 0px;
+      }  
+      .strong{
+        font-size: 1.1rem;
+        font-weight: bold;
+      }
+      .instalmment-items {
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-grow: 0.8;
+        .item {
+          min-width: 100px;
+          border-top: solid 1px #ccc;
+          padding: 20px 10px 0 10px;
+          margin-bottom: 20px;
+          .border-circle {
+            float: left;
+            border-radius: 50%;
+            width: 12px;
+            height: 12px;
+            margin: -26px 0 0 -12px;
+            box-shadow: 0px 3px 6px #00000029;
+            border: 1px solid #FFFFFF;
+            background: #0076CE 0% 0% no-repeat padding-box;
+          }
+          .installment-info {
+            margin-left: -25px;
+          }
+          .installment-value {
+            margin-left: -8px;
+          }
+          .dueDate {
+            color: #666666 !important;
+            text-transform: uppercase !important;
+          }
+          .installment-order{
+            color: #0076CE;
+          }
+          .description {
+            margin-left: -10px;
+            margin-top: 5px ;
+            color: #666666 !important;            
+          }
+        }
+        .item:last-child {          
+          border-top: none;
+        }        
+      }
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-bottom: 10px;
+  .btn-icon-link {
+    border: 1px solid;
+    font-size: 14px !important;
+    padding: 7px 10px !important;
+    font-weight: bold;
+    i {
+      margin-right: 10px !important;
+    }     
+  }
+}
+
+.red {
+  border-color: #CE1126 !important;
+  color: #CE1126 !important;
+}
+.red:hover {
+  span {
+    color: #e7122b !important;
+  }
+}
+
+.blue {
+  border-color: #007DB8 !important;
+  color: #007DB8 !important;
+}
+
+
+.file-cards {
+  display: flex;
+  flex-flow: wrap;
+  align-items: center;
+  .file-card {
+    width: 30%;
+    height: 70px;
+    padding: 8px 24px;
+    margin: 1%;
+    background: #fff;
+    box-shadow: 0px 2px 5px #00000014;
+    border: 1px solid #E4E4E4;
+    display: flex;
+    align-items: center;
+    .file-card-info {
+      width: 80%;
+      .file-card-title {
+        font: normal normal normal 14px/24px Roboto;
+        letter-spacing: 0px;
+        color: #333333;
+      }
+      .file-card-subtitle {
+        font: normal normal normal 13px/24px Roboto;
+        letter-spacing: 0px;
+        color: #333333;
+      }
+    }
+    .file-card-buttons {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      height: 100%;
+      width: 20%;
+      position: relative;
+      .file-type {
+        position: absolute;
+        top: 0;
+        right: 0;
+        border: 1px solid #0076CE;
+        border-radius: 100px;
+        width: 38px;
+        text-align: center;
+        font: normal normal normal 13px/20px Roboto;
+        letter-spacing: 0px;
+        color: #0076CE;
+        text-transform: lowercase;
+      }
+      .btn-icon-link {
+        font-size: 16px !important;
+        color: #666;
+      }
+    }
+  }
+}

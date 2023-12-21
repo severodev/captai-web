@@ -1,0 +1,55 @@
+<div class="thin-card">
+    <div class="card-header">
+      <div class="collaborator-image mx-3">
+        <img [src]="loadImage(member)">
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="collaborator-name">
+        {{ member.collaboratorName }}
+      </div>
+      <div class="collaborator-lead-role">
+        {{ member.jobTitle }}
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="collaborator-payroll">
+        PERÍODO ADMISSÃO:
+      </div>
+      <div class="collaborator-lead-role">
+        <p *ngIf="member.collaborator.payments, else elseBlock">{{ member.collaborator.payments[0].admission | date: 'dd/MM/yyyy' }} - {{ dismissal }}</p>
+        <ng-template #elseBlock>Não informado</ng-template>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="collaborator-payroll">
+        CARGA HORÁRIA:
+      </div>
+      <div class="collaborator-lead-role">
+       <p *ngIf="member.collaborator.payments, else elseBlock">{{ member.collaborator.payments[0].workload ? member.collaborator.payments[0].workload + ' horas' : 'Não informado' }}</p>
+       <ng-template #elseBlock>Não informado</ng-template>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="collaborator-payroll">
+        SALÁRIO:
+      </div>
+      <div class="collaborator-lead-role">
+        <p *ngIf="member.collaborator.payments, else elseBlock">{{ member.collaborator.payments[0].salary ? (member.collaborator.payments[0].salary | currency: 'BRL' ) : 'Não informado' }}</p>
+        <ng-template #elseBlock>Não informado</ng-template>
+      </div>
+    </div>
+
+   <div class="card-body">
+      <div class="collaborator-payroll">
+        CONTRATO:
+      </div>
+      <div class="collaborator-lead-role">
+        <p *ngIf="member.collaborator.payments, else elseBlock">{{ member.collaborator.payments[0].employmentRelationship.name ? member.collaborator.payments[0].employmentRelationship.name : 'Não informado' }}</p>
+        <ng-template #elseBlock>Não informado</ng-template>
+      </div>
+    </div>
+</div>

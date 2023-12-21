@@ -1,0 +1,95 @@
+<!-- <div class="card confirm-receipt"> -->
+<div
+  class="card"
+  [ngClass]="{ receipt: accountabilityLoan.confirmationOfReceive, 'receipt-devolution' : accountabilityLoan.confirmationOfReceive == true && accountabilityLoan.confirmationOfDevolution == false }"
+>
+  <div class="card-head">
+    <div *ngIf="accountabilityLoan.cardType == 'GivenLoans'" class="project-name">{{ accountabilityLoan.targetProjectName }}</div>
+    <div *ngIf="accountabilityLoan.cardType == 'ReceivedLoans'" class="project-name">{{ accountabilityLoan.originProjectName }}</div>
+    <div class="more-actions dropright">
+      <i
+        class="icon ic-overflow-menu-dots"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      ></i>
+      <div class="dropdown-menu">
+        <button
+          class="dropdown-item edit"
+          type="button"
+          (click)="openLoanModal()"
+        >
+          <i class="icon ic-pencil-edit"></i> Editar Empréstimo
+        </button>
+        <button
+          class="dropdown-item remove"
+          type="button"
+          (click)="confirmDelete()"
+        >
+          <i class="icon ic-delete-can"></i> Excluir Empréstimo
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="amount">
+      <span class="amount-symbol">R$</span>
+      <span class="amount-value">{{
+        accountabilityLoan.amount | currency: " ":false
+      }}</span>
+    </div>
+    <div class="dates">
+      <div class="dates-receipt">
+        <span class="dates-info">
+          DATA RECEBIMENTO
+        </span>
+        <span >
+          {{dateReceiptFormated}}
+        </span>
+      </div>
+      <div class="dates-return">
+        <span class="dates-info">
+          DATA DEVOLUÇÃO
+        </span>
+        <span *ngIf="accountabilityLoan.returnDate != null">
+          {{dateReturnFormated}}
+        </span>
+        <span *ngIf="accountabilityLoan.returnDate == null">
+          SEM DATA DEFINIDA
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+
+    <span [ngClass]="{'span-footer-received-waiting': accountabilityLoan.confirmationOfReceive == false, 'span-footer-received-received' : accountabilityLoan.confirmationOfReceive == true}" *ngIf="accountabilityLoan.cardType == 'ReceivedLoans'" (click)="confirmReceipt()">
+      {{
+        accountabilityLoan.confirmationOfReceive
+        ? "Recebido"
+        : "Confirmar Empréstimo"
+      }}
+      <i *ngIf="accountabilityLoan.confirmationOfReceive == true" class="icon ic-shape-check"></i>
+    </span>
+    <span [ngClass]="{'span-footer-received-waiting': accountabilityLoan.confirmationOfDevolution == false, 'span-footer-received-received' : accountabilityLoan.confirmationOfDevolution == true}" *ngIf="accountabilityLoan.cardType == 'ReceivedLoans' && accountabilityLoan.confirmationOfReceive == true" (click)="returnLoan()">
+      {{
+        accountabilityLoan.confirmationOfDevolution
+        ? "Devolvido"
+        : "Devolver"
+      }}
+      <i *ngIf="accountabilityLoan.confirmationOfDevolution == true" class="icon ic-shape-check"></i>
+    </span>
+
+    <span *ngIf="accountabilityLoan.cardType == 'GivenLoans'">
+      Enviado
+      <i *ngIf="accountabilityLoan.confirmationOfReceive == true" class="icon ic-shape-check"></i>
+    </span>
+    <span [ngClass]="{'span-footer-given-waiting': accountabilityLoan.confirmationOfReceive == false, 'span-footer-given-received' : accountabilityLoan.confirmationOfReceive == true}" *ngIf="accountabilityLoan.cardType == 'GivenLoans'">
+      {{
+        accountabilityLoan.confirmationOfReceive
+        ? "Recebido"
+        : "Aguardando Recebimento"
+      }}
+      <i *ngIf="accountabilityLoan.confirmationOfReceive == true" class="icon ic-shape-check"></i>
+    </span>
+  </div>
+</div>

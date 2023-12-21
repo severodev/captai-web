@@ -1,0 +1,100 @@
+<form #otherServiceForm="ngForm">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputName">Pessoa Física ou Jurídica Contratada <span class="label-required">*</span></label>
+      <input id="inputName" type="text"
+        class="form-control" #inputName="ngModel" required
+        placeholder="Insira no nome" name="inputName"
+        [(ngModel)]="workplanItem.wpiService.contractorName">
+      <small [hidden]="inputName.valid || inputName.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="inputCNPJ">CNPJ</label>
+      <input id="inputCNPJ" type="text" mask="00.000.000/0000-00"
+        [dropSpecialCharacters]="false"
+        class="form-control"
+        placeholder="Insira o CNPJ" name="inputCNPJ"
+        [(ngModel)]="workplanItem.wpiService.cnpj">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="inputDescription">Descrição dos Serviços <span class="label-required">*</span></label>
+      <textarea type="text" class="form-control" id="inputDescription" style="height: 100px !important;"
+        name="inputDescription" placeholder="Inserir a descrição dos serviços"
+        [(ngModel)]="workplanItem.wpiService.description" #inputDescription="ngModel" required></textarea>
+      <small [hidden]="inputDescription.valid || inputDescription.pristine" class="invalid-alert">Campo obrigatório</small>        
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputPeriod">Período de Realização do Serviço</label>
+      <div class="d-flex align-items-center">
+        <span class="input-span">De</span>
+        <input id="inputPeriodStart" type="text" mask="00/00/0000"
+          [dropSpecialCharacters]="false"
+          class="form-control"
+          placeholder="Data de início" name="inputPeriodStart"
+          [(ngModel)]="workplanItem.wpiService.start">
+        <span class="input-span">-</span>
+        <input id="inputPeriodEnd" type="text" mask="00/00/0000"
+          [dropSpecialCharacters]="false"
+          class="form-control"
+          placeholder="Data de fim" name="inputPeriodEnd"
+          [(ngModel)]="workplanItem.wpiService.end">
+      </div>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputStage">Etapa Associada</label>
+      <input id="inputStage" type="text"
+        class="form-control" #inputStage="ngModel" 
+        placeholder="Insira a Etapa do Projeto" name="inputStage"
+        [(ngModel)]="workplanItem.projectStage">
+      <small [hidden]="inputStage.valid || inputStage.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputExpenditures">Dispêndios <span class="label-required">*</span></label>
+      <input id="inputExpenditures" type="text" currencyMask
+        class="form-control" #inputExpenditures="ngModel" required        
+        placeholder="Valor Total" name="inputExpenditures"
+        [(ngModel)]="workplanItem.value"
+        autocomplete="off">
+      <small [hidden]="inputExpenditures.valid || inputExpenditures.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="inputJustification">Justificativa <span class="label-required">*</span></label>
+      <textarea type="text" class="form-control" id="inputJustification" style="height: 100px !important;"
+        name="inputJustification" placeholder="Inserir a justificativa dos serviços"
+        [(ngModel)]="workplanItem.rationale" #inputJustification="ngModel" required></textarea>
+      <small [hidden]="inputJustification.valid || inputJustification.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col">
+      <app-funds-table [workplanItem]="workplanItem" #appFunds></app-funds-table>
+    </div>
+  </div>
+
+  <div class="form-row" style="padding: 5px; justify-content: flex-end;">
+    <button class="btn btn-primary" (click)="addWorkplan();" [disabled]="otherServiceForm.form.invalid" *ngIf="!isEdition">
+      <i class="icon ic-add-circ"></i>
+      Adicionar
+    </button>
+    <button class="btn btn-outline-primary mr-3" (click)="cancel();" *ngIf="isEdition">
+      Cancelar
+    </button>
+    <button class="btn btn-primary" (click)="updateWorkplanItem();" [disabled]="otherServiceForm.form.invalid" *ngIf="isEdition">
+      Salvar
+    </button>
+  </div>
+</form>
+

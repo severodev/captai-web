@@ -1,0 +1,39 @@
+.modal {
+  &-title {
+    text-transform: uppercase;
+  }
+
+  &-header {
+    padding: 1.5rem 1rem 1rem 3rem;
+  }
+
+  &-body {
+    padding: 0 1rem 1rem 3rem;
+  }
+
+  &-footer {
+    border-top: 0;
+    font: normal normal 500 13px/20px Roboto;
+    letter-spacing: 0.52px;
+    padding: 0.75rem 2rem 2rem 0.75rem;
+
+    button {
+      font-weight: 500;
+    }
+
+    .cancel {
+      color: #0076ce;
+
+      &:hover {
+        color: #00447c;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}

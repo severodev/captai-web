@@ -1,0 +1,43 @@
+<div class="card ">
+  <div class="card-header">
+    <div class="header-info">
+      <span class="title">{{ supplier.name }}</span>
+      <span class="subtitle">
+        CNPJ: <span class="subtitle" style="margin-left: 12px;">{{ supplier.cnpj }}</span>
+      </span>
+    </div>
+    <div class="header-button">
+      <button type="button" class="btn btn-icon-link"><i class="icon ic-pin-down"></i></button>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <div class="card-item">
+      <div class="item-icon">
+        <i class="icon ic-globe-wired-simple"></i>
+      </div>
+      <div class="item-content">
+        <span>{{ (supplier.website) ? supplier.website : supplier.email ? supplier.email : 'Não informado' }}</span>
+      </div>
+    </div>
+    <div class="card-item" style="margin-bottom: 0;">
+      <div class="item-icon">
+        <i class="icon ic-user-document"></i>
+      </div>
+      <div class="item-content">
+        <span>{{ supplier.phoneMain ? supplier.phoneMain : 'Não informado' }}</span>
+        <span *ngIf="supplier.phoneSecondary">{{ supplier.phoneSecondary }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer" *ngIf="isActive">
+    <button type="button" class="btn btn-link" (click)="addExpense();">Adicionar Gasto</button>
+    <button type="button" class="btn btn-link" (click)="goToDetails();">Ver Mais</button>
+  </div>
+
+  <div class="card-footer" *ngIf="!isActive">
+    <button type="button" class="btn btn-link" (click)="restore();">Restaurar</button>
+  </div>
+</div>
+

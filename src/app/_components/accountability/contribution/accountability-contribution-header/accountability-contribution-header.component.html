@@ -1,0 +1,35 @@
+<div class="content">
+  <div class="card">
+    <div class="total">
+      
+      <div class="amount">
+        <span class="amount-symbol">R$</span>
+        <span class="amount-value">{{ this.project.budget | currency: " ":false }}</span>
+      </div>
+      <div class="title-total-project">
+        Total do Projeto
+      </div>
+    </div>
+    <div class="total">
+      
+      <div class="amount">
+        <span class="amount-symbol">R$</span>
+        <span class="amount-value">{{ infoValues?.totalReceived | currency: " ":false }}</span>
+      </div>
+      <div class="title-total-received">
+        Total do Recebido
+      </div>
+    </div>
+    <div class="total">
+      
+      <div class="amount">
+        <span class="amount-symbol">R$</span>
+        <span class="amount-value">{{ getProjectTotalBudget() | currency: " ":false }}</span>
+      </div>
+      <div class="title-total-receivable">
+        Total a Receber
+      </div>
+    </div>
+  </div>
+
+</div>

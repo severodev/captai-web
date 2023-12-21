@@ -1,0 +1,13 @@
+.list {
+    display: flex !important;
+    flex-direction: column;
+
+    .member {
+        margin-right: 1rem;
+    }
+}
+
+.member {
+    margin-left: 0.594rem;
+}
+

@@ -1,0 +1,107 @@
+.card {
+  min-width: 200px;
+  width: fit-content;
+  font: normal normal normal 14px/20px Roboto;
+  border: 1px solid #E4E4E4;
+  border-top: 7px solid #0076ce;
+  border-radius: 0;
+  color: #444444;
+  box-shadow: 2px 2px 0.5em #E4E4E4;
+
+  .amount {
+    font: normal normal normal 29px/20px Roboto;
+    color: #333333;
+    height: 45px;
+
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+
+    &-symbol {
+      font: normal normal normal 12px/15px Roboto;
+    }
+
+    &-value {
+      margin-top: 2px;
+    }
+  }
+
+  .date{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-weight: bold;
+
+    &-info {
+      font-weight: bold !important;
+      font: normal normal normal 12px/24px Roboto;
+      letter-spacing: 0px;
+      color: #777777;
+      text-transform: uppercase;
+      opacity: 1;
+      display: flex;
+    }
+  }
+
+  .more-actions {
+    text-align: end;
+    font-size: 1.2rem;
+    color: #444444;
+
+    .ic-overflow-menu-dots {
+      transform: rotate(90deg);
+
+      cursor: pointer;
+    }
+
+    .dropdown-item {
+      &.edit {
+        color: #0076ce !important;
+      }
+
+      &.remove {
+        color: #ce1126 !important;
+      }
+
+      i {
+        margin-right: 3px;
+      }
+    }
+  }
+
+  &-body {
+    padding: 10px 10px 12px 15px;
+  }
+
+  &-footer {
+    background-color: #fff;
+    border-top: 1px solid #E4E4E4;
+    color: #0076ce;
+
+    font: normal normal normal 12px/18px Roboto;
+
+    i {
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    span {
+      cursor: pointer;
+      font-weight: bold;
+    }
+  }
+
+  &.receipt {
+
+    border-top: 7px solid #6EA204;
+
+    .card-footer {
+      color: #444444;
+    }
+
+    .card-footer span {
+      cursor: initial;
+      color: #6EA204;
+    }
+  }
+}

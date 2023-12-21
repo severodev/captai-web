@@ -1,0 +1,21 @@
+<div id="alertSystem" class="alertConfirmBar fadeIn sticky-top" *ngIf="isShow">
+  <div class="alert d-flex justify-content-between" role="alertdialog" [ngStyle]="{ 'background-color': color }">
+    <div class="d-flex align-items-center">
+      <span class="mr-3">
+          <i *ngIf="color == '#6EA204'" class="icon ic-approved"></i>
+          <i *ngIf="color == '#CE1126'" class="icon ic-x-circle-solid"></i>
+          <i *ngIf="color == '#007DB8'" class="icon ic-info-solid"></i>
+      </span>
+
+      <span class="text-alert" tabindex="0">
+        <strong>{{ title }}</strong> {{ message }}
+      </span>
+    </div>
+
+    <div class="d-flex justify-content-end">
+      <a class="mx-2" type="button" (click)="close()">
+        <i class="icon ic-rejected"></i>
+      </a>
+    </div>
+  </div>
+</div>

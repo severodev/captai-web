@@ -1,0 +1,44 @@
+.container {
+  padding-top: 0;
+}
+
+.page-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #444444;
+  }
+  .buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 -8px;
+    .btn {
+      margin: 0 8px;
+    }
+  }
+}
+
+.btn {
+  height: 35px !important;
+  padding: 0 15px !important;
+  border-radius: 2px !important;
+}
+
+.btn-secondary {
+  background-color: #6EA204;
+  border-color: #6EA204 !important;
+}
+
+.forms {
+  padding-top: 24px;
+}
+
+.form-container {
+  box-shadow: 0px 3px 6px #00000029;
+  padding: 24px;
+  margin-top: 18px;
+}

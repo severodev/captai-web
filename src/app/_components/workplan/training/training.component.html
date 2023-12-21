@@ -1,0 +1,98 @@
+<form #trainingForm="ngForm">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputTraining">Curso/Treinamento <span class="label-required">*</span></label>
+      <input id="inputTraining" type="text"
+        class="form-control" #inputTraining="ngModel" required
+        placeholder="Insira no nome do curso" name="inputTraining"
+        [(ngModel)]="workplanItem.wpiTraining.title">
+      <small [hidden]="inputTraining.valid || inputTraining.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputInstructor">Prestador de Serviço</label>
+      <input id="inputInstructor" type="text"
+        class="form-control"
+        placeholder="Insira o nome do(a) instrutor(a)" name="inputInstructor"
+        [(ngModel)]="workplanItem.wpiTraining.instructorName">
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputCNPJ">CNPJ<span class="label-required">*</span></label>
+      <input id="inputCNPJ" type="text" mask="00.000.000/0000-00"
+        class="form-control" #inputCNPJ="ngModel" required 
+        placeholder="Insira o CNPJ do(a) instrutor(a)" name="inputCNPJ"
+        [(ngModel)]="workplanItem.wpiTraining.cnpj" [validation]="false">
+        <small [hidden]="inputCNPJ.valid || inputCNPJ.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="inputJustification">Finalidade e Justificativa <span class="label-required">*</span></label>
+      <textarea type="text" class="form-control" id="inputJustification" style="height: 100px !important;"
+        name="inputJustification" placeholder="Inserir as responsabilidades a serem cumpridas"
+        [(ngModel)]="workplanItem.rationale" #inputJustification="ngModel" required></textarea>
+      <small [hidden]="inputJustification.valid || inputJustification.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputPeriod">Período de Realização do Treinamento</label>
+      <div class="d-flex align-items-center">
+        <span class="input-span">De</span>
+        <input id="inputPeriodStart" type="text" mask="00/00/0000"
+          [dropSpecialCharacters]="false"
+          class="form-control"
+          placeholder="Data de início" name="inputPeriodStart"
+          [(ngModel)]="workplanItem.wpiTraining.start">
+        <span class="input-span">-</span>
+        <input id="inputPeriodEnd" type="text" mask="00/00/0000"
+          [dropSpecialCharacters]="false"
+          class="form-control"
+          placeholder="Data de fim" name="inputPeriodEnd"
+          [(ngModel)]="workplanItem.wpiTraining.end">
+      </div>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputStage">Etapa Associada</label>
+      <input id="inputStage" type="text"
+        class="form-control" #inputStage="ngModel" 
+        placeholder="Insira a Etapa do Projeto" name="inputStage"
+        [(ngModel)]="workplanItem.projectStage">
+      <small [hidden]="inputStage.valid || inputStage.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputExpenditures">Dispêndios <span class="label-required">*</span></label>
+      <input id="inputExpenditures" type="text" currencyMask
+        class="form-control" #inputExpenditures="ngModel" required 
+        placeholder="Valor Total" name="inputExpenditures"
+        [(ngModel)]="workplanItem.value"
+        autocomplete="off">
+      <small [hidden]="inputExpenditures.valid || inputExpenditures.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col">
+      <app-funds-table [workplanItem]="workplanItem" [project]="project" #appFunds></app-funds-table>
+    </div>
+  </div>
+
+  <div class="form-row" style="padding: 5px; justify-content: flex-end;">
+    <button class="btn btn-primary" (click)="addWorkplan();" [disabled]="trainingForm.form.invalid" *ngIf="!isEdition">
+      <i class="icon ic-add-circ"></i>
+      Adicionar
+    </button>
+    <button class="btn btn-outline-primary mr-3" (click)="cancel();" *ngIf="isEdition">
+      Cancelar
+    </button>
+    <button class="btn btn-primary" (click)="updateWorkplanItem();" [disabled]="trainingForm.form.invalid" *ngIf="isEdition">
+      Salvar
+    </button>
+  </div>
+</form>
+

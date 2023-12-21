@@ -1,0 +1,67 @@
+<div class="container">
+  <app-confirm-alert></app-confirm-alert>
+  <app-breadcrumb [pages]="breadcrumbPages"></app-breadcrumb>
+  <header class="page-title">
+    <h1 class="title">GERENCIAR USUÁRIOS</h1>
+    <div class="buttons">
+      <div class="filter-buttons">
+        <button type="button" class="btn btn-icon-link" (click)="showInputSearch = !showInputSearch">
+          <i class="icon ic-search"></i>
+        </button>
+        <div>
+          <!-- <input class="form-control search-input"  [class.show-input-search]="showInputSearch"
+              type="text" aria-label="Buscar Colaborador" placeholder="Buscar Colaborador"
+              [(ngModel)]="search" (keydown.enter)="loadCollaboratorsFiltered();" (focusout)="loadCollaboratorsFiltered();"> -->
+        </div>
+        <button type="button" class="btn btn-icon-link" (click)="toggleViewSort();">
+          <i class="icon ic-view-sort-list" id="icon-view"></i>
+        </button>
+        <button type="button" class="btn btn-icon-link" (click)="toggleOrderByTime();">
+          <i class="icon ic-clock-arrow-left" id="icon-clock"></i>
+        </button>
+        <button type="button" class="btn btn-icon-link" (click)="toggleOrderByTitle();">
+          <i class="icon ic-sort-A-Z" id="icon-sort"></i>
+        </button>
+        <!-- <app-collaborator-filter-options (applyFilterEvent)="applyFilter($event);"></app-collaborator-filter-options> -->
+        <button class="btn-primary" routerLink="/profile">
+          <i class="icon ic-user-add"></i>
+          Cadastrar Usuário
+        </button>
+      </div>
+    </div>
+  </header>
+  <main class="info">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeForm === 'users'" (click)="showUsersTab();">
+          USUÁRIOS
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeForm === 'profile'" (click)="showProfilesTab();">
+          TIPOS DE PERFIS
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeForm === 'permissions'" (click)="showPermissionsTab();">
+          PERMISSÕES
+        </a>
+      </li>
+    </ul>
+
+    <div class="tabs">
+       <div class="div-form" [class.show]="activeForm === 'users'" [class.hide]="activeForm !== 'users'">
+        <app-user-list></app-user-list>
+      </div>
+      <div class="div-form" [class.show]="activeForm === 'permissions'" [class.hide]="activeForm !== 'permissions'">
+        <app-user-permissions></app-user-permissions>
+      </div>
+     <!-- <div class="div-form" [class.show]="activeForm === 'dependent'" [class.hide]="activeForm !== 'dependent'">
+        <app-dependent-form [collaborator]="collaborator" [canEdit]="canEdit"></app-dependent-form>
+       </div>
+      <div class="div-form" [class.show]="activeForm === 'administrative'" [class.hide]="activeForm !== 'administrative'">
+        <app-administrative-information-form [collaborator]="collaborator" [canEdit]="canEdit"></app-administrative-information-form>
+      </div> -->
+    </div>
+  </main>
+</div>

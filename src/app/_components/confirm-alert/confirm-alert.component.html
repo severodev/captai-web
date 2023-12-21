@@ -1,0 +1,21 @@
+<div id="confirmAlert" class="alertConfirmBar fadeIn sticky-top topSpace" *ngIf="confirmAlertService.showAlert">
+  <div class="alert d-flex justify-content-between" role="alertdialog">
+   <div class="alert-card">
+    <div class="d-flex align-items-center">
+      <span class="mr-3">
+          <i class="icon ic-warn-solid"></i>
+      </span>
+      <span class="text-alert" tabindex="0">
+        <strong>{{ confirmAlertService.boldText }}</strong> {{ confirmAlertService.text }}
+      </span>
+    </div>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-outline-light mx-2" type="button" (click)="send()">
+        {{ confirmAlertService.confirmButtonText }}
+      </button>
+      <button class="btn btn-light" type="button" (click)="cancel()">Cancelar</button>
+    </div>
+   </div>
+  </div>
+</div>

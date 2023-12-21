@@ -1,0 +1,81 @@
+<div class="content">
+  <div class="table">
+    <div class="table-1">
+      <div class="table-1__header">
+        <div class="table-1__column th without-border-right">Status Mensal</div>
+        <div class="table-1__column th ">Descrições (Previsto/Realizado)</div>
+      </div>
+
+      <div class="table-1__row">
+        <div class="table-1__column th without-border-right">Cessão de Recursos Financeiros</div>
+        <div class="subtable">
+          <div class="subtable__row" *ngFor="let financeHeading of financeHeadings">
+            <div class="table-1__column ">{{ getWorkplanLabel(financeHeading) }}</div>
+          </div>
+          <div class="subtable__row">
+            <div class="table-1__column th">Sub Total - Recursos Financeiros</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-1__row">
+        <div class="table-1__column th without-border-right">Aporte Financeiros</div>
+        <div class="subtable">
+          <div class="subtable__row" >
+            <div class="table-1__column ">Investimento Dell</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-1__row">
+        <div class="table-1__column th without-border-right">Resumo Financeiro</div>
+        <div class="subtable">
+          <div class="subtable__row" >
+            <div class="table-1__column ">Total de Despesas do Projeto</div>
+          </div>
+          <div class="subtable__row" >
+            <div class="table-1__column ">Total de Investimento Realizados</div>
+          </div>
+          <div class="subtable__row">
+            <div class="table-1__column th">Saldo Financeiro da Instituição</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-2">
+      <div class="table-2__header">
+        <ng-container *ngFor="let labelItem of monthYearLabels">
+          <div class="table-2__column th ">{{ labelItem.monthLabel }}/{{ labelItem.yearLabel }}</div>
+        </ng-container>
+        <div class="table-2__column th ">Total</div>
+      </div>
+
+      <div class="table-2__row" *ngFor="let item of financialResource">
+          <div class="table-2__column" *ngFor="let month of item.months">{{ month.amount | currency: "BRL" }}</div>
+          <div class="table-2__column" >{{ item.totalMonth | currency: "BRL" }}</div>
+      </div>
+      <div class="table-2__row" >
+          <div class="table-2__column" *ngFor="let monthAmount of subtotalFinancialResourcesPerMonths">{{ monthAmount | currency: "BRL" }}</div>
+          <div class="table-2__column" >{{ totalFinancialResourcesPerMonths | currency: "BRL" }}</div>
+      </div>
+      <div class="table-2__row" >
+        <div class="table-2__column" *ngFor="let contribution of financialSupport">{{ contribution.amount | currency: "BRL" }}</div>
+        <div class="table-2__column" >{{ totalFinancialContributionsPerMonths | currency: "BRL" }}</div>
+      </div>
+
+      <div class="table-2__row" >
+        <div class="table-2__column" *ngFor="let monthAmount of subtotalFinancialResourcesPerMonths">{{ monthAmount | currency: "BRL" }}</div>
+        <div class="table-2__column" >{{ totalFinancialResourcesPerMonths | currency: "BRL" }}</div>
+      </div>
+      <div class="table-2__row" >
+        <div class="table-2__column" *ngFor="let contribution of financialSupport">{{ contribution.amount | currency: "BRL" }}</div>
+        <div class="table-2__column" >{{ totalFinancialContributionsPerMonths | currency: "BRL" }}</div>
+      </div>
+      <div class="table-2__row" >
+          <div class="table-2__column without-border-bottom" *ngFor="let monthAmount of totalFinancialBalancePerMonth">{{ monthAmount | currency: "BRL" }}</div>
+          <div class="table-2__column without-border-bottom" >{{ totalFinancialBalance | currency: "BRL" }}</div>
+      </div>
+    </div>
+  </div>
+</div>

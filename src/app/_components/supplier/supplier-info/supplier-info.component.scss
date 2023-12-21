@@ -1,0 +1,76 @@
+.info {
+  box-shadow: 0px 2px 5px #00000014;
+  padding: 24px;
+  position: relative;
+
+  .title {
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e4e4e4;
+  }
+
+  .title-text {
+    font-size: 16px !important;
+    color: #666666;
+    font-weight: 600;
+  }
+
+  .content {
+    padding-top: 16px;
+  }
+}
+
+.custom-switch {
+  position: absolute;
+  right: 25px;
+  top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hide-save-btn {
+  width: 0px !important;
+  padding: 0px !important;
+  border: 0;
+  margin: 0 !important;
+  visibility: hidden;
+}
+
+.save-editions-button {
+  button {
+    margin-left: 12px;
+    width: 100px;
+    transition: all 0.8s, visibility 0.9s;
+  }
+}
+
+.hide {
+  display: none;
+  opacity: 0;
+}
+
+.show {
+  display: block;
+  opacity: 1;
+}
+
+.div-form {
+  animation: fade 1s ease-out;
+}
+
+@keyframes fade {
+  0% {
+      display: none;
+      opacity: 0;
+  }
+
+  1% {
+      display: block;
+      opacity: 0;
+  }
+
+  100% {
+      display: block;
+      opacity: 1;
+  }
+}

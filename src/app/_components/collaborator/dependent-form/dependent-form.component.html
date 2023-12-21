@@ -1,0 +1,91 @@
+<form *ngIf="canEdit" #dependentForm="ngForm">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputDependentName">Nome do(a) Dependente</label>
+      <input type="text" class="form-control not-valid-form" id="inputDependentName" [(ngModel)]="dependent.name" name="depName"
+        required placeholder="Nome completo do dependente">
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputDependentParentage">Parentesco</label>
+      <input type="text" class="form-control not-valid-form" id="inputDependentParentage" [(ngModel)]="dependent.parentage" name="depParentage"
+        required placeholder="Parentesco">
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputDependentBirthdate">Data de Nascimento</label>
+      <input type="text" class="form-control not-valid-form" id="inputDependentBirthdate" [(ngModel)]="dependent.birthdate" name="depBirthdate"
+        required placeholder="00/00/0000"
+        mask="00/00/0000" [dropSpecialCharacters]="false" 
+        validBirthday #dependentBirthday="ngModel">
+        <small *ngIf="dependentBirthday.errors?.invalidBirthday" class="invalid-alert">Data Inválida</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputDoc">Tipo de Documento Comprovante</label>
+      <select id="inputDoc" class="form-control not-valid-form" [(ngModel)]="dependent.doctype" name="depDoctype" required>
+        <option value="">Selecione o tipo de documento</option>
+        <option *ngFor="let dctype of documentsType" [value]="dctype.id">{{dctype.name}}</option>
+      </select>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="inputFileComponent">&nbsp;</label>
+      <app-input-file #inputFile id="inputFileComponent" (fileSelectedEvent)="setFileToUpload($event)"></app-input-file>
+      <div class="input-info">
+        Tamanho máximo permitido: 50mb
+      </div>
+    </div>
+
+    <div class="form-group col-md-2 add-button">
+      <label for="inputStartDate">&nbsp;</label>
+      <button class="btn btn-primary" (click)="addDependent()" [disabled]="dependentForm.form.invalid || fileToUpload === null">
+        <i class="icon ic-add-circ"></i> Adicionar
+      </button>
+    </div>
+  </div>
+
+</form>
+
+<ul class="list-group">
+  <li class="list-group-item">
+    <div class="row list-group-header">
+      <div class="col-md-1"></div>
+      <div class="col-md-4">Nome do Dependente</div>
+      <div class="col-md-2">Parentesco</div>
+      <div class="col-md-2">Data de Nascimento</div>
+      <div class="col-md-2">Comprovante</div>
+      <div class="col-md-1"></div>
+    </div>
+  </li>
+
+  <li class="list-group-item text-center" *ngIf="collaborator.dependents && collaborator.dependents.length === 0">Nenhum registro foi adicionado.</li>
+
+  <li class="list-group-item" [class.list-group-item-selected]="item.selected" *ngFor="let item of collaborator.dependents; let idx = index">
+    <div class="row">
+      <div class="col-md-1">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input"
+            [id]="'checkbox'+item.id" [(ngModel)]="item.selected">
+          <label class="custom-control-label" [for]="'checkbox'+item.id"></label>
+        </div>
+      </div>
+      <div class="col-md-4">{{ item.name }}</div>
+      <div class="col-md-2">{{ item.parentage }}</div>
+      <div class="col-md-2">{{ item.birthdate }}</div>
+      <div class="col-md-2" style="overflow-wrap: anywhere;">
+        <a style="margin: 0 2px;white-space: nowrap;" *ngFor="let doc of item.documents" [href]="doc.url" target="_blank">{{doc.filename}}</a>
+      </div>
+      <div class="col-md-1">
+        <div class="options" [class.show-options]="item.selected">
+          <button type="button" class="btn btn-icon-link red" (click)="removeDependent(idx)">
+            <i class="icon ic-delete-can"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </li>
+
+</ul>

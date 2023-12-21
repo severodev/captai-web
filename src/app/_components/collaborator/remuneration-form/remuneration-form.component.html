@@ -1,0 +1,147 @@
+<form *ngIf="canEdit" #remunerationForm="ngForm">
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label for="jobTitle">Cargo <span class="label-required">*</span></label>
+      <input type="text" [(ngModel)]="payment.jobTitle" #jobTitle="ngModel" name="jobTitle" class="form-control not-valid-form" id="jobTitle" 
+      required placeholder="Cargo a ser ocupado" notEmpty>
+      <small [hidden]="jobTitle.valid || jobTitle.pristine || remunerationForm.errors?.emptyInput" *ngIf="canEdit" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-3">
+      <label for="inputInstitute">Instituto Vinculado <span class="label-required">*</span></label>
+      <select id="inputInstitute" class="form-control not-valid-form" name="institute" required
+        [(ngModel)]="payment.institute.id" (ngModelChange)="loadProjectsDropdown($event)" >
+        <option value="undefined" disabled selected>Selecione um instituto</option>
+        <option *ngFor="let i of institutesDropdown" [value]="i.id">{{ i.abbreviation }}</option>
+      </select>
+    </div>
+    
+      <div class="form-group col">
+        <label for="inputAllocation">Projeto <span class="label-required">*</span></label>
+        <select id="inputAllocation" class="form-control not-valid-form" (change)="selectProject($event.target.value)"
+        [(ngModel)]="payment.idProject" name="allocation" required>
+        <option value="" disabled selected>Selecione um projeto</option>
+        <option *ngFor="let p of projectsDropdown" [value]="p.id">{{ p.name }}</option>
+      </select>
+      <div id="projectDuration" class="projectDuration" *ngIf="payment.idProject && payment.project.start">
+        <span >{{getProjectDurationStr()}}</span>
+      </div>
+    </div>
+    
+      <div class="form-group col-md-3">
+        <label for="inputAdmission">Admissão <span class="label-required">*</span></label>
+        <input type="text" [(ngModel)]="payment.admission" name="admission" class="form-control not-valid-form"
+          id="inputAdmission" required placeholder="00/00/0000" (focusout)="validateAdmission($event.target.value)" #admission="ngModel"
+          mask="00/00/0000" [dropSpecialCharacters]="false" [disabled]="payment.idProject == ''">
+          <small *ngIf="!isAdmissionValid" class="invalid-alert">A data de admissão deve estar dentro do período do projeto!</small>
+      </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label for="inputDismissal">Desligamento </label>
+      <input type="text" [(ngModel)]="payment.dismissal" name="dismissal" class="form-control"
+        id="inputDismissal" placeholder="00/00/0000"
+        mask="00/00/0000" [dropSpecialCharacters]="false">
+    </div>
+
+    <div class="form-group col">
+      <label for="inputEmploymentRelationship">Vínculo <span class="label-required">*</span></label>
+      <select id="inputEmploymentRelationship" class="form-control not-valid-form" 
+        [(ngModel)]="payment.employmentRelationship.id" (change)="selectEmploymentRelationship($event.target.value)"
+        name="employeeRelationship" required>
+        <option value="undefined" disabled selected>Selecione um vínculo</option>
+        <option *ngFor="let er of employmentRelationshipDropdown" [value]="er.id">{{ er.name }}</option>
+      </select>
+    </div>
+
+    <div class="form-group col">
+      <label for="inputBudgetCategory">Tipo de Rubrica <span class="label-required">*</span></label>
+      <select id="inputBudgetCategory" class="form-control not-valid-form" (change)="selectBudgetCategory($event.target.value)"
+        [(ngModel)]="payment.budgetCategory.id" name="budgetCategory" required>
+        <option value="undefined" disabled selected>Selecione uma Rubrica</option>
+        <option *ngFor="let bc of budgetCategoryDropdown" [value]="bc.id">{{ bc.name }}</option>
+      </select>
+    </div>
+
+    <div class="form-group col">
+      <label for="inputSalary">Remuneração <span class="label-required">*</span></label>
+      <input type="text" autocomplete="off" [(ngModel)]="payment.salary" name="salary" class="form-control not-valid-form"
+        id="inputSalary" required placeholder="R$ 5.000,00" currencyMask >
+    </div>
+
+    <div class="form-group col">
+      <label for="inputWorkload">Carga Horária</label>
+      <input type="text" [(ngModel)]="payment.workload" name="workload" class="form-control not-valid-form" id="inputWorkload" placeholder="44h">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-12 add-button">
+      <label for="inputAddButton">&nbsp;</label>
+      <button id="inputAddButton" (click)="addPayment();" class="btn btn-primary" style="width: 100%;" [disabled]="remunerationForm.form.invalid || invalidRemunerationDates || !isAdmissionValid">
+        <i class="icon ic-add-circ"></i> Adicionar Remuneração
+      </button>
+    </div>
+  </div>
+</form>
+
+<ul class="list-group">
+  <li class="list-group-item">
+    <div class="row list-group-header">
+      <div class="col-md-1"></div>
+      <div class="col-md-2">Cargo</div>
+      <div class="col-md-1">Admissão</div>
+      <div class="col-md-1">Desligamento</div>
+      <div class="col-md-1">Carga Horária</div>
+      <div class="col-md-1">Projeto</div>
+      <div class="col-md-1">Instituto Vinculado</div>
+      <div class="col-md-1">Vínculo</div>
+      <div class="col-md-1">Rubrica</div>
+      <div class="col-md-1">Remuneração</div>
+      <div class="col-md-1"></div>
+    </div>
+  </li>
+
+  <li class="list-group-item text-center" *ngIf="collaborator.payments && collaborator.payments.length === 0">Nenhum registro foi adicionado.</li>
+
+  <li class="list-group-item" [class.list-group-item-selected]="item.selected" *ngFor="let item of collaborator.payments; let idx = index">
+    <div class="row">
+      <div class="col-md-1">
+        <div class="custom-control custom-checkbox">
+          <input [disabled]="!canEdit" type="checkbox" class="custom-control-input"
+            [id]="'paymentCheckbox'+idx" [(ngModel)]="item.selected">
+          <label class="custom-control-label" [for]="'paymentCheckbox'+idx"></label>
+        </div>
+      </div>
+
+      <div class="col-md-2"> {{ item.jobTitle }} </div>
+      <div class="col-md-1"> {{ item.admission }} </div>
+      <div class="col-md-1"> {{ item.dismissal }} </div>
+      <div class="col-md-1"> {{ item.workload }} </div>
+      <div class="col-md-1 project-name"> {{ item.project?.name }} </div>
+      <div class="col-md-1"> {{ item.institute?.abbreviation }} </div>
+      <div class="col-md-1"> {{ item.employmentRelationship?.name }} </div>
+      <div class="col-md-1"> {{ item.budgetCategory?.name }} </div>
+      <div class="col-md-1"> {{ item.salary | currency:'BRL' }} </div>
+
+      <div class="col-md-1">
+        <div class="options" [class.show-options]="item.selected" *ngIf="canEdit">
+          <button type="button" class="btn btn-icon-link disabled" disabled (click)="editPayment(idx)">
+            <i class="icon ic-pencil-edit"></i>
+          </button>
+        </div>
+        <div class="options" [class.show-options]="item.selected" *ngIf="canEdit">
+          <button type="button" class="btn btn-icon-link red" (click)="deletePayment(idx)">
+            <i class="icon ic-delete-can"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </li>
+  
+</ul>
+
+
+
+<!-- <app-benefit-selector [collaborator]="collaborator" *ngIf="canEdit"></app-benefit-selector> -->

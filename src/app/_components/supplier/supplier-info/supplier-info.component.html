@@ -1,0 +1,23 @@
+<div class="info">
+  <div class="title">
+    <span class="title-text">Dados do Fornecedor</span>
+
+    <div class="custom-control custom-switch">
+      <div>
+        <input type="checkbox" class="custom-control-input" id="editToogle" [(ngModel)]="canEdit">
+        <label class="custom-control-label" for="editToogle">Editar</label>
+      </div>
+      <div class="save-editions-button">
+        <button type="button" [class.hide-save-btn]="!canEdit"
+          class="btn btn-primary" [disabled]="appSupplier?.supplierForm?.form?.invalid"
+          (click)="saveSupplier();">
+          SALVAR
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="collapse show content" id="collapse-supplier-info">
+    <app-supplier-form #appSupplier [supplier]="supplier" [canEdit]="canEdit"></app-supplier-form>
+  </div>
+</div>

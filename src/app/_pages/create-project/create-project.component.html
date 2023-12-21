@@ -1,0 +1,58 @@
+<div class="container">
+  <app-breadcrumb [pages]="breadcrumbPages"></app-breadcrumb>
+  <app-confirm-alert></app-confirm-alert>
+
+  <div class="page-title">
+    <div class="title">
+      NOVO PROJETO
+    </div>
+    <div class="buttons">
+      <button type="button" class="btn btn-link" *ngIf="activeForm === 'informations'" (click)="cancel()">
+        Cancelar
+      </button>
+
+      <button type="button" class="btn btn-outline-primary" (click)="back();"
+        *ngIf="activeForm !== 'informations'">
+        Voltar
+      </button>
+
+      <button type="button" class="btn btn-secondary" (click)="next();" *ngIf="activeForm !== 'docs'">
+        Próximo
+      </button>
+
+      <button type="button" class="btn btn-secondary" (click)="createProject();" *ngIf="activeForm === 'docs'"
+        [disabled]="appInformations.informationForm.form.invalid || project.documents.length == 0">
+        Criar Projeto
+      </button>
+
+      <button type="button" class="btn btn-outline-primary" (click)="saveAsDraft();">
+        <i class="icon ic-pen-highlight"></i> Salvar Rascunho
+      </button>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeForm === 'informations'" (click)="showInfoForm();">INFORMAÇÕES</a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" [class.active]="activeForm === 'team'" (click)="showTeamForm();">EQUIPE</a>
+      </li> -->
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeForm === 'docs'" (click)="showDocsForm();">DOCUMENTOS</a>
+      </li>
+    </ul>
+
+    <div class="forms">
+      <div class="div-form" [class.show]="activeForm === 'informations'" [class.hide]="activeForm !== 'informations'">
+        <app-informations-form #appInformations [project]="project"></app-informations-form>
+      </div>
+      <div class="div-form" [class.show]="activeForm === 'docs'" [class.hide]="activeForm !== 'docs'">
+        <app-docs-form [project]="project"></app-docs-form>
+      </div>
+    </div>
+
+  </div>
+
+</div>

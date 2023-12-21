@@ -1,0 +1,26 @@
+<div class="container">
+  <app-breadcrumb [pages]="breadcrumbPages"></app-breadcrumb>
+
+  <div class="page-title">
+    <div class="title">
+      COLABORADORES
+    </div>
+    <div class="buttons">
+      <button *ngIf="collaborator.active" type="button" class="btn btn-icon-link" (click)="confirmDelete();">
+        <i class="icon ic-delete-can" id="icon-delete-can"></i>
+      </button>
+      <button type="button" class="btn btn-primary" (click)="download();" >
+        <i class="icon ic-arrow-download"></i> Baixar em PDF
+      </button>
+    </div>
+  </div>
+
+  <app-collaborator-header [collaborator]="collaborator"></app-collaborator-header>
+  <div style="margin-bottom: 14px;"></div>
+
+  <app-confirm-alert></app-confirm-alert>
+  <div style="margin-bottom: 14px;"></div>
+
+  <app-collaborator-info [collaborator]="collaborator" [addProjectMode]="addProjectMode" (paymentsEvent)="paymentsEvent($event)"></app-collaborator-info>
+  <div style="margin-bottom: 14px;"></div>
+</div>

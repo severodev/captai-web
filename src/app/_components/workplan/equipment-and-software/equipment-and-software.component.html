@@ -1,0 +1,116 @@
+<form #equipmentAndSoftwareForm="ngForm">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="itemName">Nome do Item <span class="label-required">*</span></label>
+      <input id="itemName" type="text"
+        class="form-control" #itemName="ngModel" required
+        placeholder="Nome do Software" name="itemName"
+        [(ngModel)]="workplanItem.wpiEquipmentAndSoftware.itemName">
+      <small [hidden]="itemName.valid || itemName.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="itemType">Tipo de Item <span class="label-required">*</span></label>
+      <select id="itemType" class="form-control" name="itemType"
+      [(ngModel)]="workplanItem.wpiEquipmentAndSoftware.itemType"
+      #itemType="ngModel">
+        <option value="null" disabled selected>Selecione o tipo de item</option>
+        <option value="Equipamento">Equipamento</option>
+        <option value="Software">Software</option>
+      </select>
+      <small [hidden]="itemType.valid || itemType.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="projectStage">Etapa Associada </label>
+      <input id="projectStage" type="text" class="form-control" #projectStage="ngModel"
+        [(ngModel)]="workplanItem.projectStage"
+        placeholder="Insira a Etapa do Projeto" name="projectStage">
+      <small
+        [hidden]="projectStage.valid || projectStage.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="equipmentModel">Modelo do Equipamento</label>
+      <input id="equipmentModel" type="text" class="form-control" #equipmentModel="ngModel"
+      placeholder="Insira o Modelo do Equipamento" name="equipmentModel"
+      [(ngModel)]="workplanItem.wpiEquipmentAndSoftware.equipmentModel">
+      <small  [hidden]="equipmentModel.valid || equipmentModel.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="validity">Validade</label>
+      <select id="validity" class="form-control" name="validity" #validity="ngModel"
+      [(ngModel)]="workplanItem.wpiEquipmentAndSoftware.validity">
+        <option value="null" disabled selected>Selecione uma validade</option>
+        <option *ngFor="let validity of validityDropdown$ | async" [value]="validity.id">{{ validity.name }}</option>
+      </select>
+      <small
+        [hidden]="validity.valid || validity.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="rationale">Justificativa e Aplicação <span class="label-required">*</span></label>
+      <textarea type="text" class="form-control" id="rationale" style="height: 100px !important;" name="rationale"
+        placeholder="Inserir a justificativa" #rationale="ngModel" required
+        [(ngModel)]="workplanItem.rationale"></textarea>
+      <small
+        [hidden]="rationale.valid || rationale.pristine"  class="invalid-alert">Campo obrigatório</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="quantity">Quantidade<span class="label-required">*</span></label>
+      <input id="quantity" type="number" class="form-control" #quantity="ngModel" required
+        placeholder="Inserir quantidade" name="quantity"
+        [(ngModel)]="workplanItem.wpiEquipmentAndSoftware.quantity">
+      <small
+        [hidden]="quantity.valid || quantity.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="purchaseDate">Data Prevista para Compra <span class="label-required">*</span></label>
+      <input id="purchaseDate" type="text" mask="00/0000" [dropSpecialCharacters]="false" class="form-control"
+        #purchaseDate="ngModel" required placeholder="00/0000" name="purchaseDate"
+        [(ngModel)]="workplanItem.wpiEquipmentAndSoftware.purchaseDate">
+      <small
+        [hidden]="purchaseDate.valid || purchaseDate.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+
+    <div class="form-group col-md-4">
+      <label for="value">Dispêndios <span class="label-required">*</span></label>
+      <input id="value" type="text" currencyMask class="form-control" #value="ngModel" required
+        placeholder="Valor Total" name="value"
+        [(ngModel)]="workplanItem.value"
+        autocomplete="off">
+      <small [hidden]="value.valid || value.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col">
+      <app-funds-table [workplanItem]="workplanItem" [project]="project" #appFunds></app-funds-table>
+    </div>
+  </div>
+
+  <div class="form-row" style="padding: 5px; justify-content: flex-end;">
+    <button class="btn btn-primary" (click)="addWorkplan();" [disabled]="equipmentAndSoftwareForm.invalid"
+      *ngIf="!isEdition">
+      <i class="icon ic-add-circ"></i>
+      Adicionar
+    </button>
+    <button class="btn btn-outline-primary mr-3" (click)="cancel();" *ngIf="isEdition">
+      Cancelar
+    </button>
+    <button class="btn btn-primary" (click)="updateWorkplanItem();" [disabled]="equipmentAndSoftwareForm.invalid"
+      *ngIf="isEdition">
+      Salvar
+    </button>
+  </div>
+</form>

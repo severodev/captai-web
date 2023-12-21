@@ -1,0 +1,29 @@
+<div class="dropdown">
+  <button type="button" class="btn btn-outline dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+    <i class="icon ic-filter-outline"></i>
+    Filtros
+  </button>
+  <div class="dropdown-menu dropdown-menu-right filters" aria-labelledby="dropdownMenuButton">
+    <div style="max-height: calc(40vh - 60px);overflow-y: auto;">
+      <div class="section" *ngFor="let filter of filters">
+        <div class="header">
+          {{filter.category}}
+        </div>
+        <div class="options">
+          <div class="form-check" *ngFor="let option of filter.options">
+            <input type="checkbox" class="form-check-input"
+              (change)="updateFilters(filter.categoryCode, option);"
+              [id]="'check-filter-'+option.value">
+            <label class="form-check-label" [for]="'check-filter-'+option.value">{{option.name}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" style="height: 60px;display: flex;align-items: center;">
+      <button type="button" class="btn btn-primary" (click)="applyFilter()">
+        Filtrar
+      </button>
+    </div>
+  </div>
+</div>

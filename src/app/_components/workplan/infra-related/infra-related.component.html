@@ -1,0 +1,77 @@
+<form #infraForm="ngForm">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputSupplier">Fornecedor</label>
+      <select id="inputSupplier" class="form-control" name="inputSupplier"
+        [(ngModel)]="selectedSupplierIndex" (change)="setSelectedSupplier();">
+        <option value="" disabled selected>Selecione o Fornecedor</option>
+        <option *ngFor="let supplier of suppliersDropdown; index as i" [value]="i">{{supplier.name}}</option>
+      </select>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputMaterial">Material <span class="label-required">*</span></label>
+      <input id="inputMaterial" type="text"
+        class="form-control" #inputMaterial="ngModel" required
+        placeholder="Nome do Material" name="inputMaterial"
+        [(ngModel)]="workplanItem.wpiCorrelated.description">
+      <small [hidden]="inputMaterial.valid || inputMaterial.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputStage">Etapa Associada</label>
+      <input id="inputStage" type="text"
+        class="form-control"
+        placeholder="Insira a Etapa do Projeto" name="inputStage"
+        [(ngModel)]="workplanItem.projectStage">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="inputJustification">Justificativa e Aplicação <span class="label-required">*</span></label>
+      <textarea type="text" class="form-control" id="inputJustification" style="height: 100px !important;"
+        name="inputJustification" placeholder="Inserir a justificativa"
+        [(ngModel)]="workplanItem.rationale" #inputJustification="ngModel" required></textarea>
+      <small [hidden]="inputJustification.valid || inputJustification.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputAccounting">Forma de Apropriação Contábil</label>
+      <input id="inputAccounting" type="text"
+        class="form-control" placeholder="Inserir forma de apropriação contábil" name="inputAccounting"
+        [(ngModel)]="workplanItem.wpiCorrelated.accountingAppropriation">
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="inputExpenditures">Dispêndios <span class="label-required">*</span></label>
+      <input id="inputExpenditures" type="text" currencyMask
+        class="form-control" #inputExpenditures="ngModel" required        
+        placeholder="Valor Total" name="inputExpenditures"
+        [(ngModel)]="workplanItem.value"
+        autocomplete="off">
+      <small [hidden]="inputExpenditures.valid || inputExpenditures.pristine" class="invalid-alert">Campo obrigatório</small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col">
+      <app-funds-table [workplanItem]="workplanItem" #appFunds></app-funds-table>
+    </div>
+  </div>
+
+  <div class="form-row" style="padding: 5px; justify-content: flex-end;">
+    <button class="btn btn-primary" (click)="addWorkplan();" [disabled]="infraForm.form.invalid" *ngIf="!isEdition">
+      <i class="icon ic-add-circ"></i>
+      Adicionar
+    </button>
+    <button class="btn btn-outline-primary mr-3" (click)="cancel();" *ngIf="isEdition">
+      Cancelar
+    </button>
+    <button class="btn btn-primary" (click)="updateWorkplanItem();" [disabled]="infraForm.form.invalid" *ngIf="isEdition">
+      Salvar
+    </button>
+  </div>
+</form>

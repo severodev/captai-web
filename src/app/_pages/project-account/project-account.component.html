@@ -1,0 +1,42 @@
+<div class="container">
+  <app-breadcrumb [pages]="breadcrumbPages"></app-breadcrumb>
+
+  <div class="page-title">
+    <div class="title">PRESTAÇÃO DE CONTAS</div>
+  </div>
+
+  <div style="margin-bottom: 10px;"></div>
+  <app-confirm-alert></app-confirm-alert>
+  <div style="margin-bottom: 14px;"></div>
+
+  <div class="institute-projects" *ngIf="project">
+    <div
+      class="institute-title"
+      data-toggle="collapse"
+      [attr.data-target]="'#collapse-' + project.institute.id"
+      [attr.aria-expanded]="true"
+      [attr.aria-controls]="'collapse-' + project.institute.id"
+      (click)="toggleChev('chev-' + project.institute.id)"
+    >
+      {{ project.institute.name + " - " + project.institute.abbreviation }}
+      <i
+        class="icon ic-chev-down"
+        [attr.id]="'chev-' + project.institute.id"
+      ></i>
+    </div>
+    <div
+      class="collapse show card-deck"
+      [attr.id]="'collapse-' + project.institute.id"
+    >
+      <app-project-header
+        class="w-100"
+        [project]="project"
+        [workplanHeader]="false"
+        [infoValues]="infoValues"
+        style="padding: 8px"
+      ></app-project-header>
+    </div>
+
+    <app-accountability-info (cardChangesContributions)="cardChangesContributions($event)" [activeForm]="'planejado'" [project]="project"></app-accountability-info>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="suppliers-dropdown">
+  <div class="suppliers-header" data-toggle="collapse" data-target="#collapse-removed-suppliers"
+  aria-expanded="true" aria-controls="#collapse-removed-suppliers" (click)="toggleChev('chev-suppliers');">
+    <span class="mr-3">Fornecedores</span>
+    <div class="mr-3 line"></div>
+    <i class="icon ic-chev-down" id="chev-suppliers"></i>
+  </div>
+  <div class="show" id="collapse-removed-suppliers">
+    <div class="suppliers-body card-deck">
+      <app-supplier-card *ngFor="let supplier of removedSuppliers" [supplier]="supplier"
+      (restoreEvent)="loadRemovedSuppliersMetadata()"
+      [isActive]="false" style="padding: 8px; width: 24.5%;"></app-supplier-card>
+    </div>
+    <div class="suppliers-footer">
+      <app-pagination-template [config]="suppliersPaginationcConfig" (changePageEvent)="changePage($event)"></app-pagination-template>
+    </div>
+  </div>
+</div>
