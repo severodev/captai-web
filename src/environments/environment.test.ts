@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
-    apiUrl: 'https://captia-test.leadfortaleza.com.br',
+    apiUrl: 'https://captai-test.leadfortaleza.com.br',
   };
   

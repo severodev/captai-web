@@ -21,4 +21,4 @@ FROM nginx:1.18.0-alpine AS deploy
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
-COPY --from=builder /usr/src/app/dist/captia-web/ /usr/share/nginx/html
+COPY --from=builder /usr/src/app/dist/captai-web/ /usr/share/nginx/html

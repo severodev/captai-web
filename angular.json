@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "captia-web": {
+    "captai-web": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/captia-web",
+            "outputPath": "dist/captai-web",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -99,18 +99,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "captia-web:build"
+            "browserTarget": "captai-web:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "captia-web:build:production"
+              "browserTarget": "captai-web:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "captia-web:build"
+            "browserTarget": "captai-web:build"
           }
         },
         "test": {
@@ -152,18 +152,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "captia-web:serve"
+            "devServerTarget": "captai-web:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "captia-web:serve:production"
+              "devServerTarget": "captai-web:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "captia-web",
+  "defaultProject": "captai-web",
   "cli": {
     "analytics": false
   }

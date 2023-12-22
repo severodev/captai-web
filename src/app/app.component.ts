@@ -9,7 +9,7 @@ import { AuthService } from './_services/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'CaptIA';
+  title = 'CaptAI';
   accessToken: string;
 
   constructor(private router: Router, private authService: AuthService) {
