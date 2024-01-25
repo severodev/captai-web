@@ -21,12 +21,7 @@ export class AccountabilityTransferComponent implements OnInit {
   project: Project;
   modalRef: BsModalRef;
 
-  transferForm = this.fb.group({
-    receivingProjectId: ['', Validators.required],
-    donatedAmount: ['', {
-      validators: [Validators.required],
-    }]
-  })
+  transferForm;
 
   projectList$: Observable<Project[]>
   receivingProject: Project
@@ -39,9 +34,15 @@ export class AccountabilityTransferComponent implements OnInit {
     private projectService: ProjectService,
     private contributionService: ContributionService,
     private ts: ToastService) { 
+      this.transferForm = fb.group({
+        receivingProjectId: ['', Validators.required],
+        donatedAmount: ['', {
+          validators: [Validators.required],
+        }]
+      })
       this.updatedValue = this.transferForm.get('donatedAmount').valueChanges.pipe(
         debounceTime(300),
-        map(value => {
+        map((value : any) => {
           this.updateCurrentValue = of(this.project.expensesGrid.remainingRealMargin - value);
           return this.receivingProject.expensesGrid.remainingRealMargin + value;
         })

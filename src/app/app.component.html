@@ -38,11 +38,11 @@
       </button>
     </div>
     <div class="dropdown">
-      
-      <button type="button" class="btn btn-icon-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+
+      <button type="button" class="btn btn-icon-link dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="icon ic-user-single"></i> 
       </button>
-      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
         <app-main-dropdown-card (logoutEvent)="logout($event)"></app-main-dropdown-card>
       </div>
     </div>

@@ -21,15 +21,7 @@ export class CreateUserFormComponent implements OnInit {
   roles$: any
   collaborator$: any
 
-  createUserForm = this.fb.group({
-    fullname: ['', Validators.required],
-    username: ['', Validators.required],
-    role: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    emailConfirmation: ['', [Validators.required, Validators.email]]
-  }, {
-    validators: [emailEqualityValidator()],
-  })
+  createUserForm;
 
   constructor(
     private userService: UserService,
@@ -37,7 +29,17 @@ export class CreateUserFormComponent implements OnInit {
     private fb: FormBuilder,
     private ts: ToastService,
     private router: Router,
-    private confirmAlertService: ConfirmAlertService) { }
+    private confirmAlertService: ConfirmAlertService) {
+      this.createUserForm = this.fb.group({
+        fullname: ['', Validators.required],
+        username: ['', Validators.required],
+        role: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        emailConfirmation: ['', [Validators.required, Validators.email]]
+      }, {
+        validators: [emailEqualityValidator()],
+      });
+    }
 
   ngOnInit(): void {
     this.getRoles()

@@ -4,16 +4,15 @@ import { BudgetCategory } from 'src/app/_models/budget-category';
 import { Expense } from 'src/app/_models/expense';
 import { Project } from 'src/app/_models/project';
 import { SupplierService } from 'src/app/_services/supplier.service';
-import { Options } from '@angular-slider/ngx-slider';
 import { ExpenseStatus } from '../../../_enums/expense-status.enum';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ExpenseInstallment } from '../../../_models/expense-installment';
 import * as moment from 'moment';
 import { formatDateMoment } from '../../../_helpers/utils'
 import { ExpenseService } from '../../../_services/expense.service';
-import { ExpenseDto } from '../../../_dtos/expense-dto';
 import { ToastService } from '../../../_services/toast.service';
 import { Router } from '@angular/router';
+import { Options } from 'ngx-slider-v2';
 
 @Component({
   selector: 'app-all-expenses',

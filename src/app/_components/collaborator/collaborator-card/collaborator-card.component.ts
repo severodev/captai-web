@@ -44,7 +44,7 @@ export class CollaboratorCardComponent implements OnInit {
   delete() {
     this.collaboratorService.deleteCollaborator(this.collaborator.id).subscribe(res => {
       this.ts.success('Ação concluída!', 'Colaborador removido com sucesso.');
-      location.reload(true);
+      location.reload();
     });
   }
 

@@ -25,7 +25,7 @@ export class ProjectCardComponent implements OnInit {
       this.utilizedFundsPercentage = Number(this.project.utilizedFundsPercentage) > 1 
         ? 100
         : 100 * Number(this.project.utilizedFundsPercentage);
-      this.utilizedFundsPercentageText = this.project.utilizedFundsPercentage >= 1 
+      this.utilizedFundsPercentageText = Number(this.project.utilizedFundsPercentage) >= 1 
         ? 'Concluído' 
         : this.utilizedFundsPercentage.toFixed(2) + '% concluído';
     }

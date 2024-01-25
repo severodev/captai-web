@@ -25,7 +25,7 @@ export class AccountabilityLoanFormComponent implements OnInit {
 
   @Output() onSave: EventEmitter<AccountabilityLoan> = new EventEmitter();
 
-  private projectId : number = 0;
+  private projectId : any = 0;
   public editConfiguration : boolean;
 
   originalAmount : number;

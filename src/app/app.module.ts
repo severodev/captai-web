@@ -8,8 +8,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { NgxMaskModule, IConfig } from 'ngx-mask';
-import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { NgxSliderModule } from 'ngx-slider-v2';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -139,7 +139,8 @@ import { ProjectCollaboratorsComponent } from './_components/project/project-tea
 import { ProjectSigningsComponent } from './_components/project/project-team/project-signings/project-signings.component';
 import { ProjectPaymentsComponent } from './_components/project/project-team/project-payments/project-payments.component';
 
-import { CurrencyMaskInputMode, NgxCurrencyModule } from "ngx-currency";
+import { provideEnvironmentNgxCurrency, NgxCurrencyInputMode } from 'ngx-currency';
+
 import { FirstAccessComponent } from './_pages/first-access/first-access.component';
 import { UsersComponent } from './_pages/users/users.component';
 import { UserService } from './_services/user.service';
@@ -167,7 +168,7 @@ export const customCurrencyMaskConfig = {
   nullable: true,
   min: null,
   max: null,
-  inputMode: CurrencyMaskInputMode.FINANCIAL
+  inputMode: NgxCurrencyInputMode.Financial
 };
 @NgModule({
   declarations: [
@@ -289,7 +290,8 @@ export const customCurrencyMaskConfig = {
     BsDropdownModule.forRoot(),
     CollapseModule.forRoot(),
     ModalModule.forRoot(),
-    NgxMaskModule.forRoot(),
+    NgxMaskDirective,
+    NgxMaskPipe,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
@@ -297,13 +299,13 @@ export const customCurrencyMaskConfig = {
     ReactiveFormsModule,
     NgxPaginationModule,
     NgxSliderModule,
-    NgxCurrencyModule.forRoot(customCurrencyMaskConfig)
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
     { provide: LOCALE_ID, useValue: 'pt-BR' },
+    provideEnvironmentNgxCurrency(customCurrencyMaskConfig),
     AuthService,
     ProjectService,
     CollaboratorService,
@@ -324,6 +326,7 @@ export const customCurrencyMaskConfig = {
     DeactivateGuard,
     ProfileService,
     PermissionService,
+    provideNgxMask()
   ],
   bootstrap: [AppComponent]
 })
