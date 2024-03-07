@@ -1,75 +1,82 @@
-#captai-banner {
-  background: url('../../../assets/images/new/orange-texture.jpg');
-  background-repeat: no-repeat;
+img {
   background-size: cover;
-  display: flex;
-  justify-content: center;
-  flex-flow: column;
-  align-items: center;
-  height: 377px;
-  position: relative;
-}
-
-.blue-transparency {
+  height: 480px;
+  width: 480px;
+  margin-top: 8%;
+  margin-left: 66%;
   position: absolute;
-  width: 100%;
-  height: 100%;
+  z-index: -1;
+  rotate: 16deg;
+}
+
+.background {
+  position: fixed;
   top: 0;
-  background: rgba(0, 0, 100, 0.25);
-}
-
-.title {
-  color: #ffffff;
-  font-size: 80px;
-  font-weight: 500;
-  z-index: 1;
-  margin-bottom: 14px;
-}
-
-.logo {
-  z-index: 1;
-  img {
-    width: 414px;
-  }
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to bottom left, rgb(255 68 68 / 18%) 0%, rgba(255, 255, 255, 0) 25%);
+  z-index: -1;
 }
 
 #login-container {
-  width: 320px;
-  margin: auto;
-  margin-top: 48px;
+  width: 50%;
+  margin: 4% 0% 0% 8%;
 }
 
-.password-input {
-  margin-bottom: 12px !important;
+.title {
+  color: #000000;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 6%;
 }
 
-.password-link {
-  font-size: 13px;
-  color: #0076CE;
-  letter-spacing: 0.52px;
-  cursor: pointer;
+.form-group {
+  max-width: 55%;
+  label {
+    font-size: 0.9rem;
+  }
 }
 
-.btn-login {
-  margin: auto;
+.form-control {
+  background-color: #fafdff;
+  border: 1px solid #9f9f9f !important;
+  border-radius: 8px;
 }
 
-.form-group .form-control {
-  border: 1px solid #e4e4e4 !important;
+a {
+  text-decoration: underline;
 }
 
-.error-message {
-  background: #fff;
-  color: #CE1126;
-  border: 1px solid #CE1126;
-  padding: 8px;
-  font-size: 13px;
+.forgot-password-link span {
+  color: #b6b6b6
+}
+
+.btn-advance {
+  border: none;
+  color: rgb(0, 0, 0);
   font-weight: 500;
-  text-align: center;
-  margin-bottom: 8px;
-  display: none;
+  border-radius: 6px !important;
+  background-color: #43d19e;
+  display: flex;
+  padding: 1%;
+  margin: 5% 0%;
 }
 
-.show {
-  display: block;
+.dds__arrow-right {
+  font-weight: bold;
+}
+
+.create-account-link span {
+  font-weight: 500;
+  color: #000000
+}
+
+.invalid-field {
+  border: 2px solid #ff0000 !important;
+}
+
+.invalid-message {
+  display: flex;
+  color: #ff0000;
 }

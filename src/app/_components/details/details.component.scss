@@ -1,0 +1,83 @@
+.container {
+    padding: 30px 28px 31px!important;
+    min-height: 100%;
+}
+.dds__chevron-left {
+    color: #3891e0;
+    font-size: 1.5rem !important;
+    padding-right: 1%;
+}
+.title{
+    span {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    label {
+        color: #929292;
+        padding: 1% 0%;
+    }
+    display: flex;
+    align-items: center;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    .sub-header {
+        min-width: 50%;
+        margin-bottom: 4%;
+    }
+    span {
+        color: #414141;
+        font-size: 0.8rem;
+        margin-left: 2%;
+    }
+    .name {
+        color: red;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    .offeredBy{
+        font-weight: bold;
+        font-size: 1rem;
+    }
+    button {
+        border: 1px solid #0095ffdd;
+        color: #0095ffdd;
+        background: none;
+    }
+}
+.scroller {
+    max-height: 550px;
+    overflow-y: auto;
+}
+.body {
+    display: flex;
+    flex-direction: column;
+    .subTitle {
+        color: red;
+        font-size: 0.9rem;
+        font-weight: bold;
+    }
+    span {
+        color: red;
+        margin-top: 1%;
+    }
+    label {
+        font-size: 0.9rem;
+        font-weight: bold;
+    }
+}
+
+.tematics {
+    label {
+        color: #fff;
+        background-color: #6394bf;
+        border-radius: 20px;
+        margin: 1% 1%;
+        padding: 0% 2%;
+    }
+}
+.data-wrapper {
+    padding: 1%;
+}

@@ -58,7 +58,8 @@ export class AuthService {
 
     return this.http.post(`${environment.apiUrl}/auth/login`, body)
       .pipe(map((res: any) => {
-        this.user = jwtDecode(res.access_token);
+        if (!res.message) {
+          this.user = jwtDecode(res.access_token);
         if(this.user.fullname)
           this.user.fullname = this.user.fullname.toLowerCase().replace(/(?:^|\s)\S/g, (a) => a.toUpperCase());
 
@@ -73,8 +74,16 @@ export class AuthService {
           sessionStorage.setItem('accessToken', JSON.stringify(res.access_token));
           sessionStorage.setItem('refreshToken', JSON.stringify(res.refresh_token));
         }
-        return res;
+      } else {
+        return res.message;
+      }
       }));
+  }
+
+  recoverPassword(username: string) {
+    return this.http.post(`${environment.apiUrl}/auth/recoverPassword`,
+      {username: username}
+    );
   }
 
   logout() {

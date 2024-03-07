@@ -21,7 +21,7 @@ export class ToastService {
   }
 
   error(title: string, message: string, timer: number = undefined) {
-    this.showToast(title, message, '#CE1126', timer);
+    this.showToast(title, message, '#ce11261c', timer);
   }
 
   info(title: string, message: string, timer: number = undefined) {
