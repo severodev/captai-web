@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Breadcrumb } from 'src/app/_interfaces/breadcrumb';
-import { User } from 'src/app/_models/user';
 import { UserService } from 'src/app/_services/user.service';
 
 @Component({
@@ -11,9 +10,11 @@ import { UserService } from 'src/app/_services/user.service';
 export class UserProfileComponent implements OnInit {
   breadcrumbPages: Breadcrumb[];
   user
-  mode: Observable<string> = this.userService.userFormSubject
+  mode: Observable<string>; 
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) { 
+    this.mode = this.userService.userFormSubject;
+  }
 
   ngOnInit(): void {
     this.initBreadcrumb()

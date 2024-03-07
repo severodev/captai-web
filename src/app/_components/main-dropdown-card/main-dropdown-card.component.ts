@@ -13,16 +13,17 @@ export class MainDropdownCardComponent implements OnInit {
 
   @Output()
   logoutEvent = new EventEmitter()
-
+  user: User;
+  
   constructor(
     private router: Router, 
     private authService: AuthService,
-    private userService: UserService) { }
+    private userService: UserService) {
+      this.user = this.authService.user;
+    }
 
   ngOnInit(): void {
   }
-
-  user: User = this.authService.user
 
   navigate(path: string) {
     this.router.navigate(['profile'])

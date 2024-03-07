@@ -30,14 +30,16 @@ export class EquipmentAndSoftwareComponent implements OnInit {
 
   public isEdition: boolean = false;
 
-  public validityDropdown$: Observable<Validity[]> = this.workplanService.getValidityList();
+  public validityDropdown$: Observable<Validity[]>;
 
   @ViewChild("appFunds") appFunds: any;
 
   constructor(
     private workplanService: WorkplanService,
     private ts: ToastService,
-  ) { }
+  ) { 
+    this.validityDropdown$ = this.workplanService.getValidityList();
+  }
 
   ngOnInit(): void {
     if (!this.workplanItem) {

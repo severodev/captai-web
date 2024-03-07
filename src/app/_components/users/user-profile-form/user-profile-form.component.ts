@@ -14,7 +14,7 @@ import { UserService } from 'src/app/_services/user.service';
 })
 export class UserProfileFormComponent implements OnInit {
 
-  user$ = this.userService.currentSelectedUserSubject
+  user$; 
 
   editUserForm: FormGroup;
 
@@ -23,7 +23,7 @@ export class UserProfileFormComponent implements OnInit {
     private fb: FormBuilder,
     private ts: ToastService,
     private router: Router) {
-
+      this.user$ = this.userService.currentSelectedUserSubject
     }
     
     ngOnInit(): void {

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from 'src/app/_models/user';
-import jwt_decode from "jwt-decode";
+import { jwtDecode } from 'jwt-decode';
 
 import { environment } from 'src/environments/environment';
 
@@ -58,7 +58,7 @@ export class AuthService {
 
     return this.http.post(`${environment.apiUrl}/auth/login`, body)
       .pipe(map((res: any) => {
-        this.user = jwt_decode(res.access_token);
+        this.user = jwtDecode(res.access_token);
         if(this.user.fullname)
           this.user.fullname = this.user.fullname.toLowerCase().replace(/(?:^|\s)\S/g, (a) => a.toUpperCase());
 

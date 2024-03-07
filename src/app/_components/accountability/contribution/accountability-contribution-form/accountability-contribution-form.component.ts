@@ -21,7 +21,7 @@ export class AccountabilityContributionFormComponent implements OnInit {
 
   @Output() onSave: EventEmitter<AccountabilityContribuition> = new EventEmitter();
 
-  private projectId : number = 0;
+  private projectId : any = 0;
   public editConfiguration : boolean;
   dateString : string;
   originalAmount : number;
