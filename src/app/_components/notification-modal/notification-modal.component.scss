@@ -1,0 +1,44 @@
+
+.wrapper {
+    padding: 6%;
+}
+.title {
+    padding: 10% 0% 3%;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.message {
+    padding: 0% 0% 4%;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.body {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    button {
+        background-color: #e4531e;
+        border: none;
+        color: #fff;
+        width: 60%;
+        padding: 1%;
+        border-radius: 7px;
+    }
+}
+.check {
+    display: flex;
+    justify-content: center;
+}
+.dds__check {
+    background-color: #4caf50;
+    font-size: 3rem;
+    font-weight: bold;
+    padding: 5%;
+    color: #FFF;
+    border-radius: 100%;
+    position: absolute;
+    margin-top: -12%;
+}

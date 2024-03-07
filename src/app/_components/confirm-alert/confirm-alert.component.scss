@@ -1,6 +1,6 @@
 .alertConfirmBar {
     .alert {
-        color: white;
+        color: #d34949;
         position: fixed;
         z-index: 1;
         left: 0;
@@ -19,13 +19,13 @@
         position: relative;
         display: flex;
         width: 60%;
-        background-color: #EF6411 !important;
+        background-color: rgb(206 17 38 / 10%);
         padding: 3%;
         height: 10%;
         flex-direction: row;
         justify-content: space-between;
 
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+        /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19); */
         -webkit-animation-name: animatetop;
         -webkit-animation-duration: 0.4s;
         animation-name: animatetop;

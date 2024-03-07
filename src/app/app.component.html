@@ -1,55 +1,55 @@
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary" *ngIf="accessToken">
-  <a class="navbar-brand" href="#">
-    <img src="../assets/images/dell-tech-vertical-lead-branco-e-amarelo@2x.png" width="137" height="53" class="d-inline-block align-top" alt="" loading="lazy">
-    <div class="title">
-      CaptAI
-    </div>
-  </a>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse"
-    data-target="#navbarNav" aria-controls="navbarNav"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item hvr-underline-from-center">
-        <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active">Recomendação <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item hvr-underline-from-center">
-        <a class="nav-link" [routerLink]="['/projects']" routerLinkActive="router-link-active">Calendário</a>
-      </li>
-      <li class="nav-item hvr-underline-from-center">
-        <a class="nav-link" [routerLink]="['/collaborators']" routerLinkActive="router-link-active">Pesquisa</a>
-      </li>
-      <li class="nav-item hvr-underline-from-center">
-        <a class="nav-link" [routerLink]="['/accountability']" routerLinkActive="router-link-active">Subscrição</a>
-      </li>
-      <li class="nav-item hvr-underline-from-center">
-        <a class="nav-link" [routerLink]="['/suppliers']" routerLinkActive="router-link-active">Configurações</a>
-      </li>
-    </ul>
-  </div>
-
-  <div id="navbarButtons">
-    <div class="mx-3" [routerLink]="['/garbage']">
-      <button type="button" class="btn btn-icon-link">
-        <i class="icon ic-delete-can"></i>
-      </button>
-    </div>
-    <div class="dropdown">
-
-      <button type="button" class="btn btn-icon-link dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="icon ic-user-single"></i> 
-      </button>
-      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-        <app-main-dropdown-card (logoutEvent)="logout($event)"></app-main-dropdown-card>
+<app-toast></app-toast>
+  <div class="container-fluid"  *ngIf="accessToken">
+    <div class="row flex-nowrap">
+      <div class="col-auto col-md-3 col-xl-2 px-0 side-menu-body" >
+        <div class="d-flex flex-column align-items-end pt-2 min-vh-100">
+          <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center" id="menu">
+            <li class="nav-item" routerLinkActive="item-selected">
+                <a [routerLink]="['/home']" class="nav-link align-middle px-0">
+                  <span class="dds__icons dds__dashboard"></span>
+                  <span class="ms-1 d-none d-sm-inline">Recomendação</span>
+                </a>
+            </li>
+            <li class="nav-item" routerLinkActive="item-selected">
+              <a [routerLink]="['/projects']" class="nav-link align-middle px-0">
+                <span class="dds__icons dds__calendar"></span>
+                <span class="ms-1 d-none d-sm-inline">Calendário</span>
+              </a>
+            </li>
+            <li class="nav-item" routerLinkActive="item-selected">
+              <a [routerLink]="['/search']" class="nav-link align-middle px-0">
+                <span class="dds__icons dds__user-group"></span>
+                <span class="ms-1 d-none d-sm-inline">Pesquisa</span>
+              </a>
+            </li>
+            <li class="nav-item" routerLinkActive="item-selected">
+              <a [routerLink]="['/home']" class="nav-link align-middle px-0">
+                <span class="dds__icons dds__warranty"></span>
+                <span class="ms-1 d-none d-sm-inline">Subscrição</span>
+              </a>
+            </li>
+            <li class="nav-item" routerLinkActive="item-selected">
+              <a [routerLink]="['/projects']" class="nav-link align-middle px-0">
+                <span class="dds__icons dds__gear"></span>
+                <span class="ms-1 d-none d-sm-inline">Settings</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <div class="user-img">
+                <img src="../../../assets/images/new/perfilDefault.jpg" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="dropdown-menu dropdown-menu-start" aria-labelledby="dropdownMenuButton">
+                  <app-main-dropdown-card (logoutEvent)="logout($event)"></app-main-dropdown-card>
+                </div>
+              </div>
+              <span class="ms-1 d-none d-sm-inline">Seu perfil</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col py-3 card-principal">
+        <router-outlet></router-outlet>
       </div>
     </div>
-  </div>
-
-</nav>
-
-<app-toast></app-toast>
-<router-outlet class="padding-top: 56px;"></router-outlet>
+</div>
+<router-outlet *ngIf="!accessToken"></router-outlet>
 <app-custom-loader></app-custom-loader>

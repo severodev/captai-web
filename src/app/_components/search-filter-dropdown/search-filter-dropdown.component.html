@@ -1,0 +1,42 @@
+<div class="card-container">
+    <div class="wrapper">
+       <div class="header">
+        <span>
+            Filtros
+        </span>
+        </div>
+    </div>
+        <div class="body">
+        <div class="wrapper">
+            <label>Filtrar por temática</label>
+            <ng-select [(ngModel)]="selectedCity" [multiple]="true" class="select">
+                <ng-option class="option" [value]="item" *ngFor="let item of temas">{{ item }}</ng-option>
+            </ng-select>
+            <label>Área</label>
+            <div class="area-selection">
+                <div class="tags" *ngFor="let item of areas; let i = index" [id]="'item-' + i" >
+                    <span (click)="select('item-' + i)">{{ item }}</span>
+                </div>
+            </div>
+            <div class="date">
+                <mat-form-field>
+                    <mat-label>Entrega das propostas</mat-label>
+                    <input matInput [matDatepicker]="picker3">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
+                    <mat-datepicker #picker3></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="slider">
+                <label>Filtrar por valor do subsídio acima de: </label>
+                <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="options"></ngx-slider>
+
+            </div>
+            <div class="slider">
+                <label>Filtrar por maturidade tecnológica</label>
+                <ngx-slider  [(value)]="highValue2" [options]="options2"></ngx-slider>
+
+            </div>
+        </div> 
+    </div>
+</div>

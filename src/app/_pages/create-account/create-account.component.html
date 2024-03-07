@@ -1,0 +1,187 @@
+<div class="background"></div>
+<div id="create-account-container">
+    <form [formGroup]="userForm" (ngSubmit)="createUser()">
+        <div class="title">Cadastro de nova conta</div>
+        <div class="row">
+            <div class="col-7">
+                <div class="sub-title">Informações do perfil</div>
+                <div class="row">
+                    <div class="form-group col">
+                        <label>Nome</label>
+                        <input type="text" class="form-control" formControlName = "name" name="username" 
+                        [ngClass]="{
+                            'invalid-field': !userForm.get('name').valid && showErrors}">
+                        <div class="invalid-message" *ngIf="!userForm.get('name').valid && showErrors">
+                            <span>Preenchimento obrigatório</span>
+                        </div>
+                    </div>
+                    <div class="form-group col">
+                        <div class="form-group">
+                            <label>Sobrenome</label>
+                            <input type="text" class="form-control" formControlName = "lastName" name="lastName" 
+                            [ngClass]="{
+                                'invalid-field': !userForm.get('lastName').valid && showErrors}">
+                            <div class="invalid-message" *ngIf="!userForm.get('lastName').valid && showErrors">
+                                <span>Preenchimento obrigatório</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>CPF/CNPJ</label>
+                            <input type="text" inputmode="numeric" class="form-control" formControlName = "cpf_cnpj" name="CPF/CNPJ"  
+                            [ngClass]="{
+                                'invalid-field': !userForm.get('cpf_cnpj').valid && showErrors}">
+                            <div class="invalid-message" *ngIf="!userForm.get('cpf_cnpj').valid && showErrors">
+                                <span>Preenchimento obrigatório</span>
+                            </div>
+                        </div>
+                    </div>   
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" [ngClass]="{'invalid-field': userForm.get('email').invalid && showErrors}" 
+                            formControlName = "email" name="Email" >
+                            <div class="invalid-message" *ngIf="userForm.get('email').value == '' && showErrors">
+                                <span>Preenchimento obrigatório</span>
+                            </div>
+                            <div class="invalid-message" *ngIf="!userForm.get('email').valid && userForm.get('email').value != '' && showErrors">
+                                <span>Informação não é válida.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Confirme o email</label>
+                            <input type="email" class="form-control" [ngClass]="{
+                            'invalid-field': !userForm.get('emailConfirmation').valid && showErrors || 
+                            userForm.get('emailConfirmation').value != userForm.get('email').value && userForm.get('email').value != '' && userForm.get('emailConfirmation').touched && showErrors}"formControlName = "emailConfirmation" name="emailConfirmation" >
+                                <div class="invalid-message" *ngIf="userForm.get('emailConfirmation').value == '' && showErrors">
+                                    <span>Preenchimento obrigatório</span>
+                                </div>
+                                <div class="invalid-message" *ngIf="userForm.get('emailConfirmation').value != userForm.get('email').value && userForm.get('email').valid && userForm.get('emailConfirmation').valid">
+                                    <span>Os e-mails não conferem.</span>
+                                </div>
+                                <div class="invalid-message" *ngIf="!userForm.get('emailConfirmation').valid && userForm.get('emailConfirmation').value != ''">
+                                    <span>Informação não é válida.</span>
+                                </div>
+                        </div>
+                    </div>
+                </div>                
+                <div class="col">
+                    <div class="row">
+                        <div class="form-group col">
+                            <label>Senha</label>
+                            <div class="password-fields">
+                                <input [type]="passwordFieldVisible ? 'text' : 'password'" class="form-control" formControlName = "password" name="Senha" [ngClass]="{
+                                'invalid-field':!userForm.get('password').valid && showErrors}">
+                                <span class="dds__icons" [ngClass]="{
+                                    'dds__eye-view-on': passwordFieldVisible, 
+                                    'dds__eye-view-off': !passwordFieldVisible
+                                }" (click)="toglePasswordField()"></span>
+                            </div>
+                            <div class="invalid-message" *ngIf="userForm.get('password').invalid && userForm.get('password').value == '' && showErrors">
+                                <span>Preenchimento obrigatório</span>
+                            </div>
+                        </div>
+                        <div class="form-group col">
+                            <label>Confirme senha</label>
+                            <div class="password-fields">
+                                <input  [type]="passwordConfirmationFieldVisible ? 'text' : 'password'" class="form-control" formControlName = "passwordConfirm" name="Senha" 
+                                [ngClass]="{
+                                'invalid-field': (userForm.get('passwordConfirm').invalid && userForm.get('passwordConfirm').value != '' && showErrors ||
+                                userForm.get('passwordConfirm').valid && userForm.get('passwordConfirm').value != userForm.get('password').value && 
+                                userForm.get('password').value != '')}">
+                                <span class="dds__icons" [ngClass]="{
+                                    'dds__eye-view-on': passwordConfirmationFieldVisible, 
+                                    'dds__eye-view-off': !passwordConfirmationFieldVisible
+                                }" (click)="toglePasswordConfirmField()"></span>
+                            </div>
+                            <div class="invalid-message" *ngIf="userForm.get('passwordConfirm').invalid && userForm.get('passwordConfirm').value != '' && showErrors">
+                                <span>Preenchimento obrigatório</span>
+                            </div>
+                            <div class="invalid-message" *ngIf="userForm.get('passwordConfirm').valid && 
+                            userForm.get('passwordConfirm').value != userForm.get('password').value && userForm.get('password').value != ''">
+                               <span>As senhas não conferem.</span>
+                           </div>
+                        </div>
+                    </div>
+                    <div *ngIf="!userForm.get('password').valid">
+                        <label class="password-errors-label">Sua senha deve conter</label>
+                        <div class="password-errors">
+                            <div class="errors" *ngIf="!userForm.get('password').hasError('minLength')">
+                                <span class="dds__icons dds__check">
+                                </span>
+                                <label>Mais de 8 caracteres</label>
+                            </div>
+                            <div class="errors" *ngIf="!userForm.get('password').hasError('hasUpperCase')">
+                                <span class="dds__icons dds__check">
+                                </span>
+                                <label>Uma letra maiúscula </label>
+                            </div>
+                            <div class="errors" *ngIf="!userForm.get('password').hasError('hasNumeric')">
+                                <span class="dds__icons dds__check">
+                                </span>
+                                <label>Um número</label>
+                            </div>
+                            <div class="errors" *ngIf="!userForm.get('password').hasError('specialCharacters')">
+                                <span class="dds__icons dds__check">
+                                </span>
+                                <label>Um caractere especial</label>
+                            </div>
+                        </div>
+                    </div>   
+                </div>
+            </div> 
+            <div class="col-5">
+                <div class="sub-title">Informações do serviço</div>
+                <div class="row">
+                    <div class="form-group">
+                        <label>Selecione um segmento</label>
+                        <input type="select" class="form-control" formControlName = "segment" name="" disabled>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label>Selecione as atividades</label>
+                        <input type="select" class="form-control" formControlName = "activities" name="" disabled>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label>Escolha a abrangencia territorial</label>
+                        <input type="select" class="form-control" formControlName = "abrangency" name="" disabled>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="container-checkbox row">
+                        <div class="col-12 mb-1">
+                            <input type="checkbox" formControlName = "acceptedTermsOfUse">
+                            <span class="">Li e aceito os</span>
+                            <a (click)="showTermsOffUse()"> termos de uso </a>
+                        </div>
+                        <div class="col-12">
+                            <input type="checkbox" formControlName = "acceptedPrivacyPolicy">
+                            <span class="">Li e aceito as</span>
+                            <a (click)="showPrivacyPolice()"> Políticas de privacidade </a>
+                        </div>
+                        <div class="invalid-message" *ngIf="(!userForm.get('acceptedTermsOfUse').value || !userForm.get('acceptedPrivacyPolicy').value)  && showErrors">
+                            <span>O aceite dos termos de uso e políticas de privacidade são obrigatórios.</span>
+                        </div>
+                    </div>
+                    <button class="btn-advance">
+                        <span class="">Finalizar</span>
+                    </button>
+                    <div class="login-link">
+                        <span> já tem uma conta ? </span>
+                        <a href="/login">Entrar. </a>
+                    </div> 
+                </div> 
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,131 @@
+.container {
+    padding: 30px 28px 31px!important;
+    min-height: 100%;
+}
+.header {
+    button {
+        display: flex;
+        color: #fff;
+        font-size: .9rem !important;
+        padding: 6% 16%;
+        border: none;
+        margin-right: 30px;
+        border-radius: 14px;
+        background-color: #6396d1;
+        align-items: center;
+    }
+    .material-symbols-outlined {
+        font-size: 18px;
+        margin-right: 9px;
+    }
+    display: flex;
+    justify-content: space-between;
+}
+.search-bar {
+    input {
+        border-radius: 17px;
+        border: none;
+        width: 100%;
+        padding: 3% 5%;
+        background-color: #fff;
+    }
+    span {
+        position: absolute;
+        padding-right: 1%;
+        font-weight: bold;
+    }
+    margin-bottom: 3%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 30%;
+    justify-content: flex-end;
+}
+    
+
+.title{
+    span {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    label {
+        color: #929292;
+        padding: 1% 0%;
+    }
+    display: flex;
+    flex-direction: column;
+}
+.row-header {
+    span {
+        color: #818181;
+        font-size: .9rem;
+    }
+}
+.edital-name {
+    span {
+        color: #2871ff;
+    }
+    .dds__icons {
+        font-size: 1.6rem;
+        margin-right: 5%;
+    }
+}
+.table-container{
+    padding: 2%;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.table-content {
+    margin: 1% 0%;
+    font-weight: 600;
+    .row {
+        align-items: center;
+    }
+    .col-1, .col-2, .col-3 {
+        display: flex;
+    }
+    .favorite-check {
+        justify-content: center;
+        .material-symbols-outlined {
+            font-weight: 200;
+            font-size: 38px;
+        }
+    }
+}
+
+.table-objectives {
+    label {
+        font-weight: bold;
+    }
+    span {
+        font-size: 0.8rem;
+    }
+    .col-12 {
+      display: flex;
+        flex-direction: column;
+        padding: 1% 5%; 
+    }
+    a {
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+.selected {
+    background-color: #fbfaf4;
+}
+
+.affinity-field {
+    color: #ffd900;
+    .dds__star-filled {
+       font-size: 1.3rem; 
+    }
+    
+}
+.toggle-objectives {
+    font-weight: 900;
+    border: none;
+    font-size: 2rem;
+    background: none;
+}
