@@ -1,36 +1,33 @@
-<div id="captai-banner">
-  <div class="blue-transparency"></div>
-  <div class="title">CaptAI</div>
-</div>
+<img src="../../../assets/images/backgrounds/Login.png">
+<div class="background"></div>
 <div id="login-container">
-  <form>
-    <div class="error-message" [class.show]="isInvalidCredentials">
-      Usuário ou senha inválidos, tente novamente!
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="title">Login</div>
+    <div class="form-group">
+      <label for="username">Email</label>
+      <input type="email" class="form-control" required [ngClass]="{'invalid-field': loginForm.get('login').invalid && loginForm.get('login').value !=''}"
+        formControlName = "login" id="username" name="username"
+        aria-describedby="Digitar Email" placeholder="Email">
+      <div class="invalid-message" *ngIf="loginForm.get('login').invalid && loginForm.get('login').value !=''">
+        <span>Informação não é válida.</span>
+      </div>
     </div>
     <div class="form-group">
-      <label for="username">Usuário</label>
-      <input type="email" class="form-control" required
-        [(ngModel)]="credentials.username" id="username" name="username"
-        aria-describedby="Digitar usuário" placeholder="Usuário">
-    </div>
-    <div class="form-group password-input">
       <label for="password">Senha</label>
       <input type="password" class="form-control" id="password" required
-        [(ngModel)]="credentials.password" name="password"
+        formControlName="password" name="password"
         aria-describedby="Digitar senha" placeholder="Senha">
     </div>
-    <div class="form-group d-flex justify-content-between align-items-center">
-      <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="keepConnectedInput"
-          (keyup.enter)="login();"
-          aria-describedby="Continuar conectado" [(ngModel)]="keepConnected" name="keepConnectedInput">
-        <label class="form-check-label" for="keepConnectedInput">Continuar conectado</label>
-      </div>
-      <div class="password-link">
-        Esqueci a senha
-      </div>
+    <div class="forgot-password-link">
+      <a href="/password-recovery"> Esqueceu sua senha? </a>
     </div>
-    <button class="btn-login btn btn-primary" (click)="login();">Log in</button>
+    <button class="btn-advance" type="submit">
+      <span>Entrar</span>
+    </button>
+    <div class="create-account-link">
+      <span> Ainda não tem uma conta ? </span>
+      <a href="/create-account"> Cadastre-se. </a>
+    </div>
     <br>
   </form>
 </div>

@@ -10,6 +10,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { NgxSliderModule } from 'ngx-slider-v2';
+import { NgSelectModule } from '@ng-select/ng-select';
+
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -154,6 +157,18 @@ import { ValidBirthdayDirective } from "src/app/_helpers/birthday-validator.dire
 import { DeactivateGuard } from './_guards/deactivate.guard';
 import { EquipmentAndSoftwareComponent } from './_components/workplan/equipment-and-software/equipment-and-software.component';
 import { UserPermissionsComponent } from './_components/users/user-permissions/user-permissions.component';
+import { CreateAccountComponent } from './_pages/create-account/create-account.component';
+import { NotificationModalComponent } from './_components/notification-modal/notification-modal.component';
+import { TermsOfUseModalComponent } from './_components/terms-of-use-modal/terms-of-use-modal.component';
+import { SearchComponent } from './_components/search/search.component';
+import { PasswordRecoveryComponent } from './_components/password-recovery/password-recovery.component';
+import { EmailValidationComponent } from './_components/email-validation/email-validation.component';
+import { DetailsComponent }  from './_components/details/details.component';
+import { SearchFilterDropdownComponent }  from './_components/search-filter-dropdown/search-filter-dropdown.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core'
 
 registerLocaleData(localePt, 'pt');
 export const customCurrencyMaskConfig = {
@@ -282,7 +297,15 @@ export const customCurrencyMaskConfig = {
     AccountabilityTransferComponent,
     ValidBirthdayDirective,
     EquipmentAndSoftwareComponent,
-    UserPermissionsComponent
+    UserPermissionsComponent,
+    CreateAccountComponent,
+    NotificationModalComponent,
+    TermsOfUseModalComponent,
+    SearchComponent,
+    PasswordRecoveryComponent,
+    EmailValidationComponent,
+    DetailsComponent,
+    SearchFilterDropdownComponent
   ],
   imports: [
     BrowserModule,
@@ -299,6 +322,11 @@ export const customCurrencyMaskConfig = {
     ReactiveFormsModule,
     NgxPaginationModule,
     NgxSliderModule,
+    NgSelectModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
@@ -326,7 +354,8 @@ export const customCurrencyMaskConfig = {
     DeactivateGuard,
     ProfileService,
     PermissionService,
-    provideNgxMask()
+    provideNgxMask(),
+    MatDatepickerModule
   ],
   bootstrap: [AppComponent]
 })

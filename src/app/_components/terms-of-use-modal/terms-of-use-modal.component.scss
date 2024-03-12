@@ -1,0 +1,40 @@
+
+.wrapper {
+    padding: 0% 4% 4%;
+}
+.title {
+    align-self: flex-start;
+    color: #e4531e;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 2%;
+    align-items: center;
+}
+.dds__close-cir {
+    font-weight: 700;
+    display: flex;
+    font-size: 1.8rem;
+    padding: 2% 2% 0%;
+    justify-content: flex-end;
+}
+.label {
+    align-self: flex-start;
+    font-weight: 500;
+    margin-bottom: 2%;
+}
+
+.message {
+    padding: 4% 0% 14%;
+    font-size: 1rem;
+}
+.body {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.terms-scroller {
+    overflow-y: auto;
+    max-height: 340px;
+}

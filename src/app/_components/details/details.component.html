@@ -1,0 +1,56 @@
+<div class="wrapper">
+  <app-breadcrumb [pages]="breadcrumbPages"></app-breadcrumb>
+  <div class="title">
+    <span class="dds__icons dds__chevron-left" (click)="router.navigate(['/search'])"></span>
+    <span>
+      Detalhes do edital
+    </span>
+  </div>
+  <div class="container">
+    <div class="scroller">
+      <div class="data-wrapper">  
+        <div class="header">
+          <div class="sub-header">
+            <div>
+              <span class="name">{{edital.name}}</span>
+              <span>Edital nº {{edital.number}}</span>
+            </div>
+            <span class="offeredBy">Oferecido por: {{edital.offeredBy}}</span>
+          </div>
+          <div>
+            <button>Acesse o edital</button>
+          </div> 
+        </div>
+        <div class="body">
+          <label class="subTitle">{{edital.subTitle}}</label>
+
+          <span>
+            Objetivo:
+          </span>
+          <label>{{edital.objective}}</label>
+          <span>
+            Data de entrega das propostas:
+          </span>
+          <label>{{edital.data}}</label>
+          <span>
+          Tematicas: 
+          </span>
+          <div class="tematics">
+              <label *ngFor="let t of edital.tematics" >{{t}}</label>
+          </div>
+          <span>
+            Valor: 
+          </span>
+          <label>{{edital.valor}}</label>
+          <span>
+            Maturidade tecnológica (TRL): 
+          </span>
+          <label>{{edital.maturity}}</label>
+          <span>
+            Elegibilidade: 
+          </span>
+          <label>{{edital.elegibility}}</label>
+      </div>
+    </div>
+  </div> 
+</div>

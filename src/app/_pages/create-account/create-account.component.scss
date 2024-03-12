@@ -1,0 +1,160 @@
+#create-account-container {
+  margin: 0% 6%;
+}
+
+.col-7 {
+  padding-right: 4%;
+}
+
+.title {
+  color: #000000;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 2%;
+}
+  
+.sub-title {
+  color: #000000;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 2%;
+}
+.form-group {
+  margin-bottom: 5px !important;
+  label {
+      font-size: 0.9rem;
+  }
+}
+
+.form-control {
+  background-color: #fafdff;
+  border: 1px solid #9f9f9f !important;
+  border-radius: 8px;
+}
+
+.col {
+  padding-right: 0%;
+}
+
+a {
+  text-decoration: underline;
+}
+
+.accept-terms {
+  display: flex;
+  input {
+      min-width: 3%;
+      background-color: #fafdff;
+  }
+  span {
+      margin-left: 2%;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #000000
+  }
+}
+
+.container-checkbox  {
+  padding-top: 5%;
+  .col-12 {
+    padding-bottom: 3%;
+  }
+}
+
+.btn-advance {
+  border: none;
+  color: rgb(0, 0, 0);
+  border-radius: 6px !important;
+  background-color: #43d19e;
+  display: flex;
+  padding: 2%;
+  margin: 6% 0% 6%;
+}
+
+.container-checkbox {
+  a {
+    cursor: pointer;
+    color: #0d6efd;
+    text-decoration: underline;
+  }
+}
+
+.login-link span {
+  font-weight: 400;
+  color: #000000
+}
+.password-errors-label{
+  font-weight: bold;
+}
+.password-errors {
+  .dds__icons {
+    color: #ff0000;
+  }
+}
+.dds__check{
+ font-size: 1.3rem !important;
+ font-weight: bolder !important;
+}
+
+.errors {
+  label{
+    margin-left: 2%;
+    color: #989898;
+  }
+  display: flex;
+  align-items: center;
+  padding: 1%;
+}
+
+.password-fields{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  span {
+    position: absolute;
+    padding-right: 1.2%;
+  }
+}
+.background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to bottom left, rgb(255 68 68 / 18%) 0%, rgba(255, 255, 255, 0) 25%);
+  z-index: -1;
+}
+
+.invalid-field {
+  border: 2px solid #ff0000 !important;
+}
+
+.invalid-message {
+  display: flex;
+  color: #ff0000;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  background-color: #fff;
+  margin-right: 1%;
+  border: 1px solid #b3b3b3;
+  border-radius: 5px;
+}
+input[type="checkbox"]::before {
+  content: "\2713";
+  color: #ffffff;
+  width: 19px;
+  width: 19px;
+  height: 19px;
+  border-radius: 5px;
+  transform: scale(0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ff872b !important;
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}

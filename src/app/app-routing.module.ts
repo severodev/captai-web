@@ -22,10 +22,21 @@ import { UsersComponent } from './_pages/users/users.component';
 import { UserProfileComponent } from './_pages/users/user-profile/user-profile.component';
 import { CreateUserFormComponent } from './_components/users/create-user-form/create-user-form.component';
 import { DeactivateGuard } from './_guards/deactivate.guard';
+import { CreateAccountComponent } from './_pages/create-account/create-account.component';
+import { PasswordRecoveryComponent } from './_components/password-recovery/password-recovery.component';
+import { SearchComponent } from './_components/search/search.component';
+import { EmailValidationComponent } from './_components/email-validation/email-validation.component';
+import { DetailsComponent } from './_components/details/details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'create-account', component: CreateAccountComponent},
+  { path: 'password-recovery', component: PasswordRecoveryComponent},
+  { path: 'password-recovery/:token', component: PasswordRecoveryComponent},
+  { path: 'validate-email/:token', component: EmailValidationComponent},
+  { path: 'search', component: SearchComponent, canActivate: [AuthGuard] },
+  { path: 'details', component: DetailsComponent, canActivate: [AuthGuard] },
   { path: 'first-access/:token', component: FirstAccessComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'projects', component: ProjectsComponent, canActivate: [AuthGuard] },

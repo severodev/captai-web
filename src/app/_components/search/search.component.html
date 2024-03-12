@@ -1,0 +1,93 @@
+
+<div class="wrapper">
+  <div class="title">
+    <span>
+    Pesquisa de oportunidades
+  </span>
+  <label>
+    use os filtros para encontrar o que procura
+  </label>
+  </div>
+  
+  <div class="container">
+   <div class="wrapper">  
+     <div class="header">
+        <div class="search-bar">
+            <input type="text" name="" id="" placeholder="Pesquisar">
+            <span class="dds__icons dds__search"></span>
+        </div>
+        <div class="filter"> 
+          <button id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+            <span class="material-symbols-outlined">filter_list</span>
+            <label>
+              Filtros
+            </label>
+          </button>
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton" data-bs-auto-close="outside">
+            <app-search-filter-dropdown></app-search-filter-dropdown>
+          </div>
+        </div>
+     </div>  
+     <div class="table-container">
+      <div class="row row-header">
+        <div class="col-3">
+          <span>Nome</span>
+        </div>
+        <div class="col-2">
+          <span>Início</span>
+        </div>
+        <div class="col-2">
+          <span>Valor</span>
+        </div>
+        <div class="col-1">
+          <span>Afinidade</span>
+        </div>
+        <div class="col-2">
+          <span>Área</span>
+        </div>
+        <div class="col-1">
+          <span>Favoritar</span>
+        </div>
+        <div class="col-1">
+        </div>
+      </div>
+      <div *ngFor="let edital of data; let i = index">
+        <div class="table-content"  (click)="select(i)">
+          <div class="row" [ngClass]="{'selected': i === selected}">
+            <div class="col-3 edital-name">
+              <label class="dds__icons dds__server-rack-support"></label>
+              <span (click)="router.navigate(['/details'])">{{edital.nome}}</span>
+            </div>
+            <div class="col-2">
+              <span>{{edital.Inicio}}</span>
+            </div>
+            <div class="col-2">
+              <span>R$ {{edital.Valor}}</span>
+            </div>
+            <div class="col-1 affinity-field">
+              <label class="dds__icons dds__star-filled"></label>
+              <span>{{edital.Afinidade}}</span>
+            </div>
+            <div class="col-2">
+              <span>{{edital.area}}</span>
+            </div>
+            <div class="col-1 favorite-check">
+              <span class="material-symbols-outlined">bookmark</span>
+            </div>
+            <div class="col-1">
+              <button class="toggle-objectives" [id]="'toggle-' + i" (click)="toggleDetails(i)">⌵</button>
+            </div>
+          </div>
+          <div class="row table-objectives" [ngClass]="{'selected': i === selected}" [id]="'details-' + i" hidden>
+            <div class="col-12">
+              <label>Objetivos: </label>
+              <span>{{edital.Objetivos}}</span>
+              <a href="/details">Ver mais</a>
+            </div>
+          </div>
+        </div>
+      </div>
+     </div>
+     </div>
+   </div> 
+</div>

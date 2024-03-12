@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { AuthService } from './_services/auth.service';
 
 @Component({
@@ -8,14 +7,22 @@ import { AuthService } from './_services/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
-  title = 'CaptAI';
+  public optionIndex = 1;
   accessToken: string;
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(
+    private router: Router, 
+    private authService: AuthService
+  ) {
     this.authService.accessToken.subscribe(token => {
       this.accessToken = token;
     });
+  }
+
+  setSelectedButton(index: number) {
+    this.optionIndex = index;
   }
 
   logout() {

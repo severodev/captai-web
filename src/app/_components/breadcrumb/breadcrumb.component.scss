@@ -13,11 +13,12 @@
   display: inline-block;
   padding-right: 0.5rem;
   color: #666;
-  content: ">";
+  content: "/";
 }
 
 a {
-  color: #666;
+  color: #3f51b5;
+  text-decoration: none;
 }
 
 .active {

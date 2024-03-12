@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-
 import { User } from 'src/app/_models/user';
 import { environment } from 'src/environments/environment';
 import { map, retry, shareReplay } from 'rxjs/operators';
@@ -65,6 +64,16 @@ export class UserService {
     let url = `${environment.apiUrl}/users/${id}`;
 
     return this.http.put(url, changes)
+  }
+
+  requestChangePassword(usernameValue: string): Observable<any> {
+    let obj = {username: usernameValue};
+    return this.http.put(`${environment.apiUrl}/users/ChangePassword`, obj);
+  }
+
+  validateEmail(tokenValue: string): Observable<any> {
+    let obj = {token: tokenValue};
+    return this.http.post(`${environment.apiUrl}/users/validate-email`, obj);
   }
 
   deleteUser(id: number): Observable<Object> {
