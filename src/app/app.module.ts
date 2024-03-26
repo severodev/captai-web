@@ -169,6 +169,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core'
+import { EditalService } from './_services/edital.service';
+import { RecomendationsComponent } from './_components/recomendations/recomendations.component';
 
 registerLocaleData(localePt, 'pt');
 export const customCurrencyMaskConfig = {
@@ -305,7 +307,8 @@ export const customCurrencyMaskConfig = {
     PasswordRecoveryComponent,
     EmailValidationComponent,
     DetailsComponent,
-    SearchFilterDropdownComponent
+    SearchFilterDropdownComponent,
+    RecomendationsComponent
   ],
   imports: [
     BrowserModule,
@@ -339,6 +342,7 @@ export const customCurrencyMaskConfig = {
     CollaboratorService,
     InstituteService,
     DocumentService,
+    EditalService,
     BankService,
     ToastService,
     SupplierService,

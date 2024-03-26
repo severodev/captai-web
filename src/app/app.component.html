@@ -4,14 +4,23 @@
       <div class="col-auto col-md-3 col-xl-2 px-0 side-menu-body" >
         <div class="d-flex flex-column align-items-end pt-2 min-vh-100">
           <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center" id="menu">
+            <li class="nav-item nav-perfil">
+              <div class="user-img">
+                <img src="../../../assets/images/new/perfilDefault.jpg" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="dropdown-menu dropdown-menu-start" aria-labelledby="dropdownMenuButton">
+                  <app-main-dropdown-card (logoutEvent)="logout($event)"></app-main-dropdown-card>
+                </div>
+              </div>
+              <span class="ms-1 d-none d-sm-inline">Seu perfil</span>
+            </li>
             <li class="nav-item" routerLinkActive="item-selected">
-                <a [routerLink]="['/home']" class="nav-link align-middle px-0">
+                <a [routerLink]="['/recomendations']" class="nav-link align-middle px-0">
                   <span class="dds__icons dds__dashboard"></span>
                   <span class="ms-1 d-none d-sm-inline">Recomendação</span>
                 </a>
             </li>
             <li class="nav-item" routerLinkActive="item-selected">
-              <a [routerLink]="['/projects']" class="nav-link align-middle px-0">
+              <a [routerLink]="['/']" class="nav-link align-middle px-0">
                 <span class="dds__icons dds__calendar"></span>
                 <span class="ms-1 d-none d-sm-inline">Calendário</span>
               </a>
@@ -23,25 +32,16 @@
               </a>
             </li>
             <li class="nav-item" routerLinkActive="item-selected">
-              <a [routerLink]="['/home']" class="nav-link align-middle px-0">
+              <a [routerLink]="['/']" class="nav-link align-middle px-0">
                 <span class="dds__icons dds__warranty"></span>
                 <span class="ms-1 d-none d-sm-inline">Subscrição</span>
               </a>
             </li>
             <li class="nav-item" routerLinkActive="item-selected">
-              <a [routerLink]="['/projects']" class="nav-link align-middle px-0">
+              <a [routerLink]="['/']" class="nav-link align-middle px-0">
                 <span class="dds__icons dds__gear"></span>
                 <span class="ms-1 d-none d-sm-inline">Settings</span>
               </a>
-            </li>
-            <li class="nav-item">
-              <div class="user-img">
-                <img src="../../../assets/images/new/perfilDefault.jpg" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <div class="dropdown-menu dropdown-menu-start" aria-labelledby="dropdownMenuButton">
-                  <app-main-dropdown-card (logoutEvent)="logout($event)"></app-main-dropdown-card>
-                </div>
-              </div>
-              <span class="ms-1 d-none d-sm-inline">Seu perfil</span>
             </li>
           </ul>
         </div>

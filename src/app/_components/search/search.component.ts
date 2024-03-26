@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { EditalService } from 'src/app/_services/edital.service';
+import { EditalFilter, PageRequest } from 'src/app/_interfaces/index';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-search',
@@ -7,47 +11,51 @@ import { Component } from '@angular/core';
 })
 export class SearchComponent {
 
-  public data = [{
-    nome: "Câmera Inteligente",
-    Inicio: "2023-07-12",
-    Objetivos: "Melhorar a segurança residencial",
-    Valor: '5.750.000,00',
-    Afinidade: 4,
-    area: "Visão Computacional"
-    },
-    {
-    nome: "Robô de Limpeza Autônomo",
-    Inicio: "2023-04-28",
-    Objetivos: "Automatizar a limpeza doméstica",
-    Valor: '7.200.000,00',
-    Afinidade: 5,
-    area: "Inteligência Artificial"
-    },    
-    {
-    nome: "Sistema de Reconhecimento Facial",
-    Inicio: "2023-10-15",
-    Objetivos: "Refinar a segurança em espaços públicos",
-    Valor: '8.500,00',
-    Afinidade: 3,
-    area: "Processamento de Imagens"
-    },    
-    {
-    nome: "Software de Gestão de Projetos",
-    Inicio: "2023-02-09",
-    Objetivos: "Aumentar a eficiência no gerenciamento de equipes",
-    Valor: '6.300.000,00',
-    Afinidade: 4,
-    area: "Engenharia de Software"
-    },    
-    {
-    nome: "Drone de Monitoramento Agrícola",
-    Inicio: "2023-06-21",
-    Objetivos: "Otimizar o acompanhamento de safras",
-    Valor: '9.000,00',
-    Afinidade: 4,
-    area: "Processamento de Dados Geoespaciais"
-    }];
+  public editais = [];
   public selected;
+  public filterForm;
+
+  constructor(
+    private editalService: EditalService,
+    private router: Router,
+    private fb: FormBuilder) {
+      this.filterForm = this.fb.group({
+        agency: [],
+        title: [],
+        financingValue: []
+      });
+     }
+  
+  ngOnInit(): void {
+    this.getEditais(null)
+  }
+
+  filter() {
+    let filter: EditalFilter = {
+      agency: this.filterForm.controls['agency'].value,
+      title:  this.filterForm.controls['title'].value,
+      financingValue:  this.filterForm.controls['financingValue'].value
+    }
+    this.getEditais(filter);
+    this.filterForm.reset();
+  }
+
+  getEditais(filter: EditalFilter) {
+    var params: PageRequest = {
+      itemsPerPage : 999
+    }
+    this.editalService.getEditais(filter, params).subscribe(data => {
+      this.editais = data.map(edital => {
+        let list = edital.areaList.split(";");
+        edital.areaList = list.length > 3 ? list.slice(0, 3) : list;
+        return edital;
+      });
+    });
+  }
+
+  seeMore(id : number) {
+    this.router.navigate(['/details'], { queryParams: { editalId: id } });
+  }
 
   select(idSelected) {
    this.selected = idSelected;

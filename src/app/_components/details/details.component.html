@@ -12,17 +12,19 @@
         <div class="header">
           <div class="sub-header">
             <div>
-              <span class="name">{{edital.name}}</span>
-              <span>Edital nº {{edital.number}}</span>
+              <span class="name">{{edital.title}}</span>
+              <span>Edital nº {{edital.number ?? ' Não encontrado'}}</span>
             </div>
-            <span class="offeredBy">Oferecido por: {{edital.offeredBy}}</span>
+            <span class="offeredBy">Oferecido por: {{edital.agency}}</span>
           </div>
           <div>
-            <button>Acesse o edital</button>
+            <a [href]="edital.link" target="_blank">
+              <button>Acesse o edital</button>
+            </a>
           </div> 
         </div>
         <div class="body">
-          <label class="subTitle">{{edital.subTitle}}</label>
+          <label class="subTitle">{{edital.subTitle ?? 'Não encontrado'}}</label>
 
           <span>
             Objetivo:
@@ -31,21 +33,21 @@
           <span>
             Data de entrega das propostas:
           </span>
-          <label>{{edital.data}}</label>
+          <label>{{edital.submission}}</label>
           <span>
           Tematicas: 
           </span>
           <div class="tematics">
-              <label *ngFor="let t of edital.tematics" >{{t}}</label>
+              <label *ngFor="let t of edital.areaList" >{{t}}</label>
           </div>
           <span>
             Valor: 
           </span>
-          <label>{{edital.valor}}</label>
+          <label>{{edital.financingValue}}</label>
           <span>
             Maturidade tecnológica (TRL): 
           </span>
-          <label>{{edital.maturity}}</label>
+          <label>{{edital.maturity ?? 'Não encontrado'}}</label>
           <span>
             Elegibilidade: 
           </span>
