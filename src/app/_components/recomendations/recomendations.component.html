@@ -1,0 +1,113 @@
+
+<div class="wrapper">
+    <div class="title">
+      <span>
+      Painel de Recomendações
+    </span>
+    <label>
+      Bem vindo de volta {{user.user.name}}
+    </label>
+    </div>
+    <div class="container">
+        <div class="wrapper row">  
+            <div class="left-side col-9">
+                <div class="atualizations row">
+                  <div class="atualizations-placeholder col-6"> atualizations-placeholder</div>
+                  <div class="atualizations-placeholder col-6">atualizations-placeholder</div>
+                </div>
+                <div class="preview row">
+                    <div class="row preview-title">
+                        <div class="col-8">
+                            Lista de editais ideais para você
+                        </div>
+                        <div class="col-4">
+                            <a [routerLink]="['/search']" >
+                            Ver todos  <div class="dds__icons dds__chevron-right"></div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                        <div class="row row-header">
+                            <div class="col-3">
+                              <span>Nome</span>
+                            </div>
+                            <div class="col-2">
+                              <span>Início</span>
+                            </div>
+                            <div class="col-2">
+                              <span>Afinidade</span>
+                            </div>
+                            <div class="col-3 area-List-label">
+                              <span>Área</span>
+                            </div>
+                            <div class="col-2 favorite-check">
+                              <span>Favoritar</span>
+                            </div>
+                          </div>
+                         
+                            <div class="table-content" *ngFor="let edital of editais;  let i = index">
+                                <div class="row">
+                                  <div class="col-3 edital-name">
+                                    <label class="dds__icons dds__server-rack-support"></label>
+                                    <div>
+                                      <span>{{ edital.title }}</span>
+                                      <span class="agency">{{ edital.agency }}</span>
+                                    </div>
+                                  </div>
+                                  <div class="col-2">
+                                    <span>{{ edital.created | date:'dd/MM/yyyy' }}</span>
+                                  </div>
+                                  <div class="col-2 affinity-field">
+                                    <label class="dds__icons dds__star-filled"></label>
+                                    <span>{{ edital.Afinidade ??  ' 10.00' }}</span>
+                                  </div>
+                                  <div class="col-3 area-List">
+                                    <span *ngFor="let item of edital.areaList">{{ item }}</span>
+                                  </div>
+                                  <div class="col-2 favorite-check">
+                                    <span class="material-symbols-outlined">bookmark</span>
+                                  </div>
+                                </div>
+                            </div>
+                </div>
+            </div>
+            <div class="right-side col-3">
+              <div class="user-space">
+                <div class="user-img">
+                  <img src="../../../assets/images/new/perfilDefault.jpg">
+                </div>
+                <div class="user-labels">
+                  <label>{{user.user.name}} {{user.user.lastName}}</label>
+                  <span> {{user.user.role}} </span>
+                </div>
+              </div>
+              <div class="notifications-space">
+                <div class="row">
+                  <div class="col-10">
+                    <label>Lembretes</label>
+                  </div>
+                  <div class="col-2">
+                    <span class="dds__icons dds__alarm-bell"></span>
+                  </div>
+                </div>
+                <div class="notifications-bar">
+                  <div class="notification-placeholder"> notification-placeholder</div>
+                  <div class="notification-placeholder">notification-placeholder</div>
+                </div>
+                <div class="upgrade-button-wrapper">
+                  <div class="upgrade-button">
+                    <span class="material-symbols-outlined premium">
+                      workspace_premium
+                    </span>
+                    <div class="label"> 
+                      Upgrade to Premium
+                      <div class="dds__icons dds__chevron-right"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div> 
+  </div>
+  

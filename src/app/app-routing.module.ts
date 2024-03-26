@@ -27,9 +27,10 @@ import { PasswordRecoveryComponent } from './_components/password-recovery/passw
 import { SearchComponent } from './_components/search/search.component';
 import { EmailValidationComponent } from './_components/email-validation/email-validation.component';
 import { DetailsComponent } from './_components/details/details.component';
+import { RecomendationsComponent } from './_components/recomendations/recomendations.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/recomendations', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'create-account', component: CreateAccountComponent},
   { path: 'password-recovery', component: PasswordRecoveryComponent},
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'validate-email/:token', component: EmailValidationComponent},
   { path: 'search', component: SearchComponent, canActivate: [AuthGuard] },
   { path: 'details', component: DetailsComponent, canActivate: [AuthGuard] },
+  { path: 'recomendations', component: RecomendationsComponent, canActivate: [AuthGuard] },
   { path: 'first-access/:token', component: FirstAccessComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'projects', component: ProjectsComponent, canActivate: [AuthGuard] },

@@ -59,11 +59,11 @@ export class CreateUserFormComponent implements OnInit {
 
   createUser() {
     let user: User = {
-      username: this.createUserForm.controls['username'].value,
+    /*   username: this.createUserForm.controls['username'].value,
       fullname: this.createUserForm.controls['fullname'].value,
       email: this.createUserForm.controls['email'].value,
       role: this.createUserForm.controls['role'].value,
-      collaborator: this.collaborator$ ? this.collaborator$.id : null,
+      collaborator: this.collaborator$ ? this.collaborator$.id : null, */
     }
 
     this.userService.createUser(user).pipe(

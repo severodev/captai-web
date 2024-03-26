@@ -60,8 +60,8 @@ export class AuthService {
       .pipe(map((res: any) => {
         if (!res.message) {
           this.user = jwtDecode(res.access_token);
-        if(this.user.fullname)
-          this.user.fullname = this.user.fullname.toLowerCase().replace(/(?:^|\s)\S/g, (a) => a.toUpperCase());
+        if(this.user.name)
+          this.user.name = this.user.name.toLowerCase().replace(/(?:^|\s)\S/g, (a) => a.toUpperCase());
 
         this.accessTokenSubject.next(res.access_token);
         this.refreshTokenSubject.next(res.refresh_token);

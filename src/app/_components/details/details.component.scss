@@ -1,6 +1,5 @@
 .container {
     padding: 30px 28px 31px!important;
-    min-height: 100%;
 }
 .dds__chevron-left {
     color: #3891e0;
@@ -25,21 +24,22 @@
     justify-content: space-between;
     .sub-header {
         min-width: 50%;
-        margin-bottom: 4%;
+        max-width: 80%;
+        margin-bottom: 1%;
     }
     span {
         color: #414141;
         font-size: 0.8rem;
-        margin-left: 2%;
+        
     }
     .name {
-        color: red;
+        color: #e4531e;
         font-size: 1.5rem;
         font-weight: bold;
     }
     .offeredBy{
         font-weight: bold;
-        font-size: 1rem;
+        font-size: 1.3rem;
     }
     button {
         border: 1px solid #0095ffdd;
@@ -48,19 +48,21 @@
     }
 }
 .scroller {
-    max-height: 550px;
+    max-height: 95%;
     overflow-y: auto;
+    position: absolute;
+    padding: 2%;
 }
 .body {
     display: flex;
     flex-direction: column;
     .subTitle {
-        color: red;
+        color: #e4531e;
         font-size: 0.9rem;
         font-weight: bold;
     }
     span {
-        color: red;
+        color: #e4531e;
         margin-top: 1%;
     }
     label {
