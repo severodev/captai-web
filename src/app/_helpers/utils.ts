@@ -1,9 +1,24 @@
+import { HttpParams } from "@angular/common/http";
 import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 import * as moment from "moment";
 
 export function formatDate(str_date: string) {
     return str_date?.replace(/(\d+[/])(\d+[/])/, '$2$1');
 }
+
+export const createParams = (objects: any[]) => {
+    let params = new HttpParams();
+    objects.forEach(o => {
+      if(o) {
+        Object.keys(o).forEach(key => {
+          if(o[key] || o[key] === false) {
+            params = params.append(key, o[key]);
+          }
+        })
+      }
+    })
+    return params;
+  }
 
 export function formatDateMoment(date: Date) {
     return moment(date).format('DD/MM/YYYY');

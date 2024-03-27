@@ -1,0 +1,235 @@
+.title{
+    span {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    label {
+        color: #929292;
+        padding: 1% 0%;
+    }
+    display: flex;
+    flex-direction: column;
+}
+.container {
+    padding: 0% !important
+}
+.wrapper {
+    min-height: 100%;
+}
+.right-side {
+    background-color: #f6f2dd;
+    min-height: 99%;
+    border-radius: 0px 20px 20px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.atualizations {
+    min-height: 50%;
+    padding: 9%;
+}
+.preview {
+    min-height: 50%;
+    padding: 0% 6% 4% 6%;
+    .col-8 {
+        font-size: 1.4rem;
+        font-weight: bold;
+    }
+    .col-4 {
+        color: #2871ff;
+        text-align: end;
+        font-size: 1.2rem;
+        font-weight: 500;
+        cursor: pointer;
+        text-decoration: none;
+        padding-right: 5%;
+    }
+    a {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        .dds__chevron-right {
+            margin-left: 1%;
+        }
+    }
+
+    .preview-title {
+        margin-bottom: 1%;
+    }
+
+    .area-List-label {
+        padding-left: 8% !important;
+    }
+}
+
+
+.edital-name {
+    padding-left: 2%;
+    display: flex;
+    align-items: center;
+    div {
+        display: flex;
+        flex-direction: column;
+        .agency {
+            margin-top: 1%;
+            color: #383838;
+        }
+        span {
+            color: #2871ff;
+        }
+    }
+    .dds__icons {
+        font-size: 1.6rem;
+        margin-right: 5%;
+        background-color: #f0f0f0;
+        border: 1px solid #bdbdbd;
+        border-radius: 10px;
+        padding: 6%;
+    }
+}
+
+.row-header {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #999999;
+    .col-2, .col-3 {
+       padding-left: 3%; 
+    }
+    
+}
+
+.affinity-field {
+    color: #ffd900;
+    padding-left: 3%;
+    .dds__star-filled {
+       font-size: 1rem; 
+    }
+    
+}
+
+
+.table-content {
+    margin: 0%;
+    font-weight: 600;
+    font-size: 0.9rem;
+    .area-List {
+        flex-direction: column;
+        span {
+            background-color: #faf3cb;
+            padding: 1%;
+            margin: 1%;
+            text-align: center;
+            border-radius: 15px;
+        }
+    }
+    .row {
+        align-items: center;
+        padding: 1%;
+    }
+    .col-1, .col-2, .col-3 {
+        display: flex;
+    }
+    .favorite-check {
+        padding-left: 4%;
+        .material-symbols-outlined {
+            font-weight: 200;
+            font-size: 40px;
+        }
+    }
+}
+
+.user-space {
+    border-bottom: 3px solid #a6a6a6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 40%;
+    min-width: 90%; 
+    padding-top: 25%;
+    .user-img {
+        img {
+            border-radius: 100px;   
+        }
+    }
+    .user-labels {
+        align-items: center;
+        padding: 6%;
+        display: flex;
+        flex-direction: column;
+        label {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        span {
+            color: #a6a6a6;
+            font-size: 1.1rem;
+        }
+    }
+}
+
+.notifications-space {
+    min-width: 85%;
+    max-height: 50%;
+    .row {
+        padding: 6% 0%;
+        align-items: flex-end;
+    }
+    label {
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+    .dds__alarm-bell {
+        padding: 25%;
+        font-size: 1.2rem;
+        background-color: white;
+        border-radius: 50%;
+    }
+    .notification-placeholder {
+        margin: 4% 0%;
+        padding: 3% 4%;
+        border-radius: 7px;
+        background-color: #ffffff;
+    }
+    .upgrade-button-wrapper {
+        padding: 2% 5%;
+    }
+    .upgrade-button {
+        border-radius: 12px;
+        color: #fff;
+        display: flex;
+        background-color: #e4531e;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        .label {
+            display: flex;
+            padding: 4%;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dds__chevron-right {
+            border: 1px solid;
+            border-radius: 7px;
+            padding: 6%;
+        }
+
+        .premium {
+            font-size: 8rem;
+            rotate: 30deg;
+        }
+        
+    }
+}
+.atualizations-placeholder {
+    display: flex;
+    background-color: white;
+    align-items: center;
+    border-radius: 21px;
+    justify-content: center;
+    max-width: 30%;
+    margin: 1%;
+}
