@@ -56,12 +56,12 @@
       <div>
         <div class="table-scroller">
         <div class="table-content2" *ngFor="let edital of editais;  let i = index">
-          <div class="table-content"  (click)="select(i)">
-            <div class="row" [ngClass]="{'selected': i === selected}">
+          <div class="table-content"  (click)="select(i)" [ngClass]="{'dark_row': i % 2 !== 0}">
+            <div class="row" [ngClass]="{'selected': i === selected} ">
               <div class="col-3 edital-name">
                 <label class="dds__icons dds__server-rack-support"></label>
                 <div>
-                  <span (click)="seeMore(edital.id)">{{ edital.title }}</span>
+                  <span (click)="seeMore(edital.id)" data-toggle="tooltip" data-placement="bottom" [title]="edital.title">{{ reduceTitle(edital.title) }}</span>
                   <span class="agency">{{ edital.agency }}</span>
                 </div>
               </div>

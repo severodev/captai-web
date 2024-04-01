@@ -151,11 +151,14 @@
 }
 
 .selected {
-    background-color: #fbfaf4;
+    background-color: #fbf6e0;
+}
+.dark_row {
+    background-color: #f8f8f8;
 }
 
 .affinity-field {
-    color: #ffd900;
+    color: #ffc000;
     .dds__star-filled {
        font-size: 1rem; 
     }

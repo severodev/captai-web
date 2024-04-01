@@ -28,6 +28,7 @@ import { SearchComponent } from './_components/search/search.component';
 import { EmailValidationComponent } from './_components/email-validation/email-validation.component';
 import { DetailsComponent } from './_components/details/details.component';
 import { RecomendationsComponent } from './_components/recomendations/recomendations.component';
+import { UserListComponent } from './_components/users/user-list/user-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/recomendations', pathMatch: 'full' },
@@ -40,6 +41,8 @@ const routes: Routes = [
   { path: 'details', component: DetailsComponent, canActivate: [AuthGuard] },
   { path: 'recomendations', component: RecomendationsComponent, canActivate: [AuthGuard] },
   { path: 'first-access/:token', component: FirstAccessComponent },
+  { path: 'list-users', component: UserListComponent, canActivate: [AuthGuard]},
+  { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]},
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'projects', component: ProjectsComponent, canActivate: [AuthGuard] },
   { path: 'project-details', component: ProjectDetailsComponent, canActivate: [AuthGuard], canDeactivate: [DeactivateGuard] },
@@ -54,9 +57,7 @@ const routes: Routes = [
   { path: 'supplier-details', component: SupplierDetailsComponent, canActivate: [AuthGuard], canDeactivate: [DeactivateGuard] },
   { path: 'supplier-expense', component: SupplierExpenseComponent, canActivate: [AuthGuard], canDeactivate: [DeactivateGuard] },
   { path: 'garbage', component: GarbageComponent, canActivate: [AuthGuard] },
-  { path: 'users', component: UsersComponent, canActivate: [AuthGuard]},
   { path: 'users/new', component: CreateUserFormComponent, canActivate: [AuthGuard], canDeactivate: [DeactivateGuard]},
-  { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]},
   { path: 'workplan', component: WorkplanComponent, canActivate: [AuthGuard], canDeactivate: [DeactivateGuard]}
 ];
 

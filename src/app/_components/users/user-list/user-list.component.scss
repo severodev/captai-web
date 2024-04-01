@@ -1,45 +1,117 @@
-.table-container {
-    
-    table {
+.container {
+    padding: 30px 28px 31px!important;
+    a {
+        cursor: pointer;
+    }
+}
+
+.header {    
+    display: flex;
+    justify-content: space-between;
+    .filter {
+        min-width: 10%;
+    }
+}
+.search-bar {
+    input {
+        border-radius: 17px;
+        border: none;
         width: 100%;
-        border: 1px solid #E4E4E4;
-        color: #333333;
-        font-size: 0.875em;
+        padding: 3% 5%;
+        background-color: #fff;
     }
-    
-    thead {
-        padding: 0 2rem;
-    }
-    
-    th {
-        width: fit-content;
-        padding: 0.75rem 1.25rem;
-        border-bottom: 1px solid #E4E4E4;
-    }
-
-    th:nth-last-child(1) {
-        width: 3rem;
-        padding-right: 2rem;
-    }
-
-    td {
-        padding: 0.875rem 1.25rem;
-        border-bottom: 1px solid #E4E4E4;
-    }
-
     button {
+        position: absolute;
+        padding-right: 1%;
+        font-weight: 700;
         background: none;
         border: none;
     }
+    margin-bottom: 3%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 30%;
+    justify-content: flex-end;
+}
 
-    .icon {
-        height: 1rem;
-        width: 1rem;
-        color: #0076CE;
-        background: none;
+.title{
+    span {
+        font-size: 2rem;
+        font-weight: bold;
     }
-
-        .ic-delete-can {
-            color: #CE1126;
+    label {
+        color: #929292;
+        padding: 1% 0%;
+    }
+    display: flex;
+    flex-direction: column;
+}
+.row-header {
+    padding: 2% 0% 0.3%;
+    span {
+        color: #818181;
+        font-size: 1rem;
+    }
+    .col-3 {
+        padding-left: 5%;
+    }
+}
+.user-name {
+    display: flex;
+    align-items: center;
+    div {
+        display: flex;
+        flex-direction: column;
+        label {
+            margin-top: 1%;
+            color: #4e4e4e;
         }
+        span {
+            color: #000000;
+            cursor: pointer;
+        }
+    }
+}
+
+
+.table-content {
+    margin: 0%;
+    font-weight: 600;
+    font-size: 1rem;
+    .area-List {
+        flex-direction: column;
+        span {
+            background-color: #faf3cb;
+            padding: 1%;
+            margin: 1%;
+            text-align: center;
+            border-radius: 15px;
+        }
+    }
+    .row {
+        align-items: center;
+        padding: 1%;
+    }
+    .col-1, .col-2, .col-3 {
+        display: flex;
+    }
+}
+
+.selected {
+    background-color: #fbf6e0;
+}
+.dark_row {
+    background-color: #f8f8f8;
+}
+
+.table-scroller {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 34rem;
+}
+
+.table-backgound {
+    background-color: white;
+    border-radius: 20px;
 }

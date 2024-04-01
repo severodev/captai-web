@@ -6,6 +6,8 @@ import { environment } from 'src/environments/environment';
 import { map, retry, shareReplay } from 'rxjs/operators';
 
 import { UserDto } from 'src/app/_dtos/user-dto';
+import { createParams } from '../_helpers/utils';
+import { PageRequest, UserFilter } from '../_interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -29,18 +31,10 @@ export class UserService {
 
   }
 
-  getUsers(search: string, desc: number, itemsPerPage: number | string,
-    page: number | string, orderby: string,
-    isActive: boolean=true): Observable<User[]> {
-    let url = `${environment.apiUrl}/users`;
-    let params = new HttpParams()
-    .set('itemsPerPage', itemsPerPage.toString())
-    .set('page', page.toString())
-    .set('isActive', isActive.toString())
-    
-    return this.http.get(url, {params}).pipe(map((data: any) => {
-      return data.map(d => this.userDto.convertResponseToUserModel(d));
-    }));
+  getUsers(filter: UserFilter, pageRequest: PageRequest): Observable<any> {
+    return this.http.get(`${environment.apiUrl}/users`, {
+      params: createParams([filter, pageRequest])
+    });
   }
 
   getUserPaginationMetadata(itemsPerPage: number, search: string,

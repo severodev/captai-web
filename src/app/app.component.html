@@ -2,45 +2,63 @@
   <div class="container-fluid"  *ngIf="accessToken">
     <div class="row flex-nowrap">
       <div class="col-auto col-md-3 col-xl-2 px-0 side-menu-body" >
+        <img src="../../../assets/images/captiLogo.png" class="logo">
         <div class="d-flex flex-column align-items-end pt-2 min-vh-100">
           <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center" id="menu">
-            <li class="nav-item nav-perfil">
-              <div class="user-img">
-                <img src="../../../assets/images/new/perfilDefault.jpg" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <div class="dropdown-menu dropdown-menu-start" aria-labelledby="dropdownMenuButton">
-                  <app-main-dropdown-card (logoutEvent)="logout($event)"></app-main-dropdown-card>
+            <li class="nav-item nav-profile-label" routerLinkActive="item-selected">
+              <a [routerLink]="['/profile']" class="nav-link align-middle px-0 profile-label">
+                <div class="user-img">
+                  <img src="../../../assets/images/new/perfilDefault.jpg">
                 </div>
-              </div>
-              <span class="ms-1 d-none d-sm-inline">Seu perfil</span>
+                <span class="ms-1 d-none d-sm-inline">Seu perfil</span>
+              </a>
             </li>
             <li class="nav-item" routerLinkActive="item-selected">
                 <a [routerLink]="['/recomendations']" class="nav-link align-middle px-0">
-                  <span class="dds__icons dds__dashboard"></span>
+                  <span class="icons_google material-symbols-outlined">
+                    dashboard
+                    </span>
                   <span class="ms-1 d-none d-sm-inline">Recomendação</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item disabled">
               <a [routerLink]="['/']" class="nav-link align-middle px-0">
-                <span class="dds__icons dds__calendar"></span>
+                <span class="icons_google material-symbols-outlined">
+                  event_available
+                  </span>
                 <span class="ms-1 d-none d-sm-inline">Calendário</span>
               </a>
             </li>
             <li class="nav-item" routerLinkActive="item-selected">
               <a [routerLink]="['/search']" class="nav-link align-middle px-0">
-                <span class="dds__icons dds__user-group"></span>
+                <span class=" icons_google material-symbols-outlined">
+                  quick_reference_all
+                  </span>
                 <span class="ms-1 d-none d-sm-inline">Pesquisa</span>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item disabled">
               <a [routerLink]="['/']" class="nav-link align-middle px-0">
-                <span class="dds__icons dds__warranty"></span>
+                <span class="icons_google material-symbols-outlined">
+                  settings
+                  </span>
+                <span class="ms-1 d-none d-sm-inline">Configurações</span>
+              </a>
+            </li>
+            <li class="nav-item disabled">
+              <a [routerLink]="['/']" class="nav-link align-middle px-0">
+                <span class="icons_google material-symbols-outlined">
+                  payments
+                  </span>
                 <span class="ms-1 d-none d-sm-inline">Subscrição</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a [routerLink]="['/']" class="nav-link align-middle px-0">
-                <span class="dds__icons dds__gear"></span>
-                <span class="ms-1 d-none d-sm-inline">Settings</span>
+            <li class="nav-item" routerLinkActive="item-selected">
+              <a [routerLink]="['/list-users']" class="nav-link align-middle px-0">
+                <span class="icons_google material-symbols-outlined">
+                  group
+                  </span>
+                <span class="ms-1 d-none d-sm-inline">Administrador</span>
               </a>
             </li>
           </ul>

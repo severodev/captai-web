@@ -47,10 +47,18 @@ export class SearchComponent {
     this.editalService.getEditais(filter, params).subscribe(data => {
       this.editais = data.map(edital => {
         let list = edital.areaList.split(";");
+        
         edital.areaList = list.length > 3 ? list.slice(0, 3) : list;
         return edital;
       });
     });
+  }
+
+  reduceTitle(title) {
+    if (title.length > 50) {
+      title =  title.substring(0, 50) + "...";
+    }
+    return title;
   }
 
   seeMore(id : number) {

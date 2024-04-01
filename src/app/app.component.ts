@@ -13,7 +13,6 @@ export class AppComponent {
   accessToken: string;
 
   constructor(
-    private router: Router, 
     private authService: AuthService
   ) {
     this.authService.accessToken.subscribe(token => {
@@ -23,11 +22,5 @@ export class AppComponent {
 
   setSelectedButton(index: number) {
     this.optionIndex = index;
-  }
-
-  logout() {
-    this.authService.logout();
-    this.accessToken = null;
-    this.router.navigate(['/login']);
-  }
+  } 
 }
