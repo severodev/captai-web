@@ -11,7 +11,8 @@
     flex-direction: column;
 }
 .container {
-    padding: 0% !important
+    padding: 0% !important;
+    
 }
 .wrapper {
     min-height: 100%;
@@ -60,7 +61,7 @@
     }
 
     .area-List-label {
-        padding-left: 8% !important;
+        padding-left: 3% !important;
     }
 }
 
@@ -101,7 +102,7 @@
 }
 
 .affinity-field {
-    color: #ffd900;
+    color: #D3BE00;
     padding-left: 3%;
     .dds__star-filled {
        font-size: 1rem; 
@@ -132,7 +133,7 @@
         display: flex;
     }
     .favorite-check {
-        padding-left: 4%;
+        padding-left: 3%;
         .material-symbols-outlined {
             font-weight: 200;
             font-size: 40px;
@@ -147,7 +148,7 @@
     align-items: center;
     min-height: 40%;
     min-width: 90%; 
-    padding-top: 25%;
+    padding-top: 18%;
     .user-img {
         img {
             border-radius: 100px;   
@@ -193,7 +194,7 @@
         background-color: #ffffff;
     }
     .upgrade-button-wrapper {
-        padding: 2% 5%;
+        padding: 5%;
     }
     .upgrade-button {
         border-radius: 12px;

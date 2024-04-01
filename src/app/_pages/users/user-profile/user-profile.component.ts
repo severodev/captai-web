@@ -1,31 +1,67 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Breadcrumb } from 'src/app/_interfaces/breadcrumb';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/_services/auth.service';
 import { UserService } from 'src/app/_services/user.service';
+
+export enum tabSelection {
+  PROFILE = 'PROFILE',
+  SERVICE = 'SERVICE'
+}
 
 @Component({
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-  breadcrumbPages: Breadcrumb[];
-  user
-  mode: Observable<string>; 
 
-  constructor(private userService: UserService) { 
-    this.mode = this.userService.userFormSubject;
+  public get tabOptions(): typeof tabSelection {
+    return tabSelection;
+  }
+
+  public currentTab = tabSelection.PROFILE;
+
+  public userForm: FormGroup;
+
+  public mask: string = "000.000.000-00";
+
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    public user: AuthService,
+    private formBuilder: FormBuilder
+  ) { 
+    this.userForm = this.formBuilder.group({
+      id: [''],
+      name: [''],
+      lastName: [''],
+      email: [null],
+      emailConfirmation: [''],
+      cpfCnpj: [''],
+      password: [''],
+      passwordConfirm: [''],
+      segment: [null],
+      activities: [null],
+      abrangency: [null],
+    });
   }
 
   ngOnInit(): void {
-    this.initBreadcrumb()
-    this.user = JSON.parse(sessionStorage.getItem('user'))
+    if (this.user.user.cpfCnpj.length > 11)
+      this.mask = '00.000.000/0000-00'
+    this.userForm.patchValue(this.user.user)
   }
 
-  initBreadcrumb() {
-    this.breadcrumbPages = [
-      { label: 'Início', route: '/home' },
-      { label: 'Meu Perfil', route: '/profile', active: true }
-    ];
+  setForm() {
+    this.userForm.patchValue(this.user.user)
   }
 
+  setTab(selected) {
+    this.currentTab = selected;
+  }
+  
+  logout() {
+    this.user.logout();
+    this.router.navigate(['/login']);
+  }
 }

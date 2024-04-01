@@ -1,14 +1,148 @@
-.container {
-    padding-top: 0;
-  }
-  
-  .page-title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .title {
-      font-size: 1.75em;
+.title{
+  span {
+      font-size: 2rem;
       font-weight: bold;
-      color: #444444;
+  }
+  label {
+      color: #929292;
+      padding: 1% 0%;
+  }
+  display: flex;
+  flex-direction: column;
+}
+.container {
+  padding: 2% 1% 2% !important;
+  height: 72%;
+}
+.wrapper {
+  min-height: 100%;
+}
+.divisor { 
+  border-right: 3px solid #e6e6e6;
+  height: 90%;
+  margin-top: 3%;
+}
+.user-space {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 40%;
+  min-width: 90%; 
+  padding-top: 3%;
+  .user-img {
+      img {
+          border-radius: 100px;
+          margin: 20% 0%;   
+      }
+  }
+  .user-labels {
+      align-items: center;
+      padding: 3%;
+      display: flex;
+      flex-direction: column;
+      label {
+          font-weight: bold;
+          font-size: 1.5rem;
+      }
+
+    span {
+      color: #757574;
     }
+  }
+}
+.form-group {
+  color: #000;
+  margin-bottom: 15px !important;
+  label {
+      font-size: 1rem;
+  }
+}
+
+.form-control {
+  background-color: #fafdff;
+  border: 1px solid #9f9f9f !important;
+  border-radius: 8px;
+}
+.left-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: space-between;
+}
+
+.right-side {
+  max-width: 60%;
+  margin-left: 3%;
+}
+.logout {
+  background: none;
+  border: 1px solid #ff651e;
+  color: #ff651e;
+  border-radius: 5px;
+  margin: 0% 20%;
+}
+
+.edit {
+  background: #e4531e;
+  border: none;
+  color: #ffffff;
+  border-radius: 5px;
+  display: flex;
+  padding: 1%;
+  max-width: 11%;
+  justify-content: center;
+}
+
+.edit-row {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tabs{
+  padding: 0% 1%;
+  margin: 0% 0% 1% 0%;
+  font-size: 1.4rem;
+  color: #6c6c6c;
+  label {
+    cursor: pointer;
+  }
+  div {
+    border-bottom: 3px solid #e6e6e6;
+    padding-bottom: 5px;
+  }
+}
+.profile-label {
+  margin-bottom: 5%;
+  font-size: 1.7rem;
+}
+.tab-selected {
+  color: #e4531e;
+  border-bottom: 3px solid #e4531e !important;
+}
+.profile-name-function {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10%;
+  font-size: 1.5rem;
+}   
+.localization-label {
+  font-size: 1.5rem;
+}
+
+.folows-info {
+  .folows-info-division {
+    border-right: 1px solid ;
+  }
+  span {
+    font-size: 1.4rem;
+  }
+  label {
+    color: #6c6c6c;
+  }
+  .col-6 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }

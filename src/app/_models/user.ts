@@ -3,6 +3,7 @@ export class User {
   name?: string;
   lastName?: string;
   email?: string;
+  cpfCnpj?: string;
   role?: string;
   roleId?: number;
   language?: string;

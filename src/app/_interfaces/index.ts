@@ -11,3 +11,9 @@ export interface EditalFilter {
   financingValue?: string;
   created?: number;   
 }
+
+export interface UserFilter {
+  name?: string;
+  email?: string;
+  cpfCnpj?: string; 
+}

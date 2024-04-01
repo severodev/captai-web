@@ -3,7 +3,11 @@
 }
 .side-menu-body {
   background: linear-gradient(to bottom left, #efab958f -1%, #f6f2dd 9%);
-  width: 15%;
+  width: 12%;
+  .logo {
+    max-width: 40%;
+    margin: 15% 0% 0% 6%;
+  }
 }
 #menu {
   min-width: 100%;
@@ -11,36 +15,63 @@
 }
 .nav-item {
   height: 100%;
-  width: 85%;
+  width: 98%;
   padding-left: 15%;
   align-self: end;
-  display: flex!important;
-  align-items: center;
-  padding: 6px 30px;
-  border-radius: 20px 0px 0px 20px;
+  display: flex !important;
+  align-items: flex-end;
+  padding: 6px 20px;
+  border-radius: 30px 0px 0px 30px;
   margin: 4px 0px 4px 1px;
   
   span {
     color: #000;
-    font-weight: bold;
+    padding-right: 5%;
     font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .icons_google {
+    font-weight: normal;
+    font-size: 1.4rem;
   }
   
 }
 
-.nav-perfil{
-  margin: 30% 0% 13%;
+.disabled {
+  span {
+    color: #afafaf !important;
+  }
 }
 
-.item-selected {
-  background-color: #ffffff;
+.nav-perfil{
+  margin: 24% 6% 0%;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
 }
 .user-img{
+  margin-right: 4%;
   img {
     width: 30px;
     border-radius: 16px;
   }
 }
-.card-principal{
+
+.item-selected {
+  background-color: #ffffff;
+}
+
+.card-principal {
   padding: 2.5%;
+}
+.profile-label {
+  min-width: 100%;
+}
+
+.nav-profile-label {
+  padding: 6px 9px !important;
+  margin-bottom: 22%;
 }
