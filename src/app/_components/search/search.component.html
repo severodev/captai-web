@@ -5,7 +5,7 @@
     Pesquisa de oportunidades
   </span>
   <label>
-    use os filtros para encontrar o que procura
+    Use os filtros para encontrar o que procura
   </label>
   </div>
   <div class="container">
@@ -32,14 +32,29 @@
     </form>
     <div class="table-backgound">
       <div class="row row-header">
-        <div class="col-3">
+        <div class="col-3 name">
           <span>Nome</span>
         </div>
-        <div class="col-2">
-          <span>Início</span>
+        <div class="col-1 agency ilter-field" (click)="orderByInstitute()">
+          <span>Instituto</span>
+          <div class="static-filter">
+            <span>∧</span>
+            <span>∨</span>
+          </div>
         </div>
-        <div class="col-2">
+        <div class="col-2 filter-field" (click)="orderBycreated()">
+          <span>Início</span>
+          <div class="static-filter">
+            <span>∧</span>
+            <span>∨</span>
+          </div>
+        </div>
+        <div class="col-1 filter-field" (click)="orderByfinancingValue()">
           <span>Valor</span>
+          <div class="static-filter">
+            <span>∧</span>
+            <span>∨</span>
+          </div>
         </div>
         <div class="col-1">
           <span>Afinidade</span>
@@ -62,21 +77,23 @@
                 <label class="dds__icons dds__server-rack-support"></label>
                 <div>
                   <span (click)="seeMore(edital.id)" data-toggle="tooltip" data-placement="bottom" [title]="edital.title">{{ reduceTitle(edital.title) }}</span>
-                  <span class="agency">{{ edital.agency }}</span>
                 </div>
+              </div>
+              <div class="col-1 agency">
+                <span>{{ edital.agency }}</span>
               </div>
               <div class="col-2">
                 <span>{{ edital.created | date:'dd/MM/yyyy' }}</span>
               </div>
-              <div class="col-2">
+              <div class="col-1">
                 <span>{{ edital.financingValue }}</span>
               </div>
               <div class="col-1 affinity-field">
                 <label class="dds__icons dds__star-filled"></label>
-                <span>{{ edital.Afinidade ??  ' 10.00' }}</span>
+                <span>{{ edital.Afinidade ??  ' 10' }}</span>
               </div>
               <div class="col-2 area-List">
-                <span *ngFor="let item of edital.areaList">{{ item }}</span>
+                <span *ngFor="let item of edital.areaList">{{ reduceArea(item) }}</span>
               </div>
               <div class="col-1 favorite-check">
                 <span class="material-symbols-outlined">bookmark</span>

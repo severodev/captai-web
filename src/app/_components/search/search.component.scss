@@ -31,7 +31,7 @@
         border-radius: 17px;
         border: none;
         width: 100%;
-        padding: 3% 5%;
+        padding: 2% 5%;
         background-color: #fff;
     }
     button {
@@ -45,6 +45,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 30%;
     max-width: 30%;
     justify-content: flex-end;
 }
@@ -68,9 +69,16 @@
         color: #818181;
         font-size: 1rem;
     }
-    .col-3 {
+    .name {
         padding-left: 5%;
     }
+    .agency{
+        display: flex;
+        justify-content: center;
+    }
+}
+.agency{
+    justify-content: center;
 }
 .edital-name {
     padding-left: 2%;
@@ -79,10 +87,6 @@
     div {
         display: flex;
         flex-direction: column;
-        .agency {
-            margin-top: 1%;
-            color: #383838;
-        }
         span {
             color: #2871ff;
             cursor: pointer;
@@ -158,6 +162,8 @@
 }
 
 .affinity-field {
+    display: flex;
+    justify-content: center;
     color: #ffc000;
     .dds__star-filled {
        font-size: 1rem; 
@@ -175,10 +181,29 @@
 .table-scroller {
     overflow-y: auto;
     overflow-x: hidden;
-    height: 34rem;
+    height: 36rem;
 }
 
 .table-backgound {
     background-color: white;
     border-radius: 20px;
+}
+
+.filter-field {
+    display: flex;
+}
+
+.static-filter {
+    margin-left: 2px;
+    margin-top: 3px;
+    display: flex;
+    flex-direction: column;
+    span {
+        padding: 0;
+        height: 8px;
+        display: flex;
+        font-size: 12px;
+        align-items: center; 
+    }
+    
 }

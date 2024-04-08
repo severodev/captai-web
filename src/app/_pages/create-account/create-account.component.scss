@@ -1,5 +1,10 @@
 #create-account-container {
-  margin: 0% 6%;
+  display: flex;
+  margin: 4% 10%;
+  form {
+    width: 100rem;
+    max-width: 100rem;
+  }
 }
 
 .col-7 {
@@ -57,18 +62,48 @@ a {
 .container-checkbox  {
   padding-top: 5%;
   .col-12 {
-    padding-bottom: 3%;
+    padding-bottom: 1%;
   }
 }
 
+.toggle-container {
+  display: flex;
+  margin: 10px 0px;
+  font-size: 0.8rem;
+  
+  div {
+    padding: 5px 0px;
+    cursor: pointer;
+    color: #b5b4b6;
+    background: #e6e0e9;
+    border-radius: 15px;
+  }
+  .cpf-side {
+    padding: 0px 10px 0px 20px;
+  }
+  .cnpj-side {
+    padding: 0px 20px 0px 10px;
+  }
+}
+.toggle-selected {
+  padding: 8px 25px !important;
+  border-radius: 15px;
+  color: #000000;
+  font-weight: 500;
+  background: #f2f2f2;
+  box-shadow: 0px 0px 0.3em #81818178;
+}
 .btn-advance {
   border: none;
-  color: rgb(0, 0, 0);
+  color: #fff;
+  font-weight: 500;
   border-radius: 6px !important;
   background-color: #43d19e;
   display: flex;
-  padding: 2%;
-  margin: 6% 0% 6%;
+  padding: 1.6%;
+  min-width: 10rem;
+  margin: 2% 0%;
+  justify-content: center;
 }
 
 .container-checkbox {
@@ -98,12 +133,12 @@ a {
 
 .errors {
   label{
-    margin-left: 2%;
+    margin-left: 2px;
     color: #989898;
   }
   display: flex;
   align-items: center;
-  padding: 1%;
+  padding: 2px;
 }
 
 .password-fields{
@@ -137,7 +172,7 @@ a {
 input[type="checkbox"] {
   appearance: none;
   background-color: #fff;
-  margin-right: 1%;
+  margin-right: 2px;
   border: 1px solid #b3b3b3;
   border-radius: 5px;
 }

@@ -10,6 +10,8 @@ export interface EditalFilter {
   title?: string;
   financingValue?: string;
   created?: number;   
+  by?: string;
+  order?: string;
 }
 
 export interface UserFilter {
