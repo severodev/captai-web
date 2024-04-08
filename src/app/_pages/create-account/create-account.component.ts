@@ -19,7 +19,7 @@ export class CreateAccountComponent implements OnInit {
   public userForm: FormGroup;
   public passwordFieldVisible = false;
   public passwordConfirmationFieldVisible = false;
-  public cpfCnpjMask = '000.000.000-00';
+  public cpfInput = true;
   public showErrors = false;
   
   constructor(
@@ -82,6 +82,11 @@ export class CreateAccountComponent implements OnInit {
     });
   }
 
+  togleCpfCnpj(value: boolean) {
+    this.userForm.controls['cpf_cnpj'].reset(),
+    this.cpfInput = value;
+  }
+
   createUser() {
     if (this.userForm.invalid || !this.userForm.get('acceptedTermsOfUse').value || !this.userForm.get('acceptedPrivacyPolicy').value) {
       this.showErrors = true;
@@ -96,7 +101,9 @@ export class CreateAccountComponent implements OnInit {
           cpfCnpj: this.userForm.controls['cpf_cnpj'].value,
           password: this.userForm.controls['password'].value,
           acceptedTermsOfUse: this.userForm.controls['acceptedTermsOfUse'].value,
-          acceptedPrivacyPolicy: this.userForm.controls['acceptedPrivacyPolicy'].value
+          acceptedPrivacyPolicy: this.userForm.controls['acceptedPrivacyPolicy'].value,
+          profile: 'ADMIN',
+          role: 1
         }
         this.userService.createUser(userDTO).subscribe((resp) => {
           console.log(resp)

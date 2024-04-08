@@ -14,6 +14,9 @@ export class SearchComponent {
   public editais = [];
   public selected;
   public filterForm;
+  public agencyOrder = 'DESC';
+  public created = 'DESC';
+  public financingValue = 'DESC';
 
   constructor(
     private editalService: EditalService,
@@ -47,8 +50,7 @@ export class SearchComponent {
     this.editalService.getEditais(filter, params).subscribe(data => {
       this.editais = data.map(edital => {
         let list = edital.areaList.split(";");
-        
-        edital.areaList = list.length > 3 ? list.slice(0, 3) : list;
+        edital.areaList = list.length > 1 ? list.slice(0, 1) : list;
         return edital;
       });
     });
@@ -59,6 +61,40 @@ export class SearchComponent {
       title =  title.substring(0, 50) + "...";
     }
     return title;
+  }
+
+  reduceArea(area) {
+    if (area.length > 20) {
+      area =  area.substring(0, 20) + "...";
+    }
+    return area;
+  }
+
+  orderByInstitute() {
+    this.agencyOrder = this.agencyOrder === 'ASC' ? 'DESC': 'ASC';
+    let filter: EditalFilter = {
+      by: 'agency',
+      order: this.agencyOrder
+    }
+    this.getEditais(filter);
+  }
+
+  orderBycreated() {
+    this.created = this.created === 'ASC' ? 'DESC': 'ASC';
+    let filter: EditalFilter = {
+      by: 'created',
+      order: this.created
+    }
+    this.getEditais(filter);
+  }
+
+  orderByfinancingValue() {
+    this.financingValue = this.financingValue === 'ASC' ? 'DESC': 'ASC';
+    let filter: EditalFilter = {
+      by: 'financingValue',
+      order: this.financingValue
+    }
+    this.getEditais(filter);
   }
 
   seeMore(id : number) {
