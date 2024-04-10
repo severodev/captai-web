@@ -31,7 +31,7 @@ import { RecomendationsComponent } from './_components/recomendations/recomendat
 import { UserListComponent } from './_components/users/user-list/user-list.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/recomendations', pathMatch: 'full' },
+  { path: '', redirectTo: '/search', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'create-account', component: CreateAccountComponent},
   { path: 'password-recovery', component: PasswordRecoveryComponent},
