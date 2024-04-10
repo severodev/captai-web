@@ -117,8 +117,12 @@
         align-items: center;
         padding: 1%;
     }
-    .col-1, .col-2, .col-3 {
+    .col-1, .col-3 {
         display: flex;
+    }
+    .col-2 {
+        display: flex;
+        justify-content: center;
     }
     .favorite-check {
         padding-left: 3%;
@@ -165,6 +169,8 @@
     display: flex;
     justify-content: center;
     color: #ffc000;
+    font-size: 16px;
+    align-items: baseline;
     .dds__star-filled {
        font-size: 1rem; 
     }
@@ -190,6 +196,7 @@
 }
 
 .filter-field {
+    justify-content: center;
     display: flex;
 }
 
@@ -206,4 +213,13 @@
         align-items: center; 
     }
     
+}
+.value-field {
+    justify-content: flex-start !important;
+}
+
+@media (max-height: 900px) {
+    .table-scroller {
+        height: 27rem;
+    }
 }

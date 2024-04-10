@@ -1,15 +1,7 @@
-img {
-  background-size: cover;
-  height: 360px;
-  width: 360px;
-  margin-top: 6%;
-  margin-left: 55%;
-  position: absolute;
-  z-index: -1;
-  rotate: 16deg;
-}
-
 .background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   top: 0;
   right: 0;
@@ -20,8 +12,7 @@ img {
 }
 
 #login-container {
-  width: 50%;
-  margin: 4% 0% 0% 8%;
+  width: 25%;
 }
 
 .title {
@@ -32,7 +23,6 @@ img {
 }
 
 .form-group {
-  max-width: 55%;
   label {
     font-size: 0.9rem;
   }
@@ -60,9 +50,11 @@ a {
   background-color: #43d19e;
   display: flex;
   padding: 1%;
+  min-height: 40px;
   min-width: 10rem;
-  margin: 2% 0%;
+  margin: 6% 0% 3%;
   justify-content: center;
+  align-items: center;
 }
 
 .dds__arrow-right {
