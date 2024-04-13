@@ -7,4 +7,6 @@ export class User {
   role?: string;
   roleId?: number;
   language?: string;
+  profileImageId?: string;
+  profileImageUrl?: string;
 }

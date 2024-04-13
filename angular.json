@@ -92,6 +92,27 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "development": {
+              "optimization": false,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "namedChunks": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "5mb",
+                  "maximumError": "10mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "12kb",
+                  "maximumError": "20kb"
+                }
+              ]
             }
           }
         },
@@ -103,6 +124,9 @@
           "configurations": {
             "production": {
               "buildTarget": "captai-web:build:production"
+            },
+            "development": {
+              "buildTarget": "captai-web:build:development"
             }
           }
         },

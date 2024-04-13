@@ -4,17 +4,19 @@
             Seu perfil
         </span>
         <label>
-        Veja e alter suas informações
+            Veja e alter suas informações
         </label>
     </div>
     <div class="tabs row">
-        <div class="informations col-3" (click)="setTab(tabOptions.PROFILE)" [ngClass]="{'tab-selected': currentTab === tabOptions.PROFILE}">
+        <div class="informations col-3" (click)="setTab(tabOptions.PROFILE)"
+            [ngClass]="{'tab-selected': currentTab === tabOptions.PROFILE}">
             <label>
                 Informações do perfil
             </label>
         </div>
         <div class="service col-1"></div>
-        <div class="service col-3" (click)="setTab(tabOptions.SERVICE)" [ngClass]="{'tab-selected': currentTab === tabOptions.SERVICE}">
+        <div class="service col-3" (click)="setTab(tabOptions.SERVICE)"
+            [ngClass]="{'tab-selected': currentTab === tabOptions.SERVICE}">
             <label>
                 Informações do seu serviço
             </label>
@@ -22,18 +24,24 @@
         <div class="service col-5"></div>
     </div>
     <div class="container">
-        <div class="wrapper row">  
+        <div class="wrapper row">
             <div class="left-side col-4">
                 <div class="divisor">
                     <div class="user-space">
                         <div class="user-labels">
                             <span class="profile-label"> Perfil </span>
                             <div class="user-img">
-                            <img src="../../../assets/images/new/perfilDefault.jpg">
+                                <img src="{{user.user.profileImageUrl}}" title="Clique para altrar a imagem de perfil"
+                                    (click)="uploadProfileImage()">
+                                <div style="display: none;" class="fileUploadArea">
+                                    <input type="file" name="profileImagemUpload" id="profileImagemUpload"
+                                        accept=".jpeg,.jpg,.png,.gif,.webm"
+                                        (change)="onFileSelected($event)">
+                                </div>
                             </div>
-                            <div  class="profile-name-function">
+                            <div class="profile-name-function">
                                 <label>{{user.user.name}} {{user.user.lastName}}</label>
-                                <span > {{user.user.role}} </span>
+                                <span> {{user.user.role}} </span>
                             </div>
                             <span class="localization-label">localização, placeholder</span>
                         </div>
@@ -43,7 +51,7 @@
                                 <label>Seguidores</label>
                             </div>
                             <div class="col-6">
-                                <span >9.999</span>
+                                <span>9.999</span>
                                 <label>Seguindo</label>
                             </div>
                         </div>
@@ -55,7 +63,7 @@
             </div>
             <div class="right-side col-8">
                 <div class="row edit-row">
-                    <button type="button" class="col-3 edit">
+                    <button type="button" class="col-3 edit" disabled title="Ação temporariamente desabilitada">
                         <span class="material-symbols-outlined">
                             edit
                         </span>
@@ -63,59 +71,65 @@
                     </button>
                 </div>
                 <form [formGroup]="userForm" *ngIf="currentTab === tabOptions.PROFILE">
-                        <div class="">
-                            <div class="form-group row">
-                                <div class="form-group col-7">
-                                    <label>Nome</label>
-                                    <input type="text" class="form-control" formControlName = "name" name="username" [attr.readonly]="true">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="form-group col-7">
-                                    <label>Sobrenome</label>
-                                    <input type="text" class="form-control" formControlName = "lastName" name="lastName"  [attr.readonly]="true">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="form-group col-7">
-                                    <label>CPF/CNPJ</label>
-                                    <input type="text" [mask]="mask" class="form-control" formControlName = "cpfCnpj" name="cpfCnpj"  [attr.readonly]="true">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="form-group col-7">
-                                    <label>Email</label>
-                                    <input type="text" class="form-control" formControlName = "email" name="email"  [attr.readonly]="true">
-                                </div>
+                    <div class="">
+                        <div class="form-group row">
+                            <div class="form-group col-7">
+                                <label>Nome</label>
+                                <input type="text" class="form-control" [(ngModel)]="user.user.name"
+                                    formControlName="name" name="username" [attr.readonly]="true">
                             </div>
                         </div>
-                   
+                        <div class="form-group row">
+                            <div class="form-group col-7">
+                                <label>Sobrenome</label>
+                                <input type="text" class="form-control" [(ngModel)]="user.user.lastName"
+                                    formControlName="lastName" name="lastName" [attr.readonly]="true">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="form-group col-7">
+                                <label>CPF / CNPJ</label>
+                                <input type="text" [mask]="mask" class="form-control" [(ngModel)]="user.user.cpfCnpj"
+                                    formControlName="cpfCnpj" name="cpfCnpj" [attr.readonly]="true">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="form-group col-7">
+                                <label>Email</label>
+                                <input type="text" class="form-control" [(ngModel)]="user.user.email"
+                                    formControlName="email" name="email" [attr.readonly]="true">
+                            </div>
+                        </div>
+                    </div>
+
                 </form>
                 <form [formGroup]="userForm" *ngIf="currentTab === tabOptions.SERVICE">
                     <div class="">
                         <div class="form-group row">
                             <div class="form-group col-7">
                                 <label>Selecione um segmento</label>
-                                <input type="select" class="form-control" formControlName = "segment" name="" [attr.readonly]="true">
+                                <input type="select" class="form-control" formControlName="segment" name=""
+                                    [attr.readonly]="true">
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="form-group col-7">
                                 <label>Selecione as atividades</label>
-                                <input type="select" class="form-control" formControlName = "activities" name="" [attr.readonly]="true">
+                                <input type="select" class="form-control" formControlName="activities" name=""
+                                    [attr.readonly]="true">
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="form-group col-7">
                                 <label>Escolha a abrangencia territorial</label>
-                                <input type="select" class="form-control" formControlName = "abrangency" name="" [attr.readonly]="true">
+                                <input type="select" class="form-control" formControlName="abrangency" name=""
+                                    [attr.readonly]="true">
                             </div>
                         </div>
                     </div>
-               
-            </form>
+
+                </form>
             </div>
         </div>
-    </div> 
+    </div>
 </div>
-  

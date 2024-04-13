@@ -8,7 +8,7 @@
             <li class="nav-item nav-profile-label" routerLinkActive="item-selected">
               <a [routerLink]="['/profile']" class="nav-link align-middle px-0 profile-label">
                 <div class="user-img">
-                  <img src="../../../assets/images/new/perfilDefault.jpg">
+                  <img src="{{authService.user.profileImageUrl}}">
                 </div>
                 <span class="ms-1 d-none d-sm-inline">Seu perfil</span>
               </a>
