@@ -15,6 +15,8 @@ export enum tabSelection {
 })
 export class UserProfileComponent implements OnInit {
 
+  private profileImageFile: any;
+
   public get tabOptions(): typeof tabSelection {
     return tabSelection;
   }
@@ -29,8 +31,8 @@ export class UserProfileComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     public user: AuthService,
-    private formBuilder: FormBuilder
-  ) { 
+    private formBuilder: FormBuilder,
+  ) {
     this.userForm = this.formBuilder.group({
       id: [''],
       name: [''],
@@ -59,9 +61,37 @@ export class UserProfileComponent implements OnInit {
   setTab(selected) {
     this.currentTab = selected;
   }
-  
+
   logout() {
     this.user.logout();
     this.router.navigate(['/login']);
+  }
+
+  uploadProfileImage(): void {
+    const uploadDOMElement = document.getElementById('profileImagemUpload');
+    uploadDOMElement.click();
+  }
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.profileImageFile = file;
+      this.userService.updateUserProfileImage(this.user.user.id, 
+        this.profileImageFile, this.profileImageFile.name).subscribe(
+          {
+            next: (result: any) => {
+              if(result){
+                this.user.user.profileImageUrl = result.newUrl;
+                this.user.user.profileImageId = result.newId;
+                this.user.manualTokenRefresh();
+              }
+            },
+            error: (err) => {
+              alert('Erro ao atualizar imagem de perfil.');
+            }
+          }
+        );;
+
+    }
   }
 }

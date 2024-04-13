@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from 'src/app/_models/user';
 import { environment } from 'src/environments/environment';
@@ -74,6 +74,28 @@ export class UserService {
     let url = `${environment.apiUrl}/users/delete/${id}`;
 
     return this.http.put(url, null)
+  }
+
+  updateUserProfileImage(userId: number, file:any, fileName: string): Observable<string> {
+
+    if(!file){
+      return null;
+    }
+
+    let url = `${environment.apiUrl}/imagekit/updateProfileImage`;
+    
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('fileName', fileName);
+    formData.append('userId', userId.toString());
+    
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('enctype', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+    
+    return this.http.post<string>(url, formData, { headers });
+
   }
 
 }
