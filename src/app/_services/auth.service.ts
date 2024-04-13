@@ -97,4 +97,19 @@ export class AuthService {
     sessionStorage.removeItem('refreshToken');
   }
 
+  manualTokenRefresh() {
+    this.http.post(`${environment.apiUrl}/auth/refreshToken`,
+      { email: this.user.email, refreshToken: this.refreshTokenValue }
+    ).subscribe({
+      next: (res:any) => {
+        this.user = jwtDecode(res.access_token);
+        this.accessTokenSubject.next(res.access_token);
+        this.refreshTokenSubject.next(res.refresh_token);
+      },
+      error: (err) => {
+        console.log('Falha ao atualizar token do usuário');
+      }
+    });
+  }
+
 }

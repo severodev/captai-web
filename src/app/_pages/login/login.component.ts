@@ -20,27 +20,30 @@ export class LoginComponent {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private toastService: ToastService) {
-      this.loginForm = this.formBuilder.group({
-        login: ['', [Validators.required, emailValidator()]],
-        password: [null, Validators.required]
-      });
-      if (this.authService.accessTokenValue) {
-        this.router.navigate(['/']);
-      }
+    this.loginForm = this.formBuilder.group({
+      login: ['', [Validators.required, emailValidator()]],
+      password: [null, Validators.required]
+    });
+    if (this.authService.accessTokenValue) {
+      this.router.navigate(['/']);
     }
+  }
 
   login() {
     if (this.loginForm.get('login').valid && this.loginForm.get('password').valid) {
       this.authService.login(
-        this.loginForm.get('login').value, 
-        this.loginForm.get('password').value, 
+        this.loginForm.get('login').value,
+        this.loginForm.get('password').value,
         false
-      ).subscribe((resp) => {
-        if (resp) {
-          this.toastService.error('Erro ao fazer login', resp, 6000);
+      ).subscribe({
+        next: (resp) => {
+          if (resp) {
+            this.toastService.error('Erro ao fazer login', resp, 6000);
+          }
+        },
+        error: (err) => {
+          this.toastService.error('Informações inválidas. ', err == 'Unauthorized' ? 'Verifique os campos e tente novamente.' : err, 6000);
         }
-      }, (err) => {
-        this.toastService.error('Informações inválidas. ', err == 'Unauthorized' ? 'Verifique os campos e tente novamente.' : err , 6000);
       });
     }
   }
