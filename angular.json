@@ -29,7 +29,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/clarity-icons.scss"
+              "src/clarity-icons.scss",
+              "node_modules/@ng-select/ng-select/themes/default.theme.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -149,7 +150,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/clarity-icons.scss"
+              "src/clarity-icons.scss",
+              "/node_modules/@ng-select/ng-select/themes/default.theme.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

@@ -15,7 +15,11 @@ export interface EditalFilter {
 }
 
 export interface UserFilter {
+  id?: number;
   name?: string;
   email?: string;
-  cpfCnpj?: string; 
+  roleId?: number;
+  cpfCnpj?: string;
+  by?: string;
+  order?: string;
 }

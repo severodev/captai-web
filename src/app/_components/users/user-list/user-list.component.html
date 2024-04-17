@@ -9,45 +9,77 @@
   </div>
   <div class="container">
    <div class="wrapper"> 
-    <form [formGroup]=""> 
+    <form [formGroup]="filterForm"> 
       <div class="header">
-        <div class="search-bar">
-          <input type="text" name="" id="" placeholder="Pesquisar" formControlName = "title">
-          <button class="dds__icons dds__search"></button>
-        </div>
-        
-        <div class="filter"> 
-          <div id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-            <span class="material-symbols-outlined">filter_list</span>
-            <label>
-              Filtros
-            </label>
+        <div class="row"> 
+          <div class="col-4">
+            <input type="text" class="form-control " placeholder="Nome de usuário" formControlName="name">
           </div>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton" data-bs-auto-close="outside">
-            <app-search-filter-dropdown></app-search-filter-dropdown>
+          <div class="col-4">
+            <input type="email" class="form-control" placeholder="Pesquisa por E-mail" formControlName="email">
+          </div>
+          <div class="col-4">
+              <ng-select
+              placeholder="Filtro por perfil"
+              [items]="roles"
+              bindLabel="name"
+              [searchable]="true"
+              [clearable]="false"
+              [multiple]="false"
+              formControlName="profile">
+              </ng-select>
+          </div>
+          <div class="col-4 mt-4">
+            <input 
+            [placeholder]="!cpfInput ? 'Filtro por CNPJ':'Filtro por CPF'"
+            type="text" 
+            [mask]="!cpfInput ? '00.000.000/0000-00':'000.000.000-00'" 
+            class="form-control " 
+            formControlName="cpfCnpj" 
+            name="CPF/CNPJ">
+          </div>         
+        </div>
+        <div class="row buttons">
+          <div class="col-6 toggle-container">
+            <div>
+                <span (click)="togleCpfCnpj(true)" class="cpf-side" [ngClass]="{'toggle-selected': cpfInput}">
+                    CPF
+                </span>
+                <span (click)="togleCpfCnpj(false)" class="cnpj-side" [ngClass]="{'toggle-selected': !cpfInput}">
+                    CNPJ
+                </span>
+            </div>                    
+          </div>
+          <div class="col-6 buttons-filter">
+            <div class="clean-filter" (click)="clearFilters()">Limpar</div>
+            <button class="aply-filter" (click)="applyFilter()">Pesquisar</button>
           </div>
         </div>
       </div>  
     </form>
     <div class="table-backgound">
-      <div class="row row-header">
-        <div class="col-2">
-          <span>Nome</span>
+      <div class="row line-header">
+        <div class="col-3 user-name-label" (click)="orderByName()">
+          <span>Nome do usuário</span>
+          <div class="static-filter">
+            <span class="dds__icons dds__chevron-up"  [ngClass]="{'arrow-highlight' : nameOrder == 'ASC'}"></span>
+            <span class="dds__icons dds__chevron-down" [ngClass]="{'arrow-highlight' : nameOrder == 'DESC'}"></span>
+          </div>
         </div>
-        <div class="col-2">
-          <span>Função</span>
+        <div class="col-2 function-header">
+          <span>Perfil</span>
         </div>
-        <div class="col-2">
+        <div class="col-1">
           <span>Status</span>
         </div>
         <div class="col-2">
-          <span>Abrangencia</span>
+          <span>Abrangância</span>
         </div>
         <div class="col-2">
           <span>CPF/CNPJ</span>
         </div>
-        <div class="col-2 favorite-check">
-          <span>Açoes</span>
+        <div class="col-2">
+          <span>Ações</span>
         </div>
       </div>
       <div>
@@ -55,17 +87,17 @@
         <div class="table-content2" *ngFor="let user of users;  let i = index">
           <div class="table-content"  (click)="select(i)" [ngClass]="{'dark_row': i % 2 !== 0}">
             <div class="row" [ngClass]="{'selected': i === selected} ">
-              <div class="col-2 user-name">
+              <div class="col-3 user-name">
                 <div>
                   <span>{{ user.name}} {{ user.lastName}}</span>
-                  <label>{{ user.email}}</label>
+                  <label>{{ reduceEmail(user.email) }}</label>
                 </div>
               </div>
               <div class="col-2">
-                <span>{{ user.profile }}</span>
+                <span>{{ user.role.name }}</span>
               </div>
-              <div class="col-2">
-                <span>{{ user.active }}</span>
+              <div class="col-1">
+                <span>{{ user.active ? 'Ativo' : 'inativo' }}</span>
               </div>
               <div class="col-2">
                 <span> Placeholder </span>
@@ -73,9 +105,9 @@
               <div class="col-2">
                 <span >{{ user.cpfCnpj }}</span>
               </div>
-              <div class="col-2 actions">
-                <span class="details">Ver</span>
-                <span class="change-password">Resetar senha</span>
+              <div class="col-2 buttons-div">
+                <span class="details" (click)="userDetails(user.id)">Ver</span>
+                <span class="change-password" (click)="resetPasswordUser(user.email)">Resetar senha</span>
               </div>
             </div>
           </div>
@@ -85,3 +117,4 @@
     </div>
   </div> 
 </div>
+

@@ -13,7 +13,6 @@
           <div class="sub-header">
             <div>
               <span class="name">{{edital.title}}</span>
-              <span>Edital nº {{edital.number ?? ' Não encontrado'}}</span>
             </div>
             <span class="offeredBy">Oferecido por: {{edital.agency}}</span>
           </div>
@@ -24,7 +23,7 @@
           </div> 
         </div>
         <div class="body">
-          <label class="subTitle">{{edital.subTitle ?? 'Não encontrado'}}</label>
+          <label class="subTitle" *ngIf="!edital.subTitle">{{edital.subTitle}}</label>
 
           <span>
             Objetivo:
@@ -47,7 +46,7 @@
           <span>
             Maturidade tecnológica (TRL): 
           </span>
-          <label>{{edital.maturity ?? 'Não encontrado'}}</label>
+          <label>{{edital.maturityLevel ?? 'Não encontrado'}}</label>
           <span>
             Elegibilidade: 
           </span>

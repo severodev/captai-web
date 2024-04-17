@@ -1,6 +1,11 @@
+.internal-toast {
+  margin-left: -2.5%;
+}
 .alertConfirmBar {
   top: 1px;
   z-index: 9999;
+  position: absolute;
+  min-width: 100%;
   span {
     margin: 0px 6px;
   }

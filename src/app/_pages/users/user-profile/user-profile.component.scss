@@ -1,4 +1,14 @@
 .title{
+  .dds__chevron-left {
+    color: #3891e0;
+    font-size: 1.5rem !important;
+    padding-right: 1%;
+}
+  div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+  }
   span {
       font-size: 2rem;
       font-weight: bold;
@@ -8,6 +18,7 @@
       padding: 1% 0%;
   }
   display: flex;
+  
   flex-direction: column;
 }
 .container {
@@ -22,6 +33,21 @@
   height: 90%;
   margin-top: 3%;
 }
+
+.user-img-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .material-symbols-outlined {
+    cursor: pointer;
+    user-select: none;
+    position: absolute;
+    font-size: 7rem;
+    color: #fafdff;
+  }
+  
+}
+
 .user-space {
   display: flex;
   flex-direction: column;
@@ -33,7 +59,6 @@
       img {
           border-radius: 50%;
           margin: 10% 0% 10% 0%;
-          cursor: pointer;
           max-height: 150px;
       }
   }
@@ -64,7 +89,9 @@
   background-color: #fafdff;
   border: 1px solid #9f9f9f !important;
   border-radius: 8px;
+  font-size: 1rem;
 }
+
 .left-side {
   display: flex;
   flex-direction: column;
@@ -91,12 +118,28 @@
   border-radius: 5px;
   display: flex;
   padding: 1%;
-  max-width: 11%;
+  max-width: 6rem;
   justify-content: center;
 }
-
-.edit-row {
+.save-wrapper {
+  min-height: 32%;
   display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.save {
+  background: #308c47;
+  border: none;
+  color: #ffffff;
+  border-radius: 5px;
+  display: flex;
+  padding: 1%;
+  max-width: 12rem;
+  justify-content: center;
+}
+.buttons-row {
+  display: flex;
+  min-height: 40px;
   justify-content: flex-end;
 }
 
@@ -117,10 +160,12 @@
   margin-bottom: 5%;
   font-size: 1.7rem;
 }
+
 .tab-selected {
   color: #e4531e;
   border-bottom: 3px solid #e4531e !important;
 }
+
 .profile-name-function {
   display: flex;
   flex-direction: column;
@@ -130,21 +175,4 @@
 }   
 .localization-label {
   font-size: 1.5rem;
-}
-
-.folows-info {
-  .folows-info-division {
-    border-right: 1px solid ;
-  }
-  span {
-    font-size: 1.4rem;
-  }
-  label {
-    color: #6c6c6c;
-  }
-  .col-6 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
 }

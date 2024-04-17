@@ -65,6 +65,9 @@ a {
     padding-bottom: 1%;
   }
 }
+.cpf-input {
+  padding-right: 0%;
+}
 
 .toggle-container {
   display: flex;
@@ -74,6 +77,7 @@ a {
   div {
     padding: 5px 0px;
     cursor: pointer;
+    user-select: none;
     color: #b5b4b6;
     background: #e6e0e9;
     border-radius: 15px;
@@ -81,6 +85,7 @@ a {
   .cpf-side {
     padding: 0px 10px 0px 20px;
   }
+  
   .cnpj-side {
     padding: 0px 20px 0px 10px;
   }
@@ -126,11 +131,13 @@ a {
     color: #000000;
   }
 }
-.dds__check{
- font-size: 1.3rem !important;
- font-weight: bolder !important;
+.dot {
+  background: black;
+  width: 10px;
+  border-radius: 19px;
+  height: 10px;
+  margin: 7px;
 }
-
 .errors {
   label{
     margin-left: 2px;

@@ -43,6 +43,7 @@ const routes: Routes = [
   { path: 'first-access/:token', component: FirstAccessComponent },
   { path: 'list-users', component: UserListComponent, canActivate: [AuthGuard]},
   { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]},
+  { path: 'profile-details', component: UserProfileComponent, canActivate: [AuthGuard]},
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'projects', component: ProjectsComponent, canActivate: [AuthGuard] },
   { path: 'project-details', component: ProjectDetailsComponent, canActivate: [AuthGuard], canDeactivate: [DeactivateGuard] },
