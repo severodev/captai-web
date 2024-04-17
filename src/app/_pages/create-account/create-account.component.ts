@@ -102,8 +102,7 @@ export class CreateAccountComponent implements OnInit {
           password: this.userForm.controls['password'].value,
           acceptedTermsOfUse: this.userForm.controls['acceptedTermsOfUse'].value,
           acceptedPrivacyPolicy: this.userForm.controls['acceptedPrivacyPolicy'].value,
-          profile: 'ADMIN',
-          role: 1
+          role: 2
         }
         this.userService.createUser(userDTO).subscribe((resp) => {
           console.log(resp)

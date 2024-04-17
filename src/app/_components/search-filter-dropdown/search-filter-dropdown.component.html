@@ -9,8 +9,13 @@
         <div class="body">
         <div class="wrapper">
             <label>Filtrar por temática</label>
-            <ng-select [(ngModel)]="selectedCity" [multiple]="true" class="select">
-                <ng-option class="option" [value]="item" *ngFor="let item of temas">{{ item }}</ng-option>
+            <ng-select
+                placeholder="Escolha o tema"
+                [items]="temas"
+                bindLabel="name"
+                [clearable]="false"
+                [multiple]="false"
+                formControlName="">
             </ng-select>
             <label>Área</label>
             <div class="area-selection">

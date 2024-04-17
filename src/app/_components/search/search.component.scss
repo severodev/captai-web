@@ -4,7 +4,7 @@
         cursor: pointer;
     }
 }
-#dropdownMenuButton {
+#dropdownMenuClickableOutside {
     display: flex;
     color: #fff;
     font-size: .9rem !important;
@@ -25,6 +25,31 @@
     .filter {
         min-width: 10%;
     }
+}
+.filter-buttons {
+    display: flex;
+    justify-content: flex-end;
+    padding: 2% 7%;
+}
+
+.btn {   
+    display: flex;
+    max-width: 80px;
+    max-height: 30px;
+    align-items: center;
+    justify-content: center;
+    margin: 3px 5px;
+    border-radius: 8px;
+}
+.btn-apply-filter {
+    background: #5e5adb;
+    color: #ffffff;
+    border: 1px solid #5e5adb;
+}
+.btn-close-filter {
+    background: #ffffff;
+    color: #525a6a;
+    border: 1px solid #888888;
 }
 .search-bar {
     input {
@@ -64,6 +89,7 @@
     flex-direction: column;
 }
 .row-header {
+    font-weight: 500;
     padding: 2% 0% 0.3%;
     span {
         color: #818181;
@@ -90,7 +116,12 @@
         span {
             color: #2871ff;
             cursor: pointer;
+            user-select: none;
+            &:hover {
+                text-decoration: underline;
+            }
         }
+        
     }
     .dds__icons {
         font-size: 1.6rem;
@@ -140,17 +171,18 @@
     }
     span {
         font-size: 1rem;
+        font-weight: normal;
     }
     .col-12 {
       display: flex;
         flex-direction: column;
-        padding: 0% 4% 1% 4%; 
+        padding: 0% 5% 0%;
     }
     div {
         display: flex;
         justify-content: flex-end;
         a {
-            margin-top: 2%;
+            margin-top: 3px;
             color: #2871ff;
             text-decoration: underline;
             cursor: pointer;
@@ -164,17 +196,15 @@
 .dark_row {
     background-color: #f8f8f8;
 }
-
+.affinity-field-label {
+    padding-left: 20px;
+}
 .affinity-field {
     display: flex;
     justify-content: center;
     color: #ffc000;
     font-size: 16px;
     align-items: baseline;
-    .dds__star-filled {
-       font-size: 1rem; 
-    }
-    
 }
 .toggle-objectives {
     font-weight: 900;
@@ -198,24 +228,35 @@
 .filter-field {
     justify-content: center;
     display: flex;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
 }
 
 .static-filter {
-    margin-left: 2px;
-    margin-top: 3px;
+    margin-left: 3px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    
     span {
         padding: 0;
-        height: 8px;
+        height: 6px;
         display: flex;
-        font-size: 12px;
-        align-items: center; 
+        font-size: 8px;
+        align-items: center;
     }
-    
 }
+
+.arrow-highlight {
+    font-weight: bold;
+    font-size: 9px !important;
+    color: #3d3d3d !important;
+}
+
 .value-field {
     justify-content: flex-start !important;
+    padding-left: 1px;
 }
 
 @media (max-height: 900px) {

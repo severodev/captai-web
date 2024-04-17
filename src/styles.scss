@@ -59,7 +59,7 @@ body {
   }
 
   .form-control:disabled, .form-control[readonly] {
-    background-color: #fcfcfc;
+    background-color: #eaeae9;
     opacity: 1;
     cursor: not-allowed;
   }
@@ -255,10 +255,10 @@ body {
   border-radius: 20px;
   padding: 0px;
   box-shadow: 0px 2px 5px #00000029;
-}
+}/* 
 .ng-dropdown-panel {
   position: relative !important;
-}
+} */
 .ng-option {
   border-top: 1px solid #c0c0c0;
 }

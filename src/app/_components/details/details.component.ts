@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Breadcrumb } from 'src/app/_interfaces/breadcrumb';
 import { EditalService } from 'src/app/_services/edital.service';
+import { LoaderService } from 'src/app/_services/loader.service';
 
 @Component({
   selector: 'app-details',
@@ -16,7 +17,10 @@ export class DetailsComponent {
     public router: Router,
     private activatedRoute: ActivatedRoute,
     private editalService: EditalService,
-    ) { }
+    private spinnerService: LoaderService,
+    ) { 
+      this.spinnerService.isLoading.next(true);
+    }
 
   public breadcrumbPages: Breadcrumb[] = [
     { label: 'Pesquisa de oportunidades', route: '/search' },
@@ -24,11 +28,10 @@ export class DetailsComponent {
   ];
 
   ngOnInit(): void {
-   let editalId = (this.activatedRoute.snapshot.queryParamMap.get('editalId'));
+    let editalId = this.activatedRoute.snapshot.queryParamMap.get('editalId');
     this.editalService.getById(editalId).subscribe(data => {
       this.edital = data;
       this.edital.areaList = data.areaList.split(";")
-      console.log('list', this.edital)
-    });
+    }).add(() => this.spinnerService.isLoading.next(false));
   }
 }

@@ -1,5 +1,5 @@
-<app-toast></app-toast>
-  <div class="container-fluid"  *ngIf="accessToken">
+  <div class="topbar-logo" *ngIf="!accessToken"><img src="../../../assets/images/captiLogo.png" class="logo"></div>
+  <div class="container-fluid" *ngIf="accessToken">
     <div class="row flex-nowrap">
       <div class="col-auto col-md-3 col-xl-2 px-0 side-menu-body" >
         <img src="../../../assets/images/captiLogo.png" class="logo">
@@ -13,7 +13,7 @@
                 <span class="ms-1 d-none d-sm-inline">Seu perfil</span>
               </a>
             </li>
-            <li class="nav-item disabled" routerLinkActive="item-selected">
+            <li class="nav-item disabled" routerLinkActive="">
                 <a [routerLink]="['/']" class="nav-link align-middle px-0">
                   <span class="icons_google material-symbols-outlined">
                     dashboard
@@ -63,11 +63,13 @@
             </li>
           </ul>
         </div>
-      </div>
+      </div> 
       <div class="col py-3 card-principal">
+        <app-toast *ngIf="accessToken"></app-toast>
         <router-outlet></router-outlet>
       </div>
     </div>
 </div>
+<app-toast *ngIf="!accessToken"></app-toast>
 <router-outlet *ngIf="!accessToken"></router-outlet>
 <app-custom-loader></app-custom-loader>

@@ -14,9 +14,9 @@ export class SearchComponent {
   public editais = [];
   public selected;
   public filterForm;
-  public agencyOrder = 'DESC';
-  public created = 'DESC';
-  public financingValue = 'DESC';
+  public agencyOrder = '';
+  public created = '';
+  public financingValue = '';
 
   constructor(
     private editalService: EditalService,
@@ -69,34 +69,6 @@ export class SearchComponent {
     }
     return area;
   }
-
-  orderByInstitute() {
-    this.agencyOrder = this.agencyOrder === 'ASC' ? 'DESC': 'ASC';
-    let filter: EditalFilter = {
-      by: 'agency',
-      order: this.agencyOrder
-    }
-    this.getEditais(filter);
-  }
-
-  orderBycreated() {
-    this.created = this.created === 'ASC' ? 'DESC': 'ASC';
-    let filter: EditalFilter = {
-      by: 'created',
-      order: this.created
-    }
-    this.getEditais(filter);
-  }
-
-  orderByfinancingValue() {
-    this.financingValue = this.financingValue === 'ASC' ? 'DESC': 'ASC';
-    let filter: EditalFilter = {
-      by: 'financingValue',
-      order: this.financingValue
-    }
-    this.getEditais(filter);
-  }
-
   seeMore(id : number) {
     this.router.navigate(['/details'], { queryParams: { editalId: id } });
   }
@@ -117,5 +89,72 @@ export class SearchComponent {
           details.setAttribute('hidden', 'true');
         }
     }
+  }
+
+
+  orderByInstitute() {
+    this.created = '';
+    this.financingValue = '';
+    
+    switch (this.agencyOrder) {
+      case '' : this.agencyOrder = 'ASC'
+      break;
+      case 'ASC' : this.agencyOrder = 'DESC'
+      break;
+      case 'DESC' : this.agencyOrder = ''
+      break;
+    }
+
+    let filter: EditalFilter = {
+      by: 'agency',
+      order: this.agencyOrder != '' ? this.agencyOrder : null
+    }
+    this.getEditais(filter);
+  }
+
+  orderBycreated() {
+    this.financingValue = '';
+    this.agencyOrder = '';
+
+    switch (this.created) {
+      case '' : this.created = 'ASC'
+      break;
+      case 'ASC' : this.created = 'DESC'
+      break;
+      case 'DESC' : this.created = ''
+      break;
+    }
+
+    let filter: EditalFilter = {
+      by: 'created',
+      order: this.created != '' ? this.created : null
+    }
+    this.getEditais(filter);
+  }
+
+  orderByfinancingValue() {
+    this.created = '';
+    this.agencyOrder = '';
+
+    switch (this.financingValue) {
+      case '' : this.financingValue = 'ASC'
+      break;
+      case 'ASC' : this.financingValue = 'DESC'
+      break;
+      case 'DESC' : this.financingValue = ''
+      break;
+    }
+
+    let filter: EditalFilter = {
+      by: 'financingValue',
+      order: this.financingValue != '' ? this.financingValue : null
+    }
+    this.getEditais(filter);
+  }
+
+  cancelFilter() {
+    let modalRef = document.getElementById('filter-modal');
+    if (modalRef) 
+      modalRef.classList.remove("show");
   }
 }

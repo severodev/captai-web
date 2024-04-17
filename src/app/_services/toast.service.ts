@@ -6,26 +6,26 @@ import { Subject } from 'rxjs';
 })
 export class ToastService {
 
-  public accessTokenSubject: Subject<{ title: string, message: string, color: string, timer: number }>;
+  public accessTokenSubject: Subject<{ title: string, message: string, color: string, fontColor: String, timer: number }>;
 
   constructor() {
-    this.accessTokenSubject = new Subject<{ title: string, message: string, color: string, timer: number }>();
+    this.accessTokenSubject = new Subject<{ title: string, message: string, color: string, fontColor: String, timer: number }>();
   }
 
-  private showToast(title: string, message: string, color: string, timer: number) {
-    this.accessTokenSubject.next({ title: title, message: message, color: color, timer: timer });
+  private showToast(title: string, message: string, color: string, fontColor:string, timer: number) {
+    this.accessTokenSubject.next({ title: title, message: message, color: color, fontColor: fontColor, timer: timer });
   }
 
   success(title: string, message: string, timer: number = undefined) {
-    this.showToast(title, message, '#6EA204', timer);
+    this.showToast(title, message, '#ebf4ed', '#308c47',timer);
   }
 
   error(title: string, message: string, timer: number = undefined) {
-    this.showToast(title, message, '#ce11261c', timer);
+    this.showToast(title, message, '#fbe6e5', '#be3f3f',timer);
   }
 
   info(title: string, message: string, timer: number = undefined) {
-    this.showToast(title, message, '#007DB8', timer);
+    this.showToast(title, message, '#a8d8ff', '#006ac1',timer);
   }
 
 }

@@ -58,6 +58,7 @@ import { CollaboratorService } from './_services/collaborator.service';
 import { InstituteService } from './_services/institute.service';
 import { DocumentService } from './_services/document.service';
 import { BankService } from './_services/bank.service';
+import { ImagekitService } from './_services/Imagekit.service';
 import { ContributionService } from './_services/contribution.service';
 import { LoanService } from './_services/loan.service';
 import { ToastService } from './_services/toast.service';
@@ -357,6 +358,7 @@ export const customCurrencyMaskConfig = {
     FormBuilder,
     DeactivateGuard,
     ProfileService,
+    ImagekitService,
     PermissionService,
     provideNgxMask(),
     MatDatepickerModule

@@ -3,12 +3,12 @@ import { User } from '../_models/user';
 export class UserDto {
     convertResponseToUserModel(data: any): User {
         let user = new User();
-       /*  user.id = data.id;
-        user.email = data.email;
-        user.fullname = data.fullname;
-        user.language = data.language;
-        user.role = data.role;
-        user.username = data.username; */
+        user.id = data.id;
+        user.name = data.email;
+        user.lastName = data.fullname;
+        user.email = data.language;
+        user.cpfCnpj = data.role;
+        user.language = data.username;
         return user;
       }
 }

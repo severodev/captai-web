@@ -23,12 +23,7 @@ export class UserService {
 
   getRoles(): Observable<any> {
     let url = `${environment.apiUrl}/roles`;
-    return this.http.get(url).pipe(
-      map(roles => (roles)),
-      retry(1),
-      shareReplay()
-    )
-
+    return this.http.get(url)
   }
 
   getUsers(filter: UserFilter, pageRequest: PageRequest): Observable<any> {
@@ -48,15 +43,13 @@ export class UserService {
     return this.http.get(url, {params})
   }
 
-  createUser(body: User): Observable<User> {
+  createUser(body: User): Observable<any> {
     let url = `${environment.apiUrl}/users`;
-    
     return this.http.post(url, body)
   }
 
   editUSer(id: number, changes: Partial<User>): Observable<any> {
     let url = `${environment.apiUrl}/users/${id}`;
-
     return this.http.put(url, changes)
   }
 

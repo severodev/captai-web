@@ -1,9 +1,15 @@
 <div class="wrapper">
     <div class="title">
-        <span>
+        <span *ngIf="!isAdmVision">
             Seu perfil
         </span>
-        <label>
+        <div *ngIf="isAdmVision">
+            <span class="dds__icons dds__chevron-left" (click)="router.navigate(['/list-users'])"></span>
+            <span>
+                Detalhes do cliente
+            </span>
+        </div>
+        <label *ngIf="!isAdmVision">
             Veja e alter suas informações
         </label>
     </div>
@@ -31,39 +37,36 @@
                         <div class="user-labels">
                             <span class="profile-label"> Perfil </span>
                             <div class="user-img">
-                                <img src="{{user.user.profileImageUrl}}" title="Clique para altrar a imagem de perfil"
-                                    (click)="uploadProfileImage()">
-                                <div style="display: none;" class="fileUploadArea">
-                                    <input type="file" name="profileImagemUpload" id="profileImagemUpload"
-                                        accept=".jpeg,.jpg,.png,.gif,.webm"
-                                        (change)="onFileSelected($event)">
+                                <div class="user-img-wrapper">
+                                    <div class="material-symbols-outlined" *ngIf="!isAdmVision && editMode" 
+                                    (click)="uploadProfileImage()"> 
+                                        edit 
+                                    </div>
+                                    <img id="usar-image" [src]="userProfile">
+                                    <div style="display: none;" class="fileUploadArea">
+                                        <input type="file" name="profileImagemUpload" id="profileImagemUpload"
+                                            accept=".jpeg,.jpg,.png,.gif,.webm"
+                                            (change)="onFileSelected($event)">
+                                    </div>
                                 </div>
                             </div>
                             <div class="profile-name-function">
-                                <label>{{user.user.name}} {{user.user.lastName}}</label>
-                                <span> {{user.user.role}} </span>
+                                <label>
+                                    {{isAdmVision ? userForm.controls['name'].value : user.user.name}} 
+                                    {{isAdmVision ? userForm.controls['lastName'].value : user.user.lastName}}</label>
+                                <span> {{isAdmVision ? userForm.controls['role'].value?.name : user.user.role}} </span>
                             </div>
                             <span class="localization-label">localização, placeholder</span>
                         </div>
-                        <div class="row folows-info">
-                            <div class="col-6 folows-info-division">
-                                <span>9.999</span>
-                                <label>Seguidores</label>
-                            </div>
-                            <div class="col-6">
-                                <span>9.999</span>
-                                <label>Seguindo</label>
-                            </div>
-                        </div>
                     </div>
                 </div>
-                <button type="button" class="logout" (click)="logout()">
+                <button type="button" class="logout" (click)="logout()" *ngIf="!isAdmVision">
                     <span> Deslogar da sua conta </span>
                 </button>
             </div>
             <div class="right-side col-8">
-                <div class="row edit-row">
-                    <button type="button" class="col-3 edit" disabled title="Ação temporariamente desabilitada">
+                <div class="row buttons-row">
+                    <button type="button" class="col-3 edit" (click)="edit()" *ngIf="!editMode">
                         <span class="material-symbols-outlined">
                             edit
                         </span>
@@ -75,60 +78,56 @@
                         <div class="form-group row">
                             <div class="form-group col-7">
                                 <label>Nome</label>
-                                <input type="text" class="form-control" [(ngModel)]="user.user.name"
-                                    formControlName="name" name="username" [attr.readonly]="true">
+                                <input type="text" class="form-control" formControlName = "name" name="username">
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="form-group col-7">
                                 <label>Sobrenome</label>
-                                <input type="text" class="form-control" [(ngModel)]="user.user.lastName"
-                                    formControlName="lastName" name="lastName" [attr.readonly]="true">
+                                <input type="text" class="form-control" formControlName = "lastName" name="lastName">
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="form-group col-7">
-                                <label>CPF / CNPJ</label>
-                                <input type="text" [mask]="mask" class="form-control" [(ngModel)]="user.user.cpfCnpj"
-                                    formControlName="cpfCnpj" name="cpfCnpj" [attr.readonly]="true">
+                                <label>CPF/CNPJ</label>
+                                <input type="text" [mask]="mask" class="form-control" formControlName = "cpfCnpj" name="cpfCnpj">
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="form-group col-7">
                                 <label>Email</label>
-                                <input type="text" class="form-control" [(ngModel)]="user.user.email"
-                                    formControlName="email" name="email" [attr.readonly]="true">
+                                <input type="text" class="form-control" formControlName = "email" name="email">
                             </div>
                         </div>
                     </div>
-
                 </form>
                 <form [formGroup]="userForm" *ngIf="currentTab === tabOptions.SERVICE">
                     <div class="">
                         <div class="form-group row">
                             <div class="form-group col-7">
                                 <label>Selecione um segmento</label>
-                                <input type="select" class="form-control" formControlName="segment" name=""
-                                    [attr.readonly]="true">
+                                <input type="select" class="form-control" formControlName = "segment" name="" >
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="form-group col-7">
                                 <label>Selecione as atividades</label>
-                                <input type="select" class="form-control" formControlName="activities" name=""
-                                    [attr.readonly]="true">
+                                <input type="select" class="form-control" formControlName = "activities" name="" >
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="form-group col-7">
                                 <label>Escolha a abrangencia territorial</label>
-                                <input type="select" class="form-control" formControlName="abrangency" name=""
-                                    [attr.readonly]="true">
+                                <input type="select" class="form-control" formControlName = "abrangency" name="" >
                             </div>
                         </div>
                     </div>
-
                 </form>
+                <div class="save-wrapper">
+                    <button type="button" class="col-3 save" (click)="save()" *ngIf="editMode">
+                        <span> Salvar alterações </span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>

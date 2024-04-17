@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/_services/auth.service';
 import { ToastService } from 'src/app/_services/toast.service';
 
 @Component({
@@ -13,20 +14,28 @@ export class ToastComponent implements OnInit {
   public title: string = '';
   public message: string = '';
   public color: string;
+  public fontColor: string;
 
   public timeout;
 
-  constructor(
-    private toastService: ToastService
-  ) { }
+  public accessToken: string;
 
-  ngOnInit(): void {
-    this.toastService.accessTokenSubject.subscribe((data: {title: string, message: string, color: string, timer: number}) => {
-      this.showToast(data.title, data.message, data.color, data.timer);
+  constructor(
+    private toastService: ToastService,
+    private authService: AuthService
+  ) {
+    this.authService.accessToken.subscribe(token => {
+      this.accessToken = token;
     });
   }
 
-  showToast(title: string, message: string, color: string, timer: number) {
+  ngOnInit(): void {
+    this.toastService.accessTokenSubject.subscribe((data: {title: string, message: string, color: string, fontColor: string, timer: number}) => {
+      this.showToast(data.title, data.message, data.color, data.fontColor, data.timer);
+    });
+  }
+
+  showToast(title: string, message: string, color: string, fontColor: string, timer: number) {
     this.title = title;
     this.message = message;
 
@@ -37,6 +46,7 @@ export class ToastComponent implements OnInit {
 
     this.isShow = true;
     this.color = color;
+    this.fontColor = fontColor;
 
     this.timeout = setTimeout(() => {
       this.close();

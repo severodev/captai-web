@@ -18,14 +18,18 @@
         </div>
         
         <div class="filter"> 
-          <div id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+          <div id="dropdownMenuClickableOutside" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="false">
             <span class="material-symbols-outlined">filter_list</span>
             <label>
               Filtros
             </label>
           </div>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton" data-bs-auto-close="outside">
+          <div id="filter-modal" class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuClickableOutside">
             <app-search-filter-dropdown></app-search-filter-dropdown>
+            <div class="filter-buttons">
+              <button type="button" class="btn btn-close-filter" (click)="cancelFilter()">Fechar</button>
+              <button type="button" class="btn btn-apply-filter" (click)="cancelFilter()">Filtrar</button>
+            </div>
           </div>
         </div>
       </div>  
@@ -35,28 +39,28 @@
         <div class="col-3 name">
           <span>Nome</span>
         </div>
-        <div class="col-1 agency ilter-field" (click)="orderByInstitute()">
-          <span>Instituto</span>
+        <div class="col-1 agency filter-field" (click)="orderByInstitute()">
+          <span>Instituição</span>
           <div class="static-filter">
-            <span>∧</span>
-            <span>∨</span>
+            <span class="dds__icons dds__chevron-up"  [ngClass]="{'arrow-highlight' : agencyOrder == 'ASC'}"></span>
+            <span class="dds__icons dds__chevron-down" [ngClass]="{'arrow-highlight' : agencyOrder == 'DESC'}"></span>
           </div>
         </div>
         <div class="col-2 filter-field" (click)="orderBycreated()">
           <span>Início</span>
           <div class="static-filter">
-            <span>∧</span>
-            <span>∨</span>
+            <span class="dds__icons dds__chevron-up"  [ngClass]="{'arrow-highlight' : created == 'ASC'}"></span>
+            <span class="dds__icons dds__chevron-down" [ngClass]="{'arrow-highlight' : created == 'DESC'}"></span>
           </div>
         </div>
         <div class="col-1 filter-field value-field" (click)="orderByfinancingValue()">
           <span>Valor</span>
           <div class="static-filter">
-            <span>∧</span>
-            <span>∨</span>
+            <span class="dds__icons dds__chevron-up"  [ngClass]="{'arrow-highlight' : financingValue == 'ASC'}"></span>
+            <span class="dds__icons dds__chevron-down" [ngClass]="{'arrow-highlight' : financingValue == 'DESC'}"></span>
           </div>
         </div>
-        <div class="col-1">
+        <div class="col-1 affinity-field-label">
           <span>Afinidade</span>
         </div>
         <div class="col-2">
@@ -89,8 +93,7 @@
                 <span>{{ edital.financingValue }}</span>
               </div>
               <div class="col-1 affinity-field">
-                <label class="dds__icons dds__star-filled"></label>
-                <span>{{ edital.Afinidade ??  ' 10' }}</span>
+                <span>{{ edital.Afinidade ??  '10' }}</span>
               </div>
               <div class="col-2 area-List">
                 <span *ngFor="let item of edital.areaList">{{ reduceArea(item) }}</span>

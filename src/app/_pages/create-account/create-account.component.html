@@ -30,10 +30,10 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-6 cpf-input">
                         <div class="form-group">
                             <label>CPF / CNPJ</label>
-                            <input type="text" [mask]="!cpfInput ? '00.000.000/0000-00':'000.000.000-00'" class="form-control" formControlName = "cpf_cnpj" name="CPF/CNPJ"  
+                            <input type="text" [mask]="!cpfInput ? '00.000.000/0000-00':'000.000.000-00'"  [placeholder]="!cpfInput ? 'Digite seu CNPJ':'Digite seu CPF'" class="form-control" formControlName = "cpf_cnpj" name="CPF/CNPJ"  
                             [ngClass]="{
                                 'invalid-field': !userForm.get('cpf_cnpj').valid && showErrors}">
                             <div class="invalid-message" *ngIf="!userForm.get('cpf_cnpj').valid && showErrors">
@@ -62,7 +62,7 @@
                                 <span>Preenchimento obrigatório</span>
                             </div>
                             <div class="invalid-message" *ngIf="!userForm.get('email').valid && userForm.get('email').value != '' && showErrors">
-                                <span>Informação não é válida.</span>
+                                <span>Informação não é válida</span>
                             </div>
                         </div>
                     </div>
@@ -76,10 +76,10 @@
                                     <span>Preenchimento obrigatório</span>
                                 </div>
                                 <div class="invalid-message" *ngIf="userForm.get('emailConfirmation').value != userForm.get('email').value && userForm.get('email').valid && userForm.get('emailConfirmation').valid">
-                                    <span>Os e-mails não conferem.</span>
+                                    <span>Os e-mails não conferem</span>
                                 </div>
                                 <div class="invalid-message" *ngIf="!userForm.get('emailConfirmation').valid && userForm.get('emailConfirmation').value != ''">
-                                    <span>Informação não é válida.</span>
+                                    <span>Informação não é válida</span>
                                 </div>
                         </div>
                     </div>
@@ -126,22 +126,22 @@
                         <label class="password-errors-label">Sua senha deve conter</label>
                         <div class="password-errors">
                             <div class="errors" *ngIf="!userForm.get('password').hasError('minLength')">
-                                <span class="dds__icons dds__check">
+                                <span class="dot">
                                 </span>
                                 <label>Mais de 8 caracteres</label>
                             </div>
                             <div class="errors" *ngIf="!userForm.get('password').hasError('hasUpperCase')">
-                                <span class="dds__icons dds__check">
+                                <span class="dot">
                                 </span>
                                 <label>Uma letra maiúscula </label>
                             </div>
                             <div class="errors" *ngIf="!userForm.get('password').hasError('hasNumeric')">
-                                <span class="dds__icons dds__check">
+                                <span class="dot">
                                 </span>
                                 <label>Um número</label>
                             </div>
                             <div class="errors" *ngIf="!userForm.get('password').hasError('specialCharacters')">
-                                <span class="dds__icons dds__check">
+                                <span class="dot">
                                 </span>
                                 <label>Um caractere especial</label>
                             </div>
@@ -182,7 +182,7 @@
                             <a (click)="showPrivacyPolice()"> Políticas de privacidade </a>
                         </div>
                         <div class="invalid-message mb-3" *ngIf="(!userForm.get('acceptedTermsOfUse').value || !userForm.get('acceptedPrivacyPolicy').value)  && showErrors">
-                            <span>O aceite dos termos de uso e políticas de privacidade são obrigatórios.</span>
+                            <span>O aceite dos termos de uso e políticas de privacidade são obrigatórios</span>
                         </div>
                     </div>
                     <button class="btn-advance">
