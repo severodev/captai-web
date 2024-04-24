@@ -15,7 +15,7 @@ export class SearchComponent {
   public selected;
   public filterForm;
   public agencyOrder = '';
-  public created = 'DESC';
+  public submission = 'DESC';
   public financingValue = '';
 
   constructor(
@@ -30,7 +30,7 @@ export class SearchComponent {
      }
   
   ngOnInit(): void {
-    this.getEditais({by: 'created', order: 'DESC'})
+    this.getEditais({by: 'submission', order: 'DESC'})
   }
 
   filter() {
@@ -93,7 +93,7 @@ export class SearchComponent {
 
 
   orderByInstitute() {
-    this.created = '';
+    this.submission = '';
     this.financingValue = '';
     
     switch (this.agencyOrder) {
@@ -112,28 +112,28 @@ export class SearchComponent {
     this.getEditais(filter);
   }
 
-  orderBycreated() {
+  orderBySubmission() {
     this.financingValue = '';
     this.agencyOrder = '';
 
-    switch (this.created) {
-      case '' : this.created = 'ASC'
+    switch (this.submission) {
+      case '' : this.submission = 'ASC'
       break;
-      case 'ASC' : this.created = 'DESC'
+      case 'ASC' : this.submission = 'DESC'
       break;
-      case 'DESC' : this.created = ''
+      case 'DESC' : this.submission = ''
       break;
     }
 
     let filter: EditalFilter = {
-      by: 'created',
-      order: this.created != '' ? this.created : null
+      by: 'submission',
+      order: this.submission != '' ? this.submission : null
     }
     this.getEditais(filter);
   }
 
   orderByfinancingValue() {
-    this.created = '';
+    this.submission = '';
     this.agencyOrder = '';
 
     switch (this.financingValue) {
