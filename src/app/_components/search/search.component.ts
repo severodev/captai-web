@@ -15,7 +15,7 @@ export class SearchComponent {
   public selected;
   public filterForm;
   public agencyOrder = '';
-  public created = '';
+  public created = 'DESC';
   public financingValue = '';
 
   constructor(
@@ -30,7 +30,7 @@ export class SearchComponent {
      }
   
   ngOnInit(): void {
-    this.getEditais(null)
+    this.getEditais({by: 'created', order: 'DESC'})
   }
 
   filter() {

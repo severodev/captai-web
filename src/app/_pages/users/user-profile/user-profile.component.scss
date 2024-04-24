@@ -84,10 +84,17 @@
       font-size: 1rem;
   }
 }
+.invalid-field {
+  border: 2px solid #ff0000 !important;
+}
 
+.invalid-message {
+  display: flex;
+  color: #ff0000;
+}
 .form-control {
   background-color: #fafdff;
-  border: 1px solid #9f9f9f !important;
+  border: 1px solid #9f9f9f;
   border-radius: 8px;
   font-size: 1rem;
 }
@@ -121,15 +128,30 @@
   max-width: 6rem;
   justify-content: center;
 }
-.save-wrapper {
+.buttons-wrapper {
   min-height: 32%;
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
 }
+.btn-cancel {
+  color: #ff7e64;
+  border: solid 2px #ff7e64;
+  border-radius: 6px !important;
+  background-color: #ffffff;
+  min-height: 40px;
+  align-items: center;
+  display: flex;
+  padding: 1%;
+  max-width: 12rem;
+  justify-content: center;
+  margin-right: 10px;
+}
+
 .save {
   background: #308c47;
   border: none;
+  border: solid 2px #308c47;
   color: #ffffff;
   border-radius: 5px;
   display: flex;
@@ -137,6 +159,7 @@
   max-width: 12rem;
   justify-content: center;
 }
+
 .buttons-row {
   display: flex;
   min-height: 40px;

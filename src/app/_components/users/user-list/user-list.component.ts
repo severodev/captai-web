@@ -94,6 +94,7 @@ export class UserListComponent implements OnInit {
 
   clearFilters() {
     this.filterForm.reset();
+    this.getUsers(null);
   }
 
   togleCpfCnpj(value: boolean) {
