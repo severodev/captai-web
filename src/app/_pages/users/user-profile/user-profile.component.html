@@ -53,8 +53,11 @@
                             <div class="profile-name-function">
                                 <label>
                                     {{isAdmVision ? userForm.controls['name'].value : user.user.name}} 
-                                    {{isAdmVision ? userForm.controls['lastName'].value : user.user.lastName}}</label>
-                                <span> {{isAdmVision ? userForm.controls['role'].value?.name : user.user.role}} </span>
+                                    {{isAdmVision ? userForm.controls['lastName'].value : user.user.lastName}}
+                                </label>
+                                <span> 
+                                    {{isAdmVision ? userForm.controls['role'].value?.name : user.user.role}} 
+                                </span>
                             </div>
                             <span class="localization-label">localização, placeholder</span>
                         </div>
@@ -66,6 +69,14 @@
             </div>
             <div class="right-side col-8">
                 <div class="row buttons-row">
+                    <div class="buttons-wrapper">
+                        <button type="button" class="col-3 btn-cancel" (click)="cancel()" *ngIf="editMode">
+                            <span> Cancelar </span>
+                        </button>
+                        <button type="button" class="col-3 save" (click)="save()" *ngIf="editMode">
+                            <span> Salvar alterações </span>
+                        </button>
+                    </div>
                     <button type="button" class="col-3 edit" (click)="edit()" *ngIf="!editMode">
                         <span class="material-symbols-outlined">
                             edit
@@ -73,7 +84,7 @@
                         <span> Editar </span>
                     </button>
                 </div>
-                <form [formGroup]="userForm" *ngIf="currentTab === tabOptions.PROFILE">
+                <form [formGroup]="userForm" (submit)="save()" *ngIf="currentTab === tabOptions.PROFILE">
                     <div class="">
                         <div class="form-group row">
                             <div class="form-group col-7">
@@ -90,18 +101,29 @@
                         <div class="form-group row">
                             <div class="form-group col-7">
                                 <label>CPF/CNPJ</label>
-                                <input type="text" [mask]="mask" class="form-control" formControlName = "cpfCnpj" name="cpfCnpj">
+                                <input type="text" [mask]="mask" class="form-control" formControlName = "cpfCnpj" name="cpfCnpj"
+                                [ngClass]="{'invalid-field': !userForm.get('cpfCnpj').valid && showErrors}">
+                                <div class="invalid-message" *ngIf="!userForm.get('cpfCnpj').valid && showErrors">
+                                    <span>Preenchimento obrigatório</span>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="form-group col-7">
                                 <label>Email</label>
-                                <input type="text" class="form-control" formControlName = "email" name="email">
+                                <input type="text" class="form-control" formControlName = "email" name="email"
+                                [ngClass]="{'invalid-field': userForm.get('email').invalid && showErrors}">
+                                <div class="invalid-message" *ngIf="userForm.get('email').value == '' && showErrors">
+                                    <span>Preenchimento obrigatório</span>
+                                </div>
+                                <div class="invalid-message" *ngIf="!userForm.get('email').valid && userForm.get('email').value != '' && showErrors">
+                                    <span>Informação não é válida</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </form>
-                <form [formGroup]="userForm" *ngIf="currentTab === tabOptions.SERVICE">
+                <form [formGroup]="userForm" (submit)="save()" *ngIf="currentTab === tabOptions.SERVICE">
                     <div class="">
                         <div class="form-group row">
                             <div class="form-group col-7">
@@ -123,11 +145,6 @@
                         </div>
                     </div>
                 </form>
-                <div class="save-wrapper">
-                    <button type="button" class="col-3 save" (click)="save()" *ngIf="editMode">
-                        <span> Salvar alterações </span>
-                    </button>
-                </div>
             </div>
         </div>
     </div>

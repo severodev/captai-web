@@ -73,7 +73,7 @@
           <span>Status</span>
         </div>
         <div class="col-2">
-          <span>Abrangância</span>
+          <span>Abrangência</span>
         </div>
         <div class="col-2">
           <span>CPF/CNPJ</span>
@@ -103,7 +103,7 @@
                 <span> Placeholder </span>
               </div>
               <div class="col-2">
-                <span >{{ user.cpfCnpj }}</span>
+                <span>{{ user.cpfCnpj | cpfCnpjFormat }}</span>
               </div>
               <div class="col-2 buttons-div">
                 <span class="details" (click)="userDetails(user.id)">Ver</span>

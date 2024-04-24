@@ -12,7 +12,7 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { NgxSliderModule } from 'ngx-slider-v2';
 import { NgSelectModule } from '@ng-select/ng-select';
 
-
+import { CpfFormatPipe } from './pipes/cpf-cnpj-format.pipe';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -190,6 +190,7 @@ export const customCurrencyMaskConfig = {
 };
 @NgModule({
   declarations: [
+    CpfFormatPipe,
     AppComponent,
     LoginComponent,
     HomeComponent,

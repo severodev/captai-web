@@ -37,6 +37,8 @@ export class UserProfileComponent implements OnInit {
 
   public userProfile;
 
+  public showErrors = false;
+
   constructor(
     public router: Router,
     private activatedRoute: ActivatedRoute,
@@ -51,7 +53,7 @@ export class UserProfileComponent implements OnInit {
       name: [''],
       lastName: [''],
       email: [null, [Validators.required, emailValidator()]],
-      cpfCnpj: [''],
+      cpfCnpj: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(14)]],
       role: [''],
       password: [''],
       passwordConfirm: [''],
@@ -110,10 +112,10 @@ export class UserProfileComponent implements OnInit {
           {
             next: (result: any) => {
               if(result){
+                this.userProfile = result.newUrl;
                 this.user.user.profileImageUrl = result.newUrl;
                 this.user.user.profileImageId = result.newId;
                 this.user.manualTokenRefresh();
-                console.log('altualixou')
               }
             },
             complete: () => {
@@ -150,18 +152,34 @@ export class UserProfileComponent implements OnInit {
   }
 
   save() {
-    let userDTO: any = {
-      name: this.userForm.controls.name?.value,
-      lastName: this.userForm.controls.lastName?.value,
-      email: this.userForm.controls.email?.value,
-      cpfCnpj: this.userForm.controls.cpfCnpj?.value
+    if (this.userForm.valid) {
+      let userDTO: any = {
+        name: this.userForm.controls.name?.value,
+        lastName: this.userForm.controls.lastName?.value,
+        email: this.userForm.controls.email?.value,
+        cpfCnpj: this.userForm.controls.cpfCnpj?.value
+      }
+      this.userService.editUSer(this.userForm.controls.id.value, userDTO).subscribe(() => {
+        this.toastService.success('Alterações salvas com sucesso  ', '', 6000);
+        this.editMode = false;
+        this.showErrors = false;
+        this.userForm.disable()
+        if (!this.isAdmVision || this.userForm.controls.id.value === this.user.user.id)
+          this.user.manualTokenRefresh();
+      }, (err) => {
+        this.toastService.error('Ocorreu um erro ao atualizar este usuário! ', err , 6000);
+      });
+    } else {
+      this.showErrors = true;
     }
-    this.userService.editUSer(this.userForm.controls.id.value, userDTO).subscribe(() => {
-      this.toastService.success('Alterações salvas com sucesso  ', '', 6000);
-      this.editMode = false;
-      this.userForm.disable()
-    }, (err) => {
-      this.toastService.error('Ocorreu um erro ao atualizar este usuário! ', err , 6000);
-    });
+  }
+
+  cancel() {
+    this.userForm.disable()
+    this.userService.getUsers({ id : this.userForm.controls.id.value },{ itemsPerPage : 1 }).subscribe(data => {
+      this.setForm(data[0]);
+     });
+    this.showErrors = false;
+    this.editMode = false;
   }
 }
