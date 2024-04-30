@@ -23,3 +23,27 @@ export interface UserFilter {
   by?: string;
   order?: string;
 }
+
+export interface SegmentFilter {
+  name?: string;
+  by?: string;
+  order?: string;
+}
+
+export interface ActiviteFilter {
+  ids?: number[];
+  name?: string;
+  by?: string;
+  order?: string;
+}
+
+
+
+export interface StateFilter {
+  id?: number;
+  neme?: string;
+  abbreviation?: string;
+  country?: string;
+  by?: string;
+  order?: string;
+}

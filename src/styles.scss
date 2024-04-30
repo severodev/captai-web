@@ -366,3 +366,13 @@ body {
   border-top: 1px solid #e4e4e4;
   width: 100%;
 }
+
+.ng-select.ng-select-disabled>.ng-select-container {
+  background-color: #eaeae9 !important
+}
+
+.ng-select.ng-select-multiple.ng-select-disabled>.ng-select-container .ng-value-container .ng-value .ng-value-label {
+  padding: 0 5px;
+  background-color: #dfdfdf !important;
+  border-radius: 3px;
+}

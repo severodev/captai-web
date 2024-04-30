@@ -68,6 +68,7 @@ import { WorkplanService } from './_services/workplan.service';
 import { ExpenseService } from './_services/expense.service';
 import { FirstAccessService } from './_services/first-access.service';
 import { ProfileService } from './_services/profile.service';
+import { SegmentService } from './_services/segment.service';
 import { PermissionService } from './_services/permission.service';
 
 import { SupplierDetailsComponent } from './_pages/supplier-details/supplier-details.component';
@@ -171,6 +172,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core'
 import { EditalService } from './_services/edital.service';
+import { ActiviteService } from './_services/activite.service';
 import { RecomendationsComponent } from './_components/recomendations/recomendations.component';
 
 registerLocaleData(localePt, 'pt');
@@ -345,6 +347,7 @@ export const customCurrencyMaskConfig = {
     InstituteService,
     DocumentService,
     EditalService,
+    ActiviteService,
     BankService,
     ToastService,
     SupplierService,
@@ -359,6 +362,7 @@ export const customCurrencyMaskConfig = {
     FormBuilder,
     DeactivateGuard,
     ProfileService,
+    SegmentService,
     ImagekitService,
     PermissionService,
     provideNgxMask(),

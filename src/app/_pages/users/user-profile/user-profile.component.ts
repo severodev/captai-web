@@ -4,7 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { emailValidator } from 'src/app/_helpers/utils';
 import { User } from 'src/app/_models/user';
 import { ImagekitService } from 'src/app/_services/Imagekit.service';
+import { ActiviteService } from 'src/app/_services/activite.service';
 import { AuthService } from 'src/app/_services/auth.service';
+import { LocationService } from 'src/app/_services/location.service';
+import { SegmentService } from 'src/app/_services/segment.service';
 import { ToastService } from 'src/app/_services/toast.service';
 import { UserService } from 'src/app/_services/user.service';
 
@@ -39,6 +42,10 @@ export class UserProfileComponent implements OnInit {
 
   public showErrors = false;
 
+  public segments : Array<{id, name}>
+  public states : Array<{id, abbreviation, name}> = [];
+  public activities : Array<{id, name}>
+
   constructor(
     public router: Router,
     private activatedRoute: ActivatedRoute,
@@ -46,6 +53,9 @@ export class UserProfileComponent implements OnInit {
     public user: AuthService,
     private toastService: ToastService,
     private formBuilder: FormBuilder,
+    private segmentService: SegmentService,
+    private activiteService: ActiviteService,
+    private locationService: LocationService,
     private imageService: ImagekitService
   ) { 
     this.userForm = this.formBuilder.group({
@@ -58,16 +68,26 @@ export class UserProfileComponent implements OnInit {
       password: [''],
       passwordConfirm: [''],
       profileImageId: [null],
-      segment: [null],
-      activities: [null],
-      abrangency: [null],
+      segment: [null, Validators.required],
+      activite: [null, Validators.required],
+      abrangency: [null, Validators.required],
     });
 
     this.userProfile = document.getElementById('usar-image') as HTMLImageElement;
   }
 
   ngOnInit(): void {
-    this.userForm.disable()
+    this.segmentService.getAll({}, { itemsPerPage : 9999 }).subscribe((segments) => {
+      this.segments = segments;
+    });
+    this.activiteService.getAll({}, { itemsPerPage : 9999 }).subscribe((activity) => {
+      this.activities = activity;
+    });
+    this.locationService.getAll({}, { itemsPerPage : 9999 }).subscribe((states) => {
+      this.states = states;
+      this.states.push({id: 0, abbreviation: null, name: 'Todos'})
+      this.states = this.states.reverse();
+    });
     const userId = Number(this.activatedRoute.snapshot.queryParamMap.get('userId'));
     if (userId) {
       this.isAdmVision = true;
@@ -85,6 +105,8 @@ export class UserProfileComponent implements OnInit {
     this.userForm.patchValue(user)
     if (this.user.user.cpfCnpj.length > 11)
       this.mask = '00.000.000/0000-00'
+
+    this.userForm.disable()
   }
 
   setTab(selected) {
@@ -148,6 +170,9 @@ export class UserProfileComponent implements OnInit {
       this.userForm.controls.name.enable()
       this.userForm.controls.lastName.enable()
       this.userForm.controls.cpfCnpj.enable()
+      this.userForm.controls.segment.enable()
+      this.userForm.controls.activite.enable()
+      this.userForm.controls.abrangency.enable()
     }
   }
 
@@ -157,8 +182,12 @@ export class UserProfileComponent implements OnInit {
         name: this.userForm.controls.name?.value,
         lastName: this.userForm.controls.lastName?.value,
         email: this.userForm.controls.email?.value,
-        cpfCnpj: this.userForm.controls.cpfCnpj?.value
+        cpfCnpj: this.userForm.controls.cpfCnpj?.value,
+        segment: this.userForm.controls.segment?.value.id,
+        abrangency: this.userForm.controls.abrangency?.value.map((item) => item.id),
+        activite: this.userForm.controls.activite?.value.map((item) => item.id)
       }
+
       this.userService.editUSer(this.userForm.controls.id.value, userDTO).subscribe(() => {
         this.toastService.success('Alterações salvas com sucesso  ', '', 6000);
         this.editMode = false;
