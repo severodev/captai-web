@@ -5,6 +5,9 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NotificationModalComponent } from 'src/app/_components/notification-modal/notification-modal.component';
 import { TermsOfUseModalComponent } from 'src/app/_components/terms-of-use-modal/terms-of-use-modal.component';
 import { createPasswordStrengthValidator, emailValidator } from 'src/app/_helpers/utils';
+import { ActiviteService } from 'src/app/_services/activite.service';
+import { LocationService } from 'src/app/_services/location.service';
+import { SegmentService } from 'src/app/_services/segment.service';
 import { ToastService } from 'src/app/_services/toast.service';
 import { UserService } from 'src/app/_services/user.service';
 
@@ -21,14 +24,21 @@ export class CreateAccountComponent implements OnInit {
   public passwordConfirmationFieldVisible = false;
   public cpfInput = true;
   public showErrors = false;
-  
+
+  public segments : Array<{id, name}>
+  public states : Array<{id, abbreviation, name}> = [];
+  public activities : Array<{id, name}>
+
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
     public bsModalRef: BsModalRef,
     private modalService: BsModalService,
     private router: Router,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private segmentService: SegmentService,
+    private activiteService: ActiviteService,
+    private locationService: LocationService
   ) {
     this.userForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -40,13 +50,26 @@ export class CreateAccountComponent implements OnInit {
       passwordConfirm: ['', Validators.required],
       acceptedTermsOfUse: [false, Validators.required],
       acceptedPrivacyPolicy: [false,  Validators.required],
-      segment: [null],
-      activities: [null],
-      abrangency: [null],
+      segment: [null, Validators.required],
+      activities: [null, Validators.required],
+      abrangency: [null, Validators.required],
     });
    }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.segmentService.getAll({}, { itemsPerPage : 9999 }).subscribe((segments) => {
+      this.segments = segments;
+    });
+    this.activiteService.getAll({}, { itemsPerPage : 9999 }).subscribe((activity) => {
+      this.activities = activity;
+    });
+    this.locationService.getAll({}, { itemsPerPage : 9999 }).subscribe((states) => {
+      this.states = states;
+      this.states.push({id: 0, abbreviation: null, name: 'Todos'})
+      this.states = this.states.reverse();
+      console.log(states)
+    });
+  }
 
   toglePasswordField() {
     this.passwordFieldVisible = !this.passwordFieldVisible;
@@ -102,7 +125,10 @@ export class CreateAccountComponent implements OnInit {
           password: this.userForm.controls['password'].value,
           acceptedTermsOfUse: this.userForm.controls['acceptedTermsOfUse'].value,
           acceptedPrivacyPolicy: this.userForm.controls['acceptedPrivacyPolicy'].value,
-          role: 2
+          role: 2,
+          segment: this.userForm.controls['segment'].value.id,
+          abrangency: this.userForm.controls['abrangency'].value.map((item) => item.id),
+          activite: this.userForm.controls['activities'].value.map((item) => item.id)
         }
         this.userService.createUser(userDTO).subscribe((resp) => {
           console.log(resp)

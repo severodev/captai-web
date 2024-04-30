@@ -9,4 +9,7 @@ export class User {
   language?: string;
   profileImageId?: string;
   profileImageUrl?: string;
+  segment?: [];
+  abrangency?: [];
+  activite?: [];
 }

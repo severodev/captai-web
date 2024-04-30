@@ -4,6 +4,9 @@ import { map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { LocationDto } from '../_dtos/location-dto';
+import { createParams } from '../_helpers/utils';
+import { PageRequest, StateFilter } from '../_interfaces';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +36,14 @@ export class LocationService {
     return this.http.get(url, {params}).pipe(map((data: any) => {
       return data.map(d => this.locationDto.convertResponseToCityDropdown(d));
     }));
+  }
+
+  //////// new content for Capti /////
+
+  getAll( filter: StateFilter, pageRequest: PageRequest ): Observable<any> {
+    return this.http.get(`${environment.apiUrl}/location`, {
+      params: createParams([filter, pageRequest])
+    });
   }
 
 }

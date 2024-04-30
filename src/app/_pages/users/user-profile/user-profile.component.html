@@ -128,19 +128,52 @@
                         <div class="form-group row">
                             <div class="form-group col-7">
                                 <label>Selecione um segmento</label>
-                                <input type="select" class="form-control" formControlName = "segment" name="" >
+                                <ng-select 
+                                    [items]="segments"
+                                    bindLabel="name"
+                                    [searchable]="true"
+                                    [clearable]="false"
+                                    [multiple]="false"
+                                    formControlName="segment"
+                                    [ngClass]="{'invalid-field': !userForm.get('segment').valid && showErrors}">
+                                </ng-select>
+                                <div class="invalid-message" *ngIf="userForm.get('segment').value == '' && showErrors">
+                                    <span>Preenchimento obrigatório</span>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="form-group col-7">
                                 <label>Selecione as atividades</label>
-                                <input type="select" class="form-control" formControlName = "activities" name="" >
+                                <ng-select 
+                                    [items]="activities"
+                                    bindLabel="name"
+                                    [searchable]="true"
+                                    [clearable]="true"
+                                    [multiple]="true"
+                                    formControlName="activite"
+                                    [ngClass]="{'invalid-field': !userForm.get('activite').valid && showErrors}">
+                                </ng-select>
+                                <div class="invalid-message" *ngIf="userForm.get('activite').value == '' && showErrors">
+                                    <span>Preenchimento obrigatório</span>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="form-group col-7">
                                 <label>Escolha a abrangencia territorial</label>
-                                <input type="select" class="form-control" formControlName = "abrangency" name="" >
+                                <ng-select 
+                                    [items]="states"
+                                    bindLabel="name"
+                                    [searchable]="true"
+                                    [clearable]="true"
+                                    [multiple]="true"
+                                    formControlName="abrangency"
+                                    [ngClass]="{'invalid-field': !userForm.get('abrangency').valid && showErrors}">
+                                </ng-select>
+                                <div class="invalid-message" *ngIf="userForm.get('abrangency').value == '' && showErrors">
+                                    <span>Preenchimento obrigatório</span>
+                                </div>
                             </div>
                         </div>
                     </div>
