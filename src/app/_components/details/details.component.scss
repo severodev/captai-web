@@ -21,7 +21,7 @@
 
 .header {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     .sub-header {
         min-width: 50%;
         max-width: 80%;
@@ -42,11 +42,47 @@
         font-size: 1.3rem;
     }
     button {
+        cursor: not-allowed;
+        border: 1px solid #242424dd;
+        color: #242424dd;
+        border-radius: 4px;
+        background: none;
+        margin-right: 20px;
+        label {
+            cursor: not-allowed;
+        }
+        div {
+            display: flex;
+            align-items: center;
+            padding: 5px;
+        }
+    }
+
+    .linkButton {
+        cursor: pointer;
         border: 1px solid #0095ffdd;
         color: #0095ffdd;
-        background: none;
+        margin-left: 0px;
+        label {
+            cursor: pointer;
+        }
+        .icons_google {
+            color: #0095ffdd;
+        }
+    }
+
+    .icons_google {
+        font-size: 26px;
+        margin-right: 6px;
     }
 }
+
+.buttons {
+    margin-bottom: 1rem;
+}
+
+
+
 .scroller {
     max-height: 95%;
     overflow-y: auto;
@@ -75,9 +111,9 @@
     label {
         color: #fff;
         background-color: #3e82bd;
-        border-radius: 10px;
-        margin: 1% 1%;
-        padding: 0% 1%;
+        border-radius: 20px;
+        margin: 1%;
+        padding: 4px 20px;
     }
 }
 .data-wrapper {

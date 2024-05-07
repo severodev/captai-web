@@ -15,9 +15,10 @@
 }
 .side-menu-body {
   background: linear-gradient(to bottom left, #efab958f -1%, #f6f2dd 9%);
-  width: 12%;
+  width: 5%;
   .logo {
     max-width: 40%;
+    min-width: 3rem;
     margin: 15% 0% 0% 6%;
   }
 }
@@ -87,4 +88,12 @@
 .nav-profile-label {
   padding: 6px 9px !important;
   margin-bottom: 60px;
+}
+
+.menu-item-label {
+  display: none;
+}
+
+.logout {
+  margin-bottom: 5rem;
 }

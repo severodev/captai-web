@@ -57,61 +57,63 @@
         </div>
       </div>  
     </form>
-    <div class="table-backgound">
-      <div class="row line-header">
-        <div class="col-3 user-name-label" (click)="orderByName()">
-          <span>Nome do usuário</span>
-          <div class="static-filter">
-            <span class="dds__icons dds__chevron-up"  [ngClass]="{'arrow-highlight' : nameOrder == 'ASC'}"></span>
-            <span class="dds__icons dds__chevron-down" [ngClass]="{'arrow-highlight' : nameOrder == 'DESC'}"></span>
+    <div class="responsive-table">
+      <div class="table-backgound">
+        <div class="row line-header">
+          <div class="col-3 user-name-label" (click)="orderByName()">
+            <span>Nome do usuário</span>
+            <div class="static-filter">
+              <span class="dds__icons dds__chevron-up"  [ngClass]="{'arrow-highlight' : nameOrder == 'ASC'}"></span>
+              <span class="dds__icons dds__chevron-down" [ngClass]="{'arrow-highlight' : nameOrder == 'DESC'}"></span>
+            </div>
+          </div>
+          <div class="col-2 function-header">
+            <span>Perfil</span>
+          </div>
+          <div class="col-1">
+            <span>Status</span>
+          </div>
+          <div class="col-2">
+            <span>Abrangência</span>
+          </div>
+          <div class="col-2">
+            <span>CPF/CNPJ</span>
+          </div>
+          <div class="col-2">
+            <span>Ações</span>
           </div>
         </div>
-        <div class="col-2 function-header">
-          <span>Perfil</span>
-        </div>
-        <div class="col-1">
-          <span>Status</span>
-        </div>
-        <div class="col-2">
-          <span>Abrangência</span>
-        </div>
-        <div class="col-2">
-          <span>CPF/CNPJ</span>
-        </div>
-        <div class="col-2">
-          <span>Ações</span>
-        </div>
-      </div>
-      <div>
-        <div class="table-scroller">
-        <div class="table-content2" *ngFor="let user of users;  let i = index">
-          <div class="table-content"  (click)="select(i)" [ngClass]="{'dark_row': i % 2 !== 0}">
-            <div class="row" [ngClass]="{'selected': i === selected} ">
-              <div class="col-3 user-name">
-                <div>
-                  <span>{{ user.name}} {{ user.lastName}}</span>
-                  <label>{{ reduceEmail(user.email) }}</label>
+        <div>
+          <div class="table-scroller">
+          <div class="table-content2" *ngFor="let user of users;  let i = index">
+            <div class="table-content"  (click)="select(i)" [ngClass]="{'dark_row': i % 2 !== 0}">
+              <div class="row" [ngClass]="{'selected': i === selected} ">
+                <div class="col-3 user-name">
+                  <div>
+                    <span>{{ user.name}} {{ user.lastName}}</span>
+                    <label>{{ reduceEmail(user.email) }}</label>
+                  </div>
                 </div>
-              </div>
-              <div class="col-2">
-                <span>{{ user.role.name }}</span>
-              </div>
-              <div class="col-1">
-                <span>{{ user.active ? 'Ativo' : 'inativo' }}</span>
-              </div>
-              <div class="col-2">
-                <span> Placeholder </span>
-              </div>
-              <div class="col-2">
-                <span>{{ user.cpfCnpj | cpfCnpjFormat }}</span>
-              </div>
-              <div class="col-2 buttons-div">
-                <span class="details" (click)="userDetails(user.id)">Ver</span>
-                <span class="change-password" (click)="resetPasswordUser(user.email)">Resetar senha</span>
+                <div class="col-2">
+                  <span>{{ user.role.name }}</span>
+                </div>
+                <div class="col-1">
+                  <span>{{ user.active ? 'Ativo' : 'inativo' }}</span>
+                </div>
+                <div class="col-2">
+                  <span> Placeholder </span>
+                </div>
+                <div class="col-2">
+                  <span>{{ user.cpfCnpj | cpfCnpjFormat }}</span>
+                </div>
+                <div class="col-2 buttons-div">
+                  <span class="details" (click)="userDetails(user.id)">Ver</span>
+                  <span class="change-password" (click)="resetPasswordUser(user.email)">Resetar senha</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+          </div>
         </div>
       </div>
     </div>
