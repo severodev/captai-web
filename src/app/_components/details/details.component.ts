@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { error } from 'console';
 import { Breadcrumb } from 'src/app/_interfaces/breadcrumb';
 import { EditalService } from 'src/app/_services/edital.service';
 import { LoaderService } from 'src/app/_services/loader.service';
