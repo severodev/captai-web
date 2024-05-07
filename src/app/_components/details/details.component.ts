@@ -19,7 +19,7 @@ export class DetailsComponent {
     private editalService: EditalService,
     private spinnerService: LoaderService,
     ) { 
-      this.spinnerService.isLoading.next(true);
+      this.spinnerService.show();
     }
 
   public breadcrumbPages: Breadcrumb[] = [
@@ -32,6 +32,10 @@ export class DetailsComponent {
     this.editalService.getById(editalId).subscribe(data => {
       this.edital = data;
       this.edital.areaList = data.areaList.split(";")
-    }).add(() => this.spinnerService.isLoading.next(false));
+    }, 
+    error => { 
+      this.spinnerService.hide();
+      console.log('Ocorreu um erro: ', error)
+    }).add(() => this.spinnerService.hide());
   }
 }

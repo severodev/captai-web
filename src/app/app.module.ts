@@ -83,6 +83,7 @@ import { RemovedProjectsComponent } from './_pages/garbage/removed-projects/remo
 import { RemovedSuppliersComponent } from './_pages/garbage/removed-suppliers/removed-suppliers.component';
 import { ProjectCardSmallComponent } from './_components/project/project-card-small/project-card-small.component';
 import { CustomLoaderComponent } from './_components/custom-loader/custom-loader.component';
+import { LoaderComponent } from './_components/loader/loader.component';
 import { CollaboratorFilterOptionsComponent } from './_components/collaborator/collaborator-filter-options/collaborator-filter-options.component';
 import { ProjectDetailsComponent } from './_pages/project-details/project-details.component';
 import { ProjectHeaderComponent } from './_components/project/project-header/project-header.component';
@@ -161,6 +162,7 @@ import { EquipmentAndSoftwareComponent } from './_components/workplan/equipment-
 import { UserPermissionsComponent } from './_components/users/user-permissions/user-permissions.component';
 import { CreateAccountComponent } from './_pages/create-account/create-account.component';
 import { NotificationModalComponent } from './_components/notification-modal/notification-modal.component';
+import { ConfirmModal } from './_components/confirm-modal/confirm-modal.component';
 import { TermsOfUseModalComponent } from './_components/terms-of-use-modal/terms-of-use-modal.component';
 import { SearchComponent } from './_components/search/search.component';
 import { PasswordRecoveryComponent } from './_components/password-recovery/password-recovery.component';
@@ -234,6 +236,7 @@ export const customCurrencyMaskConfig = {
     RemovedSuppliersComponent,
     ProjectCardSmallComponent,
     CustomLoaderComponent,
+    LoaderComponent,
     CollaboratorFilterOptionsComponent,
     ProjectDetailsComponent,
     ProjectHeaderComponent,
@@ -306,6 +309,7 @@ export const customCurrencyMaskConfig = {
     UserPermissionsComponent,
     CreateAccountComponent,
     NotificationModalComponent,
+    ConfirmModal,
     TermsOfUseModalComponent,
     SearchComponent,
     PasswordRecoveryComponent,

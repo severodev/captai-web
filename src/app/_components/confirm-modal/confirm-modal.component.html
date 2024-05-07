@@ -1,0 +1,25 @@
+<div class="check">
+    <span class="dds__icons dds__check"></span>
+</div>
+<div class="wrapper">
+   <div class="body">
+        <div class="title">
+            <span>
+                {{title}}
+            </span>
+        </div>
+        <div class="message">
+            <span>
+               {{message}}
+            </span>
+        </div>
+        <div class="buttons">
+            <button type="button" class="btn-advance" (click)="onAccepted()">
+                Sim
+            </button>
+            <button type="button" class="btn-cancel" (click)="onClose()">
+                Não
+            </button>
+        </div>
+    </div>
+</div>
