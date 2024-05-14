@@ -25,10 +25,10 @@
             </label>
           </div>
           <div id="filter-modal" class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuClickableOutside">
-            <app-search-filter-dropdown></app-search-filter-dropdown>
+            <app-search-filter-dropdown (filteParams)="setFilter($event)"></app-search-filter-dropdown>
             <div class="filter-buttons">
               <button type="button" class="btn btn-close-filter" (click)="cancelFilter()">Fechar</button>
-              <button type="button" class="btn btn-apply-filter" (click)="cancelFilter()">Filtrar</button>
+              <button type="button" class="btn btn-apply-filter" (click)="applyCustomFilter()">Filtrar</button>
             </div>
           </div>
         </div>

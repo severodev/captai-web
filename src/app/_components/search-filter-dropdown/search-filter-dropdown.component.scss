@@ -34,6 +34,8 @@
 .area-selection {
     display: flex;
     flex-wrap: wrap;
+    overflow-y: auto;
+    max-height: 90px;
 }
 
 .item-selected {
@@ -60,3 +62,4 @@
         overflow: auto;
     }
 }
+

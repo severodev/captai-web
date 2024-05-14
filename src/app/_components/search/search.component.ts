@@ -18,28 +18,43 @@ export class SearchComponent {
   public submission = 'DESC';
   public financingValue = '';
 
+  private customFilter;
+
+  private filterRequest: EditalFilter = {
+    agency: null,
+    agencyList: null,
+    title: null,
+    financingValue: null,
+    maturity: null,
+    submission: null,
+    areaList: null,
+    created: null,
+    by: 'submission',
+    order: 'DESC'
+  }
+
   constructor(
     private editalService: EditalService,
     private router: Router,
     private fb: FormBuilder) {
       this.filterForm = this.fb.group({
-        agency: [],
-        title: [],
-        financingValue: []
+        agency: []
       });
-     }
+    }
   
   ngOnInit(): void {
-    this.getEditais({by: 'submission', order: 'DESC'})
+    this.getEditais( this.filterRequest )
   }
 
   filter() {
-    let filter: EditalFilter = {
-      agency: this.filterForm.controls['agency'].value,
-      title:  this.filterForm.controls['title'].value,
-      financingValue:  this.filterForm.controls['financingValue'].value
-    }
-    this.getEditais(filter);
+    this.filterRequest.agency = this.filterForm.controls['agency'].value
+    this.filterRequest.agencyList = null;
+    this.filterRequest.title = null;
+    this.filterRequest.maturity = null;
+    this.filterRequest.submission = null;
+    this.filterRequest.areaList = null;
+    this.filterRequest.financingValue = null;
+    this.getEditais(this.filterRequest);
     this.filterForm.reset();
   }
 
@@ -95,7 +110,7 @@ export class SearchComponent {
   orderByInstitute() {
     this.submission = '';
     this.financingValue = '';
-    
+
     switch (this.agencyOrder) {
       case '' : this.agencyOrder = 'ASC'
       break;
@@ -104,12 +119,9 @@ export class SearchComponent {
       case 'DESC' : this.agencyOrder = ''
       break;
     }
-
-    let filter: EditalFilter = {
-      by: 'agency',
-      order: this.agencyOrder != '' ? this.agencyOrder : null
-    }
-    this.getEditais(filter);
+    this.filterRequest.by = 'agency';
+    this.filterRequest.order = this.agencyOrder != '' ? this.agencyOrder : null;
+    this.getEditais(this.filterRequest);
   }
 
   orderBySubmission() {
@@ -125,11 +137,10 @@ export class SearchComponent {
       break;
     }
 
-    let filter: EditalFilter = {
-      by: 'submission',
-      order: this.submission != '' ? this.submission : null
-    }
-    this.getEditais(filter);
+    this.filterRequest.by = 'submission';
+    this.filterRequest.order = this.submission != '' ? this.submission : null;
+   
+    this.getEditais(this.filterRequest);
   }
 
   orderByfinancingValue() {
@@ -145,16 +156,30 @@ export class SearchComponent {
       break;
     }
 
-    let filter: EditalFilter = {
-      by: 'financingValue',
-      order: this.financingValue != '' ? this.financingValue : null
-    }
-    this.getEditais(filter);
+    this.filterRequest.by = 'financingValue';
+    this.filterRequest.order = this.financingValue != '' ? this.financingValue : null;
+
+    this.getEditais( this.filterRequest);
   }
 
   cancelFilter() {
     let modalRef = document.getElementById('filter-modal');
     if (modalRef) 
       modalRef.classList.remove("show");
+  }
+
+  applyCustomFilter() {
+    this.filterRequest.agency = null;
+    this.filterRequest.agencyList = this.customFilter.agency;
+    this.filterRequest.maturity = this.customFilter.maturity != 0 ? this.customFilter.maturity : null;
+    this.filterRequest.submission = this.customFilter.date == 'Invalid date' ? null : this.customFilter.date;
+    this.filterRequest.areaList = this.customFilter.areas;
+    this.getEditais(this.filterRequest);
+    this.filterForm.reset();
+    this.cancelFilter()
+  }
+
+  setFilter(filterForm: any) {
+    this.customFilter = filterForm
   }
 }
