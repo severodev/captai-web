@@ -7,9 +7,13 @@ export interface PageRequest {
 
 export interface EditalFilter {
   agency?: string;
+  agencyList?: any;
   title?: string;
   financingValue?: string;
-  created?: number;   
+  maturity?: string;
+  submission?: string;
+  areaList?: [];
+  created?: number;
   by?: string;
   order?: string;
 }

@@ -223,8 +223,26 @@
     box-shadow: 0px 0px 0.3em #81818178;
   }
 
-  @media (max-height: 900px) {
+@media (min-height: 600px) {
     .table-scroller {
-        height: 23rem;
+        height: 13rem;
+    }
+}
+
+@media (min-height: 735px) {
+    .table-scroller {
+        height: 19rem;
+    }
+}
+
+@media (min-height: 800px) {
+    .table-scroller {
+        height: 25rem;
+    }
+}
+
+@media (min-height: 900px) {
+    .table-scroller {
+        height: 30rem;
     }
 }
