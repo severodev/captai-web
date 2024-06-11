@@ -1,0 +1,37 @@
+
+.wrapper {
+    padding: 0% 4% 4%;
+}
+.success-icon {
+    margin: -3rem 0 2rem;
+}
+.title {
+    align-self: center;
+    color: #132F41;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 2%;
+    align-items: center;
+}
+.message {
+    text-align: center;
+    padding: 0.5rem 0 1.5rem;
+    font-size: 1rem;
+    white-space: pre-line;
+    line-height: 0.9rem;
+}
+.body {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.accept {
+    .btn {
+        width: 15rem;
+        font-weight: 500;
+        border-radius: 7px !important;
+        color: white;
+        background-color: #E4531E;
+    }
+}

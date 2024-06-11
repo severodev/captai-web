@@ -45,12 +45,12 @@ export class UserService {
 
   createUser(body: User): Observable<any> {
     let url = `${environment.apiUrl}/users`;
-    return this.http.post(url, body)
+    return this.http.post(url, body);
   }
 
   editUSer(id: number, changes: Partial<User>): Observable<any> {
     let url = `${environment.apiUrl}/users/${id}`;
-    return this.http.put(url, changes)
+    return this.http.put(url, changes);
   }
 
   requestChangePassword(usernameValue: string): Observable<any> {
@@ -89,6 +89,16 @@ export class UserService {
     
     return this.http.post<string>(url, formData, { headers });
 
+  }
+
+  checkAvaliabilityEmail(email: string): Observable<any> {
+    let url = `${environment.apiUrl}/users/check-availability-email?email=${email}`;
+    return this.http.get(url);
+  }
+
+  checkAvaliabilityCpfCnpj(cpfCnpj: string): Observable<any> {
+    let url = `${environment.apiUrl}/users/check-availability-cpf-cnpj?cpfCnpj=${cpfCnpj}`;
+    return this.http.get(url);
   }
 
 }
