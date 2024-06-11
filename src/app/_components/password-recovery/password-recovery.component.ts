@@ -66,7 +66,7 @@ export class PasswordRecoveryComponent {
           message: `Instruções de recuperação de senha foram enviados para o e-mail: ${this.recoveryRequest.get('login').value}`
         };
         let modalRef = this.modalService.show(NotificationModalComponent, {
-          class: 'modal-d0ialog modal-dialog-centered',
+          class: 'modal-dialog modal-dialog-centered',
           ignoreBackdropClick: true,
           initialState
         });
@@ -93,7 +93,7 @@ export class PasswordRecoveryComponent {
           message: 'Agora você pode usar sua nova senha para fazer login.'
         };
         let modalRef = this.modalService.show(NotificationModalComponent, {
-          class: 'modal-d0ialog modal-dialog-centered',
+          class: 'modal-dialog modal-dialog-centered',
           ignoreBackdropClick: true,
           initialState
         });
