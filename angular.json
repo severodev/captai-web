@@ -36,7 +36,8 @@
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "node_modules/@mercadopago/sdk-js/dist/index.js"
             ]
           },
           "configurations": {
@@ -99,8 +100,8 @@
               "outputHashing": "all",
               "sourceMap": true,
               "namedChunks": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
+              "extractLicenses": false,
+              "vendorChunk": true,
               "buildOptimizer": false,
               "budgets": [
                 {
@@ -129,7 +130,8 @@
             "development": {
               "buildTarget": "captai-web:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
