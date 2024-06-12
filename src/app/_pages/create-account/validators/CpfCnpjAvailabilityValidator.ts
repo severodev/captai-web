@@ -1,6 +1,6 @@
 import { FormControl, ValidationErrors } from '@angular/forms';
 import { Observable, debounceTime, distinctUntilChanged, map, take } from 'rxjs';
-import { UserService } from './../../../../src/app/_services/user.service';
+import { UserService } from './../../../../../src/app/_services/user.service';
 
 export class CpfCnpjAvailabilityValidator {
 

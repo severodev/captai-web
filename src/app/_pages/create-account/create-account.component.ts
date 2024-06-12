@@ -12,14 +12,15 @@ import { LocationService } from 'src/app/_services/location.service';
 import { SegmentService } from 'src/app/_services/segment.service';
 import { ToastService } from 'src/app/_services/toast.service';
 import { UserService } from 'src/app/_services/user.service';
-import { CpfCnpjAvailabilityValidator } from './CpfCnpjAvailabilityValidator';
-import { EmailAvailabilityValidator } from './EmailAvailabilityValidator';
+import { CpfCnpjAvailabilityValidator } from './validators/CpfCnpjAvailabilityValidator';
+import { EmailAvailabilityValidator } from './validators/EmailAvailabilityValidator';
 
 import { loadMercadoPago } from "@mercadopago/sdk-js";
 import { environment } from 'src/environments/environment';
 
 enum RegistrationSteps {
   STEP_USER_DATA,
+  STEP_SERVICE_DATA,
   STEP_PLAN_SELECTION,
   STEP_PAYMENT,
   STEP_FINISH
@@ -35,6 +36,7 @@ export class CreateAccountComponent implements OnInit {
   private formRegistrationStep = RegistrationSteps.STEP_USER_DATA;
 
   public userForm: FormGroup;
+  public serviceForm: FormGroup;
 
   private userDto: any;
 
@@ -53,6 +55,7 @@ export class CreateAccountComponent implements OnInit {
 
   public segments: Array<{ id, name }>
   public states: Array<{ id, abbreviation, name }> = [];
+  public abrangencyStates: Array<{ id, abbreviation, name }> = [];
   public activities: Array<{ id, name }>
 
   constructor(
@@ -66,7 +69,6 @@ export class CreateAccountComponent implements OnInit {
     private activiteService: ActiviteService,
     private locationService: LocationService,
     private window: Window,
-    private renderer: Renderer2
   ) {
     this.initUserForm();
     this.initSubscriptionPlans();
@@ -82,11 +84,18 @@ export class CreateAccountComponent implements OnInit {
       cpf_cnpj: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(14)], [CpfCnpjAvailabilityValidator.checkCpfCnpj(this.userService)]],
       password: ['', [Validators.required, createPasswordStrengthValidator()]],
       passwordConfirm: ['', Validators.required],
-      acceptedTermsOfUse: [false, Validators.required],
-      acceptedPrivacyPolicy: [false, Validators.required],
+      state: [null, Validators.required],
+      background: [null, Validators.required],
+    });
+
+    this.serviceForm = this.formBuilder.group({
       segment: [null, Validators.required],
       activities: [null, Validators.required],
       abrangency: [null, Validators.required],
+      targetValue: [null, Validators.required],
+      institutions: [null],
+      acceptedTermsOfUse: [false, Validators.required],
+      acceptedPrivacyPolicy: [false, Validators.required],
     });
   }
 
@@ -128,10 +137,12 @@ export class CreateAccountComponent implements OnInit {
       this.activities = activity;
     });
     this.locationService.getAll({}, { itemsPerPage: 9999 }).subscribe((states) => {
-      this.states = states;
-      this.states.push({ id: 0, abbreviation: null, name: 'Todos' })
-      this.states = this.states.reverse();
-      console.log(states)
+      this.states = [];
+      this.states.push(...states);
+
+      this.abrangencyStates = [];
+      this.abrangencyStates.push({ id: 0, abbreviation: null, name: 'Todos' });
+      this.abrangencyStates.push(...states);
     });
   }
 
@@ -176,28 +187,49 @@ export class CreateAccountComponent implements OnInit {
 
   async saveUserData() {
 
-    const availableEmail = await this.userService.checkAvaliabilityEmail(this.userForm.get('email').value).toPromise();
-    const availableCpfCnpj = await this.userService.checkAvaliabilityCpfCnpj(this.userForm.get('cpf_cnpj').value).toPromise();
-
-    if (this.userForm.invalid || !this.userForm.get('acceptedTermsOfUse').value || !this.userForm.get('acceptedPrivacyPolicy').value) {
+    if (this.userForm.invalid) {
       this.showErrors = true;
     } else {
       if (this.userForm.get('emailConfirmation').value == this.userForm.get('email').value &&
         this.userForm.get('passwordConfirm').value == this.userForm.get('password').value &&
         this.userForm.valid) {
         this.userDto = {
+          // Parte Um
+          role: 2,
           name: this.userForm.controls['name'].value,
           lastName: this.userForm.controls['lastName'].value,
           email: this.userForm.controls['email'].value,
           cpfCnpj: this.userForm.controls['cpf_cnpj'].value,
           password: this.userForm.controls['password'].value,
-          acceptedTermsOfUse: this.userForm.controls['acceptedTermsOfUse'].value,
-          acceptedPrivacyPolicy: this.userForm.controls['acceptedPrivacyPolicy'].value,
-          role: 2,
-          segment: this.userForm.controls['segment'].value.id,
-          abrangency: this.userForm.controls['abrangency'].value.map((item) => item.id),
-          activite: this.userForm.controls['activities'].value.map((item) => item.id)
+          state: this.userForm.controls['state'].value.map((item) => item.id),
+          background: this.userForm.controls['background'].value,
         }
+
+        this.goToServiceData();
+
+      } else {
+        console.log('error')
+        this.toastService.error('Erro', 'O formulario precisa está válido para prosseguir com esse cadastro!');
+      }
+    }
+  }
+
+
+  async saveServiceData() {
+
+    if (this.serviceForm.invalid || !this.serviceForm.get('acceptedTermsOfUse').value || !this.serviceForm.get('acceptedPrivacyPolicy').value) {
+      this.showErrors = true;
+    } else {
+      if (this.serviceForm.valid) {
+
+        this.userDto.segment = this.serviceForm.controls['segment'].value.id;
+        this.userDto.activite = this.serviceForm.controls['activities'].value.map((item) => item.id);
+        this.userDto.abrangency = this.serviceForm.controls['abrangency'].value.id;
+        this.userDto.targetValue = this.serviceForm.controls['targetValue'].value;
+        this.userDto.institutions = this.serviceForm.controls['institutions'].value.map((item) => item.id);
+
+        this.userDto.acceptedTermsOfUse = this.serviceForm.controls['acceptedTermsOfUse'].value;
+        this.userDto.acceptedPrivacyPolicy = this.serviceForm.controls['acceptedPrivacyPolicy'].value;
 
         this.goToPlanSelection();
 
@@ -208,29 +240,29 @@ export class CreateAccountComponent implements OnInit {
     }
   }
 
-  createUser(): void {
-    this.userService.createUser(this.userDto).subscribe((resp) => {
+  // createUser(): void {
+  //   this.userService.createUser(this.userDto).subscribe((resp) => {
 
-      const initialState: any = {
-        title: 'Sua conta foi criada!',
-        message: 'Estamos empolgados por tê-lo(a) conosco. Para garantir a segurança da sua conta e proporcionar a melhor expreriência possível, é nescessário validar suas informações no e-mail cadastrado.'
-      };
-      let modalRef = this.modalService.show(NotificationModalComponent, {
-        class: 'modal-dialog modal-dialog-centered',
-        ignoreBackdropClick: true,
-        initialState
-      });
-      modalRef.content.onSubmit.subscribe(() => {
-        this.router.navigate(['/login']);
-        modalRef.hide();
-        this.showErrors = false;
-        this.userForm.reset();
-      })
-    }, error => {
-      console.log(error)
-      this.toastService.error('Ocorreu um erro!', error);
-    })
-  }
+  //     const initialState: any = {
+  //       title: 'Sua conta foi criada!',
+  //       message: 'Estamos empolgados por tê-lo(a) conosco. Para garantir a segurança da sua conta e proporcionar a melhor expreriência possível, é nescessário validar suas informações no e-mail cadastrado.'
+  //     };
+  //     let modalRef = this.modalService.show(NotificationModalComponent, {
+  //       class: 'modal-dialog modal-dialog-centered',
+  //       ignoreBackdropClick: true,
+  //       initialState
+  //     });
+  //     modalRef.content.onSubmit.subscribe(() => {
+  //       this.router.navigate(['/login']);
+  //       modalRef.hide();
+  //       this.showErrors = false;
+  //       this.userForm.reset();
+  //     })
+  //   }, error => {
+  //     console.log(error)
+  //     this.toastService.error('Ocorreu um erro!', error);
+  //   })
+  // }
 
   public goToUserData(): void {
     this.formRegistrationStep = RegistrationSteps.STEP_USER_DATA;
@@ -238,6 +270,14 @@ export class CreateAccountComponent implements OnInit {
 
   public isUserDataStep() {
     return this.registrationStep === RegistrationSteps.STEP_USER_DATA;
+  }
+
+  public goToServiceData(): void {
+    this.formRegistrationStep = RegistrationSteps.STEP_SERVICE_DATA;
+  }
+
+  public isServiceDataStep() {
+    return this.registrationStep === RegistrationSteps.STEP_SERVICE_DATA;
   }
 
   public goToPlanSelection(): void {
