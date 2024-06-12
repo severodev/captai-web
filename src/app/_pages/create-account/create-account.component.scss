@@ -126,17 +126,30 @@ body {
       box-shadow: 0px 0px 0.3em #81818178;
     }
 
+    .btn-cancel {
+      border: 1px solid #308C47;
+      font-weight: 500;
+      border-radius: 6px !important;
+      // background-color: #43d19e;
+      color: #D40909;
+      background-color: transparent;
+      display: flex;
+      padding: 1.6%;
+      min-width: 8rem;
+      margin: 2% 0%;
+      justify-content: center;
+    }
+
     .btn-advance {
       border: none;
       color: #fff;
       font-weight: 500;
       border-radius: 6px !important;
-      // background-color: #43d19e;
       background-color: #308C47;
       display: flex;
       padding: 1.6%;
-      min-width: 10rem;
-      margin: 2% 0%;
+      min-width: 8rem;
+      margin: 2% 0% 2% 5%; 
       justify-content: center;
     }
 
@@ -163,11 +176,19 @@ body {
       }
     }
 
-    .dot {
+    .password-dot {
       background: black;
-      width: 10px;
+      width: 3px;
+      height: 3px;
       border-radius: 19px;
-      height: 10px;
+      margin: 7px;
+    }
+
+    .password-check {
+      background: #308C47;
+      width: 4px;
+      height: 4px;
+      border-radius: 19px;
       margin: 7px;
     }
 
@@ -261,12 +282,12 @@ body {
         color: #E4531E;
         font-weight: bold;
       }
-      
+
       .plan-subtitle {
         align-content: center;
         font-size: 1rem;
         color: #868686;
-   
+
       }
 
       .register-today {
@@ -292,7 +313,7 @@ body {
         width: 450px;
         height: 100%;
 
-        
+
         .item-title {
           border: 4px solid #E4531E;
           background-color: #E4531E;
@@ -302,10 +323,10 @@ body {
           font-size: 1rem;
           margin-bottom: 0.3rem;
           letter-spacing: 1px;
-          color:white;
+          color: white;
           font-weight: 500;
           height: 40px;
-          
+
           .plan-radio {
             margin-right: 1rem;
             font-size: large;
@@ -323,26 +344,27 @@ body {
             font-size: 2rem;
             margin-bottom: 0.5rem;
           }
+
           .description {
             font-size: 16px;
             height: 40px;
           }
-  
+
           .attributes-list {
-          
+
             .attribute-item {
-              
+
               color: #AEA9B1;
               margin-bottom: 0.7rem;
-              
+
               &.active {
                 color: black;
               }
-              
+
             }
-            
+
           }
-          
+
         }
 
         .btn {
@@ -387,12 +409,12 @@ body {
         color: #E4531E;
         font-weight: bold;
       }
-      
+
       .plan-subtitle {
         align-content: center;
         font-size: 1rem;
         color: #868686;
-   
+
       }
 
       .register-today {
