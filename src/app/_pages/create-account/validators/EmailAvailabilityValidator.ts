@@ -8,7 +8,7 @@ export class EmailAvailabilityValidator {
         return (formControl: FormControl): Observable<ValidationErrors | null> => {
             return userService.checkAvaliabilityEmail(formControl.value)
                 .pipe(
-                    debounceTime(200),
+                    debounceTime(500),
                     distinctUntilChanged(),
                     take(1),
                     map((data: boolean) => {

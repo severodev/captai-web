@@ -14,9 +14,11 @@ import { ToastService } from 'src/app/_services/toast.service';
 import { UserService } from 'src/app/_services/user.service';
 import { CpfCnpjAvailabilityValidator } from './validators/CpfCnpjAvailabilityValidator';
 import { EmailAvailabilityValidator } from './validators/EmailAvailabilityValidator';
+import { InstitutionService} from './../../_services/institution.service';
 
 import { loadMercadoPago } from "@mercadopago/sdk-js";
 import { environment } from 'src/environments/environment';
+import { Institution } from 'src/app/_models/institution';
 
 enum RegistrationSteps {
   STEP_USER_DATA,
@@ -53,10 +55,13 @@ export class CreateAccountComponent implements OnInit {
   public cpfInput = true;
   public showErrors = false;
 
-  public segments: Array<{ id, name }>
+  public segments: Array<{ id, name }>;
   public states: Array<{ id, abbreviation, name }> = [];
   public abrangencyStates: Array<{ id, abbreviation, name }> = [];
-  public activities: Array<{ id, name }>
+  public activities: Array<{ id, name }>;
+  public institutions: Institution[];
+
+  private allStatesItem = { id: 0, abbreviation: null, name: 'Todos' };
 
   constructor(
     private formBuilder: FormBuilder,
@@ -68,14 +73,15 @@ export class CreateAccountComponent implements OnInit {
     private segmentService: SegmentService,
     private activiteService: ActiviteService,
     private locationService: LocationService,
+    private institutionsService: InstitutionService,
     private window: Window,
   ) {
-    this.initUserForm();
+    this.initForms();
     this.initSubscriptionPlans();
     this.initMercadoPago();
   }
 
-  initUserForm() {
+  initForms() {
     this.userForm = this.formBuilder.group({
       name: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -141,8 +147,11 @@ export class CreateAccountComponent implements OnInit {
       this.states.push(...states);
 
       this.abrangencyStates = [];
-      this.abrangencyStates.push({ id: 0, abbreviation: null, name: 'Todos' });
+      this.abrangencyStates.push(this.allStatesItem);
       this.abrangencyStates.push(...states);
+    });
+    this.institutionsService.getInstitutionsDropdown().subscribe((institution) => {
+      this.institutions = institution;
     });
   }
 
@@ -201,7 +210,7 @@ export class CreateAccountComponent implements OnInit {
           email: this.userForm.controls['email'].value,
           cpfCnpj: this.userForm.controls['cpf_cnpj'].value,
           password: this.userForm.controls['password'].value,
-          state: this.userForm.controls['state'].value.map((item) => item.id),
+          state: this.userForm.controls['state'].value.id,
           background: this.userForm.controls['background'].value,
         }
 
@@ -214,8 +223,9 @@ export class CreateAccountComponent implements OnInit {
     }
   }
 
-
   async saveServiceData() {
+
+    console.log(this.serviceForm.controls['targetValue'].value);
 
     if (this.serviceForm.invalid || !this.serviceForm.get('acceptedTermsOfUse').value || !this.serviceForm.get('acceptedPrivacyPolicy').value) {
       this.showErrors = true;
@@ -224,7 +234,7 @@ export class CreateAccountComponent implements OnInit {
 
         this.userDto.segment = this.serviceForm.controls['segment'].value.id;
         this.userDto.activite = this.serviceForm.controls['activities'].value.map((item) => item.id);
-        this.userDto.abrangency = this.serviceForm.controls['abrangency'].value.id;
+        this.userDto.abrangency = this.serviceForm.controls['abrangency'].value.map((item) => item.id);
         this.userDto.targetValue = this.serviceForm.controls['targetValue'].value;
         this.userDto.institutions = this.serviceForm.controls['institutions'].value.map((item) => item.id);
 
@@ -239,30 +249,6 @@ export class CreateAccountComponent implements OnInit {
       }
     }
   }
-
-  // createUser(): void {
-  //   this.userService.createUser(this.userDto).subscribe((resp) => {
-
-  //     const initialState: any = {
-  //       title: 'Sua conta foi criada!',
-  //       message: 'Estamos empolgados por tê-lo(a) conosco. Para garantir a segurança da sua conta e proporcionar a melhor expreriência possível, é nescessário validar suas informações no e-mail cadastrado.'
-  //     };
-  //     let modalRef = this.modalService.show(NotificationModalComponent, {
-  //       class: 'modal-dialog modal-dialog-centered',
-  //       ignoreBackdropClick: true,
-  //       initialState
-  //     });
-  //     modalRef.content.onSubmit.subscribe(() => {
-  //       this.router.navigate(['/login']);
-  //       modalRef.hide();
-  //       this.showErrors = false;
-  //       this.userForm.reset();
-  //     })
-  //   }, error => {
-  //     console.log(error)
-  //     this.toastService.error('Ocorreu um erro!', error);
-  //   })
-  // }
 
   public goToUserData(): void {
     this.formRegistrationStep = RegistrationSteps.STEP_USER_DATA;
@@ -315,7 +301,6 @@ export class CreateAccountComponent implements OnInit {
   }
 
   async inicializarMercadoPago() {
-    // await loadMercadoPago();
 
     const mp = new (window as any).MercadoPago(`${environment.mercadoPagoKey}`, {
       locale: "pt-BR",
@@ -457,6 +442,15 @@ export class CreateAccountComponent implements OnInit {
     setTimeout(() => {
       document.getElementById("marcador-final-pagamento").scrollIntoView();
     }, 300);
+  }
+
+  abrangencyChange() {
+    if(this.serviceForm.controls['abrangency'].value){
+      const items = [...this.serviceForm.controls['abrangency'].value];
+      if(items.includes(this.allStatesItem)){
+        this.serviceForm.controls['abrangency'].setValue([this.allStatesItem]);
+      }
+    }
   }
 
 }

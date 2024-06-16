@@ -3,5 +3,6 @@ export class State {
     abbreviation?: string;
     name?: string;
     country?: string;
+    active?: boolean;
 }
   
