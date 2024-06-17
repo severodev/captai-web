@@ -88,10 +88,10 @@
                   <span>{{ edital.agency }}</span>
                 </div>
                 <div class="col-2">
-                  <span>{{ !edital.submission.includes("-") ? edital.submission : edital.submission | date:'dd/MM/yyyy'}}</span>
+                  <span>{{!edital.dt_submission ? 'Não encontrado' : edital.dt_submission | date:'dd/MM/yyyy'}}</span>
                 </div>
                 <div class="col-1">
-                  <span>{{ edital.financingValue }}</span>
+                  <span>{{ edital.ds_currency }} {{ edital.nm_financing_value }}</span>
                 </div>
                 <div class="col-1 affinity-field">
                   <span>{{ edital.Afinidade ??  '10' }}</span>
