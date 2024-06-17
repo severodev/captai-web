@@ -24,12 +24,13 @@ export class SearchComponent {
     agency: null,
     agencyList: null,
     title: null,
-    financingValue: null,
+    financingValueHigh: null,
+    financingValueLow: null,
     maturity: null,
     submission: null,
     areaList: null,
     created: null,
-    by: 'submission',
+    by: 'dt_submission',
     order: 'DESC'
   }
 
@@ -53,7 +54,8 @@ export class SearchComponent {
     this.filterRequest.maturity = null;
     this.filterRequest.submission = null;
     this.filterRequest.areaList = null;
-    this.filterRequest.financingValue = null;
+    financingValueHigh: null;
+    financingValueLow: null;
     this.getEditais(this.filterRequest);
     this.filterForm.reset();
   }
@@ -137,7 +139,7 @@ export class SearchComponent {
       break;
     }
 
-    this.filterRequest.by = 'submission';
+    this.filterRequest.by = 'dt_submission';
     this.filterRequest.order = this.submission != '' ? this.submission : null;
    
     this.getEditais(this.filterRequest);
@@ -156,7 +158,7 @@ export class SearchComponent {
       break;
     }
 
-    this.filterRequest.by = 'financingValue';
+    this.filterRequest.by = 'nm_financing_value';
     this.filterRequest.order = this.financingValue != '' ? this.financingValue : null;
 
     this.getEditais( this.filterRequest);
@@ -174,6 +176,9 @@ export class SearchComponent {
     this.filterRequest.maturity = this.customFilter.maturity != 0 ? this.customFilter.maturity : null;
     this.filterRequest.submission = this.customFilter.date == 'Invalid date' ? null : this.customFilter.date;
     this.filterRequest.areaList = this.customFilter.areas;
+    this.filterRequest.financingValueLow = this.customFilter.value[0];
+    this.filterRequest.financingValueHigh = this.customFilter.value[1];
+    
     this.getEditais(this.filterRequest);
     this.filterForm.reset();
     this.cancelFilter()

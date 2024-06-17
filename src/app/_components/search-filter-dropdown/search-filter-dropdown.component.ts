@@ -21,10 +21,10 @@ export class SearchFilterDropdownComponent {
   public agencies = []
   public areas = []
   public areasSelected = []
-  value: number = 1000;
+  lowValue: number = 500;
   highValue: number = 10000000;
   options: Options = {
-    floor: 1000,
+    floor: 500,
     ceil: 10000000,
     step: 500,
     showTicks: false,

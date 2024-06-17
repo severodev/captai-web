@@ -9,7 +9,8 @@ export interface EditalFilter {
   agency?: string;
   agencyList?: any;
   title?: string;
-  financingValue?: string;
+  financingValueHigh: number;
+  financingValueLow: number;
   maturity?: string;
   submission?: string;
   areaList?: [];
