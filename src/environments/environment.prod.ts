@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
   apiUrl: 'https://captai.com.br',
-  mercadoPagoKey: 'PROD-------------------------------------'
+  mercadoPagoKey: 'APP_USR-c07e7870-3c00-49cc-a913-9d2f5b7dfa92'
 };
