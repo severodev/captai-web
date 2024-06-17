@@ -1,4 +1,4 @@
-FROM node:14.15.5-alpine3.11 AS builder
+FROM node:18.19.1-alpine AS builder
 
 ARG APP_NAME
 ARG ENV_NAME
@@ -11,13 +11,13 @@ WORKDIR /usr/src/app
 
 COPY package.json ./
 
-RUN npm install
+RUN npm install --force
 
 COPY . .
 
 RUN npm run build:${ENV_NAME}
 
-FROM nginx:1.18.0-alpine AS deploy
+FROM nginx:1.24.0-alpine AS deploy
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
