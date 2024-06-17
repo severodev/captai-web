@@ -36,7 +36,7 @@ export class AppComponent {
     };
     let modalRef = this.modalService.show(ConfirmModal, {
       initialState,
-      class: 'modal-d0ialog modal-dialog-centered modal-sm'
+      class: 'modal-dialog modal-dialog-centered modal-sm'
     });
     modalRef.content.close.subscribe(() => {
       modalRef.hide();

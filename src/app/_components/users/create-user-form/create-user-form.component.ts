@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { Observable, Observer, of, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { User } from 'src/app/_models/user';
+import { emailEqualityValidator } from "src/app/_pages/users/equality.validator";
+import { ConfirmAlertService } from 'src/app/_services/confirm-alert.service';
 import { ToastService } from 'src/app/_services/toast.service';
 import { UserService } from 'src/app/_services/user.service';
-import { emailEqualityValidator } from "src/app/_pages/users/equality.validator";
-import { CollaboratorService } from 'src/app/_services/collaborator.service';
-import { User } from 'src/app/_models/user';
-import { Router } from '@angular/router';
-import { Observable, Observer, of } from 'rxjs';
-import { ConfirmAlertService } from 'src/app/_services/confirm-alert.service';
 
 @Component({
   selector: 'app-create-user-form',
@@ -25,7 +23,6 @@ export class CreateUserFormComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private collaboratorService: CollaboratorService,
     private fb: FormBuilder,
     private ts: ToastService,
     private router: Router,
@@ -48,14 +45,6 @@ export class CreateUserFormComponent implements OnInit {
   getRoles() {
     this.roles$ = this.userService.getRoles()
   }
-
-  checkCollaborator(name: string) {
-    this.collaboratorService.getCollaboratorByName(name).subscribe(
-      data => {
-        data ? this.collaborator$ = data : this.collaborator$ = null
-      })
-  }
-
 
   createUser() {
     let user: User = {

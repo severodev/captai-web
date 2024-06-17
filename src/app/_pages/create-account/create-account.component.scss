@@ -1,162 +1,15 @@
-#create-account-container {
-  display: flex;
-  margin: 4% 10%;
-  form {
-    width: 100rem;
-    max-width: 100rem;
-  }
+body {
+  font-family: "Poppins", sans-serif;
 }
 
-.col-7 {
-  padding-right: 4%;
+.row {
+  margin-bottom: 1.5rem;
 }
 
-.title {
-  color: #000000;
-  font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: 2%;
-}
-  
-.sub-title {
-  color: #000000;
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 2%;
-}
-.form-group {
-  margin-bottom: 5px !important;
-  label {
-      font-size: 0.9rem;
-  }
+.second-column {
+  padding-left: 2rem;
 }
 
-.form-control {
-  background-color: #fafdff;
-  border: 1px solid #9f9f9f !important;
-  border-radius: 8px;
-}
-
-.col {
-  padding-right: 0%;
-}
-
-a {
-  text-decoration: underline;
-}
-
-.accept-terms {
-  display: flex;
-  input {
-      min-width: 3%;
-      background-color: #fafdff;
-  }
-  span {
-      margin-left: 2%;
-      font-size: 0.9rem;
-      font-weight: 400;
-      color: #000000
-  }
-}
-
-.container-checkbox  {
-  padding-top: 5%;
-  .col-12 {
-    padding-bottom: 1%;
-  }
-}
-.cpf-input {
-  padding-right: 0%;
-}
-
-.toggle-container {
-  display: flex;
-  margin: 10px 0px;
-  font-size: 0.8rem;
-  
-  div {
-    padding: 5px 0px;
-    cursor: pointer;
-    user-select: none;
-    color: #b5b4b6;
-    background: #e6e0e9;
-    border-radius: 15px;
-  }
-  .cpf-side {
-    padding: 0px 10px 0px 20px;
-  }
-  
-  .cnpj-side {
-    padding: 0px 20px 0px 10px;
-  }
-}
-.toggle-selected {
-  padding: 8px 25px !important;
-  border-radius: 15px;
-  color: #000000;
-  font-weight: 500;
-  background: #f2f2f2;
-  box-shadow: 0px 0px 0.3em #81818178;
-}
-.btn-advance {
-  border: none;
-  color: #fff;
-  font-weight: 500;
-  border-radius: 6px !important;
-  background-color: #43d19e;
-  display: flex;
-  padding: 1.6%;
-  min-width: 10rem;
-  margin: 2% 0%;
-  justify-content: center;
-}
-
-.container-checkbox {
-  a {
-    cursor: pointer;
-    color: #0d6efd;
-    text-decoration: underline;
-  }
-}
-
-.login-link span {
-  font-weight: 400;
-  color: #000000
-}
-.password-errors-label{
-  font-weight: bold;
-}
-.password-errors {
-  .dds__icons {
-    color: #000000;
-  }
-}
-.dot {
-  background: black;
-  width: 10px;
-  border-radius: 19px;
-  height: 10px;
-  margin: 7px;
-}
-.errors {
-  label{
-    margin-left: 2px;
-    color: #989898;
-  }
-  display: flex;
-  align-items: center;
-  padding: 2px;
-}
-
-.password-fields{
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  span {
-    position: absolute;
-    padding-right: 1.2%;
-  }
-}
 .background {
   position: fixed;
   top: 0;
@@ -167,36 +20,439 @@ a {
   z-index: -1;
 }
 
-.invalid-field {
-  border: 2px solid #ff0000 !important;
+.badge-orange {
+  border-radius: 50%;
+  background-color: #E4531E;
+  color: white;
 }
 
-.invalid-message {
+#user-data, #service-data, #plan-data {
   display: flex;
-  color: #ff0000;
+  margin: 4% 10%;
+
+  form {
+    width: 100rem;
+    max-width: 100rem;
+
+    ::ng-deep .ng-select .ng-select-container {
+      height: 2.5rem;
+      border-radius: 8px;
+    }
+
+    .title {
+      color: #000000;
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 2%;
+    }
+
+    .sub-title {
+      color: #000000;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 2%;
+    }
+
+    .col-7 {
+      padding-right: 4%;
+    }
+
+    .form-group {
+      margin-bottom: 5px !important;
+
+      label {
+        font-size: 0.9rem;
+      }
+    }
+
+    .form-control {
+      background-color: #fafdff;
+      border: 1px solid #9f9f9f !important;
+      border-radius: 8px;
+    }
+
+    .col {
+      padding-right: 0%;
+    }
+
+    a {
+      text-decoration: underline;
+    }
+
+    .accept-terms {
+      display: flex;
+
+      input {
+        min-width: 3%;
+        background-color: #fafdff;
+      }
+
+      span {
+        margin-left: 2%;
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: #000000
+      }
+    }
+
+    .container-checkbox {
+      padding-top: 5%;
+
+      .col-12 {
+        padding-bottom: 1%;
+      }
+    }
+
+    .cpf-input {
+      padding-right: 0%;
+    }
+
+    .password-validation-guide {
+      margin: 0.5rem 0 2rem;
+    }
+
+    .toggle-container {
+      display: flex;
+      margin: 10px 0px;
+      font-size: 0.8rem;
+
+      div {
+        padding: 5px 0px;
+        cursor: pointer;
+        user-select: none;
+        color: #b5b4b6;
+        background: #e6e0e9;
+        border-radius: 15px;
+      }
+
+      .cpf-side {
+        padding: 0px 10px 0px 20px;
+      }
+
+      .cnpj-side {
+        padding: 0px 20px 0px 10px;
+      }
+    }
+
+    .toggle-selected {
+      padding: 8px 25px !important;
+      border-radius: 15px;
+      color: #000000;
+      font-weight: 500;
+      background: #f2f2f2;
+      box-shadow: 0px 0px 0.3em #81818178;
+    }
+
+    .btn-cancel {
+      border: 1px solid #308C47;
+      font-weight: 500;
+      border-radius: 6px !important;
+      // background-color: #43d19e;
+      color: #D40909;
+      background-color: transparent;
+      display: flex;
+      padding: 1.6%;
+      min-width: 8rem;
+      margin-bottom: 1rem;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    .btn-advance {
+      border: none;
+      color: #fff;
+      font-weight: 500;
+      border-radius: 6px !important;
+      background-color: #308C47;
+      display: flex;
+      padding: 1.6%;
+      min-width: 8rem;
+      margin: 0 0 1rem 2rem; 
+      justify-content: center;
+    }
+
+    .container-checkbox {
+      a {
+        cursor: pointer;
+        color: #0d6efd;
+        text-decoration: underline;
+      }
+    }
+
+    .login-link span {
+      font-weight: 400;
+      color: #000000
+    }
+
+    .password-errors-label {
+      font-weight: bold;
+    }
+
+    .password-errors {
+      .dds__icons {
+        color: #000000;
+      }
+    }
+
+    .password-dot {
+      background: black;
+      width: 3px;
+      height: 3px;
+      border-radius: 19px;
+      margin: 7px 10px;
+    }
+
+    .password-check {
+      margin: 0 7px;
+      
+      i {
+        color: #308C47;
+        font-size: x-small;
+        font-weight: bold;
+      }
+
+    }
+
+    .errors {
+      display: flex;
+      align-items: center;
+      padding: 0.5rem;
+
+      label {
+        margin-left: 2px;
+        color: #989898;
+      }
+
+    }
+
+    .password-fields {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      span {
+        position: absolute;
+        padding-right: 1.2%;
+      }
+    }
+
+
+    .invalid-field {
+      border: 2px solid #ff0000 !important;
+    }
+
+    .invalid-message {
+      display: flex;
+      color: #ff0000;
+    }
+
+    input[type="checkbox"] {
+      appearance: none;
+      background-color: #fff;
+      margin-right: 2px;
+      border: 1px solid #b3b3b3;
+      border-radius: 5px;
+    }
+
+    input[type="checkbox"]::before {
+      content: "\2713";
+      color: #ffffff;
+      width: 19px;
+      width: 19px;
+      height: 19px;
+      border-radius: 5px;
+      transform: scale(0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #ff872b !important;
+    }
+
+    input[type="checkbox"]:checked::before {
+      transform: scale(1);
+    }
+  }
 }
 
-input[type="checkbox"] {
-  appearance: none;
-  background-color: #fff;
-  margin-right: 2px;
-  border: 1px solid #b3b3b3;
-  border-radius: 5px;
-}
-input[type="checkbox"]::before {
-  content: "\2713";
-  color: #ffffff;
-  width: 19px;
-  width: 19px;
-  height: 19px;
-  border-radius: 5px;
-  transform: scale(0);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #ff872b !important;
+#plan-data {
+  display: block;
+  margin: 4% 10%;
+
+  .title {
+    color: #000000;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 2%;
+  }
+
+  .sub-title {
+    color: #000000;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 2%;
+  }
+
+  .plans {
+
+    a {
+      text-decoration: underline;
+    }
+
+    .plans-details {
+      .plan-title {
+        font-size: 1rem;
+        color: #E4531E;
+        font-weight: bold;
+      }
+
+      .plan-subtitle {
+        align-content: center;
+        font-size: 1rem;
+        color: #868686;
+
+      }
+
+      .register-today {
+        margin-top: 0.9rem;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #49454F;
+      }
+    }
+
+    .plans-list {
+
+      padding: 0 2rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      margin-top: 2rem;
+
+      .plan-item {
+        border: 4px solid #E4531E;
+        padding-bottom: 1rem;
+        border-radius: 20px;
+        width: 450px;
+        height: 100%;
+
+
+        .item-title {
+          border: 4px solid #E4531E;
+          background-color: #E4531E;
+          padding: 0.2rem 1rem;
+          border-top-left-radius: 10px;
+          border-top-right-radius: 10px;
+          font-size: 1rem;
+          margin-bottom: 0.3rem;
+          letter-spacing: 1px;
+          color: white;
+          font-weight: 500;
+          height: 40px;
+
+          .plan-radio {
+            margin-right: 1rem;
+            font-size: large;
+            width: 20px;
+            height: 20px;
+          }
+        }
+
+        .plan-body {
+
+          padding: 0 1.5rem;
+
+          .price {
+            color: #E4531E;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+          }
+
+          .description {
+            font-size: 16px;
+            height: 40px;
+          }
+
+          .attributes-list {
+
+            .attribute-item {
+
+              color: #AEA9B1;
+              margin-bottom: 0.7rem;
+
+              &.active {
+                color: black;
+              }
+
+            }
+
+          }
+
+        }
+
+        .btn {
+          background-color: #308C47;
+          color: white;
+        }
+
+      }
+    }
+
+
+  }
 }
 
-input[type="checkbox"]:checked::before {
-  transform: scale(1);
+#payment {
+  display: block;
+  margin: 4% 10%;
+
+  .title {
+    color: #000000;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 2%;
+  }
+
+  .sub-title {
+    color: #000000;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 2%;
+  }
+
+  .plans {
+
+    a {
+      text-decoration: underline;
+    }
+
+    .plans-details {
+      .plan-title {
+        font-size: 1rem;
+        color: #E4531E;
+        font-weight: bold;
+      }
+
+      .plan-subtitle {
+        align-content: center;
+        font-size: 1rem;
+        color: #868686;
+
+      }
+
+      .register-today {
+        margin-top: 0.9rem;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #49454F;
+      }
+    }
+
+    .regiao-pagamento {
+      padding: 1rem;
+      background: #F7FAFC;
+      border-radius: 10px;
+    }
+
+
+  }
 }

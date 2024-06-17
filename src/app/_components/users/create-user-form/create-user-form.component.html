@@ -10,7 +10,7 @@
       <fieldset form="user-form" name="user-form">
           <legend>Usuário</legend>
           <label for="fullname">Nome do Colaborador *</label>
-          <input type="text" placeholder="Insira o nome do colaborador" (focusout)="checkCollaborator(createUserForm.controls['fullname']?.value)" formControlName="fullname">
+          <input type="text" placeholder="Insira o nome do colaborador" formControlName="fullname">
           <label for="username">Nome de Usuário *</label>
           <input type="text" placeholder="Insira o nome de usuário" formControlName="username">
           <label for="role-select">Escolha um perfil</label>
