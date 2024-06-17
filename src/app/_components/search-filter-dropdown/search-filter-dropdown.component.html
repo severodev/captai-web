@@ -11,7 +11,7 @@
             <div class="wrapper">
                 <label>Filtrar por Instituição</label>
                 <ng-select
-                    placeholder="Escolha o tema"
+                    placeholder="Escolha as Instituições"
                     [items]="agencies"
                     bindLabel="name"
                     [clearable]="true"
@@ -33,11 +33,11 @@
                         <mat-datepicker #picker3></mat-datepicker>
                     </mat-form-field>
                 </div>
-                <!-- <div class="slider">
+                <div class="slider">
                     <label>Filtrar por valor do subsídio acima de: </label>
-                    <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="options" formControlName = "value"></ngx-slider>
+                    <ngx-slider [(value)]="lowValue" [(highValue)]="highValue" [options]="options" formControlName = "value"></ngx-slider>
 
-                </div> -->
+                </div>
                 <div class="slider">
                     <label>Filtrar por maturidade tecnológica</label>
                     <ngx-slider  [(value)]="highValue2" [options]="options2" formControlName = "maturity"></ngx-slider>
