@@ -32,7 +32,7 @@ export class AppComponent {
   confirmLogout()  {
     const initialState : any = {
       title:  'Fazer logout',
-      message: 'Você deseja desconectar da sua conta?'
+      message: 'Deseja sair da sua conta?'
     };
     let modalRef = this.modalService.show(ConfirmModal, {
       initialState,

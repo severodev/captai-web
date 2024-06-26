@@ -85,6 +85,9 @@
         </div>
         <div>
           <div class="table-scroller">
+          <div class="table-content-no-data dark_row" *ngIf="users.length === 0">
+            <span>Nenhum resultado encontrado</span>
+          </div>
           <div class="table-content2" *ngFor="let user of users;  let i = index">
             <div class="table-content"  (click)="select(i)" [ngClass]="{'dark_row': i % 2 !== 0}">
               <div class="row" [ngClass]="{'selected': i === selected} ">

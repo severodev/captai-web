@@ -1,3 +1,7 @@
+export class Segment {
+  id?: number;
+  name?: string;
+}
 export class User {
   id?: number;
   name?: string;
@@ -9,7 +13,7 @@ export class User {
   language?: string;
   profileImageId?: string;
   profileImageUrl?: string;
-  segment?: [];
+  segment?: Segment;
   abrangency?: [];
   activite?: [];
 }

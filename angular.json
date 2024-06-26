@@ -121,7 +121,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "buildTarget": "captai-web:build"
+            "buildTarget": "captai-web:build",
+             "proxyConfig": "proxy.config.json"
           },
           "configurations": {
             "production": {
