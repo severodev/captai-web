@@ -18,7 +18,7 @@
         </div>
         
         <div class="filter"> 
-          <div id="dropdownMenuClickableOutside" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="false">
+          <div id="dropdownMenuClickableOutside" class="filter-button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="false">
             <span class="material-symbols-outlined">filter_list</span>
             <label>
               Filtros
@@ -75,6 +75,9 @@
         </div>
         <div>
           <div class="table-scroller">
+          <div class="table-content-no-data dark_row" *ngIf="editais.length === 0">
+            <span>Nenhum resultado encontrado</span>
+          </div>
           <div class="table-content2" *ngFor="let edital of editais;  let i = index">
             <div class="table-content"  (click)="select(i)" [ngClass]="{'dark_row': i % 2 !== 0}">
               <div class="row" [ngClass]="{'selected': i === selected} ">
@@ -91,7 +94,10 @@
                   <span>{{!edital.dt_submission ? 'Não encontrado' : edital.dt_submission | date:'dd/MM/yyyy'}}</span>
                 </div>
                 <div class="col-1">
-                  <span>{{ edital.ds_currency }} {{ edital.nm_financing_value }}</span>
+                  <span>
+                    {{ edital.ds_currency }} 
+                    {{!edital.nm_financing_value ? 'Não encontrado' : edital.nm_financing_value}}
+                  </span>
                 </div>
                 <div class="col-1 affinity-field">
                   <span>{{ edital.Afinidade ??  '10' }}</span>

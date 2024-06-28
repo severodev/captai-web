@@ -31,6 +31,7 @@ import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { LoaderInterceptor } from './_interceptors/loader.interceptor';
 
 import { ImagekitService } from './_services/Imagekit.service';
+import { RecomendationService } from './_services/recomendation.service';
 import { AuthService } from './_services/auth.service';
 import { DocumentService } from './_services/document.service';
 import { FirstAccessService } from './_services/first-access.service';
@@ -168,6 +169,7 @@ export const customCurrencyMaskConfig = {
     ProfileService,
     SegmentService,
     ImagekitService,
+    RecomendationService,
     PermissionService,
     provideNgxMask(),
     MatDatepickerModule,

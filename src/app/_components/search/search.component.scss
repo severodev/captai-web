@@ -133,6 +133,16 @@
     }
 }
 
+.table-content-no-data {
+    padding: 1% 9%;
+    display: flex;
+    justify-content: center;
+    span {
+        font-size: 1.2rem;
+        color: #818181;
+        font-weight: bold;
+    }
+}
 
 .table-content {
     margin: 0%;
@@ -195,6 +205,9 @@
         }
     }
 }
+.filter-button {
+    cursor: pointer;
+}
 
 .selected {
     background-color: #fbf6e0;
@@ -229,7 +242,7 @@
 .table-backgound {
     background-color: white;
     border-radius: 20px;
-    width: 95rem;
+    /* width: 95rem; */
 }
 
 .filter-field {

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { PageRequest } from 'src/app/_interfaces';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
 import { EditalService } from 'src/app/_services/edital.service';
+import { RecomendationService } from 'src/app/_services/recomendation.service';
 
 @Component({
   selector: 'app-recomendations',
@@ -14,23 +15,37 @@ export class RecomendationsComponent {
 
   constructor(
     public user: AuthService,
-    private editalService: EditalService) { }
-
+    private router: Router,
+    private recomendation: RecomendationService) { }
+    
     ngOnInit(): void {
-      var params: PageRequest = {
-        itemsPerPage : 3
+      if (this.user.recomendations == undefined || this.user.recomendations.length === 0) {
+        this.recomendation.getEditalByUserAfinity({
+          input_text: this.user.user.segment.name,
+          n_recommendations: 3
+        }).subscribe(data => {
+          this.editais = data.map(edital => {
+            let list = edital.ds_areas.split(";");
+            edital.ds_areas = list.length > 1 ? list.slice(0, 1) : list;
+            return edital;
+          });
+          this.user.recomendations = this.editais;
+        })
+      } else {
+        this.editais = this.user.recomendations;
       }
-      this.editalService.getEditais(null, params).subscribe(data => {
-        this.editais = data.map(edital => {
-          let list = edital.areaList.split(";");
-          edital.areaList = list.length > 1 ? list.slice(0, 1) : list;
+  
+    }
 
-          if (edital.title.length > 20) {
-            edital.title =  edital.title.substring(0, 20) + "...";
-          }
-          return edital;
-        });
-      }).add(() => console.log(this.editais))
+    reduceTitle(title) {
+      if (title.length > 20) {
+        title =  title.substring(0, 20) + "...";
+      }
+      return title;
+    }
+
+    seeMore(id : number) {
+      this.router.navigate(['/details'], { queryParams: { editalId: id } });
     }
       
 }
