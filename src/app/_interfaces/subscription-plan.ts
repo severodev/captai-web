@@ -7,4 +7,5 @@ export interface SubscriptionPlan {
     itensCobertos?: string[];
     itensNaoCobertos?: string[];
     imagem?: string;
+    ativo: boolean;
 }

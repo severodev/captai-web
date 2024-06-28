@@ -109,22 +109,24 @@ export class CreateAccountComponent implements OnInit {
     this.availablePlans = [
       {
         id: 1,
-        nome: "Plano Pessoa Física [TESTE]",
+        nome: "Plano Pessoa Física",
         descricao: "O melhor para o profissional e sua equipe.",
-        valor: 1,
+        valor: 49.9,
         diasGratis: 1,
         itensCobertos: ["Pesquisar"],
-        itensNaoCobertos: ["Captar (EM BREVE)", "Categorizar (EM BREVE)", "Priorizar (EM BREVE)", "Gerenciar tarefas (EM BREVE)", "Dashboard pessoal (EM BREVE)"]
+        itensNaoCobertos: ["Captar (EM BREVE)", "Categorizar (EM BREVE)", "Priorizar (EM BREVE)", "Gerenciar tarefas (EM BREVE)", "Dashboard pessoal (EM BREVE)"],
+        ativo: true
       },
-      {
-        id: 2,
-        nome: "Plano Pessoa Jurídica [TESTE]",
-        descricao: "O melhor para o profissional e sua equipe.",
-        valor: 2,
-        diasGratis: 1,
-        itensCobertos: ["Pesquisar"],
-        itensNaoCobertos: ["Captar (EM BREVE)", "Categorizar (EM BREVE)", "Priorizar (EM BREVE)", "Gerenciar tarefas (EM BREVE)", "Dashboard pessoal (EM BREVE)"]
-      }
+      // {
+      //   id: 2,
+      //   nome: "Plano Pessoa Jurídica",
+      //   descricao: "O melhor para o profissional e sua equipe.",
+      //   valor: 59.90,
+      //   diasGratis: 1,
+      //   itensCobertos: ["Pesquisar"],
+      //   itensNaoCobertos: ["Captar (EM BREVE)", "Categorizar (EM BREVE)", "Priorizar (EM BREVE)", "Gerenciar tarefas (EM BREVE)", "Dashboard pessoal (EM BREVE)"],
+      //   ativo: false
+      // }
     ];
   }
 
