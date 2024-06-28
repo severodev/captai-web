@@ -66,7 +66,7 @@
 }
 
 
-.edital-name {
+/* .edital-name {
     padding-left: 2%;
     display: flex;
     align-items: center;
@@ -90,7 +90,7 @@
         padding: 6%;
     }
 }
-
+ */
 .row-header {
     font-size: 0.9rem;
     font-weight: bold;
@@ -101,13 +101,18 @@
     
 }
 
+.affinity-field-label {
+    padding-left: 5%;
+    display: flex;
+    justify-content: center;
+}
+
 .affinity-field {
-    color: #D3BE00;
-    padding-left: 3%;
-    .dds__star-filled {
-       font-size: 1rem; 
-    }
-    
+    display: flex;
+    justify-content: center;
+    color: #ffc000;
+    font-size: 16px;
+    align-items: baseline;
 }
 
 
@@ -140,6 +145,33 @@
         }
     }
 }
+.edital-name {
+    padding-left: 2%;
+    display: flex;
+    align-items: center;
+    div {
+        display: flex;
+        flex-direction: column;
+        span {
+            color: #2871ff;
+            cursor: pointer;
+            user-select: none;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .agency {
+            margin-top: 1%;
+            color: #383838;
+        }
+        
+    }
+    .dds__icons {
+        font-size: 1.6rem;
+        margin-right: 5%;
+    }
+}
 
 .user-space {
     border-bottom: 3px solid #a6a6a6;
@@ -150,7 +182,10 @@
     min-width: 90%; 
     padding-top: 18%;
     .user-img {
+        display: flex;
+        justify-content: center;
         img {
+            max-width: 9rem;
             border-radius: 100px;   
         }
     }

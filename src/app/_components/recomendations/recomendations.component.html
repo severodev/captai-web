@@ -34,7 +34,7 @@
                             <div class="col-2">
                               <span>Início</span>
                             </div>
-                            <div class="col-2">
+                            <div class="col-2 affinity-field-label">
                               <span>Afinidade</span>
                             </div>
                             <div class="col-3 area-List-label">
@@ -50,19 +50,20 @@
                                   <div class="col-3 edital-name">
                                     <label class="dds__icons dds__server-rack-support"></label>
                                     <div>
-                                      <span>{{ edital.title }}</span>
-                                      <span class="agency">{{ edital.agency }}</span>
+                                      <span data-toggle="tooltip" data-placement="bottom" [title]="edital.ds_titulo">
+                                        {{ reduceTitle(edital.ds_titulo)}}
+                                      </span>
+                                      <span class="agency">{{ edital.ds_agency }}</span>
                                     </div>
                                   </div>
                                   <div class="col-2">
-                                    <span>{{ edital.created | date:'dd/MM/yyyy' }}</span>
+                                    <span>{{ !edital.dt_submission ? 'Não encontrado' : edital.dt_submission | date:'dd/MM/yyyy'}}</span>
                                   </div>
                                   <div class="col-2 affinity-field">
-                                    <label class="dds__icons dds__star-filled"></label>
-                                    <span>{{ edital.Afinidade ??  ' 10.00' }}</span>
+                                    <span>{{ edital.ds_Afinidade ??  '10.00' }}</span>
                                   </div>
                                   <div class="col-3 area-List">
-                                    <span *ngFor="let item of edital.areaList">{{ item }}</span>
+                                    <span *ngFor="let item of edital.ds_areas">{{ item }}</span>
                                   </div>
                                   <div class="col-2 favorite-check">
                                     <span class="material-symbols-outlined">bookmark</span>

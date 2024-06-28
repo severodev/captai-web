@@ -9,7 +9,12 @@
     <form [formGroup]="filterForm">
         <div class="body">
             <div class="wrapper">
-                <label>Filtrar por Instituição</label>
+                <label>Filtrar por temática</label>
+                <ng-select class="disabilitado"
+                    placeholder="Escolha os temas">
+                </ng-select>
+
+                <label>Filtrar por instituição</label>
                 <ng-select
                     placeholder="Escolha as Instituições"
                     [items]="agencies"
@@ -18,12 +23,13 @@
                     [multiple]="true"
                     formControlName="agency">
                 </ng-select>
-                <label>Área</label>
-                <div class="area-selection">
-                    <div class="tags" *ngFor="let item of areas; let i = index" [id]="'item-' + i" >
-                        <span (click)="select('item-' + i, item)">{{ item }}</span>
-                    </div>
-                </div>
+                                
+                    <!-- <div class="area-selection">
+                        <div class="tags" *ngFor="let item of areas; let i = index" [id]="'item-' + i" >
+                            <span (click)="select('item-' + i, item)">{{ item }}</span>
+                        </div>
+                    </div> -->
+
                 <div class="date">
                     <mat-form-field>
                         <mat-label>Entrega das propostas</mat-label>

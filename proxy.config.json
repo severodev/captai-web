@@ -1,0 +1,8 @@
+{
+    "/recomendationApiUrl": {
+        "target": "https://capti-ia.onrender.com",
+        "pathRewrite": { "^/recomendationApiUrl": "" },
+        "secure": false,
+        "changeOrigin": true
+    }
+}

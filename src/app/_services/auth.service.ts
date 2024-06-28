@@ -14,6 +14,8 @@ export class AuthService {
 
   public user: User;
 
+  public recomendations: any;
+
   private accessTokenSubject: BehaviorSubject<string>;
   private refreshTokenSubject: BehaviorSubject<string>;
 
