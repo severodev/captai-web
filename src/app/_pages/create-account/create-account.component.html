@@ -16,7 +16,8 @@
                                 <div class="form-group">
                                     <label>Nome</label>
                                     <input type="text" class="form-control" formControlName="name" name="new-user-name"
-                                        [ngClass]="{'invalid-field': !userForm.get('name').valid && showErrors}" autocomplete="off" >
+                                        [ngClass]="{'invalid-field': !userForm.get('name').valid && showErrors}"
+                                        autocomplete="off">
                                     <div class="invalid-message" *ngIf="!userForm.get('name').valid && showErrors">
                                         <span>Preenchimento obrigatório</span>
                                     </div>
@@ -150,7 +151,8 @@
                                 <label>Senha</label>
                                 <div class="password-fields">
                                     <input [type]="passwordFieldVisible ? 'text' : 'password'" class="form-control"
-                                        formControlName="password" name="new-user-password" autocomplete="new-password" [ngClass]="{
+                                        formControlName="password" name="new-user-password" autocomplete="new-password"
+                                        [ngClass]="{
                                     'invalid-field':!userForm.get('password').valid && showErrors}">
                                     <span class="dds__icons" [ngClass]="{
                                         'dds__eye-view-on': passwordFieldVisible, 
@@ -216,7 +218,7 @@
                                     </span>
                                     <label>Um número</label>
                                 </div>
-                                <div class="errors" >
+                                <div class="errors">
                                     <span class="password-dot"
                                         *ngIf="!userForm.get('password').valid && !userForm.get('password').hasError('specialCharacters')"></span>
                                     <span class="password-check"
@@ -236,10 +238,11 @@
                                 <button class="btn-advance">
                                     <span>Próximo</span>
                                 </button>
-                                <!-- &nbsp;
-                                <button type="button" class="btn btn-info" style="margin-top: 0.5rem;" (click)="goToServiceData()" >
+                                &nbsp;
+                                <button type="button" class="btn btn-info" style="margin-top: 0.5rem;"
+                                    (click)="goToServiceData()">
                                     <span>Avançar</span>
-                                </button> -->
+                                </button>
                             </div>
                         </div>
                         <div>
@@ -293,8 +296,9 @@
                         <div class="row">
                             <div class="form-group">
                                 <label>Escolha a abrangência territorial</label>
-                                <ng-select [items]="abrangencyStates" bindLabel="name" [searchable]="true" [clearable]="true"
-                                    [multiple]="true" (change)="abrangencyChange()" formControlName="abrangency"
+                                <ng-select [items]="abrangencyStates" bindLabel="name" [searchable]="true"
+                                    [clearable]="true" [multiple]="true" (change)="abrangencyChange()"
+                                    formControlName="abrangency"
                                     [ngClass]="{'invalid-field': !serviceForm.get('abrangency').valid && showErrors}">
                                 </ng-select>
                                 <div class="invalid-message" *ngIf="!serviceForm.get('abrangency').valid && showErrors">
@@ -307,8 +311,8 @@
                         <div class="row">
                             <div class="form-group">
                                 <label>Valor limite máximo de contrapartida financeira</label>
-                                <input type="text" class="form-control" 
-                                    prefix="R$ " mask="separator.0" thousandSeparator="." leadZero="true"
+                                <input type="text" class="form-control" prefix="R$ " mask="separator.0"
+                                    thousandSeparator="." leadZero="true"
                                     [ngClass]="{'invalid-field': serviceForm.get('targetValue').invalid && showErrors}"
                                     formControlName="targetValue" name="targetValue">
                                 <div class="invalid-message"
@@ -357,6 +361,11 @@
                                         <button class="btn-advance">
                                             <span>Próximo</span>
                                         </button>
+                                        &nbsp;
+                                        <button type="button" class="btn btn-info" style="margin-top: 0.5rem;"
+                                            (click)="goToPlanSelection()">
+                                            <span>Avançar</span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -384,60 +393,42 @@
                     so comece a pagar após os primeiros 15 dias.</div>
                 <div class="register-today">Selecione um plano e proceda para o pagamento.</div>
             </div>
-            <div class="plans-list">
-                <div class="" *ngFor="let item of availablePlans">
-                    <div class="plan-item">
-                        <div class="item-title">
-                            <input type="radio" name="p1" id="p1" class="plan-radio" (change)="goToPayment(item)">
-                            {{item.nome}}
-                        </div>
-                        <div class="plan-body">
-                            <div class="price"><b>R$ {{item.valor}}</b>/MÊS</div>
-                            <div class="description">{{item.descricao}}</div>
-                            <div class="attributes-list">
-                                <div class="attribute-item active" *ngFor="let coberto of item.itensCobertos">
-                                    <img src="assets/icons/check-plan-attribute.svg" width="25px" height="25px">
-                                    &nbsp;<span>{{coberto}}</span>
+            <div class="row">
+                <div class="col-4 regiao-pagamento">
+                    <div class="plans-list">
+                        <div *ngFor="let item of availablePlans">
+                            <div class="plan-item" [class.disabled]="!item.ativo">
+                                <div class="item-title" [class.disabled]="!item.ativo">
+                                    <input type="radio" name="p1" id="p1" class="plan-radio" (change)="goToPayment(item)"
+                                        [disabled]="!item.ativo" [class.disabled]="!item.ativo"
+                                        [title]="item.ativo ? 'Selecionar ' + item.nome : 'Este plano está indisponível'">
+                                    {{item.nome}}
                                 </div>
-                                <div class="attribute-item" *ngFor="let naoCoberto of item.itensNaoCobertos">
-                                    <img src="assets/icons/check-plan-attribute.svg" width="25px" height="25px">
-                                    &nbsp;<span>{{naoCoberto}}</span>
+                                <div class="plan-body">
+                                    <div class="price" [class.disabled]="!item.ativo"><b>{{item.valor |
+                                            currency:'BRL':true:'1.2-2' }}</b>/MÊS</div>
+                                    <div class="description">{{item.descricao}}</div>
+                                    <div class="attributes-list">
+                                        <div class="attribute-item active" *ngFor="let coberto of item.itensCobertos">
+                                            <img src="assets/icons/check-plan-attribute{{item.ativo ? '' : '-off'}}.svg"
+                                                width="25px" height="25px">
+                                            &nbsp;<span>{{coberto}}</span>
+                                        </div>
+                                        <div class="attribute-item" *ngFor="let naoCoberto of item.itensNaoCobertos">
+                                            <img src="assets/icons/check-plan-attribute-off.svg" width="25px" height="25px">
+                                            &nbsp;<span>{{naoCoberto}}</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-5 regiao-pagamento">
+                    <div id="area-pagamento" class="area-pagamento"></div>
+                    <div id="marcador-final-pagamento"></div>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
-
-<div id="payment" *ngIf="showPaymentArea">
-    <div class="plans">
-        <div class="">
-            <div class="sub-title">
-                <span class="badge badge-pill badge-orange">3</span>
-                Pagamento
-            </div>
-        </div>
-        <div class="col-8 regiao-pagamento">
-            <div id="area-pagamento" class="area-pagamento"></div>
-            <div id="marcador-final-pagamento"></div>
-        </div>
-        <br />
-    </div>
-</div>
-
-<div id="success-payment" *ngIf="false">
-    <div class="plans">
-        <div class="">
-            <div class="sub-title">
-                <span class="badge badge-pill badge-orange">3</span>
-                Pagamento
-            </div>
-        </div>
-        <div class="col-8 regiao-resultado">
-            <div id="sucesso-pagamento" class="sucesso-pagamento"></div>
         </div>
     </div>
 </div>

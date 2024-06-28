@@ -335,6 +335,9 @@ body {
         width: 450px;
         height: 100%;
 
+        &.disabled {
+          border: 4px solid #afafaf;
+        }
 
         .item-title {
           border: 4px solid #E4531E;
@@ -348,6 +351,11 @@ body {
           color: white;
           font-weight: 500;
           height: 40px;
+
+          &.disabled {
+            border: 4px solid #afafaf;
+            background-color: #afafaf;
+          }
 
           .plan-radio {
             margin-right: 1rem;
@@ -365,6 +373,10 @@ body {
             color: #E4531E;
             font-size: 2rem;
             margin-bottom: 0.5rem;
+
+            &.disabled {
+              color: #afafaf;
+            }
           }
 
           .description {
