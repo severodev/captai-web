@@ -5,7 +5,7 @@
         <img src="../../../assets/images/captiLogo.png" class="logo">
         <div class="d-flex flex-column align-items-end pt-2 min-vh-100">
           <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center" id="menu">
-            <li class="nav-item nav-profile-label" routerLinkActive="item-selected">
+            <li (click)="admSubMenu(false)" class="nav-item nav-profile-label" routerLinkActive="item-selected">
               <a [routerLink]="['/profile']" class="nav-link align-middle px-0 profile-label">
                 <div class="user-img">
                   <img src="{{authService.user.profileImageUrl}}">
@@ -13,7 +13,7 @@
                 <span class="ms-1 menu-item-label">Seu perfil</span>
               </a>
             </li>
-            <li class="nav-item" routerLinkActive="item-selected">
+            <li class="nav-item" (click)="admSubMenu(false)" routerLinkActive="item-selected">
                 <a [routerLink]="['/recomendations']" class="nav-link align-middle px-0">
                   <span class="icons_google material-symbols-outlined">
                     dashboard
@@ -29,7 +29,7 @@
                 <span class="ms-1 menu-item-label">Área de trabalho</span>
               </a>
             </li>
-            <li class="nav-item" routerLinkActive="item-selected">
+            <li class="nav-item" (click)="admSubMenu(false)" routerLinkActive="item-selected">
               <a [routerLink]="['/search']" class="nav-link align-middle px-0">
                 <span class=" icons_google material-symbols-outlined">
                   quick_reference_all
@@ -61,12 +61,20 @@
                 <span class="ms-1 menu-item-label">Descartados</span>
               </a>
             </li>
-            <li class="nav-item" routerLinkActive="item-selected" *ngIf="authService.user.role == 'ADMIN'">
+            <li class="nav-item" (click)="admSubMenu(true)" routerLinkActive="item-selected" *ngIf="authService.user.role == 'ADMIN'">
               <a [routerLink]="['/list-users']" class="nav-link align-middle px-0">
                 <span class="icons_google material-symbols-outlined">
                   group
                 </span>
                 <span class="ms-1 menu-item-label">Administrador</span>
+              </a>
+            </li>
+            <li class="nav-item sub-menu" (click)="inviteSend()" *ngIf="authService.user.role == 'ADMIN' && openSubMenu">
+              <a class="nav-link align-middle px-0">
+                <span class="icons_google material-symbols-outlined">
+                  person_add
+                </span>
+                <span class="ms-1 menu-item-label">Convidar</span>
               </a>
             </li>
           </ul>

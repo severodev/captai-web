@@ -1,0 +1,82 @@
+
+.wrapper {
+    padding: 4%;
+}
+.title {
+    text-align: center;
+    padding: 3% 0% 3%;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.sub-title {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.message {
+    padding: 0% 0% 4%;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.body {
+    position: relative;
+    display: flex;
+    padding: 5px 36px;
+    flex-direction: column;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.btn-send {
+    color: #ffffff;
+    border: solid 2px #e4531e;
+    border-radius: 6px !important;
+    background-color: #e4531e;
+    display: flex;
+    padding: 0.8%;
+    cursor: pointer;
+    min-height: 40px;
+    min-width: 20rem;
+    margin: 6% 1% 0% 0%;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.invalid-field {
+    border: 2px solid #ff0000 !important;
+}
+
+.invalid-message {
+    display: flex;
+    color: #ff0000;
+}
+
+.form-group {
+    margin-bottom: 5px !important;
+    label {
+        font-weight: 400;
+        font-size: 1rem;
+        color: #333333;
+        margin-bottom: 12px;
+    } 
+}
+
+
+
+.form-control {
+    height: 50px;
+    background-color: #fafdff;
+    border: 1px solid #9f9f9f !important;
+    border-radius: 8px;
+}
+

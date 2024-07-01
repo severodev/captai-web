@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { EditalService } from 'src/app/_services/edital.service';
 import { EditalFilter, PageRequest } from 'src/app/_interfaces/index';
 import { FormBuilder } from '@angular/forms';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -10,6 +11,8 @@ import { FormBuilder } from '@angular/forms';
   styleUrl: './search.component.scss'
 })
 export class SearchComponent {
+
+  clearFilter = new Subject<void>();
 
   public editais = [];
   public selected;
@@ -47,6 +50,14 @@ export class SearchComponent {
     this.getEditais( this.filterRequest )
   }
 
+  clear() {
+    this.clearFilter.next();
+  }
+
+  clearFilterObservable() {
+    return this.clearFilter.asObservable();
+  }
+
   filter() {
     this.filterRequest.agency = this.filterForm.controls['agency'].value
     this.filterRequest.agencyList = null;
@@ -54,8 +65,6 @@ export class SearchComponent {
     this.filterRequest.maturity = null;
     this.filterRequest.submission = null;
     this.filterRequest.areaList = null;
-    financingValueHigh: null;
-    financingValueLow: null;
     this.getEditais(this.filterRequest);
     this.filterForm.reset();
   }
@@ -176,8 +185,8 @@ export class SearchComponent {
     this.filterRequest.maturity = this.customFilter.maturity != 0 ? this.customFilter.maturity : null;
     this.filterRequest.submission = this.customFilter.date == 'Invalid date' ? null : this.customFilter.date;
     this.filterRequest.areaList = this.customFilter.areas;
-    this.filterRequest.financingValueLow = this.customFilter.value[0];
-    this.filterRequest.financingValueHigh = this.customFilter.value[1];
+    this.filterRequest.financingValueLow = !this.customFilter.value ? null : this.customFilter.value[0];
+    this.filterRequest.financingValueHigh = !this.customFilter.value ? null : this.customFilter.value[1];
     
     this.getEditais(this.filterRequest);
     this.filterForm.reset();

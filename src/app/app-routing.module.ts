@@ -16,20 +16,20 @@ import { LoginComponent } from './_pages/login/login.component';
 import { UserProfileComponent } from './_pages/users/user-profile/user-profile.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/search', pathMatch: 'full' },
+  { path: '', redirectTo: '/recomendations', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'create-account', component: CreateAccountComponent},
   { path: 'password-recovery', component: PasswordRecoveryComponent},
   { path: 'password-recovery/:token', component: PasswordRecoveryComponent},
   { path: 'validate-email/:token', component: EmailValidationComponent},
-  { path: 'search', component: SearchComponent, canActivate: [AuthGuard], data: {role:["ADMIN", "CLIENTE", "SISTEMA"]}},
-  { path: 'details', component: DetailsComponent, canActivate: [AuthGuard], data: {role:["ADMIN", "CLIENTE", "SISTEMA"]}},
-  { path: 'recomendations', component: RecomendationsComponent, canActivate: [AuthGuard], data: {role:["ADMIN", "CLIENTE", "SISTEMA"]}},
+  { path: 'search', component: SearchComponent, canActivate: [AuthGuard], data: {role:["ADMIN", "CLIENTE", "CONVIDADO",  "CONVIDADO",  "SISTEMA"]}},
+  { path: 'details', component: DetailsComponent, canActivate: [AuthGuard], data: {role:["ADMIN", "CLIENTE", "CONVIDADO",  "SISTEMA"]}},
+  { path: 'recomendations', component: RecomendationsComponent, canActivate: [AuthGuard], data: {role:["ADMIN", "CLIENTE", "CONVIDADO",  "SISTEMA"]}},
   { path: 'first-access/:token', component: FirstAccessComponent },
   { path: 'list-users', component: UserListComponent, canActivate: [AuthGuard], data: {role:["ADMIN"]}},
-  { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard], data: {role:["ADMIN", "CLIENTE", "SISTEMA"]}},
-  { path: 'profile-details', component: UserProfileComponent, canActivate: [AuthGuard], data: {role:["ADMIN", "CLIENTE", "SISTEMA"]}},
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard], data: {role:["ADMIN", "CLIENTE", "SISTEMA"]}},
+  { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard], data: {role:["ADMIN", "CLIENTE", "CONVIDADO",  "SISTEMA"]}},
+  { path: 'profile-details', component: UserProfileComponent, canActivate: [AuthGuard], data: {role:["ADMIN", "CLIENTE", "CONVIDADO",  "SISTEMA"]}},
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard], data: {role:["ADMIN", "CLIENTE", "CONVIDADO",  "SISTEMA"]}},
   { path: 'users/new', component: CreateUserFormComponent, canActivate: [AuthGuard], canDeactivate: [DeactivateGuard]},
 ];
 

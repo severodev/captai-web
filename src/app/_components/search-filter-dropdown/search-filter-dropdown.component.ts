@@ -1,9 +1,11 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import moment from 'moment';
 import { Options } from 'ngx-slider-v2';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { PageRequest } from 'src/app/_interfaces';
 import { EditalService } from 'src/app/_services/edital.service';
+import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-search-filter-dropdown',
@@ -17,25 +19,26 @@ export class SearchFilterDropdownComponent {
   @Output() filteParams = new EventEmitter<any>();
 
   filterForm: FormGroup;
-
+ 
   public agencies = []
   public areas = []
   public areasSelected = []
-  lowValue: number = 500;
-  highValue: number = 10000000;
-  options: Options = {
-    floor: 500,
-    ceil: 10000000,
+
+  public lowValue: number = 500;
+  public highValue: number = 10000000;
+  public options: Options = {
+    floor: this.lowValue,
+    ceil: this.highValue,
     step: 500,
     showTicks: false,
     hideLimitLabels: true
   };
 
-  value1: number = 0;
-  highValue2: number = 10;
-  options2: Options = {
-    floor: 0,
-    ceil: 10,
+  public value1: number = 0;
+  public highValue2: number = 10;
+  public options2: Options = {
+    floor: this.value1,
+    ceil: this.highValue2,
     step: 1,
     showTicks: false,
     hideLimitLabels: true
@@ -43,6 +46,7 @@ export class SearchFilterDropdownComponent {
 
   constructor(
     private editalService: EditalService,
+    private searchComponent: SearchComponent,
     private fb: FormBuilder) {
       this.filterForm = this.fb.group({
         agency: [],
@@ -51,6 +55,13 @@ export class SearchFilterDropdownComponent {
         areas: [],
         maturity: []
       });
+      searchComponent.clearFilterObservable().subscribe(() => {
+        this.lowValue = 500;
+        this.highValue = 10000000;
+        this.filterForm.controls.value.setValue([this.lowValue, this.highValue])
+        this.filterForm.reset();
+        console.log("formulario ", this.filterForm)
+      })
     }
   
   ngOnInit(): void {

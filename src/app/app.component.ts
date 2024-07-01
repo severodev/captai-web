@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { AuthService } from './_services/auth.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ConfirmModal } from './_components/confirm-modal/confirm-modal.component';
+import { Subject } from 'rxjs';
+import { InviteService } from './_services/invite.service';
 
 @Component({
   selector: 'app-root',
@@ -11,12 +13,13 @@ import { ConfirmModal } from './_components/confirm-modal/confirm-modal.componen
 })
 
 export class AppComponent {
-  public optionIndex = 1;
+  public openSubMenu = false;
   accessToken: string;
 
   constructor(
     private authService: AuthService,
     public user: AuthService,
+    public inviteService: InviteService,
     public router: Router,
     private modalService: BsModalService,
   ) {
@@ -25,10 +28,14 @@ export class AppComponent {
     });
   }
 
-  setSelectedButton(index: number) {
-    this.optionIndex = index;
-  } 
+  inviteSend() {
+    this.inviteService.initInvite()
+  }
 
+  admSubMenu(value) {
+    this.openSubMenu = value;
+  } 
+  
   confirmLogout()  {
     const initialState : any = {
       title:  'Fazer logout',

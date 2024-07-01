@@ -79,15 +79,46 @@
 }
 .form-group {
   color: #000;
-  margin-bottom: 15px !important;
+  margin-bottom: 8px !important;
   label {
       font-size: 1rem;
+      font-weight: 500;
+      font-size: 0.9rem;
   }
 }
+
+.password-errors-label{
+  font-weight: bold;
+}
+.password-errors {
+  .dds__icons {
+    color: #000000;
+  }
+}
+.dot {
+  background: #989898;
+  width: 3px;
+  border-radius: 19px;
+  height: 3px;
+}
+
+.errors {
+  label{
+    margin-left: 6px;
+    color: #989898;
+  }
+  display: flex;
+  align-items: center;
+  padding: 0px;
+}
+
+
 .invalid-field {
   border: 2px solid #ff0000 !important;
 }
-
+.invalid-message {
+  color: #ff0000;
+}
 .invalid-message {
   display: flex;
   color: #ff0000;
@@ -131,6 +162,15 @@
   max-width: 6rem;
   justify-content: center;
 }
+
+.password {
+  max-width: 10rem !important;
+  margin-top: 3rem;
+  .material-symbols-outlined {
+    margin: 0px 10px 0px 0px;
+  }
+}
+
 .buttons-wrapper {
   display: flex;
   align-items: flex-end;
@@ -160,6 +200,16 @@
   padding: 1%;
   max-width: 10rem;
   justify-content: center;
+}
+
+.password-fields{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  span {
+    position: absolute;
+    padding-right: 1.2%;
+  }
 }
 
 .buttons-row {
