@@ -48,6 +48,10 @@ export class UserService {
     return this.http.post(url, body);
   }
 
+  createUserGuester(body: User): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/users/create-guester`, body);
+  }
+
   editUSer(id: number, changes: Partial<User>): Observable<any> {
     let url = `${environment.apiUrl}/users/${id}`;
     return this.http.put(url, changes);

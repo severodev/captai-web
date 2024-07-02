@@ -46,14 +46,25 @@
     border-radius: 8px;
 }
 .btn-apply-filter {
-    background: #5e5adb;
+    background: #2871ff;
     color: #ffffff;
-    border: 1px solid #5e5adb;
+    border: 1px solid #2871ff;
 }
+
+.close-btn {
+    display: flex;
+    justify-content: flex-end;
+    span {
+        font-size: 25px !important;
+        margin: 6px;
+        cursor: pointer;
+    }
+}
+
 .btn-close-filter {
     background: #ffffff;
-    color: #525a6a;
-    border: 1px solid #888888;
+    color: #357aff;
+    border: 1px solid #357aff;
 }
 .search-bar {
     input {

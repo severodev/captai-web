@@ -25,9 +25,14 @@
             </label>
           </div>
           <div id="filter-modal" class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuClickableOutside">
+            <div class="close-btn">
+              <span class="material-symbols-outlined" (click)="cancelFilter()">
+                close
+              </span>
+            </div>
             <app-search-filter-dropdown (filteParams)="setFilter($event)"></app-search-filter-dropdown>
             <div class="filter-buttons">
-              <button type="button" class="btn btn-close-filter" (click)="cancelFilter()">Fechar</button>
+              <button type="button" class="btn btn-close-filter" (click)="clear()">Limpar</button>
               <button type="button" class="btn btn-apply-filter" (click)="applyCustomFilter()">Filtrar</button>
             </div>
           </div>

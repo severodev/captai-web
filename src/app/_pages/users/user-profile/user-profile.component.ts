@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { emailValidator } from 'src/app/_helpers/utils';
+import { createPasswordStrengthValidator, emailValidator } from 'src/app/_helpers/utils';
 import { User } from 'src/app/_models/user';
 import { ImagekitService } from 'src/app/_services/Imagekit.service';
 import { ActiviteService } from 'src/app/_services/activite.service';
@@ -24,6 +24,12 @@ export class UserProfileComponent implements OnInit {
 
   private profileImageFile: any;
 
+  public passwordConfirmationFieldVisible = false;
+  public passwordFieldVisible = false;
+  public passwordEdit = false;
+
+  
+
   public get tabOptions(): typeof tabSelection {
     return tabSelection;
   }
@@ -31,6 +37,7 @@ export class UserProfileComponent implements OnInit {
   public currentTab = tabSelection.PROFILE;
 
   public userForm: FormGroup;
+  public passwordForm: FormGroup;
 
   public mask: string = "000.000.000-00";
 
@@ -65,15 +72,26 @@ export class UserProfileComponent implements OnInit {
       email: [null, [Validators.required, emailValidator()]],
       cpfCnpj: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(14)]],
       role: [''],
-      password: [''],
-      passwordConfirm: [''],
       profileImageId: [null],
       segment: [null, Validators.required],
       activite: [null, Validators.required],
       abrangency: [null, Validators.required],
     });
 
+    this.passwordForm = this.formBuilder.group({
+      password: ['', [Validators.required, createPasswordStrengthValidator()]],
+      passwordConfirm: ['', Validators.required],
+    });
+
     this.userProfile = document.getElementById('usar-image') as HTMLImageElement;
+  }
+
+  toglePasswordField() {
+    this.passwordFieldVisible = !this.passwordFieldVisible;
+  }
+
+  toglePasswordConfirmField() {
+    this.passwordConfirmationFieldVisible = !this.passwordConfirmationFieldVisible;
   }
 
   ngOnInit(): void {
@@ -103,7 +121,7 @@ export class UserProfileComponent implements OnInit {
 
   setForm(user : User) {
     this.userForm.patchValue(user)
-    if (this.user.user.cpfCnpj.length > 11)
+    if (this.user.user.cpfCnpj && this.user.user.cpfCnpj.length > 11)
       this.mask = '00.000.000/0000-00'
 
     this.userForm.disable()
@@ -163,9 +181,7 @@ export class UserProfileComponent implements OnInit {
   
   edit() {
     this.editMode = true;
-
     this.userForm.controls.email.enable()
-    
     if (!this.isAdmVision) {
       this.userForm.controls.name.enable()
       this.userForm.controls.lastName.enable()
@@ -176,8 +192,14 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
+  ededitPassword() {
+    this.passwordEdit = true;
+    this.passwordForm.enable();
+  }
+
   save() {
-    if (this.userForm.valid) {
+    if ((this.userForm.valid && !this.passwordEdit) || 
+    (this.userForm.valid && this.passwordEdit && this.passwordForm.valid && this.passwordForm.controls.password?.value == this.passwordForm.controls.passwordConfirm?.value)) {
       let userDTO: any = {
         name: this.userForm.controls.name?.value,
         lastName: this.userForm.controls.lastName?.value,
@@ -187,12 +209,18 @@ export class UserProfileComponent implements OnInit {
         abrangency: this.userForm.controls.abrangency?.value.map((item) => item.id),
         activite: this.userForm.controls.activite?.value.map((item) => item.id)
       }
+      if (this.passwordForm.valid) {
+        userDTO.password = this.passwordForm.controls.password?.value
+      }
 
       this.userService.editUSer(this.userForm.controls.id.value, userDTO).subscribe(() => {
         this.toastService.success('Alterações salvas com sucesso  ', '', 6000);
+        this.user.recomendations = undefined;
         this.editMode = false;
+        this.passwordEdit = false;
         this.showErrors = false;
         this.userForm.disable()
+        this.passwordForm.reset();
         if (!this.isAdmVision || this.userForm.controls.id.value === this.user.user.id)
           this.user.manualTokenRefresh();
       }, (err) => {
@@ -208,7 +236,9 @@ export class UserProfileComponent implements OnInit {
     this.userService.getUsers({ id : this.userForm.controls.id.value },{ itemsPerPage : 1 }).subscribe(data => {
       this.setForm(data[0]);
      });
+    this.passwordForm.reset()
     this.showErrors = false;
     this.editMode = false;
+    this.passwordEdit = false;
   }
 }

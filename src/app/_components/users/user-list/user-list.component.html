@@ -110,8 +110,12 @@
                   <span>{{ user.cpfCnpj | cpfCnpjFormat }}</span>
                 </div>
                 <div class="col-2 buttons-div">
-                  <span class="details" (click)="userDetails(user.id)">Ver</span>
-                  <span class="change-password" (click)="resetPasswordUser(user.email)">Resetar senha</span>
+                  <span class="details material-symbols-outlined" (click)="userDetails(user.id)">
+                    visibility
+                  </span>
+                  <span class="change-password material-symbols-outlined" (click)="resetPasswordUser(user.email)">
+                    lock_reset
+                  </span>
                 </div>
               </div>
             </div>

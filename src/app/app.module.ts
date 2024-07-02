@@ -54,6 +54,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ValidBirthdayDirective } from "src/app/_helpers/birthday-validator.directive";
 import { NotEmptyDirective } from "src/app/_helpers/not-empty-validator.directive";
+import { InviteModalComponent } from './_components/invite-modal/invite-modal.component';
 import { ConfirmModal } from './_components/confirm-modal/confirm-modal.component';
 import { DetailsComponent } from './_components/details/details.component';
 import { EmailValidationComponent } from './_components/email-validation/email-validation.component';
@@ -73,6 +74,7 @@ import { FirstAccessComponent } from './_pages/first-access/first-access.compone
 import { UserProfileComponent } from './_pages/users/user-profile/user-profile.component';
 import { UsersComponent } from './_pages/users/users.component';
 import { ActiviteService } from './_services/activite.service';
+import { InviteService } from './_services/invite.service';
 import { EditalService } from './_services/edital.service';
 import { UserService } from './_services/user.service';
 
@@ -121,6 +123,7 @@ export const customCurrencyMaskConfig = {
     CreateAccountComponent,
     NotificationModalComponent,
     ConfirmModal,
+    InviteModalComponent,
     TermsOfUseModalComponent,
     SearchComponent,
     PasswordRecoveryComponent,
@@ -157,6 +160,7 @@ export const customCurrencyMaskConfig = {
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     provideEnvironmentNgxCurrency(customCurrencyMaskConfig),
     AuthService,
+    InviteService,
     DocumentService,
     EditalService,
     ActiviteService,

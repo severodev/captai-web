@@ -1,0 +1,53 @@
+<div class="wrapper">
+    <div class="title">
+        <span>
+          Deseja dar acesso a um convidado?
+        </span>
+    </div>
+   <div class="body">
+        <div class="sub-title">
+            <span>
+                Após o preenchimento dos dados abaixo, um email de confirmação será enviado para o convidado.
+            </span>
+        </div>
+        <div class="form">
+            <form [formGroup]="guester" (submit)="save()">
+                <div class="form-group row">
+                    <div class="form-group col-6">
+                        <label>Nome</label>
+                        <input type="text" class="form-control" formControlName = "name" name="username">
+                    </div>
+                    <div class="form-group col-6">
+                        <label>Sobrenome</label>
+                        <input type="text" class="form-control" formControlName = "secondName" name="secondName">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group col-12">
+                        <label>Email</label>
+                        <input type="email" class="form-control"
+                            [ngClass]="{'invalid-field': guester.get('email').invalid && showErrors}"
+                            formControlName="email" name="Email">
+                        <div class="invalid-message"
+                            *ngIf="guester.get('email').value == '' && showErrors">
+                            <span>Preenchimento obrigatório</span>
+                        </div>
+                        <div class="invalid-message"
+                            *ngIf="!guester.get('email').valid && guester.get('email').value != '' && showErrors">
+                            <span>Informação não é válida</span>
+                        </div>
+                        <div class="invalid-message"
+                            *ngIf="guester.get('email').value != '' && guester.get('email').hasError('email_exists')">
+                            <span>O email informado já está em uso</span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="buttons">
+            <button type="submit" class="btn-send" (click)="save()">
+                Enviar convite
+            </button>
+        </div>
+    </div>
+</div>

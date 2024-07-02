@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
-import { EditalService } from 'src/app/_services/edital.service';
 import { RecomendationService } from 'src/app/_services/recomendation.service';
+import { ToastService } from 'src/app/_services/toast.service';
 
 @Component({
   selector: 'app-recomendations',
@@ -16,9 +16,14 @@ export class RecomendationsComponent {
   constructor(
     public user: AuthService,
     private router: Router,
+    private toastService: ToastService,
     private recomendation: RecomendationService) { }
     
     ngOnInit(): void {
+      if (!this.user.user.segment) {
+        this.toastService.info('Você precisa completar seu perfil para ter acesso a suas recomendações.', '' , 6000);
+        this.router.navigate(['/profile']);
+      }
       if (this.user.recomendations == undefined || this.user.recomendations.length === 0) {
         this.recomendation.getEditalByUserAfinity({
           input_text: this.user.user.segment.name,
