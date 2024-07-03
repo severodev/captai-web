@@ -20,10 +20,6 @@ export class RecomendationsComponent {
     private recomendation: RecomendationService) { }
     
     ngOnInit(): void {
-      if (!this.user.user.segment) {
-        this.toastService.info('Você precisa completar seu perfil para ter acesso a suas recomendações.', '' , 6000);
-        this.router.navigate(['/profile']);
-      }
       if (this.user.recomendations == undefined || this.user.recomendations.length === 0) {
         this.recomendation.getEditalByUserAfinity({
           input_text: this.user.user.segment.name,
