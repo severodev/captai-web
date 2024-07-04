@@ -4,6 +4,7 @@ import { AuthService } from './_services/auth.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ConfirmModal } from './_components/confirm-modal/confirm-modal.component';
 import { Subject } from 'rxjs';
+import { environment } from './../environments/environment';
 import { InviteService } from './_services/invite.service';
 
 @Component({
@@ -58,4 +59,9 @@ export class AppComponent {
     this.user.logout();
     this.router.navigate(['/login']);
   }
+
+  getVersion(){
+    return environment.currentVersion ?? '---'
+  }
+
 }
