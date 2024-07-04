@@ -4,32 +4,37 @@
   background-color: #f6f2dd;
   display: flex;
   align-items: center;
-  
+
   .logo {
     max-width: 100px;
     margin-left: 2%;
   }
 }
-.container-fluid{
+
+.container-fluid {
   position: fixed;
 }
+
 .side-menu-body {
   background: linear-gradient(to bottom left, #efab958f -1%, #f6f2dd 9%);
   width: 5%;
+
   .logo {
     max-width: 40%;
     min-width: 3rem;
     margin: 15% 0% 0% 6%;
   }
 }
+
 #menu {
   min-width: 100%;
   margin-top: 15%;
 }
 
-.sub-menu{
+.sub-menu {
   width: 80% !important;
   cursor: pointer;
+
   &:hover {
     background-color: #ffffff
   }
@@ -46,8 +51,8 @@
   border-radius: 30px 0px 0px 30px;
   margin: 4px 0px 4px 1px;
 
- 
-  
+
+
   span {
     color: #000;
     padding-right: 5%;
@@ -59,7 +64,7 @@
     font-weight: normal;
     font-size: 1.4rem;
   }
-  
+
 }
 
 .disabled {
@@ -68,7 +73,7 @@
   }
 }
 
-.nav-perfil{
+.nav-perfil {
   margin: 24% 6% 0%;
   display: flex;
   align-items: center;
@@ -79,6 +84,7 @@
 
 .user-img {
   margin-right: 4%;
+
   img {
     width: 30px;
     border-radius: 16px;
@@ -92,6 +98,7 @@
 .card-principal {
   padding: 2.5%;
 }
+
 .profile-label {
   min-width: 100%;
 }
@@ -107,4 +114,13 @@
 
 .logout {
   margin-bottom: 5rem;
+}
+
+.v {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  color: #d6d6d6;
+  font-size: 0.6rem;
+  text-align: right;
 }
