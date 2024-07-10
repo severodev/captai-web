@@ -27,8 +27,8 @@
 }
 
 .atualizations {
-    min-height: 50%;
-    padding: 9%;
+    min-height: 45%;
+    padding: 8% 3%;
 }
 .preview {
     min-height: 50%;
@@ -223,10 +223,10 @@
         border-radius: 50%;
     }
     .notification-placeholder {
-        margin: 4% 0%;
-        padding: 3% 4%;
         border-radius: 7px;
-        background-color: #ffffff;
+        img {
+            max-width: 100%;
+        }
     }
     .upgrade-button-wrapper {
         padding: 5%;
@@ -262,10 +262,8 @@
 }
 .atualizations-placeholder {
     display: flex;
-    background-color: white;
+    max-height: 11rem;
     align-items: center;
-    border-radius: 21px;
-    justify-content: center;
     max-width: 30%;
     margin: 1%;
 }
