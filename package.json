@@ -6,6 +6,7 @@
     "start": "node server.js",
     "build:prod": "ng build --configuration=production",
     "build:test": "ng build --configuration=test",
+    "build:hostinger": "ng build --configuration=hostinger",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
