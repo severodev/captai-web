@@ -15,7 +15,7 @@ RUN npm install --force
 
 COPY . .
 
-RUN npm run build:${ENV_NAME-"prod"}
+RUN npm run build:${ENV_NAME-"hostinger"}
 
 FROM nginx:1.24.0-alpine AS deploy
 
