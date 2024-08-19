@@ -74,3 +74,14 @@ a {
   display: flex;
   color: #ff0000;
 }
+
+.password-field {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  span {
+    position: absolute;
+    padding-right: 1.2%;
+  }
+}
