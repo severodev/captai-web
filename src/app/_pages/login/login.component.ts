@@ -15,6 +15,8 @@ export class LoginComponent {
 
   public loginForm: FormGroup;
 
+  public showPassword = false;
+
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -47,4 +49,9 @@ export class LoginComponent {
       });
     }
   }
+
+  public toggleShowPassword() : void {
+    this.showPassword = !this.showPassword;
+  }
+
 }
