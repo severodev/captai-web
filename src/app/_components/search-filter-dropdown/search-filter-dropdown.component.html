@@ -1,54 +1,50 @@
 <div class="card-container">
     <div class="wrapper">
-       <div class="header">
-        <span>
-            Filtros
-        </span>
+        <div class="header">
+            <span>
+                Filtros
+            </span>
         </div>
     </div>
     <form [formGroup]="filterForm">
         <div class="body">
             <div class="wrapper">
                 <label>Filtrar por temática</label>
-                <ng-select class="disabilitado"
-                    placeholder="Escolha os temas">
+                <ng-select class="disabilitado" placeholder="Escolha os temas">
                 </ng-select>
 
                 <label>Filtrar por instituição</label>
-                <ng-select
-                    placeholder="Escolha as Instituições"
-                    [items]="agencies"
-                    bindLabel="name"
-                    [clearable]="true"
-                    [multiple]="true"
-                    formControlName="agency">
+                <ng-select placeholder="Escolha as Instituições" [items]="agencies" bindLabel="name" [clearable]="true"
+                    [multiple]="true" formControlName="agency">
                 </ng-select>
-                                
-                    <!-- <div class="area-selection">
+
+                <!-- <div class="area-selection">
                         <div class="tags" *ngFor="let item of areas; let i = index" [id]="'item-' + i" >
                             <span (click)="select('item-' + i, item)">{{ item }}</span>
                         </div>
                     </div> -->
 
+                <label>Entrega das propostas&nbsp;<i class="icon ic-info-circ"
+                        title="Esse filtro trará os editais que estiverem no intervalo do dia atual até a data indicada no filtro"></i></label>
                 <div class="date">
                     <mat-form-field>
-                        <mat-label>Entrega das propostas</mat-label>
-                        <input matInput [matDatepicker]="picker3" formControlName = "date">
-                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-label>Clique para escolher uma data</mat-label>
+                        <input matInput [matDatepicker]="picker3" formControlName="date">
                         <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
                         <mat-datepicker #picker3></mat-datepicker>
                     </mat-form-field>
                 </div>
                 <div class="slider">
                     <label>Filtrar por valor do subsídio acima de: </label>
-                    <ngx-slider [(value)]="lowValue" [(highValue)]="highValue" [options]="options" formControlName = "value"></ngx-slider>
+                    <ngx-slider [(value)]="lowValue" [(highValue)]="highValue" [options]="options"
+                        formControlName="value"></ngx-slider>
 
                 </div>
                 <div class="slider">
                     <label>Filtrar por maturidade tecnológica</label>
-                    <ngx-slider  [(value)]="highValue2" [options]="options2" formControlName = "maturity"></ngx-slider>
+                    <ngx-slider [(value)]="highValue2" [options]="options2" formControlName="maturity"></ngx-slider>
                 </div>
-            </div> 
+            </div>
         </div>
     </form>
 </div>
