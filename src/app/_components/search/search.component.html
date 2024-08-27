@@ -13,7 +13,7 @@
     <form [formGroup]="filterForm" (submit)="filter()"> 
       <div class="header">
         <div class="search-bar">
-          <input type="text" name="" id="" placeholder="Pesquisar por agência" formControlName = "agency">
+          <input type="text" name="" id="" placeholder="Pesquisar por nome e instituição" formControlName = "agency">
           <button class="dds__icons dds__search"></button>
         </div>
         
@@ -42,40 +42,41 @@
     <div class="responsive-table">
       <div class="table-backgound">
         <div class="row row-header">
-          <div class="col-3 name">
+          <div class="col-3 name text-center">
             <span>Nome</span>
           </div>
-          <div class="col-1 agency filter-field" (click)="orderByInstitute()">
+          <div class="col-1 filter-field text-center justify-content-center" (click)="orderByInstitute()">
             <span>Instituição</span>
             <div class="static-filter">
               <span class="dds__icons dds__chevron-up"  [ngClass]="{'arrow-highlight' : agencyOrder == 'ASC'}"></span>
               <span class="dds__icons dds__chevron-down" [ngClass]="{'arrow-highlight' : agencyOrder == 'DESC'}"></span>
             </div>
           </div>
-          <div class="col-2 filter-field" (click)="orderBySubmission()">
+          <div class="col-2 filter-field text-center justify-content-center" (click)="orderBySubmission()">
             <span>Início</span>
             <div class="static-filter">
               <span class="dds__icons dds__chevron-up"  [ngClass]="{'arrow-highlight' : submission == 'ASC'}"></span>
               <span class="dds__icons dds__chevron-down" [ngClass]="{'arrow-highlight' : submission == 'DESC'}"></span>
             </div>
           </div>
-          <div class="col-1 filter-field value-field" (click)="orderByfinancingValue()">
+          <div class="col-1 filter-field text-center justify-content-center" (click)="orderByfinancingValue()">
             <span>Valor</span>
             <div class="static-filter">
               <span class="dds__icons dds__chevron-up"  [ngClass]="{'arrow-highlight' : financingValue == 'ASC'}"></span>
               <span class="dds__icons dds__chevron-down" [ngClass]="{'arrow-highlight' : financingValue == 'DESC'}"></span>
             </div>
           </div>
-          <div class="col-1 affinity-field-label">
+          <div class="col-1 text-center">
             <span>Afinidade</span>
           </div>
-          <div class="col-2">
+          <div class="col-2 text-center">
             <span>Área</span>
           </div>
-          <div class="col-1 favorite-check">
+          <div class="col-1 text-center">
             <span>Favoritar</span>
           </div>
           <div class="col-1">
+            &nbsp;
           </div>
         </div>
         <div>
@@ -92,13 +93,13 @@
                     <span (click)="seeMore(edital.id)" data-toggle="tooltip" data-placement="bottom" [title]="edital.title">{{ reduceTitle(edital.title) }}</span>
                   </div>
                 </div>
-                <div class="col-1 agency">
+                <div class="col-1 agency text-center">
                   <span>{{ edital.agency }}</span>
                 </div>
-                <div class="col-2">
+                <div class="col-2 text-center">
                   <span>{{!edital.dt_submission ? 'Não encontrado' : edital.dt_submission | date:'dd/MM/yyyy'}}</span>
                 </div>
-                <div class="col-1">
+                <div class="col-1 text-center">
                   <span>
                     {{ edital.ds_currency }} 
                     {{!edital.nm_financing_value ? 'Não encontrado' : edital.nm_financing_value}}
@@ -111,10 +112,11 @@
                   <span *ngFor="let item of edital.areaList">{{ reduceArea(item) }}</span>
                 </div>
                 <div class="col-1 favorite-check">
-                  <span class="material-symbols-outlined">bookmark</span>
+                  <!-- <span class="material-symbols-outlined">bookmark</span> -->
+                  <i class="bi bi-bookmark ms-5"></i>
                 </div>
                 <div class="col-1">
-                  <button class="toggle-objectives" [id]="'toggle-' + i" (click)="toggleDetails(i)">⌵</button>
+                  <button class="toggle-objectives closed" [id]="'toggle-' + i" (click)="toggleDetails(i)">⌵</button>
                 </div>
               </div>
               <div class="row table-objectives" [ngClass]="{'selected': i === selected}" [id]="'details-' + i" hidden>

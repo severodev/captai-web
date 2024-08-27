@@ -109,9 +109,11 @@ export class SearchComponent {
     if (details && toggle) {
         if (details.getAttribute('hidden') !== null) {
           toggle.style.transform = 'rotate(180deg)';
+          toggle.classList.remove('toggle-closed');
           details.removeAttribute('hidden');
         } else {
           toggle.style.transform = 'rotate(0deg)';
+          toggle.classList.add('toggle-closed');
           details.setAttribute('hidden', 'true');
         }
     }
