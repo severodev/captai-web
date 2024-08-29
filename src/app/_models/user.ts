@@ -16,4 +16,6 @@ export class User {
   segment?: Segment;
   abrangency?: [];
   activite?: [];
+  state?: any;
+  background?: string;
 }
