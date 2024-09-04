@@ -1,34 +1,41 @@
-.title{
+.title {
   .dds__chevron-left {
     color: #3891e0;
     font-size: 1.5rem !important;
     padding-right: 1%;
-}
+  }
+
   div {
     display: flex;
     align-items: center;
     margin-bottom: 50px;
   }
+
   span {
-      font-size: 2rem;
-      font-weight: bold;
+    font-size: 2rem;
+    font-weight: bold;
   }
+
   label {
-      color: #929292;
-      padding: 1% 0%;
+    color: #929292;
+    padding: 1% 0%;
   }
+
   display: flex;
-  
+
   flex-direction: column;
 }
+
 .container {
   padding: 2% 1% 2% !important;
   height: 72%;
 }
+
 .wrapper {
   min-height: 100%;
 }
-.divisor { 
+
+.divisor {
   border-right: 3px solid #e6e6e6;
   height: 90%;
   margin-top: 3%;
@@ -38,6 +45,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
   .material-symbols-outlined {
     cursor: pointer;
     user-select: none;
@@ -45,7 +53,7 @@
     font-size: 7rem;
     color: #fafdff;
   }
-  
+
 }
 
 .user-space {
@@ -53,48 +61,55 @@
   flex-direction: column;
   align-items: center;
   min-height: 40%;
-  min-width: 90%; 
+  min-width: 90%;
   padding-top: 3%;
+
   .user-img {
-      img {
-          border-radius: 50%;
-          margin: 10% 0% 10% 0%;
-          max-height: 150px;
-      }
+    img {
+      border-radius: 50%;
+      margin: 10% 0% 10% 0%;
+      max-height: 150px;
+    }
   }
+
   .user-labels {
-      align-items: center;
-      padding: 3%;
-      display: flex;
-      flex-direction: column;
-      label {
-          font-weight: bold;
-          font-size: 1.5rem;
-      }
+    align-items: center;
+    padding: 3%;
+    display: flex;
+    flex-direction: column;
+
+    label {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
 
     span {
       color: #757574;
     }
   }
 }
+
 .form-group {
   color: #000;
   margin-bottom: 8px !important;
+
   label {
-      font-size: 1rem;
-      font-weight: 500;
-      font-size: 0.9rem;
+    font-size: 1rem;
+    font-weight: 500;
+    font-size: 0.9rem;
   }
 }
 
-.password-errors-label{
+.password-errors-label {
   font-weight: bold;
 }
+
 .password-errors {
   .dds__icons {
     color: #000000;
   }
 }
+
 .dot {
   background: #989898;
   width: 3px;
@@ -103,10 +118,11 @@
 }
 
 .errors {
-  label{
+  label {
     margin-left: 6px;
     color: #989898;
   }
+
   display: flex;
   align-items: center;
   padding: 0px;
@@ -116,13 +132,16 @@
 .invalid-field {
   border: 2px solid #ff0000 !important;
 }
+
 .invalid-message {
   color: #ff0000;
 }
+
 .invalid-message {
   display: flex;
   color: #ff0000;
 }
+
 .form-control {
   background-color: #fafdff;
   border: 1px solid #9f9f9f;
@@ -140,10 +159,12 @@
 .right-side {
   max-width: 60%;
   margin-left: 3%;
+
   form {
     height: 85%;
   }
 }
+
 .logout {
   background: none;
   border: 1px solid #ff651e;
@@ -166,6 +187,7 @@
 .password {
   max-width: 10rem !important;
   margin-top: 3rem;
+
   .material-symbols-outlined {
     margin: 0px 10px 0px 0px;
   }
@@ -176,6 +198,7 @@
   align-items: flex-end;
   justify-content: flex-end;
 }
+
 .btn-cancel {
   color: #ff7e64;
   border: solid 2px #ff7e64;
@@ -202,10 +225,11 @@
   justify-content: center;
 }
 
-.password-fields{
+.password-fields {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+
   span {
     position: absolute;
     padding-right: 1.2%;
@@ -218,19 +242,22 @@
   justify-content: flex-end;
 }
 
-.tabs{
+.tabs {
   padding: 0% 1%;
   margin: 0% 0% 1% 0%;
   font-size: 1.4rem;
   color: #6c6c6c;
+
   label {
     cursor: pointer;
   }
+
   div {
     border-bottom: 3px solid #e6e6e6;
     padding-bottom: 5px;
   }
 }
+
 .profile-label {
   margin-bottom: 5%;
   font-size: 1.7rem;
@@ -247,7 +274,8 @@
   align-items: center;
   margin-bottom: 10%;
   font-size: 1.5rem;
-}   
+}
+
 .localization-label {
   font-size: 1.5rem;
 }
@@ -256,4 +284,230 @@
   border: 1px solid #9f9f9f !important;
   height: 40px !important;
   border-radius: 8px !important;
+}
+
+.plan-area {
+
+  padding: 2rem 0 0 1rem;
+
+  .regiao-pagamento {
+
+    margin-left: 1rem;
+
+    .btn {
+      // background-color: #308C47;
+      color: white;
+    }
+
+    .plan-item {
+      border: 4px solid #E4531E;
+      padding-bottom: 1rem;
+      border-radius: 20px;
+      width: 100%;
+      height: auto;
+      margin-bottom: 1rem;
+
+      &.disabled {
+        border: 4px solid #afafaf;
+      }
+
+      .item-title {
+        border: 4px solid #E4531E;
+        background-color: #E4531E;
+        padding: 0.2rem 1rem;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        font-size: 1rem;
+        margin-bottom: 0.3rem;
+        letter-spacing: 1px;
+        color: white;
+        font-weight: 500;
+        height: 40px;
+
+        &.disabled {
+          border: 4px solid #afafaf;
+          background-color: #afafaf;
+        }
+
+        .plan-radio {
+          margin-right: 1rem;
+          font-size: large;
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      .plan-body {
+
+        padding: 0 1.5rem;
+
+        .price {
+          color: #E4531E;
+          font-size: 2rem;
+          margin-bottom: 0.5rem;
+          margin-right: 2rem;
+
+          &.disabled {
+            color: #afafaf;
+          }
+        }
+
+        .description {
+          font-size: 16px;
+          height: 30px;
+        }
+
+        .attributes-list {
+
+          .attribute-item {
+
+            color: #AEA9B1;
+            margin-bottom: 0.7rem;
+
+            &.active {
+              color: black;
+            }
+
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+}
+
+.payments-area {
+
+  padding: 2rem 0 0 1rem;
+
+  .payment-content {
+    padding-left: 2rem;
+
+    .credit-cards {
+
+      margin-bottom: 4rem;
+
+      .header {
+        margin-bottom: 2rem;
+        align-items: center;
+
+        .card-title {
+          font-size: 1.2rem;
+          font-weight: bold;
+        }
+      }
+
+      .cards-list {
+
+        width: 70%;
+        margin-bottom: 1rem;
+
+        .card {
+          border: none;
+          margin-bottom: 2rem;
+
+          .card-body {
+
+            img {
+              width: 80px;
+              margin-right: 1rem;
+            }
+
+            .card-info {
+              width: 100%;
+
+              .number {
+                font-weight: bold;
+              }
+
+              .bank,
+              .expiration {
+                font-weight: 200;
+                font-size: 0.8rem;
+                color: #6c6c6c;
+              }
+            }
+
+            .card-remove {
+              padding-right: 1rem;
+            }
+          }
+        }
+
+      }
+
+      .automatic-renewal {
+
+        display: flex;
+        align-items: center;
+        padding-left: 0.5rem;
+
+        span {
+          font-size: 1rem;
+          font-weight: 500;
+        }
+
+        i {
+          font-size: 2rem;
+        }
+      }
+
+    }
+
+    .installments {
+
+      .header {
+        margin-bottom: 2rem;
+        align-items: center;
+
+        .card-title {
+          font-size: 1.2rem;
+          font-weight: bold;
+        }
+      }
+
+      .installments-list {
+
+        width: 70%;
+        margin-bottom: 1rem;
+
+        .installment {
+          border: none;
+          margin-bottom: 2rem;
+
+          .card-body {
+
+            img {
+              width: 50px;
+              margin: 0 2.5rem 0 1.2rem;
+            }
+
+            .installment-info {
+              width: 100%;
+
+              .title {
+                font-weight: bold;
+              }
+
+              .description,
+              .expiration {
+                font-weight: 200;
+                font-size: 0.8rem;
+                color: #6c6c6c;
+              }
+            }
+
+            .status {
+              padding-right: 1rem;
+            }
+          }
+        }
+
+      }
+
+    }
+  }
 }

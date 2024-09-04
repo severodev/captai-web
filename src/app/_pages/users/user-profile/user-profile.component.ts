@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { createPasswordStrengthValidator, emailValidator } from 'src/app/_helpers/utils';
+import { SubscriptionPlan } from 'src/app/_interfaces/subscription-plan';
 import { User } from 'src/app/_models/user';
 import { ImagekitService } from 'src/app/_services/Imagekit.service';
 import { ActiviteService } from 'src/app/_services/activite.service';
@@ -13,7 +14,9 @@ import { UserService } from 'src/app/_services/user.service';
 
 export enum tabSelection {
   PROFILE = 'PROFILE',
-  SERVICE = 'SERVICE'
+  SERVICE = 'SERVICE',
+  PLAN = 'PLAN',
+  PAYMENTS = 'PAYMENTS'
 }
 
 @Component({
@@ -28,13 +31,13 @@ export class UserProfileComponent implements OnInit {
   public passwordFieldVisible = false;
   public passwordEdit = false;
 
-  
+  public selectedPlan: SubscriptionPlan;
 
   public get tabOptions(): typeof tabSelection {
     return tabSelection;
   }
 
-  public currentTab = tabSelection.PROFILE;
+  public currentTab = tabSelection.PAYMENTS;
 
   public userForm: FormGroup;
   public passwordForm: FormGroup;
@@ -49,9 +52,9 @@ export class UserProfileComponent implements OnInit {
 
   public showErrors = false;
 
-  public segments : Array<{id, name}>
-  public states : Array<{id, abbreviation, name}> = [];
-  public activities : Array<{id, name}>
+  public segments: Array<{ id, name }>
+  public states: Array<{ id, abbreviation, name }> = [];
+  public activities: Array<{ id, name }>
 
   constructor(
     public router: Router,
@@ -64,7 +67,7 @@ export class UserProfileComponent implements OnInit {
     private activiteService: ActiviteService,
     private locationService: LocationService,
     private imageService: ImagekitService
-  ) { 
+  ) {
     this.userForm = this.formBuilder.group({
       id: [''],
       name: [''],
@@ -84,6 +87,18 @@ export class UserProfileComponent implements OnInit {
     });
 
     this.userProfile = document.getElementById('usar-image') as HTMLImageElement;
+
+    this.selectedPlan =
+    {
+      id: 1,
+      nome: "Plano Pessoa Física",
+      descricao: "O melhor para o profissional e sua equipe.",
+      valor: 49.9,
+      diasGratis: 1,
+      itensCobertos: ["Pesquisar"],
+      itensNaoCobertos: ["Captar (EM BREVE)", "Categorizar (EM BREVE)", "Priorizar (EM BREVE)", "Gerenciar tarefas (EM BREVE)", "Dashboard pessoal (EM BREVE)"],
+      ativo: true
+    };
   }
 
   toglePasswordField() {
@@ -95,22 +110,22 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.segmentService.getAll({}, { itemsPerPage : 9999 }).subscribe((segments) => {
+    this.segmentService.getAll({}, { itemsPerPage: 9999 }).subscribe((segments) => {
       this.segments = segments;
     });
-    this.activiteService.getAll({}, { itemsPerPage : 9999 }).subscribe((activity) => {
+    this.activiteService.getAll({}, { itemsPerPage: 9999 }).subscribe((activity) => {
       this.activities = activity;
     });
-    this.locationService.getAll({}, { itemsPerPage : 9999 }).subscribe((states) => {
+    this.locationService.getAll({}, { itemsPerPage: 9999 }).subscribe((states) => {
       this.states = states;
-      this.states.push({id: 0, abbreviation: null, name: 'Todos'})
+      this.states.push({ id: 0, abbreviation: null, name: 'Todos' })
       this.states = this.states.reverse();
     });
     const userId = Number(this.activatedRoute.snapshot.queryParamMap.get('userId'));
     if (userId) {
       this.isAdmVision = true;
-      this.userService.getUsers({id : userId},{ itemsPerPage : 1 }).subscribe(data => {
-       this.setForm(data[0]);
+      this.userService.getUsers({ id: userId }, { itemsPerPage: 1 }).subscribe(data => {
+        this.setForm(data[0]);
       }).add(() => this.getProfileImageUrl())
     } else {
       this.isAdmVision = false;
@@ -119,7 +134,7 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  setForm(user : User) {
+  setForm(user: User) {
     this.userForm.patchValue(user)
     if (this.user.user.cpfCnpj && this.user.user.cpfCnpj.length > 11)
       this.mask = '00.000.000/0000-00'
@@ -147,11 +162,11 @@ export class UserProfileComponent implements OnInit {
     const file: File = event.target.files[0];
     if (file) {
       this.profileImageFile = file;
-      this.userService.updateUserProfileImage(this.user.user.id, 
+      this.userService.updateUserProfileImage(this.user.user.id,
         this.profileImageFile, this.profileImageFile.name).subscribe(
           {
             next: (result: any) => {
-              if(result){
+              if (result) {
                 this.userProfile = result.newUrl;
                 this.user.user.profileImageUrl = result.newUrl;
                 this.user.user.profileImageId = result.newId;
@@ -173,12 +188,12 @@ export class UserProfileComponent implements OnInit {
     this.imageService.getFileUrl(this.userForm.controls['profileImageId'].value).subscribe(image => {
       this.userProfile = image.url;
     },
-    (err) => {
-      this.toastService.error('Erro ao atualizar imagem de perfil.', '', 6000);
-      console.log('Ocorreu um erro ao atualizar imagem: ' + err);
-    })
+      (err) => {
+        this.toastService.error('Erro ao atualizar imagem de perfil.', '', 6000);
+        console.log('Ocorreu um erro ao atualizar imagem: ' + err);
+      })
   }
-  
+
   edit() {
     this.editMode = true;
     this.userForm.controls.email.enable()
@@ -198,8 +213,8 @@ export class UserProfileComponent implements OnInit {
   }
 
   save() {
-    if ((this.userForm.valid && !this.passwordEdit) || 
-    (this.userForm.valid && this.passwordEdit && this.passwordForm.valid && this.passwordForm.controls.password?.value == this.passwordForm.controls.passwordConfirm?.value)) {
+    if ((this.userForm.valid && !this.passwordEdit) ||
+      (this.userForm.valid && this.passwordEdit && this.passwordForm.valid && this.passwordForm.controls.password?.value == this.passwordForm.controls.passwordConfirm?.value)) {
       let userDTO: any = {
         name: this.userForm.controls.name?.value,
         lastName: this.userForm.controls.lastName?.value,
@@ -224,7 +239,7 @@ export class UserProfileComponent implements OnInit {
         if (!this.isAdmVision || this.userForm.controls.id.value === this.user.user.id)
           this.user.manualTokenRefresh();
       }, (err) => {
-        this.toastService.error('Ocorreu um erro ao atualizar este usuário! ', err , 6000);
+        this.toastService.error('Ocorreu um erro ao atualizar este usuário! ', err, 6000);
       });
     } else {
       this.showErrors = true;
@@ -233,9 +248,9 @@ export class UserProfileComponent implements OnInit {
 
   cancel() {
     this.userForm.disable()
-    this.userService.getUsers({ id : this.userForm.controls.id.value },{ itemsPerPage : 1 }).subscribe(data => {
+    this.userService.getUsers({ id: this.userForm.controls.id.value }, { itemsPerPage: 1 }).subscribe(data => {
       this.setForm(data[0]);
-     });
+    });
     this.passwordForm.reset()
     this.showErrors = false;
     this.editMode = false;

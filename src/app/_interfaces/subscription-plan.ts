@@ -1,5 +1,5 @@
 export interface SubscriptionPlan {
-    id: number;
+    id?: number;
     nome: string;
     valor:number;
     diasGratis: number;

@@ -20,17 +20,34 @@
                 Informações do perfil
             </label>
         </div>
-        <div class="service col-1"></div>
-        <div class="service col-3" (click)="setTab(tabOptions.SERVICE)"
+        <!-- <div class="service col-1"></div> -->
+
+        <div class="service col-4" (click)="setTab(tabOptions.SERVICE)"
             [ngClass]="{'tab-selected': currentTab === tabOptions.SERVICE}">
             <label>
                 Informações do seu serviço
             </label>
         </div>
-        <div class="service col-5"></div>
+        <!-- <div class="service col-1"></div> -->
+
+        <div class="my-plan col-2" (click)="setTab(tabOptions.PLAN)"
+            [ngClass]="{'tab-selected': currentTab === tabOptions.PLAN}">
+            <label>
+                Meu plano
+            </label>
+        </div>
+        <!-- <div class="my-plan col-1"></div> -->
+
+        <div class="payments col-2" (click)="setTab(tabOptions.PAYMENTS)"
+            [ngClass]="{'tab-selected': currentTab === tabOptions.PAYMENTS}">
+            <label>
+                Pagamentos
+            </label>
+        </div>
+        <div class="payments col-1"></div>
     </div>
-    <div class="container">
-        <div class="wrapper row">
+    <div class="container" *ngIf="currentTab === tabOptions.PROFILE || currentTab === tabOptions.SERVICE">
+        <div class="wrapper row profile-area">
             <div class="left-side col-4">
                 <div class="divisor">
                     <div class="user-space">
@@ -38,32 +55,32 @@
                             <span class="profile-label"> Perfil </span>
                             <div class="user-img">
                                 <div class="user-img-wrapper">
-                                    <div class="material-symbols-outlined" *ngIf="!isAdmVision && editMode" 
-                                    (click)="uploadProfileImage()"> 
-                                        edit 
+                                    <div class="material-symbols-outlined" *ngIf="!isAdmVision && editMode"
+                                        (click)="uploadProfileImage()">
+                                        edit
                                     </div>
                                     <img id="usar-image" [src]="userProfile">
                                     <div style="display: none;" class="fileUploadArea">
                                         <input type="file" name="profileImagemUpload" id="profileImagemUpload"
-                                            accept=".jpeg,.jpg,.png,.gif,.webm"
-                                            (change)="onFileSelected($event)">
+                                            accept=".jpeg,.jpg,.png,.gif,.webm" (change)="onFileSelected($event)">
                                     </div>
                                 </div>
                             </div>
                             <div class="profile-name-function">
                                 <label>
-                                    {{isAdmVision ? userForm.controls['name'].value : user.user.name}} 
+                                    {{isAdmVision ? userForm.controls['name'].value : user.user.name}}
                                     {{isAdmVision ? userForm.controls['lastName'].value : user.user.lastName}}
                                 </label>
-                                <span> 
-                                    {{isAdmVision ? userForm.controls['role'].value?.name : user.user.role}} 
+                                <span>
+                                    {{isAdmVision ? userForm.controls['role'].value?.name : user.user.role}}
                                 </span>
                             </div>
-                            <span class="localization-label">{{user.user.state.abbreviation}} / {{user.user.background}}</span>
+                            <span class="localization-label">{{user.user.state.abbreviation}} /
+                                {{user.user.background}}</span>
                         </div>
                     </div>
                 </div>
-              <!--   <button type="button" class="logout" (click)="logout()" *ngIf="!isAdmVision">
+                <!--   <button type="button" class="logout" (click)="logout()" *ngIf="!isAdmVision">
                     <span> Deslogar da sua conta </span>
                 </button> -->
             </div>
@@ -81,20 +98,21 @@
                         <div class="form-group row">
                             <div class="form-group col-8">
                                 <label>Nome</label>
-                                <input type="text" class="form-control" formControlName = "name" name="username">
+                                <input type="text" class="form-control" formControlName="name" name="username">
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="form-group col-8">
                                 <label>Sobrenome</label>
-                                <input type="text" class="form-control" formControlName = "lastName" name="lastName">
+                                <input type="text" class="form-control" formControlName="lastName" name="lastName">
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="form-group col-8">
                                 <label>CPF/CNPJ</label>
-                                <input type="text" [mask]="mask" class="form-control" formControlName = "cpfCnpj" name="cpfCnpj"
-                                [ngClass]="{'invalid-field': !userForm.get('cpfCnpj').valid && showErrors}">
+                                <input type="text" [mask]="mask" class="form-control" formControlName="cpfCnpj"
+                                    name="cpfCnpj"
+                                    [ngClass]="{'invalid-field': !userForm.get('cpfCnpj').valid && showErrors}">
                                 <div class="invalid-message" *ngIf="!userForm.get('cpfCnpj').valid && showErrors">
                                     <span>Preenchimento obrigatório</span>
                                 </div>
@@ -103,85 +121,88 @@
                         <div class="form-group row">
                             <div class="form-group col-8">
                                 <label>Email</label>
-                                <input type="text" class="form-control" formControlName = "email" name="email"
-                                [ngClass]="{'invalid-field': userForm.get('email').invalid && showErrors}">
+                                <input type="text" class="form-control" formControlName="email" name="email"
+                                    [ngClass]="{'invalid-field': userForm.get('email').invalid && showErrors}">
                                 <div class="invalid-message" *ngIf="userForm.get('email').value == '' && showErrors">
                                     <span>Preenchimento obrigatório</span>
                                 </div>
-                                <div class="invalid-message" *ngIf="!userForm.get('email').valid && userForm.get('email').value != '' && showErrors">
+                                <div class="invalid-message"
+                                    *ngIf="!userForm.get('email').valid && userForm.get('email').value != '' && showErrors">
                                     <span>Informação não é válida</span>
                                 </div>
                             </div>
                         </div>
-                        <button type="button" class="col-3 edit password" (click)="ededitPassword()" *ngIf="editMode && !passwordEdit && !isAdmVision">
+                        <button type="button" class="col-3 edit password" (click)="ededitPassword()"
+                            *ngIf="editMode && !passwordEdit && !isAdmVision">
                             <span class="material-symbols-outlined">
                                 lock_reset
                             </span>
                             <span> Alterar senha </span>
                         </button>
                         <form [formGroup]="passwordForm" *ngIf="passwordEdit">
-                                <div class="form-group row">
-                                    <div class="form-group col-4">
-                                        <label>Nova senha</label>
-                                        <div class="password-fields">
-                                            <input class="form-control" [type]="passwordFieldVisible ? 'text' : 'password'" 
-                                            formControlName="password"
-                                            [ngClass]="{'invalid-field': passwordForm.get('passwordConfirm').valid && 
+                            <div class="form-group row">
+                                <div class="form-group col-4">
+                                    <label>Nova senha</label>
+                                    <div class="password-fields">
+                                        <input class="form-control" [type]="passwordFieldVisible ? 'text' : 'password'"
+                                            formControlName="password" [ngClass]="{'invalid-field': passwordForm.get('passwordConfirm').valid && 
                                             passwordForm.get('passwordConfirm').touched && 
                                             passwordForm.get('passwordConfirm').value != passwordForm.get('password').value && 
                                             passwordForm.get('password').value != ''}">
-                                                <span class="dds__icons" [ngClass]="{
+                                        <span class="dds__icons" [ngClass]="{
                                                     'dds__eye-view-on': passwordFieldVisible, 
                                                     'dds__eye-view-off': !passwordFieldVisible
                                                 }" (click)="toglePasswordField()"></span>
-                                        </div>
                                     </div>
-                                    <div class="form-group col-4">
-                                        <label>Redigite sua nova senha</label>
-                                        <div class="password-fields">
-                                            <input class="form-control" [type]="passwordConfirmationFieldVisible ? 'text' : 'password'" 
-                                            formControlName="passwordConfirm"
-                                            [ngClass]="{'invalid-field': passwordForm.get('passwordConfirm').valid && 
+                                </div>
+                                <div class="form-group col-4">
+                                    <label>Redigite sua nova senha</label>
+                                    <div class="password-fields">
+                                        <input class="form-control"
+                                            [type]="passwordConfirmationFieldVisible ? 'text' : 'password'"
+                                            formControlName="passwordConfirm" [ngClass]="{'invalid-field': passwordForm.get('passwordConfirm').valid && 
                                             passwordForm.get('passwordConfirm').touched && 
                                             passwordForm.get('passwordConfirm').value != passwordForm.get('password').value && 
                                             passwordForm.get('password').value != ''}">
-                                                <span class="dds__icons" [ngClass]="{
+                                        <span class="dds__icons" [ngClass]="{
                                                     'dds__eye-view-on': passwordConfirmationFieldVisible, 
                                                     'dds__eye-view-off': !passwordConfirmationFieldVisible
                                                 }" (click)="toglePasswordConfirmField()"></span>
-                                        </div>
-                                        <div class="invalid-message" *ngIf="
+                                    </div>
+                                    <div class="invalid-message"
+                                        *ngIf="
                                         passwordForm.get('passwordConfirm')?.value != passwordForm.get('password')?.value && passwordForm.get('password').valid">
-                                            <span>Este campo deve ser igual ao campo senha!</span>
-                                        </div>
+                                        <span>Este campo deve ser igual ao campo senha!</span>
                                     </div>
                                 </div>
-                                <div *ngIf="!passwordForm.get('password').valid">
-                                    <label class="password-errors-label">Sua senha deve conter</label>
-                                    <div class="password-errors">
-                                        <div class="errors" *ngIf="!passwordForm.get('password').hasError('minLength')">
-                                            <span class="dot">
-                                            </span>
-                                            <label>Mais de 8 caracteres</label>
-                                        </div>
-                                        <div class="errors" *ngIf="!passwordForm.get('password').hasError('hasUpperCase')">
-                                            <span class="dot">
-                                            </span>
-                                            <label>Uma letra maiúscula </label>
-                                        </div>
-                                        <div class="errors" *ngIf="!passwordForm.get('password').hasError('hasNumeric')">
-                                            <span class="dot">
-                                            </span>
-                                            <label>Um número</label>
-                                        </div>
-                                        <div class="errors" *ngIf="!passwordForm.get('password').hasError('specialCharacters')">
-                                            <span class="dot">
-                                            </span>
-                                            <label>Um caractere especial</label>
-                                        </div>
+                            </div>
+                            <div *ngIf="!passwordForm.get('password').valid">
+                                <label class="password-errors-label">Sua senha deve conter</label>
+                                <div class="password-errors">
+                                    <div class="errors" *ngIf="!passwordForm.get('password').hasError('minLength')">
+                                        <span class="dot">
+                                        </span>
+                                        <label>Mais de 8 caracteres</label>
                                     </div>
-                                </div>  
-                            
+                                    <div class="errors" *ngIf="!passwordForm.get('password').hasError('hasUpperCase')">
+                                        <span class="dot">
+                                        </span>
+                                        <label>Uma letra maiúscula </label>
+                                    </div>
+                                    <div class="errors" *ngIf="!passwordForm.get('password').hasError('hasNumeric')">
+                                        <span class="dot">
+                                        </span>
+                                        <label>Um número</label>
+                                    </div>
+                                    <div class="errors"
+                                        *ngIf="!passwordForm.get('password').hasError('specialCharacters')">
+                                        <span class="dot">
+                                        </span>
+                                        <label>Um caractere especial</label>
+                                    </div>
+                                </div>
+                            </div>
+
                         </form>
                     </div>
                 </form>
@@ -190,13 +211,8 @@
                         <div class="form-group row">
                             <div class="form-group col-8">
                                 <label>Selecione um segmento</label>
-                                <ng-select 
-                                    [items]="segments"
-                                    bindLabel="name"
-                                    [searchable]="true"
-                                    [clearable]="false"
-                                    [multiple]="false"
-                                    formControlName="segment"
+                                <ng-select [items]="segments" bindLabel="name" [searchable]="true" [clearable]="false"
+                                    [multiple]="false" formControlName="segment"
                                     [ngClass]="{'invalid-field': !userForm.get('segment').valid && showErrors}">
                                 </ng-select>
                                 <div class="invalid-message" *ngIf="userForm.get('segment').value == '' && showErrors">
@@ -207,13 +223,8 @@
                         <div class="form-group row">
                             <div class="form-group col-8">
                                 <label>Selecione as atividades</label>
-                                <ng-select 
-                                    [items]="activities"
-                                    bindLabel="name"
-                                    [searchable]="true"
-                                    [clearable]="true"
-                                    [multiple]="true"
-                                    formControlName="activite"
+                                <ng-select [items]="activities" bindLabel="name" [searchable]="true" [clearable]="true"
+                                    [multiple]="true" formControlName="activite"
                                     [ngClass]="{'invalid-field': !userForm.get('activite').valid && showErrors}">
                                 </ng-select>
                                 <div class="invalid-message" *ngIf="userForm.get('activite').value == '' && showErrors">
@@ -224,16 +235,12 @@
                         <div class="form-group row">
                             <div class="form-group col-8">
                                 <label>Escolha a abrangencia territorial</label>
-                                <ng-select 
-                                    [items]="states"
-                                    bindLabel="name"
-                                    [searchable]="true"
-                                    [clearable]="true"
-                                    [multiple]="true"
-                                    formControlName="abrangency"
+                                <ng-select [items]="states" bindLabel="name" [searchable]="true" [clearable]="true"
+                                    [multiple]="true" formControlName="abrangency"
                                     [ngClass]="{'invalid-field': !userForm.get('abrangency').valid && showErrors}">
                                 </ng-select>
-                                <div class="invalid-message" *ngIf="userForm.get('abrangency').value == '' && showErrors">
+                                <div class="invalid-message"
+                                    *ngIf="userForm.get('abrangency').value == '' && showErrors">
                                     <span>Preenchimento obrigatório</span>
                                 </div>
                             </div>
@@ -249,6 +256,138 @@
                     </button>
                 </div>
             </div>
+        </div>        
+    </div>
+
+    <div class="row plan-area" *ngIf="currentTab === tabOptions.PLAN">
+
+        <div class="row regiao-pagamento">
+            <div class="col-8 ">
+                <!-- <div class="plans-list"> -->
+                <div class="plan-item">
+                    <div class="item-title">
+                        {{selectedPlan.nome}}
+                    </div>
+                    <div class="plan-body">
+                        <div class="d-flex column align-items-center">
+                            <div class="price"><b>
+                                    {{selectedPlan.valor | currency:'BRL':true:'1.2-2' }}</b>/MÊS</div>
+                            <div class="description">{{selectedPlan.descricao}}</div>
+                        </div>
+                        <div class="attributes-list">
+                            <div class="attribute-item active" *ngFor="let coberto of selectedPlan.itensCobertos">
+                                <img src="assets/icons/check-plan-attribute{{selectedPlan.ativo ? '' : '-off'}}.svg"
+                                    width="25px" height="25px">
+                                &nbsp;<span>{{coberto}}</span>
+                            </div>
+                            <div class="attribute-item" *ngFor="let naoCoberto of selectedPlan.itensNaoCobertos">
+                                <img src="assets/icons/check-plan-attribute-off.svg" width="25px" height="25px">
+                                &nbsp;<span>{{naoCoberto}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- </div> -->
+                <div>
+                    <button type="button" class="btn btn-secondary btn-cancel-plan">
+                        Cancelar plano
+                    </button>
+                </div>
+            </div>
+            <div class="col-4 d-flex pe-5 justify-content-end">
+                <button disabled class="btn btn-primary btn-change-plan disabled"
+                    title="Esta opção está indisponível no momento" data-toggle="tooltip" data-placement="bottom">
+                    Trocar de plano
+                </button>
+            </div>
         </div>
+
+    </div>
+
+    <div class="row payments-area" *ngIf="currentTab === tabOptions.PAYMENTS">
+
+        <div class="row payment-content">
+
+            <div class="credit-cards">
+
+                <div class="header d-flex column justify-content-between">
+                    <span class="card-title">Cartões</span>
+                    <a href="#" class="disabled">+ Novo meio de pagamento</a>
+                </div>
+
+                <div class="cards-list">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <div class="d-flex column justify-content-between align-items-center">
+                                <img src="assets/icons/creditcard-mastercard.png" alt="Bandeira do Cartão de Crédito">
+                                <div class="card-info d-flex row">
+                                    <span class="number">Terminado em 0000</span><br>
+                                    <span class="bank">Banco do Brasil</span><br>
+                                    <span class="expiration">Vencimento 01/2025</span>
+                                </div>
+                                <div class="card-remove">
+                                    <a href="#">Remover</a>
+                                </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+
+                <div class="automatic-renewal">
+                    <span>Renovação automática: </span>&nbsp;
+                    <i class="bi bi-toggle-on text-success"></i>
+                </div>
+
+            </div>
+                
+            <div class="installments">
+
+                <div class="header d-flex column justify-content-between">
+                    <span class="card-title">Parcelas</span>
+                </div>
+
+                <div class="installments-list">
+                    <div class="card installment shadow">
+                        <div class="card-body">
+                            <div class="d-flex column justify-content-between align-items-center">
+                                <img src="assets/icons/pagamento-pendente.png" alt="Bandeira do Cartão de Crédito">
+                                <div class="installment-info d-flex row">
+                                    <span class="title">Mensalidade de Outubro</span><br>
+                                    <span class="expiration">Vencimento: 01/10/2024</span><br>
+                                    <span class="description">Cobrança relativa a 01/09/2024 a 01/10/2024</span>
+                                </div>
+                                <div class="status">
+                                    <div class="d-flex row text-warning">
+                                        <span>A Pagar</span>
+                                        <span>R$ 0,00</span>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                    </div>
+
+                    <div class="card installment shadow">
+                        <div class="card-body">
+                            <div class="d-flex column justify-content-between align-items-center">
+                                <img src="assets/icons/pagamento-realizado.png" alt="Bandeira do Cartão de Crédito">
+                                <div class="installment-info d-flex row">
+                                    <span class="title">Mensalidade de Setembro</span><br>
+                                    <span class="expiration">Vencimento: 01/09/2024</span><br>
+                                    <span class="description">Cobrança relativa a 01/08/2024 a 01/09/2024</span>
+                                </div>
+                                <div class="status">
+                                    <div class="d-flex row text-success">
+                                        <span>Pago</span>
+                                        <span>R$ 0,00</span>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 </div>
