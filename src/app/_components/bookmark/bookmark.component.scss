@@ -1,0 +1,338 @@
+.container {
+    padding: 30px 28px 31px!important;
+    a {
+        cursor: pointer;
+    }
+}
+#dropdownMenuClickableOutside {
+    display: flex;
+    color: #fff;
+    font-size: .9rem !important;
+    padding: 6% 16%;
+    border: none;
+    padding: 6px 26px;
+    max-width: 9rem;
+    justify-content: center;
+    border-radius: 14px;
+    background-color: #6396d1;
+    align-items: center;
+    padding: 6px 30px;
+    margin-right: 10px;
+}
+.header {    
+    .material-symbols-outlined {
+        font-size: 18px;
+        margin-right: 9px;
+    }
+    display: flex;
+    justify-content: space-between;
+    .filter {
+        min-width: 10%;
+    }
+}
+.filter-buttons {
+    display: flex;
+    justify-content: flex-end;
+    padding: 2% 7%;
+}
+
+.btn {   
+    display: flex;
+    max-width: 80px;
+    max-height: 30px;
+    align-items: center;
+    justify-content: center;
+    margin: 3px 5px;
+    border-radius: 8px;
+}
+.btn-apply-filter {
+    background: #2871ff;
+    color: #ffffff;
+    border: 1px solid #2871ff;
+}
+
+.close-btn {
+    display: flex;
+    justify-content: flex-end;
+    span {
+        font-size: 25px !important;
+        margin: 6px;
+        cursor: pointer;
+    }
+}
+
+.btn-close-filter {
+    background: #ffffff;
+    color: #357aff;
+    border: 1px solid #357aff;
+}
+.search-bar {
+    input {
+        border-radius: 17px;
+        border: none;
+        width: 100%;
+        padding: 2% 5%;
+        background-color: #fff;
+    }
+    button {
+        position: absolute;
+        padding-right: 1%;
+        font-weight: 700;
+        background: none;
+        border: none;
+    }
+    margin-bottom: 3%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 30%;
+    max-width: 30%;
+    justify-content: flex-end;
+}
+    
+
+.title{
+    span {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    label {
+        color: #929292;
+        padding: 1% 0%;
+    }
+    display: flex;
+    flex-direction: column;
+}
+.row-header {
+    font-weight: 500;
+    padding: 2% 0% 0.3%;
+    span {
+        color: #818181;
+        font-size: 1rem;
+    }
+    // .name {
+    //     padding-left: 5%;
+    // }
+    // .agency{
+    //     display: flex;
+    //     justify-content: center;
+    // }
+}
+// .agency{
+//     justify-content: center;
+// }
+.edital-name {
+    padding-left: 2%;
+    display: flex;
+    align-items: center;
+    div {
+        display: flex;
+        flex-direction: column;
+        span {
+            color: #2871ff;
+            cursor: pointer;
+            user-select: none;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+        
+    }
+    .dds__icons {
+        font-size: 1.6rem;
+        margin-right: 5%;
+    }
+}
+
+.table-content-no-data {
+    padding: 1% 9%;
+    display: flex;
+    justify-content: center;
+    span {
+        font-size: 1.2rem;
+        color: #818181;
+        font-weight: bold;
+    }
+}
+
+.table-content {
+    margin: 0%;
+    font-weight: 600;
+    font-size: 0.9rem;
+    
+    .area-List {
+        flex-direction: column;
+        text-align: center;
+        // span {
+        //     background-color: #faf3cb;
+        //     padding: 1%;
+        //     margin: 1%;
+        //     text-align: center;
+        //     border-radius: 15px;
+        // }
+    }
+    .row {
+        align-items: center;
+        padding: 1%;
+    }
+    .col-1, .col-3 {
+        
+        // display: flex;
+    }
+    .col-2 {
+        
+        // display: flex;
+        // justify-content: center;
+        // text-align: center;
+        // padding: 0% 2%;
+    }
+    .favorite-check {
+        cursor: pointer;
+        font-size: 1.5rem;
+        display: flex;
+        justify-content: center;
+        // padding-left: 3%;
+        // .material-symbols-outlined {
+        //     font-weight: 200;
+        //     font-size: 45px;
+        // }
+    }
+}
+
+.table-objectives {
+    label {
+        font-weight: bold;
+        font-size: 1rem;
+    }
+    span {
+        font-size: 1rem;
+        font-weight: normal;
+    }
+    .col-12 {
+      display: flex;
+        flex-direction: column;
+        padding: 0% 5% 0%;
+    }
+    div {
+        display: flex;
+        justify-content: flex-end;
+        a {
+            margin-top: 3px;
+            color: #2871ff;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+}
+.filter-button {
+    cursor: pointer;
+}
+
+.selected {
+    background-color: #fbf6e0;
+}
+.dark_row {
+    background-color: #f8f8f8;
+}
+.affinity-field-label {
+    padding-left: 20px;
+}
+.affinity-field {
+    display: flex;
+    justify-content: center;
+    color: #ffc000;
+    font-size: 16px;
+    align-items: baseline;
+}
+
+.toggle-objectives {
+    cursor: pointer;
+    font-weight: 900;
+    border: none;
+    font-size: 2rem;
+    background: none;
+    margin-left: 15%;
+    margin-top: 8px;
+}
+
+.toggle-closed {
+    margin-top: -8px;
+}
+
+.table-scroller {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 35rem;
+}
+
+.table-backgound {
+    background-color: white;
+    border-radius: 20px;
+    /* width: 95rem; */
+
+    div.row-header {
+        
+
+        div {
+            
+        }
+    }
+}
+
+.filter-field {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+}
+
+.static-filter {
+    margin-left: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    span {
+        padding: 0;
+        height: 6px;
+        display: flex;
+        font-size: 8px;
+        align-items: center;
+    }
+}
+
+.arrow-highlight {
+    font-weight: bold;
+    font-size: 9px !important;
+    color: #3d3d3d !important;
+}
+
+.value-field {
+    justify-content: flex-start !important;
+    padding-left: 1px;
+}
+@media (min-height: 600px) {
+    .table-scroller {
+        height: 19rem;
+    }
+}
+
+@media (min-height: 735px) {
+    .table-scroller {
+        height: 25rem;
+    }
+}
+
+@media (min-height: 800px) {
+    .table-scroller {
+        height: 29rem;
+    }
+}
+
+@media (min-height: 900px) {
+    .table-scroller {
+        height: 35rem;
+    }
+}
+

@@ -105,7 +105,7 @@ export class UserService {
     return this.http.get(url);
   }
 
-  collectuserSavedEditaisList(userId: number) {
+  collectuserSavedEditaisList(userId: number): Observable<any> {
     let url = `${environment.apiUrl}/users/user-saved-edital-list?userId=${userId}`;
     return this.http.get(url);
   }

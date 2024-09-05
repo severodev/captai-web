@@ -80,6 +80,7 @@ import { UserService } from './_services/user.service';
 
 import localePt  from '@angular/common/locales/pt';
 import { DatePipe, registerLocaleData } from '@angular/common';
+import { BookmarkComponent } from './_components/bookmark/bookmark.component';
 
 registerLocaleData(localePt, 'pt');
 export const customCurrencyMaskConfig = {
@@ -126,6 +127,7 @@ export const customCurrencyMaskConfig = {
     InviteModalComponent,
     TermsOfUseModalComponent,
     SearchComponent,
+    BookmarkComponent,
     PasswordRecoveryComponent,
     EmailValidationComponent,
     DetailsComponent,

@@ -1,23 +1,21 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { EditalService } from 'src/app/_services/edital.service';
-import { EditalFilter, PageRequest } from 'src/app/_interfaces/index';
 import { FormBuilder } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { AuthService } from 'src/app/_services/auth.service';
-import { UserService } from 'src/app/_services/user.service';
+import { UserService } from './../../../app/_services/user.service';
+import { AuthService } from './../../../app/_services/auth.service';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrl: './search.component.scss'
+  selector: 'app-bookmark',
+  templateUrl: './bookmark.component.html',
+  styleUrl: './bookmark.component.scss'
 })
-export class SearchComponent {
+export class BookmarkComponent {
 
   clearFilter = new Subject<void>();
 
-  public editais = [];
-  public savedEditaisIds = [];
+  public editais: any[] = [];
+  public savedEditaisIds:number[] = [];
 
   public selected;
   public filterForm;
@@ -27,22 +25,21 @@ export class SearchComponent {
 
   private customFilter;
 
-  private filterRequest: EditalFilter = {
-    agency: null,
-    agencyList: null,
-    title: null,
-    financingValueHigh: null,
-    financingValueLow: null,
-    maturity: null,
-    submission: null,
-    areaList: null,
-    created: null,
-    by: 'dt_submission',
-    order: 'DESC'
-  }
+  // private filterRequest: EditalFilter = {
+  //   agency: null,
+  //   agencyList: null,
+  //   title: null,
+  //   financingValueHigh: null,
+  //   financingValueLow: null,
+  //   maturity: null,
+  //   submission: null,
+  //   areaList: null,
+  //   created: null,
+  //   by: 'dt_submission',
+  //   order: 'DESC'
+  // }
 
   constructor(
-    private editalService: EditalService,
     private userService: UserService,
     private authService: AuthService,
     private router: Router,
@@ -54,7 +51,7 @@ export class SearchComponent {
   
   ngOnInit(): void {
     this.collectUserSavedEditalList();
-    this.getEditais( this.filterRequest )
+    // this.getEditais( this.filterRequest )
   }
 
   clear() {
@@ -66,29 +63,29 @@ export class SearchComponent {
   }
 
   filter() {
-    this.filterRequest.agency = this.filterForm.controls['agency'].value
-    this.filterRequest.agencyList = null;
-    this.filterRequest.title = null;
-    this.filterRequest.maturity = null;
-    this.filterRequest.submission = null;
-    this.filterRequest.areaList = null;
-    this.getEditais(this.filterRequest);
+    // this.filterRequest.agency = this.filterForm.controls['agency'].value
+    // this.filterRequest.agencyList = null;
+    // this.filterRequest.title = null;
+    // this.filterRequest.maturity = null;
+    // this.filterRequest.submission = null;
+    // this.filterRequest.areaList = null;
+    // this.getEditais(this.filterRequest);
     this.filterForm.reset();
   }
 
-  getEditais(filter: EditalFilter) {
-    var params: PageRequest = {
-      itemsPerPage : 999
-    }
-    this.editalService.getEditais(filter, params).subscribe(data => {
-      this.editais = data.map(edital => {
-        let list = edital.areaList.split(";");
-        edital.areaList = list.length > 1 ? list.slice(0, 1) : list;
-        edital.saved = this.savedEditaisIds.includes(edital.id);
-        return edital;
-      });
-    });
-  }
+  // getEditais(filter: EditalFilter) {
+  //   var params: PageRequest = {
+  //     itemsPerPage : 999
+  //   }
+  //   this.editalService.getEditais(filter, params).subscribe(data => {
+  //     this.editais = data.map(edital => {
+  //       let list = edital.areaList.split(";");
+  //       edital.areaList = list.length > 1 ? list.slice(0, 1) : list;
+  //       edital.saved = this.savedEditaisIds.includes(edital.id);
+  //       return edital;
+  //     });
+  //   });
+  // }
 
   reduceTitle(title) {
     if (title.length > 50) {
@@ -140,9 +137,9 @@ export class SearchComponent {
       case 'DESC' : this.agencyOrder = ''
       break;
     }
-    this.filterRequest.by = 'agency';
-    this.filterRequest.order = this.agencyOrder != '' ? this.agencyOrder : null;
-    this.getEditais(this.filterRequest);
+    // this.filterRequest.by = 'agency';
+    // this.filterRequest.order = this.agencyOrder != '' ? this.agencyOrder : null;
+    // this.getEditais(this.filterRequest);
   }
 
   orderBySubmission() {
@@ -158,10 +155,10 @@ export class SearchComponent {
       break;
     }
 
-    this.filterRequest.by = 'dt_submission';
-    this.filterRequest.order = this.submission != '' ? this.submission : null;
+    // this.filterRequest.by = 'dt_submission';
+    // this.filterRequest.order = this.submission != '' ? this.submission : null;
    
-    this.getEditais(this.filterRequest);
+    // this.getEditais(this.filterRequest);
   }
 
   orderByfinancingValue() {
@@ -177,10 +174,10 @@ export class SearchComponent {
       break;
     }
 
-    this.filterRequest.by = 'nm_financing_value';
-    this.filterRequest.order = this.financingValue != '' ? this.financingValue : null;
+    // this.filterRequest.by = 'nm_financing_value';
+    // this.filterRequest.order = this.financingValue != '' ? this.financingValue : null;
 
-    this.getEditais( this.filterRequest);
+    // this.getEditais( this.filterRequest);
   }
 
   cancelFilter() {
@@ -190,15 +187,15 @@ export class SearchComponent {
   }
 
   applyCustomFilter() {
-    this.filterRequest.agency = null;
-    this.filterRequest.agencyList = this.customFilter.agency;
-    this.filterRequest.maturity = this.customFilter.maturity != 0 ? this.customFilter.maturity : null;
-    this.filterRequest.submission = this.customFilter.date == 'Invalid date' ? null : this.customFilter.date;
-    this.filterRequest.areaList = this.customFilter.areas;
-    this.filterRequest.financingValueLow = !this.customFilter.value ? null : this.customFilter.value[0];
-    this.filterRequest.financingValueHigh = !this.customFilter.value ? null : this.customFilter.value[1];
+    // this.filterRequest.agency = null;
+    // this.filterRequest.agencyList = this.customFilter.agency;
+    // this.filterRequest.maturity = this.customFilter.maturity != 0 ? this.customFilter.maturity : null;
+    // this.filterRequest.submission = this.customFilter.date == 'Invalid date' ? null : this.customFilter.date;
+    // this.filterRequest.areaList = this.customFilter.areas;
+    // this.filterRequest.financingValueLow = !this.customFilter.value ? null : this.customFilter.value[0];
+    // this.filterRequest.financingValueHigh = !this.customFilter.value ? null : this.customFilter.value[1];
     
-    this.getEditais(this.filterRequest);
+    // this.getEditais(this.filterRequest);
     this.filterForm.reset();
     this.cancelFilter()
   }
@@ -210,7 +207,14 @@ export class SearchComponent {
   collectUserSavedEditalList() {
     this.userService.collectuserSavedEditaisList(this.authService.user.id).subscribe(
       (editaisList: any[]) => {
-        this.savedEditaisIds = editaisList.map(e => e.id);
+        // this.editais = editaisList;
+        this.editais = editaisList.map(edital => {
+          let list = edital.areaList.split(";");
+          edital.areaList = list.length > 1 ? list.slice(0, 1) : list;
+          edital.saved = true;
+          return edital;
+        });
+        this.savedEditaisIds = this.editais.map(e => e.id);
       }
     );
   }
@@ -222,15 +226,15 @@ export class SearchComponent {
     // Incluir/remover edital na lista de favoritos :: backend
     this.userService.updateUserSavedEditalList(this.authService.user.id , edital.id, !addToSaved).subscribe(
       () => {
-        // Marcar item atual como favorito nos resultados atuais
-        edital.saved = addToSaved;
+       // Marcar item atual como favorito nos resultados atuais
+       edital.saved = addToSaved;
     
-        // Atualizar lista de favoritos local
-        if(addToSaved){
-          this.savedEditaisIds.push(edital.id);
-        } else {
-          this.savedEditaisIds = this.savedEditaisIds.filter(e => e != edital.id);
-        }
+       // Atualizar lista de favoritos local
+       if(addToSaved){
+         this.savedEditaisIds.push(edital.id);
+       } else {
+         this.savedEditaisIds = this.savedEditaisIds.filter(e => e != edital.id);
+       }
       }
     );
   }
