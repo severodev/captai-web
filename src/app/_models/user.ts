@@ -18,4 +18,5 @@ export class User {
   activite?: [];
   state?: any;
   background?: string;
+  savedEditais?: number[];
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,} from '@angular/common/http';
+import { HttpClient, } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
@@ -19,7 +19,7 @@ export class EditalService {
     });
   }
 
-  getById(id : any): Observable<any> {
+  getById(id: any): Observable<any> {
     return this.http.get(`${environment.apiUrl}/edital/${id}`);
   }
 

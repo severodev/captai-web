@@ -33,14 +33,14 @@ export class UserService {
   }
 
   getUserPaginationMetadata(itemsPerPage: number, search: string,
-    isActive: boolean=true,): Observable<any> {
+    isActive: boolean = true,): Observable<any> {
     let url = `${environment.apiUrl}/users/pagination`;
     let params = new HttpParams()
-    .set('itemsPerPage', itemsPerPage.toString())
-    .set('search', search)
-    .set('isActive', isActive.toString())
+      .set('itemsPerPage', itemsPerPage.toString())
+      .set('search', search)
+      .set('isActive', isActive.toString())
 
-    return this.http.get(url, {params})
+    return this.http.get(url, { params })
   }
 
   createUser(body: User): Observable<any> {
@@ -58,12 +58,12 @@ export class UserService {
   }
 
   requestChangePassword(usernameValue: string): Observable<any> {
-    let obj = {username: usernameValue};
+    let obj = { username: usernameValue };
     return this.http.put(`${environment.apiUrl}/users/ChangePassword`, obj);
   }
 
   validateEmail(tokenValue: string): Observable<any> {
-    let obj = {token: tokenValue};
+    let obj = { token: tokenValue };
     return this.http.post(`${environment.apiUrl}/users/validate-email`, obj);
   }
 
@@ -73,24 +73,24 @@ export class UserService {
     return this.http.put(url, null)
   }
 
-  updateUserProfileImage(userId: number, file:any, fileName: string): Observable<string> {
+  updateUserProfileImage(userId: number, file: any, fileName: string): Observable<string> {
 
-    if(!file){
+    if (!file) {
       return null;
     }
 
     let url = `${environment.apiUrl}/imagekit/updateProfileImage`;
-    
+
     const formData = new FormData();
     formData.append('file', file);
     formData.append('fileName', fileName);
     formData.append('userId', userId.toString());
-    
+
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('enctype', 'multipart/form-data');
     headers.append('Accept', 'application/json');
-    
+
     return this.http.post<string>(url, formData, { headers });
 
   }
@@ -103,6 +103,21 @@ export class UserService {
   checkAvaliabilityCpfCnpj(cpfCnpj: string): Observable<any> {
     let url = `${environment.apiUrl}/users/check-availability-cpf-cnpj?cpfCnpj=${cpfCnpj}`;
     return this.http.get(url);
+  }
+
+  collectuserSavedEditaisList(userId: number) {
+    let url = `${environment.apiUrl}/users/user-saved-edital-list?userId=${userId}`;
+    return this.http.get(url);
+  }
+
+  updateUserSavedEditalList(userId: number, editalId: number, remove: boolean) {
+    let url = `${environment.apiUrl}/users/update-user-saved-edital-list`;
+    const updateData = {
+      userId: +userId,
+      editalId: +editalId,
+      remove: remove
+    };
+    return this.http.post(url, updateData);
   }
 
 }
