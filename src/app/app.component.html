@@ -8,7 +8,8 @@
           <li (click)="admSubMenu(false)" class="nav-item nav-profile-label" routerLinkActive="item-selected">
             <a [routerLink]="['/profile']" class="nav-link align-middle px-0 profile-label">
               <div class="user-img">
-                <img src="{{authService.user.profileImageUrl}}">
+                <img *ngIf="authService.user.profileImageUrl && authService.user.profileImageUrl.length > 0" src="{{authService.user.profileImageUrl}}">
+                <img *ngIf="!authService.user.profileImageUrl || authService.user.profileImageUrl.length == 0" src="assets/icons/usuario-de-perfil.png">
               </div>
               <span class="ms-1 menu-item-label">Seu perfil</span>
             </a>

@@ -50,9 +50,27 @@
     cursor: pointer;
     user-select: none;
     position: absolute;
-    font-size: 7rem;
+    font-size: 5rem;
+    padding: 2rem;
     color: #fafdff;
+    background-color: #ccc8;
+    z-index: 1000;
+    border-radius: 50%;
   }
+
+  .bi-pencil {
+    cursor: pointer;
+    user-select: none;
+    position: absolute;
+    font-size: 5rem;
+    padding: 2rem;
+    color: #fafdff;
+    background-color: #5558;
+    z-index: 1000;
+    border-radius: 50%;
+  }
+
+  
 
 }
 
@@ -510,4 +528,8 @@
 
     }
   }
+}
+
+.hint-image {
+  margin-bottom: 1rem;
 }

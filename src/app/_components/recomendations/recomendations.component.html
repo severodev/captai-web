@@ -76,7 +76,8 @@
             <div class="right-side col-3">
               <div class="user-space">
                 <div class="user-img">
-                  <img src="{{user.user.profileImageUrl}}">
+                  <img *ngIf="user.user.profileImageUrl && user.user.profileImageUrl.length > 0" src="{{user.user.profileImageUrl}}">
+                  <img *ngIf="!user.user.profileImageUrl || user.user.profileImageUrl.length == 0" src="assets/icons/usuario-de-perfil.png">
                 </div>
                 <div class="user-labels">
                   <label>{{user.user.name}} {{user.user.lastName}}</label>

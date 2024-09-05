@@ -59,12 +59,14 @@
                                         (click)="uploadProfileImage()">
                                         edit
                                     </div>
-                                    <img id="usar-image" [src]="userProfile">
+                                    <!-- <i class="bi bi-pencil" *ngIf="!isAdmVision && editMode" (click)="uploadProfileImage()"></i> -->
+                                    <img id="user-image" [class.dimmed]="editMode" [src]="userProfile">
                                     <div style="display: none;" class="fileUploadArea">
                                         <input type="file" name="profileImagemUpload" id="profileImagemUpload"
-                                            accept=".jpeg,.jpg,.png,.gif,.webm" (change)="onFileSelected($event)">
+                                        accept=".jpeg,.jpg,.png,.gif,.webm" (change)="onFileSelected($event)">
                                     </div>
                                 </div>
+                                <div class="hint-image" *ngIf="!isAdmVision && editMode"><span class="small">Clique na imagem para alterar</span></div>
                             </div>
                             <div class="profile-name-function">
                                 <label>

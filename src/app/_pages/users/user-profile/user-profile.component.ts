@@ -37,7 +37,7 @@ export class UserProfileComponent implements OnInit {
     return tabSelection;
   }
 
-  public currentTab = tabSelection.PAYMENTS;
+  public currentTab = tabSelection.PROFILE;
 
   public userForm: FormGroup;
   public passwordForm: FormGroup;
@@ -130,7 +130,7 @@ export class UserProfileComponent implements OnInit {
     } else {
       this.isAdmVision = false;
       this.setForm(this.user.user)
-      this.userProfile = this.user.user.profileImageUrl
+      this.userProfile = this.user.user.profileImageUrl ?? "assets/icons/usuario-de-perfil.png";
     }
   }
 
