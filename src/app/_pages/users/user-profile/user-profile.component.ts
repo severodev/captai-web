@@ -33,6 +33,8 @@ export class UserProfileComponent implements OnInit {
 
   public selectedPlan: SubscriptionPlan;
 
+  public paymentSummary = {};
+
   public get tabOptions(): typeof tabSelection {
     return tabSelection;
   }
@@ -60,7 +62,7 @@ export class UserProfileComponent implements OnInit {
     public router: Router,
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
-    public user: AuthService,
+    public authService: AuthService,
     private toastService: ToastService,
     private formBuilder: FormBuilder,
     private segmentService: SegmentService,
@@ -129,14 +131,21 @@ export class UserProfileComponent implements OnInit {
       }).add(() => this.getProfileImageUrl())
     } else {
       this.isAdmVision = false;
-      this.setForm(this.user.user)
-      this.userProfile = this.user.user.profileImageUrl ?? "assets/icons/usuario-de-perfil.png";
+      this.setForm(this.authService.user)
+      this.userProfile = this.authService.user.profileImageUrl ?? "assets/icons/usuario-de-perfil.png";
     }
+
+    this.userService.collectUserSubscriptionSummary(this.authService.user.subscriptionId).subscribe(
+      (data: any) => {
+        console.log(data);
+      }
+    );
+
   }
 
   setForm(user: User) {
     this.userForm.patchValue(user)
-    if (this.user.user.cpfCnpj && this.user.user.cpfCnpj.length > 11)
+    if (this.authService.user.cpfCnpj && this.authService.user.cpfCnpj.length > 11)
       this.mask = '00.000.000/0000-00'
 
     this.userForm.disable()
@@ -147,7 +156,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   logout() {
-    this.user.logout();
+    this.authService.logout();
     this.router.navigate(['/login']);
   }
 
@@ -162,15 +171,15 @@ export class UserProfileComponent implements OnInit {
     const file: File = event.target.files[0];
     if (file) {
       this.profileImageFile = file;
-      this.userService.updateUserProfileImage(this.user.user.id,
+      this.userService.updateUserProfileImage(this.authService.user.id,
         this.profileImageFile, this.profileImageFile.name).subscribe(
           {
             next: (result: any) => {
               if (result) {
                 this.userProfile = result.newUrl;
-                this.user.user.profileImageUrl = result.newUrl;
-                this.user.user.profileImageId = result.newId;
-                this.user.manualTokenRefresh();
+                this.authService.user.profileImageUrl = result.newUrl;
+                this.authService.user.profileImageId = result.newId;
+                this.authService.manualTokenRefresh();
               }
             },
             complete: () => {
@@ -230,14 +239,14 @@ export class UserProfileComponent implements OnInit {
 
       this.userService.editUSer(this.userForm.controls.id.value, userDTO).subscribe(() => {
         this.toastService.success('Alterações salvas com sucesso  ', '', 6000);
-        this.user.recomendations = undefined;
+        this.authService.recomendations = undefined;
         this.editMode = false;
         this.passwordEdit = false;
         this.showErrors = false;
         this.userForm.disable()
         this.passwordForm.reset();
-        if (!this.isAdmVision || this.userForm.controls.id.value === this.user.user.id)
-          this.user.manualTokenRefresh();
+        if (!this.isAdmVision || this.userForm.controls.id.value === this.authService.user.id)
+          this.authService.manualTokenRefresh();
       }, (err) => {
         this.toastService.error('Ocorreu um erro ao atualizar este usuário! ', err, 6000);
       });

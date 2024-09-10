@@ -208,7 +208,7 @@ export class SearchComponent {
   }
 
   collectUserSavedEditalList() {
-    this.userService.collectuserSavedEditaisList(this.authService.user.id).subscribe(
+    this.userService.collectUserSavedEditaisList(this.authService.user.id).subscribe(
       (editaisList: any[]) => {
         this.savedEditaisIds = editaisList.map(e => e.id);
       }

@@ -347,7 +347,9 @@ export class CreateAccountComponent implements OnInit {
                   console.log('Pagamento processado .. avaliando resultado');
                   console.log(response);
                   if (response.id && response.id != '' && response.status == 'authorized') {
+                    this.userDto.customerId = response.customer_id ?? response.payer_id;
                     this.userDto.subscriptionId = response.id;
+                    this.userDto.cardId = response.card_id;
                     this.userService.createUser(this.userDto).subscribe(
                       {
                         complete: () => {

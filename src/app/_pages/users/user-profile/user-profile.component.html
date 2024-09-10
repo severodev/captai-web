@@ -70,15 +70,15 @@
                             </div>
                             <div class="profile-name-function">
                                 <label>
-                                    {{isAdmVision ? userForm.controls['name'].value : user.user.name}}
-                                    {{isAdmVision ? userForm.controls['lastName'].value : user.user.lastName}}
+                                    {{isAdmVision ? userForm.controls['name'].value : authService.user.name}}
+                                    {{isAdmVision ? userForm.controls['lastName'].value : authService.user.lastName}}
                                 </label>
                                 <span>
-                                    {{isAdmVision ? userForm.controls['role'].value?.name : user.user.role}}
+                                    {{isAdmVision ? userForm.controls['role'].value?.name : authService.user.role}}
                                 </span>
                             </div>
-                            <span class="localization-label">{{user.user.state.abbreviation}} /
-                                {{user.user.background}}</span>
+                            <span class="localization-label">{{authService.user.state.abbreviation}} /
+                                {{authService.user.background}}</span>
                         </div>
                     </div>
                 </div>

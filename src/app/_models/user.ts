@@ -19,4 +19,7 @@ export class User {
   state?: any;
   background?: string;
   savedEditais?: number[];
+  customerId?: string;
+  subscriptionId?: string;
+  cardId?: string;
 }

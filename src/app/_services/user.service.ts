@@ -105,7 +105,7 @@ export class UserService {
     return this.http.get(url);
   }
 
-  collectuserSavedEditaisList(userId: number): Observable<any> {
+  collectUserSavedEditaisList(userId: number): Observable<any> {
     let url = `${environment.apiUrl}/users/user-saved-edital-list?userId=${userId}`;
     return this.http.get(url);
   }
@@ -118,6 +118,17 @@ export class UserService {
       remove: remove
     };
     return this.http.post(url, updateData);
+  }
+
+  collectUserSubscriptionSummary(subscriptionId: string): Observable<any> {
+    let url = `${environment.mercadoPagoUrl}/preapproval/${subscriptionId}`;
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('enctype', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+    headers.append('Authorization', `Bearer ${environment.mercadoPagoKey}`);
+
+    return this.http.get(url, { headers });
   }
 
 }

@@ -205,7 +205,7 @@ export class BookmarkComponent {
   }
 
   collectUserSavedEditalList() {
-    this.userService.collectuserSavedEditaisList(this.authService.user.id).subscribe(
+    this.userService.collectUserSavedEditaisList(this.authService.user.id).subscribe(
       (editaisList: any[]) => {
         // this.editais = editaisList;
         this.editais = editaisList.map(edital => {
