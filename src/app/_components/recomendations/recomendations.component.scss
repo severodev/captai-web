@@ -137,13 +137,24 @@
     .col-1, .col-2, .col-3 {
         display: flex;
     }
+    // .favorite-check {
+    //     cursor: pointer;
+    //     padding-left: 3%;
+    //     .material-symbols-outlined {
+    //         font-weight: 200;
+    //         font-size: 40px;
+    //     }
+    // }
     .favorite-check {
         cursor: pointer;
-        padding-left: 3%;
-        .material-symbols-outlined {
-            font-weight: 200;
-            font-size: 40px;
-        }
+        font-size: 1.5rem;
+        display: flex;
+        justify-content: start;
+        // padding-left: 3%;
+        // .material-symbols-outlined {
+        //     font-weight: 200;
+        //     font-size: 45px;
+        // }
     }
 }
 .edital-name {

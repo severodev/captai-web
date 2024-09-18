@@ -35,13 +35,13 @@
                       <div class="col-2">
                         <span>Início</span>
                       </div>
-                      <div class="col-2 affinity-field-label">
+                      <div class="col-2 affinity-field-label text-center">
                         <span>Afinidade</span>
                       </div>
-                      <div class="col-3 area-List-label">
+                      <div class="col-3 area-List-label text-center">
                         <span>Área</span>
                       </div>
-                      <div class="col-2 favorite-check">
+                      <div class="col-2 favorite-check text-center">
                         <span>Salvar</span>
                       </div>
                     </div>                         
@@ -51,7 +51,7 @@
                         <div class="col-3 edital-name">
                           <label class="dds__icons dds__server-rack-support"></label>
                           <div>
-                            <span data-toggle="tooltip" data-placement="bottom" [title]="edital.ds_titulo">
+                            <span (click)="seeMore(edital.id)" data-toggle="tooltip" data-placement="bottom" [title]="edital.ds_titulo">
                               {{ reduceTitle(edital.ds_titulo)}}
                             </span>
                             <span class="agency">{{ edital.ds_agency }}</span>
@@ -67,7 +67,9 @@
                           <span *ngFor="let item of edital.ds_areas">{{ item }}</span>
                         </div>
                         <div class="col-2 favorite-check">
-                          <span class="material-symbols-outlined">bookmark</span>
+                          <!-- <span class="material-symbols-outlined">bookmark</span> -->
+                          <i class="bi ms-5" [class.bi-bookmark]="!edital.saved" [class.bi-bookmark-fill]="edital.saved"
+                          [class.text-warning]="edital.saved" (click)="bookmarkEdital(edital)"></i>
                         </div>
                       </div>
                     </div>

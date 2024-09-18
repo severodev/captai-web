@@ -108,8 +108,7 @@
                     </div>
                     <div class="col-1 text-center">
                       <span>
-                        {{ edital.ds_currency }}
-                        {{!edital.nm_financing_value ? 'Não encontrado' : edital.nm_financing_value}}
+                        {{!edital.nm_financing_value ? 'Não encontrado' : edital.ds_currency + ' ' + edital.nm_financing_value}}
                       </span>
                     </div>
                     <div class="col-1 affinity-field">

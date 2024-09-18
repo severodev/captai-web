@@ -17,6 +17,10 @@
     }
     display: flex;
     align-items: center;
+
+    .back {
+        cursor: pointer;
+    }
 }
 
 .header {
