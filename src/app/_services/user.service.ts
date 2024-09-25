@@ -131,4 +131,16 @@ export class UserService {
     return this.http.get(url, { headers });
   }
 
+  createCustomerOnMercadoPago(email: string, nome: string, sobrenome: string) {
+    // https://api.mercadopago.com/v1/customers
+    let url = `${environment.apiUrl}/mp/customers/register`;
+    return this.http.post(url, { email: email, firstName: nome, lastName: sobrenome });
+  }
+
+  saveCardOnMercadoPago(customerId: string, cardToken: string) {
+    // https://api.mercadopago.com/v1/customers
+    let url = `${environment.apiUrl}/mp/card/register`;
+    return this.http.post(url, { customerId, cardToken });
+  }
+
 }

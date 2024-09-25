@@ -14,11 +14,13 @@ import { ToastService } from 'src/app/_services/toast.service';
 import { UserService } from 'src/app/_services/user.service';
 import { CpfCnpjAvailabilityValidator } from './validators/CpfCnpjAvailabilityValidator';
 import { EmailAvailabilityValidator } from './validators/EmailAvailabilityValidator';
-import { InstitutionService} from './../../_services/institution.service';
+import { InstitutionService } from './../../_services/institution.service';
 
 import { loadMercadoPago } from "@mercadopago/sdk-js";
 import { environment } from 'src/environments/environment';
 import { Institution } from 'src/app/_models/institution';
+
+import {forkJoin} from 'rxjs';
 
 enum RegistrationSteps {
   STEP_USER_DATA,
@@ -41,6 +43,9 @@ export class CreateAccountComponent implements OnInit {
   public serviceForm: FormGroup;
 
   private userDto: any;
+
+  private tempCardToken = "";
+  private tempCustomerId = ""
 
   @ViewChild("area-pagamento") areaPagamentoDiv: ElementRef;
 
@@ -334,6 +339,28 @@ export class CreateAccountComponent implements OnInit {
         },
         callbacks: {
           onSubmit: (cardFormData) => {
+
+            // Criar cliente e salvar dados do cartão
+            this.tempCardToken = cardFormData;
+            this.createCustomerOnMercadoPago(
+              this.serviceForm.controls['email'].value,
+              this.serviceForm.controls['name'].value,
+              this.serviceForm.controls['lastName'].value
+            ).subscribe((customerResult: any) => { 
+              console.log('Retorno da criação de cliente');
+              console.log(customerResult);
+              this.tempCustomerId = customerResult.id;
+
+              this.saveCardOnMercadoPago(
+                this.tempCustomerId,
+                this.tempCardToken
+              ).subscribe((cardResult: any) => {
+                console.log('Retorno da criação de card');
+                console.log(cardResult);
+              })
+
+            });
+
             return new Promise((resolve, reject) => {
               fetch(`${environment.apiUrl}/mp/subscription/register/${this.selectedPlan.id}`, {
                 method: "POST",
@@ -449,12 +476,20 @@ export class CreateAccountComponent implements OnInit {
   }
 
   abrangencyChange() {
-    if(this.serviceForm.controls['abrangency'].value){
+    if (this.serviceForm.controls['abrangency'].value) {
       const items = [...this.serviceForm.controls['abrangency'].value];
-      if(items.includes(this.allStatesItem)){
+      if (items.includes(this.allStatesItem)) {
         this.serviceForm.controls['abrangency'].setValue([this.allStatesItem]);
       }
     }
+  }
+
+  createCustomerOnMercadoPago(email: string, nome: string, sobrenome: string) {
+    return this.userService.createCustomerOnMercadoPago(email, nome, sobrenome);
+  }
+
+  saveCardOnMercadoPago(customerId: string, cardToken: string) {
+    return this.userService.saveCardOnMercadoPago(customerId, cardToken);
   }
 
 }
