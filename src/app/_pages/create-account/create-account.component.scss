@@ -468,3 +468,23 @@ body {
 
   }
 }
+
+@media (max-width:768px) {
+  .second-column {
+    padding-left: 1rem;
+  }
+  .column-flex{
+    flex-direction: column !important;
+  }
+  .btn-advance {
+    margin: 0 0 1rem 0 !important;
+  }
+}
+@media (max-width:600px) {
+  .plan-item{
+    width: 100% !important;
+  }
+  .plans-list{
+    padding: 0 !important;
+  }
+}
