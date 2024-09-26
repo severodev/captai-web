@@ -1,0 +1,532 @@
+.bloco-wave {
+    background-image: none;
+    margin: 0;
+    padding: 0 6rem;
+
+    .bloco-wave-item {
+        margin: 5rem 0;
+
+        .bloco-wave-item-container {
+            display: flex;
+            align-items: start;
+
+            .bloco-wave-item-icon {
+                margin-right: 1rem;
+            }
+
+            .bloco-wave-item-content {
+                margin-left: 1rem;
+
+                h2 {
+                    font-family: PoppinsSemiBold, sans-serif !important;
+                    font-size: 22px;
+                    color: #252525;
+                    margin-bottom: 1.5rem;
+                }
+
+                h3 {
+                    font-family: PoppinsBold, sans-serif !important;
+                    font-size: 17px;
+                    font-weight: bold;
+                    color: #E4531E;
+                    margin-bottom: 1.5rem;
+                }
+
+                p {
+                    font-family: PoppinsRegular, sans-serif !important;
+                    font-size: 16px;
+                    color: #545454;
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .bloco-wave-item-image {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+    }
+
+    .bloco-wave-item-2 {
+        flex-direction: column-reverse;
+    }
+
+    .bloco-wave-item-4 {
+        flex-direction: column-reverse;
+    }
+}
+@media (min-width:320px) {
+    .bloco-wave {
+        padding: 0;
+    }
+}
+@media (min-width:480px) {
+    .bloco-wave {
+        padding: 0 2rem;
+    }
+}
+
+@media (min-width:780px) {
+    .bloco-wave {
+        padding: 0 6rem;
+    }
+}
+@media (min-width: 992px) {
+    .bloco-wave {
+        // background-image: url('./assets/image/bg-wave.png');
+        background-repeat: no-repeat;
+        background-position-x: 4.5rem;
+        background-position-y: 3.5rem;
+        background-size: 52%;
+
+        .bloco-wave-item {
+            .bloco-wave-item-container {
+                .bloco-wave-item-content {
+                    h2 {
+                        margin-bottom: .5rem;
+                    }
+
+                    h3 {
+                        margin-bottom: .5rem;
+                    }
+                }
+            }
+
+            .bloco-wave-item-image {
+                margin-top: 0;
+            }
+        }
+
+        .bloco-wave-item-2 {
+            margin-top: 11rem;
+            flex-direction: unset;
+        }
+
+        .bloco-wave-item-3 {
+            // margin: 3rem 0 0 4rem;
+
+            .bloco-wave-item-image {
+                margin: -1rem 0 1rem 0;
+            }
+        }
+
+        .bloco-wave-item-4 {
+            margin: 1rem 0 0 3rem;
+            flex-direction: unset;
+
+            .bloco-wave-item-image {
+                margin-top: 3.5 rem;
+            }
+        }
+    }
+}
+
+@media (min-width: 1008px) {
+    .bloco-wave {
+        .bloco-wave-item-4 {
+            margin: 3rem 0 0 3rem;
+        }
+    }
+}
+
+@media (min-width: 1035px) {
+    .bloco-wave {
+        .bloco-wave-item-3 {
+            // margin: 3rem 0 0 5rem;
+        }
+
+        .bloco-wave-item-4 {
+            margin: 4rem 0 0 3rem;
+        }
+    }
+}
+
+@media (min-width: 1054px) {
+    .bloco-wave {
+        .bloco-wave-item-2 {
+            margin-top: 10.5rem;
+        }
+    }
+}
+
+@media (min-width: 1073px) {
+    .bloco-wave {
+        .bloco-wave-item-2 {
+            margin-top: 14.5rem;
+        }
+    }
+}
+
+@media (min-width: 1140px) {
+    .bloco-wave {
+        .bloco-wave-item {
+            .bloco-wave-item-container {
+                .bloco-wave-item-content {
+                    h2 {
+                        margin-bottom: 1.5rem;
+                    }
+
+                    h3 {
+                        margin-bottom: 1.5rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1160px) {
+    .bloco-wave {
+        .bloco-wave-item-3 {
+            margin: 6rem 0 0 5rem;
+        }
+
+        .bloco-wave-item-4 {
+            margin: 3rem 0 0 3rem;
+        }
+    }
+}
+
+@media (min-width: 1190px) {
+    .bloco-wave {
+        .bloco-wave-item-3 {
+            margin: 6rem 0 0 7rem;
+        }
+
+        .bloco-wave-item-4 {
+            margin: 4.5rem 0 0 3rem;
+        }
+    }
+}
+
+@media (min-width: 1200px) {
+    .bloco-wave {
+        .bloco-wave-item-2 {
+            margin-top: 13.5rem;
+        }
+        .bloco-wave-item-3 {
+            margin: 10rem 0 0 4rem;
+        }
+
+        .bloco-wave-item-4 {
+            margin: 0rem 0 0 3rem;
+        }
+    }
+}
+
+@media (min-width: 1230px) {
+    .bloco-wave {
+        .bloco-wave-item-4 {
+            margin: 0.5rem 0 0 4rem;
+        }
+    }
+}
+
+@media (min-width: 1260px) {
+    .bloco-wave {
+        .bloco-wave-item-3 {
+            margin: 14rem 0 0 0;
+        }
+
+        .bloco-wave-item-4 {
+            margin: 6rem 0 0 0rem;
+        }
+    }
+}
+
+/* @media (min-width: 1300px) {
+    .bloco-wave {
+        .bloco-wave-item-3 {
+            margin: 11rem 0 0 4rem;
+        }
+    }
+}
+
+@media (min-width: 1330px) {
+    .bloco-wave {
+        .bloco-wave-item-3 {
+            margin: 14rem 0 0 4rem;
+        }
+        .bloco-wave-item-2 {
+            margin-top: 14rem;
+        }
+
+        .bloco-wave-item-4 {
+            margin: -1rem 0 0 4rem;
+        }
+    }
+}
+
+@media (min-width: 1350px) {
+    .bloco-wave {
+        .bloco-wave-item-4 {
+            margin: 0rem 0 0 4rem;
+        }
+    }
+}
+
+@media (min-width: 1380px) {
+    .bloco-wave {
+        .bloco-wave-item-3 {
+            margin: 15rem 0 0 4rem;
+        }
+
+        .bloco-wave-item-4 {
+            margin: -1.5rem 0 0 4rem;
+        }
+    }
+}
+
+@media (min-width: 1400px) {
+    .bloco-wave {
+        .bloco-wave-item-2 {
+            margin: 17rem 0 0 4rem;
+        }
+
+        .bloco-wave-item-3 {
+            margin: 13rem 0 0 4rem;
+        }
+
+        .bloco-wave-item-4 {
+            margin: -1.5rem 0 0 4rem;
+        }
+    }
+}
+
+@media (min-width: 1420px) {
+    .bloco-wave {
+        .bloco-wave-item-3 {
+            margin: 15rem 0 0 4rem;
+        }
+    }
+}
+
+@media (min-width: 1450px) {
+    .bloco-wave {
+        .bloco-wave-item-4 {
+            margin: 0rem 0 0 4rem;
+        }
+    }
+}
+
+@media (min-width: 1480px) {
+    .bloco-wave {
+        .bloco-wave-item-4 {
+            margin: 1.5rem 0 0 4rem;
+        }
+    }
+}
+
+@media (min-width: 1500px) {
+    .bloco-wave {
+        background-position-x: 3.5rem;
+        background-position-y: 3.5rem;
+
+        .bloco-wave-item-2 {
+            margin: 17rem 0 0 2rem;
+        }
+
+        .bloco-wave-item-4 {
+            margin: 3rem 0 0 4rem;
+        }
+    }
+}
+
+@media (min-width: 1520px) {
+    .bloco-wave {
+        .bloco-wave-item-3 {
+            margin: 20rem 0 0 3rem;
+        }
+
+        .bloco-wave-item-4 {
+            margin: -1.5rem 0 0 4rem;
+        }
+    }
+}
+
+@media (min-width: 1540px) {
+    .bloco-wave {
+        .bloco-wave-item-4 {
+            margin: 0rem 0 0 4rem;
+        }
+    }
+}
+
+@media (min-width: 1570px) {
+    .bloco-wave {
+        .bloco-wave-item-4 {
+            margin: 2rem 0 0 4rem;
+        }
+    }
+}
+
+@media (min-width: 1600px) {
+    .bloco-wave {
+        .bloco-wave-item-2 {
+            margin: 20rem 0 0 2rem;
+        }
+
+        .bloco-wave-item-4 {
+            margin: 1rem 0 0 4rem;
+        }
+    }
+}
+
+@media (min-width: 1620px) {
+    .bloco-wave {
+        .bloco-wave-item-4 {
+            margin: 2rem 0 0 5rem;
+        }
+    }
+}
+
+@media (min-width: 1640px) {
+    .bloco-wave {
+        .bloco-wave-item-3 {
+            margin: 22rem 0 0 3rem;
+        }
+    }
+}
+
+@media (min-width: 1670px) {
+    .bloco-wave {
+        .bloco-wave-item-3 {
+            margin: 24rem 0 0 3rem;
+        }
+    }
+}
+
+@media (min-width: 1700px) {
+    .bloco-wave {
+        .bloco-wave-item-2 {
+            margin: 22rem 0 0 2rem;
+        }
+    }
+}
+
+@media (min-width: 1720px) {
+    .bloco-wave {
+        background-position-x: 2.5rem;
+        background-position-y: 3.5rem;
+
+        .bloco-wave-item-2 {
+            margin: 25rem 0 0 3rem;
+        }
+        .bloco-wave-item {
+            .bloco-wave-item-image {
+                img{
+                    width: 80%;
+
+                }
+            }
+        }
+
+        .bloco-wave-item-3 {
+            margin: 24rem 0 0 2rem;
+        }
+
+        .bloco-wave-item-4 {
+            margin: 0rem 0 0 5rem;
+        }
+    }
+}
+
+@media (min-width: 1740px) {
+    .bloco-wave {
+        .bloco-wave-item-4 {
+            margin: 2rem 0 0 5rem;
+        }
+    }
+}
+
+@media (min-width: 1760px) {
+    .bloco-wave {
+        .bloco-wave-item-3 {
+            margin: 26rem 0 0 2rem;
+        }
+    }
+}
+
+@media (min-width: 1790px) {
+    .bloco-wave {
+        .bloco-wave-item-2 {
+            margin: 25rem 0 0 1rem;
+        }
+
+        .bloco-wave-item-3 {
+            margin: 28rem 0 0 2rem;
+        }
+    }
+}
+
+@media (min-width: 1820px) {
+    .bloco-wave {
+        .bloco-wave-item-3 {
+            margin: 30rem 0 0 2rem;
+        }
+    }
+}
+
+@media (min-width: 1850px) {
+    .bloco-wave {
+        .bloco-wave-item-3 {
+            margin: 32rem 0 0 2rem;
+        }
+    }
+}
+
+@media (min-width: 1880px) {
+    .bloco-wave {
+        .bloco-wave-item-3 {
+            margin: 35rem 0 0 2rem;
+        }
+    }
+}
+
+@media (min-width: 1920px) {
+    .bloco-wave {
+        .bloco-wave-item-3 {
+            margin: 38rem 0 0 2rem;
+        }
+    }
+}
+
+@media (min-width: 1960px) {
+    .bloco-wave {
+        .bloco-wave-item-3 {
+            margin: 42rem 0 0 2rem;
+        }
+    }
+}
+
+@media (min-width: 2010px) {
+    .bloco-wave {
+        .bloco-wave-item-3 {
+            margin: 28rem 0 0 2rem;
+        }
+    }
+}
+
+@media (min-width: 2050px) {
+    .bloco-wave {
+        .bloco-wave-item-3 {
+            margin: 30rem 0 0 2rem;
+        }
+    }
+}
+@media (min-width: 2099px) and (max-width: 3000px) {
+    .bloco-wave {
+        .bloco-wave-item-3 {
+            transition: margin 0.1s ease; /* Adiciona uma transição suave para as mudanças de margem */
+
+        /* }
+    }
+} 
+ @media (min-width: 2100px) {
+    .bloco-wave {
+        .bloco-wave-item-3 {
+            margin: 41rem 0 0 2rem;
+        }
+    }
+}  */

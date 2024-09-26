@@ -15,9 +15,11 @@ import { HomeComponent } from './_pages/home/home.component';
 import { LoginComponent } from './_pages/login/login.component';
 import { UserProfileComponent } from './_pages/users/user-profile/user-profile.component';
 import { BookmarkComponent } from './_components/bookmark/bookmark.component';
+import { LandingPageComponent } from './_pages/landing-page/landing-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/recomendations', pathMatch: 'full' },
+  { path: 'landing-page', component: LandingPageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'create-account', component: CreateAccountComponent},
   { path: 'password-recovery', component: PasswordRecoveryComponent},

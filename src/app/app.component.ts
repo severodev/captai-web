@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AuthService } from './_services/auth.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ConfirmModal } from './_components/confirm-modal/confirm-modal.component';
-import { Subject } from 'rxjs';
+import { Subject, filter } from 'rxjs';
 import { environment } from './../environments/environment';
 import { InviteService } from './_services/invite.service';
 
@@ -16,6 +16,7 @@ import { InviteService } from './_services/invite.service';
 export class AppComponent {
   public openSubMenu = false;
   accessToken: string;
+  isLandingPage: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -29,17 +30,31 @@ export class AppComponent {
     });
   }
 
+  ngOnInit() {
+    this.router.events
+      .pipe(
+        filter(event => event instanceof NavigationEnd) // Garante que estamos pegando o fim da navegação
+      )
+      .subscribe((event: any) => {
+        if (event.url === '/landing-page')
+          this.isLandingPage = true;
+        else{ 
+          this.isLandingPage = false;
+        }
+      });
+  }
+
   inviteSend() {
     this.inviteService.initInvite()
   }
 
   admSubMenu(value) {
     this.openSubMenu = value;
-  } 
-  
-  confirmLogout()  {
-    const initialState : any = {
-      title:  'Fazer logout',
+  }
+
+  confirmLogout() {
+    const initialState: any = {
+      title: 'Fazer logout',
       message: 'Deseja sair da sua conta?'
     };
     let modalRef = this.modalService.show(ConfirmModal, {
@@ -60,7 +75,7 @@ export class AppComponent {
     this.router.navigate(['/login']);
   }
 
-  getVersion(){
+  getVersion() {
     return environment.currentVersion ?? '---'
   }
 
