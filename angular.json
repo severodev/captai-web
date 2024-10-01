@@ -29,6 +29,7 @@
             ],
             "styles": [
               "src/styles.scss",
+              "src/wave.scss",
               "src/clarity-icons.scss",
               "node_modules/@ng-select/ng-select/themes/default.theme.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.min.css"
@@ -181,6 +182,7 @@
             ],
             "styles": [
               "src/styles.scss",
+              "src/wave.scss",
               "src/clarity-icons.scss",
               "/node_modules/@ng-select/ng-select/themes/default.theme.css"
             ],

@@ -72,11 +72,13 @@ import { DeactivateGuard } from './_guards/deactivate.guard';
 import { CreateAccountComponent } from './_pages/create-account/create-account.component';
 import { FirstAccessComponent } from './_pages/first-access/first-access.component';
 import { UserProfileComponent } from './_pages/users/user-profile/user-profile.component';
+import { LandingPageComponent } from './_pages/landing-page/landing-page.component';
 import { UsersComponent } from './_pages/users/users.component';
 import { ActiviteService } from './_services/activite.service';
 import { InviteService } from './_services/invite.service';
 import { EditalService } from './_services/edital.service';
 import { UserService } from './_services/user.service';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 import localePt  from '@angular/common/locales/pt';
 import { DatePipe, registerLocaleData } from '@angular/common';
@@ -102,6 +104,7 @@ export const customCurrencyMaskConfig = {
     CpfFormatPipe,
     AppComponent,
     LoginComponent,
+    LandingPageComponent,
     HomeComponent,
     BreadcrumbComponent,
     InputFileComponent,
@@ -133,6 +136,7 @@ export const customCurrencyMaskConfig = {
     DetailsComponent,
     SearchFilterDropdownComponent,
     RecomendationsComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -153,7 +157,8 @@ export const customCurrencyMaskConfig = {
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    CarouselModule.forRoot(),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

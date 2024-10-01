@@ -74,6 +74,62 @@ body {
 
 }
 
+#beneficiosCarousel {
+  .carousel-inner {
+    padding: 0 3rem;
+  }
+
+  .carousel-indicators {
+    display: none;
+  }
+
+  .carousel-control {
+    width: auto;
+
+    .carousel-control-prev-icon {
+      background-image: url(assets/image/seta-esquerda.svg);
+    }
+    
+    .carousel-control-next-icon {
+      background-image: url(assets/image/seta-direita.svg);
+    }
+  }
+}
+
+#parceirosCarousel {
+  .carousel-inner {
+    padding: 0 3rem;
+  }
+
+  .carousel-indicators {
+    display: none;
+
+    // button {
+    //   background-color: gray;
+    //   border-radius: 100%;
+    //   width: 10px;
+    //   height: 10px;
+
+    //   &:focus-visible {
+    //     border: none;
+    //     outline: none;
+    //   }
+    // }
+  }
+
+  .carousel-control {
+    width: auto;
+
+    .carousel-control-prev-icon {
+      background-image: url(assets/image/seta-esquerda.svg);
+    }
+    
+    .carousel-control-next-icon {
+      background-image: url(assets/image/seta-direita.svg);
+    }
+  }
+}
+
 .ngx-slider-pointer {
   background-color: #e43600 !important;
   width: 25px !important;

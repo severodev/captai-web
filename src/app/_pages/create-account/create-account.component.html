@@ -3,16 +3,16 @@
 <div id="user-data" *ngIf="isUserDataStep()">
     <form [formGroup]="userForm" (ngSubmit)="saveUserData()">
         <div class="title">Cadastro de nova conta</div>
-        <div class="row">
+        <div class="row column-flex">
             <div class="col-12">
                 <div class="sub-title">
                     <span class="badge badge-pill badge-orange">1</span>
                     Informações do perfil
                 </div>
                 <div class="row">
-                    <div class="col-6">
-                        <div class="row">
-                            <div class="col">
+                    <div class="col-lg-6 col-sm-12 col-xs-12">
+                        <div class="row column-flex">
+                            <div class="col col-xs-12">
                                 <div class="form-group">
                                     <label>Nome</label>
                                     <input type="text" class="form-control" formControlName="name" name="new-user-name"
@@ -23,7 +23,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col col-xs-12">
                                 <div class="form-group">
                                     <label>Sobrenome</label>
                                     <input type="text" class="form-control" formControlName="lastName" name="lastName"
@@ -47,7 +47,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row column-flex">
                             <div class="cpf-input">
                                 <div class="form-group">
                                     <label>CPF / CNPJ</label>
@@ -65,7 +65,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row column-flex">
                             <div class="col">
                                 <div class="form-group">
                                     <label>Email</label>
@@ -86,7 +86,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col column-flex">
                                 <div class="form-group">
                                     <label>Confirme o email</label>
                                     <input type="email" class="form-control"
@@ -109,7 +109,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row column-flex">
                             <div class="col">
                                 <div class="form-group">
                                     <label>Qual o seu estado?</label>
@@ -145,8 +145,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-6 second-column">
-                        <div class="row">
+                    <div class="col-lg-6 col-sm-12 second-column">
+                        <div class="row column-flex">
                             <div class="form-group col">
                                 <label>Senha</label>
                                 <div class="password-fields">
@@ -230,7 +230,7 @@
                             </div>
                         </div>
                         <div>
-                            <div class="d-flex flex-row">
+                            <div class="d-flex flex-row column-flex">
                                 <a href="/" class="btn-cancel">
                                     <span>Cancelar</span>
                                 </a>
@@ -268,8 +268,8 @@
                     Informações do serviço
                 </div>
                 <div class="row">
-                    <div class="col-6">
-                        <div class="row">
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="row column-flex">
                             <div class="form-group">
                                 <label>Selecione uma área de interesse</label>
                                 <ng-select [items]="segments" bindLabel="name" [searchable]="true" [clearable]="false"
@@ -307,8 +307,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-6 second-column">
-                        <div class="row">
+                    <div class="col-lg-6 col-sm-12 second-column">
+                        <div class="row column-flex">
                             <div class="form-group">
                                 <label>Valor limite máximo de contrapartida financeira</label>
                                 <input type="text" class="form-control" prefix="R$ " mask="separator.0"
@@ -353,7 +353,7 @@
                             </div>
                             <div>
                                 <div class="row">
-                                    <div class="d-flex flex-row">
+                                    <div class="d-flex flex-row column-flex">
                                         <button class="btn-advance" (click)="goToUserData()">
                                             <span>Anterior</span>
                                         </button>
@@ -389,7 +389,7 @@
                 <div class="register-today">Selecione um plano e proceda para o pagamento.</div>
             </div>
             <div class="row">
-                <div class="col-4 regiao-pagamento">
+                <div class="col-lg-4 regiao-pagamento">
                     <div class="plans-list">
                         <div *ngFor="let item of availablePlans">
                             <div class="plan-item" [class.disabled]="!item.ativo">
@@ -419,7 +419,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-5 regiao-pagamento">
+                <div class="col-lg-5 regiao-pagamento">
                     <div id="area-pagamento" class="area-pagamento"></div>
                     <div id="marcador-final-pagamento"></div>
                 </div>

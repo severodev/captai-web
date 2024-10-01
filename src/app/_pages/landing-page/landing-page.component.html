@@ -1,0 +1,836 @@
+<div class="container-fluid mb-4 border-bottom p-0">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">      
+                <img src="../../../assets/images/captiLogo.png" width="100%" class="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" (click)="isCollapsed = !isCollapsed"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end p-2" id="navbarTogglerDemo02" [collapse]=isCollapsed>
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item" [ngClass]="{'active': activeLink == 'secao1'}">
+                        <a class="nav-link" (click)="scrollToSecao('secao1')">Home</a>
+                    </li>
+                    <li class="nav-item" [ngClass]="{'active': activeLink == 'secao2'}">
+                        <a class="nav-link" (click)="scrollToSecao('secao2')">Sobre nós</a>
+                    </li>
+                    <li class="nav-item" [ngClass]="{'active': activeLink == 'secao3'}">
+                        <a class="nav-link" (click)="scrollToSecao('secao3')">Serviços</a>
+                    </li>
+                    <li class="nav-item" [ngClass]="{'active': activeLink == 'secao4'}">
+                        <a class="nav-link" (click)="scrollToSecao('secao4')">Blog</a>
+                    </li>
+                    <button class="btn btn-green ml-3" [routerLink]="['/login']">Log in</button>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="back-total">
+    <div class="container-fluid mt-4">
+        <div class="container mt-4 p-0">
+            <div class="row col-lg-12 mt-4">
+                <div class="row">
+                    <div class="col-lg-8 col-sm-12 mt-4 bloco-1">
+                        <h1 #secao1>
+                            <span class="color-orange"><strong>Capti,</strong></span> inteligência que
+                            <strong class="color-orange-2">transforma projetos em realidade</strong>
+                        </h1>
+                        <!-- 
+                            <div id="textCarousel" class="carousel slide carousel-fade w-100 mb-4 mt-4"
+                                data-ride="carousel">
+                                <div class="carousel-inner w-100" role="listbox mb-4">
+                                    <div class="carousel-item active">
+                                        <span class="titulo-item-slide">Receba notificações instantâneas</span>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <span class="titulo-item-slide">Sugestões de aperfeiçoamentos</span>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <span class="titulo-item-slide">Central de recursos amplos, aumentando as
+                                            chances de sucesso</span>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                        <p class="color-secondary-gray font-weight-normal mt-4">
+                            Utilizando <strong>tecnologia avançada e inteligência artificial,</strong> facilitamos o
+                            processo de <strong>captação de editais</strong> de fomento à inovação, analisando as
+                            características do seu projeto para apresentar as oportunidades ideais.
+                        </p>
+
+                        <p class="color-secondary-gray font-weight-normal">
+                            <strong>Simplifique a sua busca, categorização e priorização de editais
+                                abertos,</strong>
+                            além de contar com um plano de ação detalhado para guiar você ao sucesso no envio de
+                            propostas com eficiência e precisão.
+                        </p>
+
+                        <a class="btn btn-green col-lg-4 col-sm-12 p-2 mt-4 mb-2" [routerLink]="['/create-account']">Cadastre-se</a>
+                    </div>
+
+                    <div class="position-relative col-lg-4 h-100 col-sm-12 d-flex justify-content-end pr-0 mr-0">
+                        <div class="background-radial">
+                            <img src="../../../assets/image/prancheta.svg"
+                                alt="imagem de uma prancheta com uma lupa em cima" width="95%" />
+                        </div>
+                    </div>
+                </div>
+                <!-- 
+                <div class="row mt-5">
+                    <div id="beneficiosCarousel" class="carousel slide w-100" data-ride="carousel">
+                        <div class="carousel-inner w-100" role="listbox">
+                            <div class="carousel-item active">
+                                <div class="col-sm-12 col-lg-6">
+                                    <div class="d-flex px-4 align-items-center justify-content-center">
+                                        <div class="col-lg-3 col-xs-12">
+                                            <div
+                                                class="bg-purple card justify-content-center align-items-center py-3 px-1">
+                                                <img class="card-img icones-carrousel"
+                                                    src="../../../assets/image/icones/icone-1.svg" alt="Imagem icone">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-9 col-xs-12 m-3 mt-0 mb-0">
+                                            <p class="mb-0"><strong>Alto desempenho</strong></p>
+                                            <p class="mb-0 mt-1">Maximize a busca de propostas de incentivo</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <div class="col-sm-12 col-lg-6">
+                                    <div class="d-flex px-4 align-items-center justify-content-center">
+                                        <div class="col-lg-3 col-xs-12">
+                                            <div
+                                                class="bg-green-light card justify-content-center align-items-center py-3 px-1">
+                                                <img class="card-img icones-carrousel"
+                                                    src="../../../assets/image/icones/icone-2.svg" alt="Imagem icone">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-9 col-xs-12 m-3 mt-0 mb-0">
+                                            <p class="mb-0"><strong>Agilidade</strong></p>
+                                            <p class="mb-0 mt-1">Otimize seu tempo com uma ferramenta inteligente
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <div class="col-sm-12 col-lg-6">
+                                    <div class="d-flex px-4 align-items-center justify-content-center">
+                                        <div class="col-lg-3 col-xs-12">
+                                            <div
+                                                class="bg-red card justify-content-center align-items-center py-3 px-1">
+                                                <img class="card-img icones-carrousel"
+                                                    src="../../../assets/image/icones/icone-3.svg" alt="Imagem icone">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-9 col-xs-12 m-3 mt-0 mb-0">
+                                            <p class="mb-0"><strong>Eficácia</strong></p>
+                                            <p class="mb-0 mt-1">Otimize seu tempo com uma ferramenta automatizada
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <div class="col-sm-12 col-lg-6">
+                                    <div class="d-flex px-4 align-items-center justify-content-center">
+                                        <div class="col-lg-3 col-xs-12">
+                                            <div
+                                                class="bg-blue-light card justify-content-center align-items-center py-3 px-1">
+                                                <img class="card-img icones-carrousel"
+                                                    src="../../../assets/image/icones/icone-4.svg" alt="Imagem icone">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-9 col-xs-12 m-3 mt-0 mb-0">
+                                            <p class="mb-0"><strong>Assertividade</strong></p>
+                                            <p class="mb-0 mt-1">Encontre o edital certo para financiar o seu
+                                                projeto
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <div class="col-sm-12 col-lg-6">
+                                    <div class="d-flex px-4 align-items-center justify-content-center">
+                                        <div class="col-lg-3 col-xs-12">
+                                            <div
+                                                class="bg-green card justify-content-center align-items-center py-3 px-1">
+                                                <img class="card-img icones-carrousel"
+                                                    src="../../../assets/image/icones/icone-5.svg" alt="Imagem icone">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-9 col-xs-12 m-3 mt-0 mb-0">
+                                            <p class="mb-0"><strong>Inteligência artificial</strong></p>
+                                            <p class="mb-0 mt-1">Tecnologia avançada que acelera resultados
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <div class="col-sm-12 col-lg-6">
+                                    <div class="d-flex px-4 ">
+                                        <div class="col-lg-3 col-xs-12">
+                                            <div
+                                                class="bg-pink d-flex card justify-content-center align-items-center py-3 px-1">
+                                                <img class="card-img icones-carrousel"
+                                                    src="../../../assets/image/icones/icone-6.svg" alt="Imagem icone" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-9 col-xs-12 m-3 mt-0 mb-0">
+                                            <p class="mb-0"><strong>Dinamismo</strong></p>
+                                            <p class="mb-0 mt-1">Gestão das atividades necessárias para enviar sua
+                                                proposta
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a class="carousel-control-prev w-auto" href="#beneficiosCarousel" role="button"
+                            data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        </a>
+                        <a class="carousel-control-next w-auto" href="#beneficiosCarousel" role="button"
+                            data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </div> -->
+
+                <div class="row mt-5">
+                    <div id="beneficiosCarousel">
+                        <carousel [itemsPerSlide]="itemsPerSlideBeneficios" [singleSlideOffset]="true" [interval]="0">
+                            <slide>
+                                <div class="w-100">
+                                    <div class="d-flex px-4 align-items-center justify-content-center column-flex">
+                                        <div class="col-lg-3 col-sm-4 col-xs-12">
+                                            <div
+                                                class="bg-purple card-responsive card justify-content-center align-items-center py-3 px-1">
+                                                <img class="card-img icones-carrousel"
+                                                    src="../../../assets/image/icones/icone-1.svg" alt="Imagem icone">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-9 col-xs-12 m-3 mt-0 mb-0">
+                                            <p class="mb-0"><strong>Alto desempenho</strong></p>
+                                            <p class="mb-0 mt-1">Maximize a busca de propostas de incentivo</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </slide>
+
+                            <slide>
+                                <div class="w-100">
+                                    <div class="d-flex px-4 align-items-center justify-content-center column-flex">
+                                        <div class="col-lg-3 col-sm-4 col-xs-12">
+                                            <div
+                                                class="bg-green-light card-responsive card justify-content-center align-items-center py-3 px-1">
+                                                <img class="card-img icones-carrousel"
+                                                    src="../../../assets/image/icones/icone-2.svg" alt="Imagem icone">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-9 col-xs-12 m-3 mt-0 mb-0">
+                                            <p class="mb-0"><strong>Agilidade</strong></p>
+                                            <p class="mb-0 mt-1">Otimize seu tempo com uma ferramenta inteligente
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </slide>
+
+                            <slide>
+                                <div class="w-100">
+                                    <div class="d-flex px-4 align-items-center justify-content-center column-flex">
+                                        <div class="col-lg-3 col-sm-4 col-xs-12">
+                                            <div
+                                                class="bg-red card card-responsive justify-content-center align-items-center py-3 px-1">
+                                                <img class="card-img icones-carrousel"
+                                                    src="../../../assets/image/icones/icone-3.svg" alt="Imagem icone">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-9 col-xs-12 m-3 mt-0 mb-0">
+                                            <p class="mb-0"><strong>Eficácia</strong></p>
+                                            <p class="mb-0 mt-1">Otimize seu tempo com uma ferramenta automatizada
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </slide>
+
+                            <slide>
+                                <div class="w-100">
+                                    <div class="d-flex px-4 align-items-center justify-content-center column-flex">
+                                        <div class="col-lg-3 col-sm-4 col-xs-12">
+                                            <div
+                                                class="bg-blue-light card card-responsive justify-content-center align-items-center py-3 px-1">
+                                                <img class="card-img icones-carrousel"
+                                                    src="../../../assets/image/icones/icone-4.svg" alt="Imagem icone">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-9 col-xs-12 m-3 mt-0 mb-0">
+                                            <p class="mb-0"><strong>Assertividade</strong></p>
+                                            <p class="mb-0 mt-1">Encontre o edital certo para financiar o seu
+                                                projeto
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </slide>
+
+                            <slide>
+                                <div class="w-100">
+                                    <div class="d-flex px-4 align-items-center justify-content-center column-flex">
+                                        <div class="col-lg-3 col-sm-4 col-xs-12">
+                                            <div
+                                                class="bg-green card card-responsive justify-content-center align-items-center py-3 px-1">
+                                                <img class="card-img icones-carrousel"
+                                                    src="../../../assets/image/icones/icone-5.svg" alt="Imagem icone">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-9 col-xs-12 m-3 mt-0 mb-0">
+                                            <p class="mb-0"><strong>Inteligência artificial</strong></p>
+                                            <p class="mb-0 mt-1">Tecnologia avançada que acelera resultados
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </slide>
+
+                            <slide>
+                                <div class="w-100">
+                                    <div class="d-flex px-4 column-flex">
+                                        <div class="col-lg-3 col-sm-4 col-xs-12">
+                                            <div
+                                                class="bg-pink card-responsive d-flex card justify-content-center align-items-center py-3 px-1">
+                                                <img class="card-img icones-carrousel"
+                                                    src="../../../assets/image/icones/icone-6.svg" alt="Imagem icone" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-9 col-xs-12 m-3 mt-0 mb-0">
+                                            <p class="mb-0"><strong>Dinamismo</strong></p>
+                                            <p class="mb-0 mt-1">Gestão das atividades necessárias para enviar sua
+                                                proposta
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </slide>
+                        </carousel>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid bloco-2-top border-gray">
+    <div class="container bloco-2">
+        <div class="row">
+            <h2 #secao2 class="color-orange mb-3">O mercado de tecnologia e as oportunidades de crescimento</h2>
+
+            <span class="mb-5">Como funciona o fomento aos projetos de inovação?</span>
+
+            <p>No Brasil, a estratégia de fomento à inovação é definida por políticas públicas, asseguradas pelo
+                Marco Legal da Ciência, Tecnologia e Inovação, com o intuito de proporcionar o progresso científico
+                e tecnológico, por meio de incentivos financeiros, fiscais e regulatórios. </p>
+        </div>
+
+        <div class="row secao-2-1">
+            <h2 class="color-orange mb-3">Os editais de incentivo</h2>
+
+            <p class="text-right">O financiamento de produtos, processos ou serviços inovadores acontece por meio de
+                editais, que tem
+                como principal objetivo aumentar os níveis de produtividade e competitividade da indústria
+                brasileira, assim como otimizar a segurança e a saúde do setor industrial. </p>
+        </div>
+
+        <div class="row my-5">
+            <div class="d-flex justify-content-center">
+                <h3 class="titulo-bolder">Principais agências de fomento cobertas pelo Capti:</h3>
+            </div>
+
+            <div id="parceirosCarousel">
+                <carousel [itemsPerSlide]="itemsPerSlideParceiros" [singleSlideOffset]="false"
+                    [indicatorsByChunk]="true" [interval]="0">
+                    <slide>
+                        <div class="w-100">
+                            <div class="d-flex justify-content-center px-4">
+                                <div class="b-0 card justify-content-center align-items-center p-3">
+                                    <img class="card-img" src="../../../assets/image/logos/bndes.jpg"
+                                        alt="Imagem icone">
+                                </div>
+                            </div>
+                        </div>
+                    </slide>
+
+                    <slide>
+                        <div class="w-100">
+                            <div class="d-flex justify-content-center px-4">
+                                <div class="card justify-content-center align-items-center p-3">
+                                    <img class="card-img" src="../../../assets/image/logos/images.jpg"
+                                        alt="Imagem icone">
+                                </div>
+                            </div>
+                        </div>
+                    </slide>
+
+                    <slide>
+                        <div class="w-100">
+                            <div class="d-flex justify-content-center px-4">
+                                <div class="card justify-content-center align-items-center p-3">
+                                    <img class="card-img" src="../../../assets/image/logos/images.png"
+                                        alt="Imagem icone">
+                                </div>
+                            </div>
+                        </div>
+                    </slide>
+
+                    <slide>
+                        <div class="w-100">
+                            <div class="d-flex justify-content-center px-4">
+                                <div class="card justify-content-center align-items-center p-3">
+                                    <img class="card-img" src="../../../assets/image/logos/capes.png" alt="Imagem icone"
+                                        width="100%">
+                                </div>
+                            </div>
+                        </div>
+                    </slide>
+                </carousel>
+            </div>
+
+            <!-- <div id="parceirosCarousel" class="carousel slide w-100 mt-5" data-ride="carousel">
+                <div class="carousel-inner w-100" role="listbox">
+                    <div class="carousel-item active">
+                        <div class="col-sm-12 col-lg-3">
+                            <div class="d-flex justify-content-center px-4">
+                                <div class="b-0 card justify-content-center align-items-center p-3">
+                                    <img class="card-img" src="../../../assets/image/logos/bndes.jpg"
+                                        alt="Imagem icone">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="col-sm-12 col-lg-3">
+                            <div class="d-flex justify-content-center px-4">
+                                <div class="card justify-content-center align-items-center p-3">
+                                    <img class="card-img" src="../../../assets/image/logos/images.jpg"
+                                        alt="Imagem icone">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="col-sm-12 col-lg-3">
+                            <div class="d-flex justify-content-center px-4">
+                                <div class="card justify-content-center align-items-center p-3">
+                                    <img class="card-img" src="../../../assets/image/logos/images.png"
+                                        alt="Imagem icone">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="col-sm-12 col-lg-3">
+                            <div class="d-flex justify-content-center px-4">
+                                <div class="card justify-content-center align-items-center p-3">
+                                    <img class="card-img" src="../../../assets/image/logos/capes.png" alt="Imagem icone"
+                                        width="100%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a class="carousel-control-prev w-auto" href="#parceirosCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </a>
+                <a class="carousel-control-next w-auto" href="#parceirosCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </a>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="container bloco-6">
+        <div class="row text-center">
+            <h2 #secao3>Nossa proposta</h2>
+            <p>Experimente uma plataforma que garante praticidade e eficácia na busca, categorização, gerenciamento
+                e priorização dos editais de financiamento disponíveis no mercado para projetos de pesquisa,
+                desenvolvimento e inovação. Nosso propósito é democratizar o acesso à inovação, capacitando
+                organizações e pesquisadores a encontrarem oportunidades de financiamento de modo inteligente e
+                eficaz.</p>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid bloco-wave">
+    <div class="bloco-wave-item row">
+        <div class="bloco-wave-item-container col-sm-12 col-md-12 col-lg-7">
+            <div class="bloco-wave-item-icon">
+                <img class="img-icon" src="../../../assets/image/icones/passo-1.svg" alt="Imagem icone etapa 1">
+            </div>
+
+            <div class="bloco-wave-item-content">
+                <h3>Captação inteligente dos editais disponíveis</h3>
+
+                <h2>
+                    O Capti faz a seleção de todas as oportunidades que se alinham com as características do seu
+                    projeto
+                </h2>
+
+                <p>
+                    É feita uma vasta busca dos editais abertos com base em critérios
+                    predefinidos e que podem se conectar diretamente com o seu projeto, maximizando as
+                    possibilidades.
+                </p>
+            </div>
+        </div>
+
+        <div class="bloco-wave-item-image col-sm-12 col-md-12 col-lg-5 no-zindex">
+            <img class="img-fluid" src="../../../assets/image/image-wave-step-1.jpg" alt="Imagem etapa 01" />
+        </div>
+    </div>
+
+    <div class="bloco-wave-item bloco-wave-item-2 row">
+        <div class="bloco-wave-item-image col-sm-12 col-md-12 col-lg-6 col-xl-6 no-zindex">
+            <img class="img-fluid mr-2" src="../../../assets/image/sessao-3.jpg" alt="Imagem etapa 02" />
+        </div>
+
+        <div class="bloco-wave-item-container col-sm-12 col-md-12 col-lg-6 col-xl-5">
+            <div class="bloco-wave-item-icon">
+                <img class="img-icon" src="../../../assets/image/icones/passo-2.svg" alt="Imagem icone etapa 02">
+            </div>
+
+            <div class="bloco-wave-item-content">
+                <h3>Hora de categorizar as propostas de acordo com as especificidades</h3>
+
+                <h2>
+                    Organização detalhada para facilitar a seleção de oportunidades
+                </h2>
+
+                <p>
+                    Nesse momento, todos os editais disponíveis são categorizados de acordo com o tipo,
+                    otimizando a próxima etapa, que consiste na definição de prioridades. Desse modo,
+                    facilitamos a sua visualização com um panorama completo e agrupado por categoria.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="bloco-wave-item bloco-wave-item-3 row">
+        <div class="bloco-wave-item-container col-sm-12 col-md-12 col-lg-7">
+            <div class="bloco-wave-item-icon">
+                <img class="img-icon" src="../../../assets/image/icones/passo-3.svg" alt="Imagem icone etapa 03">
+            </div>
+
+            <div class="bloco-wave-item-content">
+                <h3>Estabelecendo uma ordem de prioridade para garantir a melhor escolha</h3>
+
+                <h2>
+                    Sugestões assertivas e alinhadas aos seus objetivos
+                </h2>
+
+                <p>
+                    Aqui nós tornamos sua tomada de decisão menos trabalhosa, sugerindo quais propostas devem
+                    ser priorizadas com base nas exigências dos editais, na capacidade técnica da entidade e no
+                    tempo existente para a oportunidade ser trabalhada.
+                </p>
+            </div>
+        </div>
+
+        <div class="bloco-wave-item-image col-sm-12 col-md-12 col-lg-5 no-zindex">
+            <img class="img-fluid" src="../../../assets/image/image-wave-step-3.jpg" alt="Imagem etapa 03" />
+        </div>
+    </div>
+
+    <div class="bloco-wave-item bloco-wave-item-4 row">
+        <div class="bloco-wave-item-image col-sm-12 col-md-12 col-lg-6 col-xl-6 no-zindex">
+            <img class="img-fluid" src="../../../assets/image/image-wave-step-4.jpg" alt="Imagem etapa 04" />
+        </div>
+
+        <div class="bloco-wave-item-container col-sm-12 col-md-12 col-lg-6 col-xl-5">
+            <div class="bloco-wave-item-icon">
+                <img class="img-icon" src="../../../assets/image/icones/passo-4.svg" alt="Imagem icone etapa 04">
+            </div>
+
+            <div class="bloco-wave-item-content">
+                <h3>Gerenciando tarefas para submeter sua proposta</h3>
+
+                <h2>
+                    Gestão de atividades a serem realizadas na hora de submeter a proposta
+                </h2>
+
+                <p>
+                    Por último, após todo o processo de busca, seleção por tipo e definição das prioridades,
+                    chegou o momento de gerenciar quais as ações são necessárias para submissão das propostas
+                    de acordo com as concorrências escolhidas.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid bloco-2-top">
+    <div class="container bloco-2">
+        <div class="row">
+            <h2 #secao4 class="text-center mb-4">Nossos planos</h2>
+            <p>O Capti é uma plataforma desenvolvida para facilitar e otimizar a captação de fomentos para inovação,
+                atendendo às necessidades de diferentes perfis de usuários por meio de planos personalizáveis. Cada
+                plano foi cuidadosamente estruturado para oferecer funcionalidades específicas que auxiliam usuários
+                individuais, pequenas equipes e grandes organizações a maximizar suas chances de sucesso na busca
+                por recursos.
+            </p>
+            <p>
+                <strong>Plano Básico: </strong>
+                Ideal para usuários individuais ou pequenas equipes, o Plano Básico
+                oferece funcionalidades essenciais que incluem a captura de editais e uma categorização básica das
+                oportunidades. Este plano é perfeito para quem está começando e precisa de uma solução simples e
+                eficaz para manter-se atualizado sobre as oportunidades disponíveis.
+            </p>
+
+            <p><strong>Plano Intermediário:</strong> Voltado para aqueles que buscam uma experiência mais
+                sofisticada, o Plano Intermediário oferece recursos avançados, como análise inteligente e
+                recomendação de priorização. Com esse plano, os usuários podem aproveitar uma análise mais detalhada
+                e estratégias otimizadas para identificar as oportunidades mais relevantes, tornando o processo de
+                captação de fomentos ainda mais eficiente.</p>
+            <p><strong>Plano Premium:</strong> Destinado a usuários que necessitam de recursos avançados e gerir um
+                volume maior de oportunidades, o Plano Premium oferece uma experiência completa com funcionalidades
+                abrangentes de gerenciamento de oportunidades e automação de fluxo de trabalho. Este plano é ideal
+                para grandes equipes ou organizações que precisam de uma solução robusta para gerenciar múltiplas
+                candidaturas e otimizar todo o processo de captação de recursos.</p>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-4">
+    <div class="mt-4 bloco-5 container">
+        <div class="row  mt-4 d-flex align-items-stretch justify-content-center">
+            <div class="col-lg-4 col-sm-12 mb-2">
+                <div class="card text-center card-2 h-100">
+                    <div class="card-body">
+                        <h5 class="mb-0 text-center"><strong>Plano Básico</strong></h5>
+                        <small> (Já disponivel)</small>
+                        <ul class="mt-2">
+                            <li class="seta-ok">Captação centralizada e inteligente de editais de inovação.
+                            </li>
+                            <li class="seta-cancel">Utilizaçãoso de IA categorização das oportunidades;
+                            </li>
+                            <li class="seta-cancel">Utilização de IA para analisar as oportunidades captadas e aferir
+                                quais devem ser
+                                priorizadas, considerando aquelas com maiores probabilidades de sucesso;para análise
+                                das oportunidades mais aderentes ao tipo de projeto e copara suporte estratégico.
+                            </li>
+                            <li class="seta-cancel">Possibilidade de colaboração durante a análise e priorização das
+                                oportunidades;
+                            </li>
+                            <li>Disponibilização de um painel de controle para gerenciamento centralizado das
+                                oportunidades;
+                            </li>
+                            <li class="seta-cancel">Disponibilização de um calendário integrado para acompanhamento dos
+                                prazos dos
+                                editais.
+                            </li>
+                            <li class="seta-cancel">Uso de IA para suporte estratégico
+                            </li>
+                            <li class="seta-cancel">Gestão inteligente de todas as etapas e das atividades do processo
+                                de captação de
+                                recursos.
+                            </li>
+                        </ul>
+                        <a href="#" class="btn btn-green-secondary px-3 py-2 mt-2">QUERO ASSINAR</a>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-sm-12 mb-2">
+                <div class="card text-center card-2 h-100">
+                    <div class="card-body">
+                        <h5 class="text-center mb-0"><strong>Plano Intermediário </strong></h5>
+                        <small> (Ainda não disponivel)</small>
+                        <ul class="mt-2">
+                            <li class="seta-ok">Captação centralizada e inteligente de editais de inovação.
+                            </li>
+                            <li class="seta-ok">Utilizaçãoso de IA categorização das oportunidades;
+                            </li>
+                            <li class="seta-ok">Utilização de IA para analisar as oportunidades captadas e aferir quais
+                                devem ser
+                                priorizadas, considerando aquelas com maiores probabilidades de sucesso;para análise
+                                das oportunidades mais aderentes ao tipo de projeto e copara suporte estratégico.
+                            </li>
+                            <li class="seta-ok">Possibilidade de colaboração durante a análise e priorização das
+                                oportunidades;
+                            </li>
+                            <li class="seta-ok">Disponibilização de um painel de controle para gerenciamento
+                                centralizado das
+                                oportunidades;
+                            </li>
+                            <li class="seta-ok">Disponibilização de um calendário integrado para acompanhamento dos
+                                prazos dos
+                                editais.
+                            </li>
+                            <li class="seta-cancel">Uso de IA para suporte estratégico
+                            </li>
+                            <li class="seta-cancel">Gestão inteligente de todas as etapas e das atividades do processo
+                                de captação de
+                                recursos.
+                            </li>
+                        </ul>
+                        <a href="#" class="btn btn-green-secondary px-3 py-2 mt-2">QUERO ASSINAR</a>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-sm-12 mb-2 ml-3">
+                <div class="card text-center card-2 h-100 space-left">
+                    <div class="card-body">
+                        <h5 class="text-center mb-0"><strong>Plano Premium</strong></h5>
+                        <small> (Ainda não disponivel)</small>
+                        <ul class="mt-2">
+                            <li class="seta-ok">Captação centralizada e inteligente de editais de inovação.
+                            </li>
+                            <li class="seta-ok">Utilizaçãoso de IA categorização das oportunidades;
+                            </li>
+                            <li class="seta-ok">Utilização de IA para analisar as oportunidades captadas e aferir quais
+                                devem ser
+                                priorizadas, considerando aquelas com maiores probabilidades de sucesso;para análise
+                                das oportunidades mais aderentes ao tipo de projeto e copara suporte estratégico.
+                            </li>
+                            <li class="seta-ok">Possibilidade de colaboração durante a análise e priorização das
+                                oportunidades;
+                            </li>
+                            <li class="seta-ok">Disponibilização de um painel de controle para gerenciamento
+                                centralizado das
+                                oportunidades;
+                            </li>
+                            <li class="seta-ok">Disponibilização de um calendário integrado para acompanhamento dos
+                                prazos dos
+                                editais.
+                            </li>
+                            <li>Uso de IA para suporte estratégico
+                            </li>
+                            <li class="seta-ok">Gestão inteligente de todas as etapas e das atividades do processo de
+                                captação de
+                                recursos.
+                            </li>
+                        </ul>
+                        <a href="#" class="btn btn-green-secondary px-3 py-2 mt-2">QUERO ASSINAR</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt-4 bg-blue p-4">
+    <div class="container mt-4 bloco-8">
+        <div class="row col-12 mt-4">
+            <h2 id="secao4">Duvida em alguma coisa?</h2>
+            <h3>Fala com a gente.</h3>
+            <form>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Nome</label>
+                            <input type="text" class="form-control mt-2 mb-2" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Email</label>
+                            <input type="email" class="form-control mt-2 mb-2" id="exampleInputPassword1">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group mt-3">
+                    <label for="exampleInputPassword1">Sua Mensagem</label>
+                    <textarea type="text" class="form-control mt-2 mb-2" id="exampleInputPassword1">
+                        </textarea>
+                </div>
+                <div class="d-flex justify-content-center mt-4 col-lg-12">
+                    <button type="submit" class="btn btn-black col-lg-3 col-sm-6">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid footer">
+    <div class="container mt-4">
+        <div class="row col-12">
+            <div class="col-lg-3 col-sm-6">
+                <img src="../../../assets/image/logo.svg" width="30%" />
+                <p class="mt-3 mb-0">DYNAMIC PROJETOS E SERVIÇOS LTDA.</p>
+                <p class="m-0">CNPJ: 31.581.675/0001-03</p>
+                <!-- <p>dynamicprojetos2018@gmail.com</p> -->
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <uL class="links">
+                    <li><strong>Lorem</strong></li>
+                    <li class="mt-3">Portfolio</li>
+                    <li>Contato</li>
+                </uL>
+
+            </div>
+
+            <div class="col-lg-3 col-sm-6">
+                <uL class="links">
+                    <li><strong>Lorem</strong></li>
+                    <li class="mt-3">Lorem Ipsum is simply dummy text of the printing and typesetting
+                        industry.
+                    </li>
+                    <li>Contato</li>
+                </uL>
+            </div>
+            <div class="col-lg-3 col-sm-6 align-items-end d-flex mb-4">
+                <button class="btn-white shadow rounded-circle p-2 mx-2">
+                    <img src="../../../assets/image/icones/face.svg" class="img-fluid" />
+                </button>
+                <button class="btn-white shadow rounded-circle p-2 mx-2">
+                    <img src="../../../assets/image/icones/insta.svg" class="img-fluid" />
+                </button>
+                <button class="btn-white shadow rounded-circle p-2 mx-2">
+                    <img src="../../../assets/image/icones/twitter.svg" class="img-fluid" />
+                </button>
+                <button class="btn-white shadow rounded-circle p-2 mx-2">
+                    <img src="../../../assets/image/icones/linkedin.svg" class="img-fluid" />
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container mt-4">
+    <div class="text-center">
+        <p>Copyright ® 2024 Capti All rights Rcerved</p>
+    </div>
+</div>
+
+<script src="js/carousel.js"></script>

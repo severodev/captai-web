@@ -74,7 +74,6 @@ a {
   display: flex;
   color: #ff0000;
 }
-
 .password-field {
   display: flex;
   align-items: center;
@@ -83,5 +82,10 @@ a {
   span {
     position: absolute;
     padding-right: 1.2%;
+  }
+}
+@media (max-width:425px) {
+  #login-container{
+    width: auto !important;
   }
 }

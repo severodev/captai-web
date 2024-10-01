@@ -1,4 +1,4 @@
-<div class="topbar-logo" *ngIf="!accessToken"><img src="../../../assets/images/captiLogo.png" class="logo"></div>
+<div class="topbar-logo" *ngIf="!accessToken && !isLandingPage"><img src="../../../assets/images/captiLogo.png" class="logo"></div>
 <div class="container-fluid" *ngIf="accessToken">
   <div class="row flex-nowrap">
     <div class="col-auto col-md-3 col-xl-2 px-0 side-menu-body">
