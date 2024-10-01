@@ -25,16 +25,18 @@
                 </button>
               </a>
               <button>
-                <div>
-                  <span class="icons_google material-symbols-outlined">
+                <div (click)="bookmarkEdital(edital)">
+                  <!-- <span class="icons_google material-symbols-outlined">
                     bookmark
-                  </span>
+                  </span> -->
+                  <i class="bi ms-2 me-2 favorite-check" [class.bi-bookmark]="!edital.saved" [class.bi-bookmark-fill]="edital.saved"
+                        [class.text-warning]="edital.saved"></i>
                   <label>
                     Salvar
                   </label>
                 </div>
               </button>
-              <button>
+              <button class="na">
                 <div>
                   <span class="icons_google material-symbols-outlined">
                     thumb_down
@@ -44,7 +46,7 @@
                   </label>
                 </div>
               </button>
-              <button title="Disponivel apenas para plano Premium">
+              <button class="na">
                 <div>
                   <span class="icons_google material-symbols-outlined">
                     share 
