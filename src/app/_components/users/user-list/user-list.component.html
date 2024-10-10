@@ -12,13 +12,13 @@
     <form [formGroup]="filterForm"> 
       <div class="header">
         <div class="row"> 
-          <div class="col-4">
+          <div class="col-lg-4 col-sm-12">
             <input type="text" class="form-control " placeholder="Nome de usuário" formControlName="name">
           </div>
-          <div class="col-4">
+          <div class="col-lg-4 col-sm-12">
             <input type="email" class="form-control" placeholder="Pesquisa por E-mail" formControlName="email">
           </div>
-          <div class="col-4">
+          <div class="col-lg-4 col-sm-12">
               <ng-select
               placeholder="Filtro por perfil"
               [items]="roles"
@@ -29,7 +29,7 @@
               formControlName="profile">
               </ng-select>
           </div>
-          <div class="col-4 mt-4">
+          <div class="col-lg-4 col-sm-12 mt-4">
             <input 
             [placeholder]="!cpfInput ? 'Filtro por CNPJ':'Filtro por CPF'"
             type="text" 
@@ -40,7 +40,7 @@
           </div>         
         </div>
         <div class="row buttons">
-          <div class="col-6 toggle-container">
+          <div class="col-lg-6 col-sm-10 toggle-container">
             <div>
                 <span (click)="togleCpfCnpj(true)" class="cpf-side" [ngClass]="{'toggle-selected': cpfInput}">
                     CPF
@@ -50,7 +50,7 @@
                 </span>
             </div>                    
           </div>
-          <div class="col-6 buttons-filter">
+          <div class="col-lg-6 col-sm-10 buttons-filter">
             <div class="clean-filter" (click)="clearFilters()">Limpar</div>
             <button class="aply-filter" (click)="applyFilter()">Pesquisar</button>
           </div>
@@ -98,7 +98,7 @@
                   </div>
                 </div>
                 <div class="col-2">
-                  <span>{{ user.role.name }}</span>
+                  <span>{{ user.role?.name }}</span>
                 </div>
                 <div class="col-1">
                   <span>{{ user.active ? 'Ativo' : 'inativo' }}</span>

@@ -234,7 +234,14 @@
     background: #f2f2f2;
     box-shadow: 0px 0px 0.3em #81818178;
   }
-
+@media (max-width: 768px) {
+    .container{
+        min-height: 81%;
+    }
+    .responsive-table{
+        height: 13rem;
+    }
+}
 @media (min-height: 600px) {
     .table-scroller {
         height: 13rem;
@@ -246,6 +253,8 @@
         height: 19rem;
     }
 }
+
+
 
 @media (min-height: 800px) {
     .table-scroller {
