@@ -17,6 +17,7 @@ export class RecomendationsComponent {
   public editais = [];
   public allEditais = [];
   public savedEditaisIds = [];
+  isCollapsed = true;
 
   constructor(
     public user: AuthService,

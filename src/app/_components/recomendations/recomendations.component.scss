@@ -217,6 +217,18 @@
     }
 }
 
+.notifications {
+    right: 0;
+    .dds__alarm-bell {
+        padding: 25%;
+        font-size: 1.2rem;
+        background-color: #f6f2dd;
+        border-radius: 50%;
+    }
+}
+.rigth {
+    right: 0;;
+}
 .notifications-space {
     min-width: 85%;
     max-height: 50%;

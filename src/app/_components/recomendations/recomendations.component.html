@@ -4,6 +4,21 @@
       <span>
       Painel de Recomendações
     </span>
+    <div class="d-flex flex-column col-4 z-3 position-absolute rigth">
+      <div class="notifications d-flex justify-content-end d-lg-none">
+        <button class="btn" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" (click)="isCollapsed = !isCollapsed"
+        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="dds__icons dds__alarm-bell"></span>
+        </button>
+      </div>
+      <div class="collapse justify-content-end p-2 card" id="navbarTogglerDemo02" [collapse]=isCollapsed>
+        <div class="notifications-bar">
+          <div class="notification-placeholder">
+            <img src="assets/images/notifications.png"> 
+          </div>
+        </div>
+      </div>
+    </div>
     <label>
       Bem vindo de volta {{user.user.name}}
     </label>
@@ -75,7 +90,7 @@
                     </div>
                 </div>
             </div>
-            <div class="right-side col-3">
+            <div class="right-side col-3 d-lg-block d-md-none">
               <div class="user-space">
                 <div class="user-img">
                   <img *ngIf="user.user.profileImageUrl && user.user.profileImageUrl.length > 0" src="{{user.user.profileImageUrl}}">
