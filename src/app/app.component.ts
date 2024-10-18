@@ -36,11 +36,7 @@ export class AppComponent {
         filter(event => event instanceof NavigationEnd) // Garante que estamos pegando o fim da navegação
       )
       .subscribe((event: any) => {
-        if (event.url === '/landing-page')
-          this.isLandingPage = true;
-        else{ 
-          this.isLandingPage = false;
-        }
+          this.isLandingPage = event.url === '/';
       });
   }
 
