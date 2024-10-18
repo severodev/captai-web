@@ -89,8 +89,13 @@ export class AuthService {
   }
 
   logout() {
+
+    this.user = null;
     this.accessTokenSubject.next(null);
     this.accessTokenSubject.next(null);
+
+    localStorage.removeItem('user');
+    sessionStorage.removeItem('user');
 
     localStorage.removeItem('accessToken');
     sessionStorage.removeItem('accessToken');

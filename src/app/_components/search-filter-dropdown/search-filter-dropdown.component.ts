@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import moment from 'moment';
 import { Options } from 'ngx-slider-v2';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { PageRequest } from 'src/app/_interfaces';
 import { EditalService } from 'src/app/_services/edital.service';
 import { SearchComponent } from '../search/search.component';
@@ -17,6 +17,12 @@ import { SearchComponent } from '../search/search.component';
 export class SearchFilterDropdownComponent {
 
   @Output() filteParams = new EventEmitter<any>();
+
+  public editais: any[];
+
+  private fillFilterSubscription: Subscription;
+
+  @Input() fillEvents: Observable<void>;
 
   filterForm: FormGroup;
  
@@ -68,21 +74,30 @@ export class SearchFilterDropdownComponent {
     this.filterForm.valueChanges.subscribe(() => {
       this.filterForm.controls.date.setValue(moment(this.filterForm.controls.date.value).format('YYYY-MM-DD'), { emitEvent: false });
       this.filteParams.next(this.filterForm.value)
-    })
-    this.getEditais();
+    });
+    this.fillFilterSubscription = this.fillEvents.subscribe((editais:any) => { this.editais = editais; this.getEditais(); });
+    
   }
 
   getEditais() {
-    var params: PageRequest = {
-      itemsPerPage : 999
-    }
-    this.editalService.getEditais(null, params).subscribe(data => {
-      this.agencies = data.filter((value, index, self) => self.findIndex(edital => edital.agency === value.agency) === index)
-      .map(edital => edital.agency);
-      this.areas = data.map(edital => {
+    // var params: PageRequest = {
+    //   itemsPerPage : 999
+    // }
+    // this.editalService.getEditais(null, params).subscribe(data => {
+    //   this.agencies = data.filter((value, index, self) => self.findIndex(edital => edital.agency === value.agency) === index)
+    //   .map(edital => edital.agency).sort();
+    //   this.areas = data.map(edital => {
+    //     return edital.areaList;
+    //   });
+    // });
+
+    if(this.editais){
+      this.agencies = this.editais.filter((value, index, self) => self.findIndex(edital => edital.agency === value.agency) === index)
+      .map(edital => edital.agency).sort();
+      this.areas = this.editais.map(edital => {
         return edital.areaList;
       });
-    });
+    }
   }
 
   select(indexElement, value) {

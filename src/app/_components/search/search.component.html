@@ -31,7 +31,7 @@
                   close
                 </span>
               </div>
-              <app-search-filter-dropdown (filteParams)="setFilter($event)"></app-search-filter-dropdown>
+              <app-search-filter-dropdown (filteParams)="setFilter($event)" [fillEvents]="fillFilter.asObservable()"></app-search-filter-dropdown>
               <div class="filter-buttons">
                 <button type="button" class="btn btn-close-filter" (click)="clear()">Limpar</button>
                 <button type="button" class="btn btn-apply-filter" (click)="applyCustomFilter()">Filtrar</button>
@@ -119,7 +119,7 @@
                     </div>
                     <div class="col-sm-1 col favorite-check">
                       <!-- <span class="material-symbols-outlined">bookmark</span> -->
-                      <i class="bi ms-5" [class.bi-bookmark]="!edital.saved" [class.bi-bookmark-fill]="edital.saved"
+                      <i class="bi ms-3" [class.bi-bookmark]="!edital.saved" [class.bi-bookmark-fill]="edital.saved"
                         [class.text-warning]="edital.saved" (click)="bookmarkEdital(edital)"></i>
                     </div>
                     <div class="col-sm-1 col">
