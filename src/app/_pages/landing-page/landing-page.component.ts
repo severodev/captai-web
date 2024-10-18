@@ -1,4 +1,6 @@
 import { ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -16,9 +18,17 @@ export class LandingPageComponent implements OnInit {
   @ViewChild('secao3') secao3: ElementRef;
   @ViewChild('secao4') secao4: ElementRef;
 
-  constructor(private cdr: ChangeDetectorRef) { }
+  constructor(private cdr: ChangeDetectorRef, 
+    private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
+
+    // Redirecionamento de já estiver logado e acesso na raiz
+    if(this.authService.user?.id){
+      this.router.navigate(['/recomendations']);
+      return;
+    }
+
     this.calculateSlidesPerPage(window.innerWidth);
   }
 
