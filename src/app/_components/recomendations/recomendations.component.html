@@ -25,10 +25,10 @@
     </div>
     <div class="container">
         <div class="wrapper row">  
-            <div class="left-side col-9">
+            <div class="left-side col-12 col-lg-9">
                 <div class="atualizations row">
                   <div class="atualizations-placeholder col-12">
-                    <img src="assets/images/avisos.png"> 
+                    <img class="img-fluid" src="assets/images/avisos.png"> 
                   </div>
                 </div>
                 <div class="preview row">
@@ -43,20 +43,20 @@
                         </div>
                     </div>
                     
-                    <div class="row row-header">
-                      <div class="col-3">
+                    <div class="row row-header d-flex flex-nowrap align-items-center">
+                      <div class="col col-sm-3">
                         <span>Nome</span>
                       </div>
-                      <div class="col-2">
+                      <div class="col col-sm-2">
                         <span>Início</span>
                       </div>
-                      <div class="col-2 affinity-field-label text-center">
+                      <div class="col col-sm-2 affinity-field-label text-center">
                         <span>Afinidade</span>
                       </div>
-                      <div class="col-3 area-List-label text-center">
+                      <div class="col col-sm-3 area-List-label text-center">
                         <span>Área</span>
                       </div>
-                      <div class="col-2 favorite-check text-center">
+                      <div class="col col-sm-2 favorite-check text-center">
                         <span>Salvar</span>
                       </div>
                     </div>                         
@@ -90,7 +90,7 @@
                     </div>
                 </div>
             </div>
-            <div class="right-side col-3 d-lg-block d-md-none">
+            <div class="right-side col-lg-3 d-lg-block d-none">
               <div class="user-space">
                 <div class="user-img">
                   <img *ngIf="user.user.profileImageUrl && user.user.profileImageUrl.length > 0" src="{{user.user.profileImageUrl}}">

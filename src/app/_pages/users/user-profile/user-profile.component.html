@@ -13,8 +13,8 @@
             Veja e alter suas informações
         </label>
     </div>
-    <div class="tabs row">
-        <div class="informations col-3" (click)="setTab(tabOptions.PROFILE)"
+    <div class="tabs row flex-nowrap">
+        <div class="informations col col-sm-3" (click)="setTab(tabOptions.PROFILE)"
             [ngClass]="{'tab-selected': currentTab === tabOptions.PROFILE}">
             <label>
                 Informações do perfil
@@ -22,7 +22,7 @@
         </div>
         <!-- <div class="service col-1"></div> -->
 
-        <div class="service col-4" (click)="setTab(tabOptions.SERVICE)"
+        <div class="service col col-sm-3" (click)="setTab(tabOptions.SERVICE)"
             [ngClass]="{'tab-selected': currentTab === tabOptions.SERVICE}">
             <label>
                 Informações do seu serviço
@@ -30,7 +30,7 @@
         </div>
         <!-- <div class="service col-1"></div> -->
 
-        <div class="my-plan col-2" (click)="setTab(tabOptions.PLAN)"
+        <div class="my-plan col col-sm-3" (click)="setTab(tabOptions.PLAN)"
             [ngClass]="{'tab-selected': currentTab === tabOptions.PLAN}">
             <label>
                 Meu plano
@@ -38,17 +38,17 @@
         </div>
         <!-- <div class="my-plan col-1"></div> -->
 
-        <div class="payments col-2" (click)="setTab(tabOptions.PAYMENTS)"
+        <div class="payments col col-sm-3" (click)="setTab(tabOptions.PAYMENTS)"
             [ngClass]="{'tab-selected': currentTab === tabOptions.PAYMENTS}">
             <label>
                 Pagamentos
             </label>
         </div>
-        <div class="payments col-1"></div>
     </div>
+
     <div class="container" *ngIf="currentTab === tabOptions.PROFILE || currentTab === tabOptions.SERVICE">
         <div class="wrapper row profile-area">
-            <div class="left-side col-4">
+            <div class="left-side col col-sm-4">
                 <div class="divisor">
                     <div class="user-space">
                         <div class="user-labels">
@@ -60,7 +60,7 @@
                                         edit
                                     </div>
                                     <!-- <i class="bi bi-pencil" *ngIf="!isAdmVision && editMode" (click)="uploadProfileImage()"></i> -->
-                                    <img id="user-image" [class.dimmed]="editMode" [src]="userProfile">
+                                    <img id="user-image" class="img-fluid" [class.dimmed]="editMode" [src]="userProfile">
                                     <div style="display: none;" class="fileUploadArea">
                                         <input type="file" name="profileImagemUpload" id="profileImagemUpload"
                                         accept=".jpeg,.jpg,.png,.gif,.webm" (change)="onFileSelected($event)">
@@ -86,7 +86,7 @@
                     <span> Deslogar da sua conta </span>
                 </button> -->
             </div>
-            <div class="right-side col-8">
+            <div class="right-side col col-sm-8">
                 <div class="row buttons-row">
                     <button type="button" class="col-3 edit" (click)="edit()" *ngIf="!editMode">
                         <span class="material-symbols-outlined">
@@ -264,19 +264,19 @@
     <div class="row plan-area" *ngIf="currentTab === tabOptions.PLAN">
 
         <div class="row regiao-pagamento">
-            <div class="col-8 ">
+            <div class="col-12 col-lg-8 ">
                 <!-- <div class="plans-list"> -->
                 <div class="plan-item">
                     <div class="item-title">
                         {{selectedPlan.nome}}
                     </div>
                     <div class="plan-body">
-                        <div class="d-flex column align-items-center">
+                        <div class="d-flex column align-items-center flex-wrap">
                             <div class="price"><b>
                                     {{selectedPlan.valor | currency:'BRL':true:'1.2-2' }}</b>/MÊS</div>
                             <div class="description">{{selectedPlan.descricao}}</div>
                         </div>
-                        <div class="attributes-list">
+                        <div class="attributes-list mt-4">
                             <div class="attribute-item active" *ngFor="let coberto of selectedPlan.itensCobertos">
                                 <img src="assets/icons/check-plan-attribute{{selectedPlan.ativo ? '' : '-off'}}.svg"
                                     width="25px" height="25px">
@@ -296,7 +296,7 @@
                     </button>
                 </div>
             </div>
-            <div class="col-4 d-flex pe-5 justify-content-end">
+            <div class="btn-change-plan col-12 col-lg-4 d-flex pe-5 justify-content-end">
                 <button disabled class="btn btn-primary btn-change-plan disabled"
                     title="Esta opção está indisponível no momento" data-toggle="tooltip" data-placement="bottom">
                     Trocar de plano

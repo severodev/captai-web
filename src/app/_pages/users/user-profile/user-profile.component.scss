@@ -263,7 +263,7 @@
 .tabs {
   padding: 0% 1%;
   margin: 0% 0% 1% 0%;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   color: #6c6c6c;
 
   label {
@@ -309,8 +309,6 @@
   padding: 2rem 0 0 1rem;
 
   .regiao-pagamento {
-
-    margin-left: 1rem;
 
     .btn {
       // background-color: #308C47;
@@ -532,4 +530,18 @@
 
 .hint-image {
   margin-bottom: 1rem;
+}
+
+@media (max-width: 575px) {
+  .tabs {
+    flex-direction: column;
+  }
+}
+
+
+@media (max-width: 991px) {
+  .btn-change-plan {
+    margin-top: -20px;
+    padding-right: 1rem !important;
+  }
 }

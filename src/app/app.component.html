@@ -1,15 +1,20 @@
-<div class="topbar-logo" *ngIf="!accessToken && !isLandingPage"><img src="../../../assets/images/captiLogo.png" class="logo"></div>
-<div class="container-fluid" *ngIf="accessToken">
-  <div class="row flex-nowrap">
-    <div class="col-auto col-md-3 col-xl-2 px-0 side-menu-body">
+<div class="topbar-logo" *ngIf="!accessToken && !isLandingPage">
+  <img src="../../../assets/images/captiLogo.png" class="logo">
+</div>
+
+<div class="container-fluid p-0" *ngIf="accessToken">
+  <div class="d-flex">
+    <div class="side-menu-body">
       <img src="../../../assets/images/captiLogo.png" class="logo">
       <div class="d-flex flex-column align-items-end pt-2 min-vh-100">
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center" id="menu">
           <li (click)="admSubMenu(false)" class="nav-item nav-profile-label" routerLinkActive="item-selected">
             <a [routerLink]="['/profile']" class="nav-link align-middle px-0 profile-label">
               <div class="user-img">
-                <img *ngIf="authService.user.profileImageUrl && authService.user.profileImageUrl.length > 0" src="{{authService.user.profileImageUrl}}">
-                <img *ngIf="!authService.user.profileImageUrl || authService.user.profileImageUrl.length == 0" src="assets/icons/usuario-de-perfil.png">
+                <img *ngIf="authService.user.profileImageUrl && authService.user.profileImageUrl.length > 0"
+                  src="{{authService.user.profileImageUrl}}">
+                <img *ngIf="!authService.user.profileImageUrl || authService.user.profileImageUrl.length == 0"
+                  src="assets/icons/usuario-de-perfil.png">
               </div>
               <span class="ms-1 menu-item-label">Seu perfil</span>
             </a>
@@ -88,13 +93,18 @@
         </li>
       </div>
     </div>
-    <div class="col py-3 card-principal">
+
+    <div class="card-principal">
       <app-toast *ngIf="accessToken"></app-toast>
       <router-outlet></router-outlet>
     </div>
   </div>
 </div>
+
 <app-toast *ngIf="!accessToken"></app-toast>
+
 <router-outlet *ngIf="!accessToken"></router-outlet>
+
 <app-custom-loader></app-custom-loader>
+
 <div id="v" class="v">v.{{getVersion()}}</div>

@@ -17,7 +17,7 @@
 
 .side-menu-body {
   background: linear-gradient(to bottom left, #efab958f -1%, #f6f2dd 9%);
-  width: 5%;
+  width: 5rem;
 
   .logo {
     max-width: 40%;
@@ -55,7 +55,6 @@
 
   span {
     color: #000;
-    padding-right: 5%;
     font-size: 1rem;
     font-weight: bold;
   }
@@ -97,6 +96,8 @@
 
 .card-principal {
   padding: 2.5%;
+  width: 100%;
+  position: relative;
 }
 
 .profile-label {
