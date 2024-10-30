@@ -16,6 +16,8 @@ export class SearchComponent {
 
   clearFilter = new Subject<void>();
 
+  fillFilter: Subject<any[]> = new Subject<any[]>();
+
   public editais = [];
   public savedEditaisIds = [];
 
@@ -87,6 +89,7 @@ export class SearchComponent {
         edital.saved = this.savedEditaisIds.includes(edital.id);
         return edital;
       });
+      this.fillFilter.next(this.editais);
     });
   }
 

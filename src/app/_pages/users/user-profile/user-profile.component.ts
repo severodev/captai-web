@@ -135,11 +135,11 @@ export class UserProfileComponent implements OnInit {
       this.userProfile = this.authService.user.profileImageUrl ?? "assets/icons/usuario-de-perfil.png";
     }
 
-    this.userService.collectUserSubscriptionSummary(this.authService.user.subscriptionId).subscribe(
-      (data: any) => {
-        console.log(data);
-      }
-    );
+    // this.userService.collectUserSubscriptionSummary(this.authService.user.subscriptionId).subscribe(
+    //   (data: any) => {
+    //     console.log(data);
+    //   }
+    // );
 
   }
 
