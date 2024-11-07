@@ -115,10 +115,12 @@ export class BookmarkComponent {
         if (details.getAttribute('hidden') !== null) {
           toggle.style.transform = 'rotate(180deg)';
           toggle.classList.remove('toggle-closed');
+          toggle.setAttribute('title', 'Esconder detalhes');
           details.removeAttribute('hidden');
         } else {
           toggle.style.transform = 'rotate(0deg)';
           toggle.classList.add('toggle-closed');
+          toggle.setAttribute('title', 'Exibir detalhes');
           details.setAttribute('hidden', 'true');
         }
     }
