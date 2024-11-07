@@ -9,7 +9,7 @@
       <div class="d-flex flex-column align-items-end pt-2 min-vh-100">
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center" id="menu">
           <li (click)="admSubMenu(false)" class="nav-item nav-profile-label" routerLinkActive="item-selected">
-            <a [routerLink]="['/profile']" class="nav-link align-middle px-0 profile-label">
+            <a [routerLink]="['/profile']" class="nav-link align-middle px-0 profile-label" title="Seu Perfil">
               <div class="user-img">
                 <img *ngIf="authService.user.profileImageUrl && authService.user.profileImageUrl.length > 0"
                   src="{{authService.user.profileImageUrl}}">
@@ -20,7 +20,7 @@
             </a>
           </li>
           <li class="nav-item" (click)="admSubMenu(false)" routerLinkActive="item-selected">
-            <a [routerLink]="['/recomendations']" class="nav-link align-middle px-0">
+            <a [routerLink]="['/recomendations']" class="nav-link align-middle px-0" title="Recomendação">
               <span class="icons_google material-symbols-outlined">
                 dashboard
               </span>
@@ -28,7 +28,7 @@
             </a>
           </li>
           <li class="nav-item disabled" routerLinkActive="">
-            <a [routerLink]="['/']" class="nav-link align-middle px-0">
+            <a [routerLink]="['#']" class="nav-link align-middle px-0" title="Área de Trabalho">
               <span class="icons_google material-symbols-outlined">
                 view_timeline
               </span>
@@ -36,7 +36,7 @@
             </a>
           </li>
           <li class="nav-item" (click)="admSubMenu(false)" routerLinkActive="item-selected">
-            <a [routerLink]="['/search']" class="nav-link align-middle px-0">
+            <a [routerLink]="['/search']" class="nav-link align-middle px-0" title="Pesquisa">
               <span class=" icons_google material-symbols-outlined">
                 quick_reference_all
               </span>
@@ -44,7 +44,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a [routerLink]="['/bookmark']" class="nav-link align-middle px-0">
+            <a [routerLink]="['/bookmark']" class="nav-link align-middle px-0" title="Salvos">
               <span class="icons_google material-symbols-outlined">
                 bookmark
               </span>
@@ -52,7 +52,7 @@
             </a>
           </li>
           <li class="nav-item disabled">
-            <a [routerLink]="['/']" class="nav-link align-middle px-0">
+            <a [routerLink]="['#']" class="nav-link align-middle px-0" title="Calendário">
               <span class="icons_google material-symbols-outlined">
                 event_available
               </span>
@@ -60,7 +60,7 @@
             </a>
           </li>
           <li class="nav-item disabled" routerLinkActive="">
-            <a [routerLink]="['/']" class="nav-link align-middle px-0">
+            <a [routerLink]="['#']" class="nav-link align-middle px-0" title="Descartados">
               <span class="icons_google material-symbols-outlined">
                 thumb_down
               </span>
@@ -69,7 +69,7 @@
           </li>
           <li class="nav-item" (click)="admSubMenu(true)" routerLinkActive="item-selected"
             *ngIf="authService.user.role == 'ADMIN'">
-            <a [routerLink]="['/list-users']" class="nav-link align-middle px-0">
+            <a [routerLink]="['/list-users']" class="nav-link align-middle px-0" title="Administrador">
               <span class="icons_google material-symbols-outlined">
                 group
               </span>
@@ -86,7 +86,7 @@
           </li>
         </ul>
         <li class="nav-item logout" (click)="confirmLogout()">
-          <span class="icons_google material-symbols-outlined ">
+          <span class="icons_google material-symbols-outlined " title="Logout">
             logout
           </span>
           <span class="ms-1 menu-item-label">Logout</span>
