@@ -64,6 +64,7 @@ export class SearchComponent {
   clear() {
     this.clearFilter.next();
     this.cleanForm = true;
+    this.applyCustomFilter();
   }
 
   clearFilterObservable() {
