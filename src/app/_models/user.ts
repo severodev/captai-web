@@ -22,4 +22,5 @@ export class User {
   customerId?: string;
   subscriptionId?: string;
   cardId?: string;
+  created?: Date;
 }

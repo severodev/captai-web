@@ -404,7 +404,7 @@
 
     .credit-cards {
 
-      margin-bottom: 4rem;
+      margin-bottom: 2rem;
 
       .header {
         margin-bottom: 2rem;
@@ -419,7 +419,7 @@
       .cards-list {
 
         width: 70%;
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
 
         .card {
           border: none;
@@ -474,6 +474,8 @@
     }
 
     .installments {
+      
+      overflow: auto;
 
       .header {
         margin-bottom: 2rem;
@@ -488,7 +490,9 @@
       .installments-list {
 
         width: 70%;
-        margin-bottom: 1rem;
+        margin-bottom: 15rem;
+        height: 100%;
+        padding-bottom: 6rem;
 
         .installment {
           border: none;
@@ -518,6 +522,7 @@
 
             .status {
               padding-right: 1rem;
+              width: 100px;
             }
           }
         }

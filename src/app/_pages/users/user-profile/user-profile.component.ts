@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import moment from 'moment';
 import { createPasswordStrengthValidator, emailValidator } from 'src/app/_helpers/utils';
 import { SubscriptionPlan } from 'src/app/_interfaces/subscription-plan';
 import { User } from 'src/app/_models/user';
@@ -11,6 +12,8 @@ import { LocationService } from 'src/app/_services/location.service';
 import { SegmentService } from 'src/app/_services/segment.service';
 import { ToastService } from 'src/app/_services/toast.service';
 import { UserService } from 'src/app/_services/user.service';
+
+moment.locale('pt-br');
 
 export enum tabSelection {
   PROFILE = 'PROFILE',
@@ -56,7 +59,10 @@ export class UserProfileComponent implements OnInit {
 
   public segments: Array<{ id, name }>
   public states: Array<{ id, abbreviation, name }> = [];
-  public activities: Array<{ id, name }>
+  public activities: Array<{ id, name }>;
+
+  public usuario: User;
+  public installments: any[] = [];
 
   constructor(
     public router: Router,
@@ -144,11 +150,13 @@ export class UserProfileComponent implements OnInit {
   }
 
   setForm(user: User) {
+    this.usuario = user;
     this.userForm.patchValue(user)
-    if (this.authService.user.cpfCnpj && this.authService.user.cpfCnpj.length > 11)
-      this.mask = '00.000.000/0000-00'
-
-    this.userForm.disable()
+    if (this.authService.user.cpfCnpj && this.authService.user.cpfCnpj.length > 11) {
+      this.mask = '00.000.000/0000-00';
+    }
+    this.userForm.disable();
+    this.generateInstallmentsList();
   }
 
   setTab(selected) {
@@ -194,7 +202,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   getProfileImageUrl() {
-    if(!this.userForm.controls['profileImageId'].value){
+    if (!this.userForm.controls['profileImageId'].value) {
       this.userProfile = "assets/icons/usuario-de-perfil.png";
       return;
     }
@@ -270,4 +278,40 @@ export class UserProfileComponent implements OnInit {
     this.editMode = false;
     this.passwordEdit = false;
   }
+
+  generateInstallmentsList() {
+    const isCurrentMonthPaid = moment(this.usuario.created).get('day') <= moment().get('day');
+    const currentInstallment = moment(this.usuario.created);
+    const today = moment();
+
+    this.installments = [];
+    while (currentInstallment.isSameOrBefore(today)) {
+      const newInstallment = {
+        statusPagamento: 'Pago',
+        mes: currentInstallment.format('MMMM'),
+        ano: currentInstallment.format('YYYY'),
+        inicioPeriodo: currentInstallment.format('DD/MM/YYYY'),
+        fimPeriodo: currentInstallment.clone().add(1, 'month').format('DD/MM/YYYY'),
+        vencimento: currentInstallment.format('DD/MM/YYYY'),
+        valor: 49.9
+      };
+      this.installments.splice(0 , 0, newInstallment);
+      currentInstallment.add(1, 'month');
+    }
+
+    const nextInstallment = {
+      statusPagamento: 'A Pagar',
+      mes: currentInstallment.format('MMMM'),
+      ano: currentInstallment.format('YYYY'),
+      inicioPeriodo: currentInstallment.format('DD/MM/YYYY'),
+      fimPeriodo: currentInstallment.clone().add(1, 'month').format('DD/MM/YYYY'),
+      vencimento: currentInstallment.format('DD/MM/YYYY'),
+      valor: 49.9
+    };
+    this.installments.splice(0 , 0, nextInstallment);
+
+    console.log('Parcelas ' + this.installments.length);
+
+  }
+
 }

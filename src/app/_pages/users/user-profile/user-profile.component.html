@@ -60,13 +60,15 @@
                                         edit
                                     </div>
                                     <!-- <i class="bi bi-pencil" *ngIf="!isAdmVision && editMode" (click)="uploadProfileImage()"></i> -->
-                                    <img id="user-image" class="img-fluid" [class.dimmed]="editMode" [src]="userProfile">
+                                    <img id="user-image" class="img-fluid" [class.dimmed]="editMode"
+                                        [src]="userProfile">
                                     <div style="display: none;" class="fileUploadArea">
                                         <input type="file" name="profileImagemUpload" id="profileImagemUpload"
-                                        accept=".jpeg,.jpg,.png,.gif,.webm" (change)="onFileSelected($event)">
+                                            accept=".jpeg,.jpg,.png,.gif,.webm" (change)="onFileSelected($event)">
                                     </div>
                                 </div>
-                                <div class="hint-image" *ngIf="!isAdmVision && editMode"><span class="small">Clique na imagem para alterar</span></div>
+                                <div class="hint-image" *ngIf="!isAdmVision && editMode"><span class="small">Clique na
+                                        imagem para alterar</span></div>
                             </div>
                             <div class="profile-name-function">
                                 <label>
@@ -76,7 +78,7 @@
                                 <span>
                                     {{isAdmVision ? userForm.controls['role'].value?.name : authService.user.role}}
                                 </span>
-                            </div> 
+                            </div>
                             <span class="localization-label">{{authService.user.background}}</span>
                         </div>
                     </div>
@@ -257,7 +259,7 @@
                     </button>
                 </div>
             </div>
-        </div>        
+        </div>
     </div>
 
     <div class="row plan-area" *ngIf="currentTab === tabOptions.PLAN">
@@ -322,15 +324,15 @@
                             <div class="d-flex column justify-content-between align-items-center">
                                 <img src="assets/icons/creditcard-mastercard.png" alt="Bandeira do Cartão de Crédito">
                                 <div class="card-info d-flex row">
-                                    <span class="number">Terminado em 0000</span><br>
-                                    <span class="bank">Banco do Brasil</span><br>
-                                    <span class="expiration">Vencimento 01/2025</span>
+                                    <span class="number">Terminado em 6351</span><br>
+                                    <span class="bank">Mastercard</span><br>
+                                    <span class="expiration">Vencimento 11/2025</span>
                                 </div>
                                 <div class="card-remove">
                                     <a href="#">Remover</a>
                                 </div>
                             </div>
-                          </div>
+                        </div>
                     </div>
                 </div>
 
@@ -340,7 +342,7 @@
                 </div>
 
             </div>
-                
+
             <div class="installments">
 
                 <div class="header d-flex column justify-content-between">
@@ -348,7 +350,31 @@
                 </div>
 
                 <div class="installments-list">
-                    <div class="card installment shadow">
+
+                    <div *ngFor="let installment of installments" class="card installment shadow">
+                        <div class="card-body">
+                            <div class="d-flex column justify-content-between align-items-center">
+                                <img src="assets/icons/pagamento-{{installment.statusPagamento == 'Pago' ? 'realizado' : 'pendente'}}.png"
+                                    alt="Bandeira do Cartão de Crédito">
+                                <div class="installment-info d-flex row">
+                                    <span class="title">Mensalidade de
+                                        {{installment.mes}}/{{installment.ano}}</span><br>
+                                    <span class="expiration">Vencimento: {{installment.vencimento}}</span><br>
+                                    <span class="description">Cobrança relativa a {{installment.inicioPeriodo}} a
+                                        {{installment.fimPeriodo}}</span>
+                                </div>
+                                <div class="status">
+                                    <div
+                                        class="d-flex row text-{{installment.statusPagamento == 'Pago' ? 'success' : 'warning'}}">
+                                        <span>{{installment.statusPagamento}}</span>
+                                        <span>{{installment.valor | currency: 'BRL'}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="card installment shadow">
                         <div class="card-body">
                             <div class="d-flex column justify-content-between align-items-center">
                                 <img src="assets/icons/pagamento-pendente.png" alt="Bandeira do Cartão de Crédito">
@@ -364,7 +390,7 @@
                                     </div>
                                 </div>
                             </div>
-                          </div>
+                        </div>
                     </div>
 
                     <div class="card installment shadow">
@@ -383,8 +409,9 @@
                                     </div>
                                 </div>
                             </div>
-                          </div>
-                    </div>
+                        </div>
+                    </div> -->
+
                 </div>
             </div>
 
