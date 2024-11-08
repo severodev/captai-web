@@ -194,6 +194,11 @@ export class UserProfileComponent implements OnInit {
   }
 
   getProfileImageUrl() {
+    if(!this.userForm.controls['profileImageId'].value){
+      this.userProfile = "assets/icons/usuario-de-perfil.png";
+      return;
+    }
+
     this.imageService.getFileUrl(this.userForm.controls['profileImageId'].value).subscribe(image => {
       this.userProfile = image.url;
     },
