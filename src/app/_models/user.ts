@@ -14,7 +14,7 @@ export class User {
   profileImageId?: string;
   profileImageUrl?: string;
   segment?: Segment;
-  abrangency?: [];
+  abrangency?: any[];
   activite?: [];
   state?: any;
   background?: string;

@@ -213,7 +213,7 @@
                     <div class="">
                         <div class="form-group row">
                             <div class="form-group col-8">
-                                <label>Selecione um segmento</label>
+                                <label>Segmento</label>
                                 <ng-select [items]="segments" bindLabel="name" [searchable]="true" [clearable]="false"
                                     [multiple]="false" formControlName="segment"
                                     [ngClass]="{'invalid-field': !userForm.get('segment').valid && showErrors}">
@@ -225,7 +225,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="form-group col-8">
-                                <label>Selecione as atividades</label>
+                                <label>Atividades</label>
                                 <ng-select [items]="activities" bindLabel="name" [searchable]="true" [clearable]="true"
                                     [multiple]="true" formControlName="activite"
                                     [ngClass]="{'invalid-field': !userForm.get('activite').valid && showErrors}">
@@ -237,7 +237,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="form-group col-8">
-                                <label>Escolha a abrangencia territorial</label>
+                                <label>Abrangencia territorial</label>
                                 <ng-select [items]="states" bindLabel="name" [searchable]="true" [clearable]="true"
                                     [multiple]="true" formControlName="abrangency"
                                     [ngClass]="{'invalid-field': !userForm.get('abrangency').valid && showErrors}">

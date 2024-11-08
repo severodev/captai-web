@@ -127,7 +127,7 @@
                                     <label>Sua formação profissional</label>
                                     <input type="text" class="form-control"
                                         [ngClass]="{'invalid-field': userForm.get('background').invalid && showErrors}"
-                                        formControlName="background" name="background">
+                                        formControlName="background" name="background" autocomplete="off" >
                                     <div class="invalid-message"
                                         *ngIf="userForm.get('background').value == '' && showErrors">
                                         <span>Preenchimento obrigatório</span>

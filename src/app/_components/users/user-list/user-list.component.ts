@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PageRequest, UserFilter } from 'src/app/_interfaces';
+import { User } from 'src/app/_models/user';
 import { ToastService } from 'src/app/_services/toast.service';
 import { UserService } from 'src/app/_services/user.service';
 
@@ -106,5 +107,15 @@ export class UserListComponent implements OnInit {
       email =  email.substring(0, 30) + "...";
     }
     return email;
+  }
+
+  generateAbrangencyList(user: User) {
+    if(!user.abrangency || user.abrangency.length == 0){
+      return '-';
+    } else if(user.abrangency.length == 1) {
+      return user.abrangency[0].abbreviation;
+    } else {
+      return `${user.abrangency.length} estados`
+    }
   }
 }
