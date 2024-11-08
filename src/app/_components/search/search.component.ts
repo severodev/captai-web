@@ -29,6 +29,8 @@ export class SearchComponent {
 
   private customFilter;
 
+  public cleanForm = true;
+
   private filterRequest: EditalFilter = {
     agency: null,
     agencyList: null,
@@ -61,13 +63,19 @@ export class SearchComponent {
 
   clear() {
     this.clearFilter.next();
+    this.cleanForm = true;
   }
 
   clearFilterObservable() {
     return this.clearFilter.asObservable();
   }
 
-  filter() {
+  clearQuickFilter() {
+    this.filterForm.reset();
+    this.filter(true);
+  }
+
+  filter(reset = false) {
     this.filterRequest.agency = this.filterForm.controls['agency'].value
     this.filterRequest.agencyList = null;
     this.filterRequest.title = null;
@@ -75,7 +83,7 @@ export class SearchComponent {
     this.filterRequest.submission = null;
     this.filterRequest.areaList = null;
     this.getEditais(this.filterRequest);
-    this.filterForm.reset();
+    this.cleanForm = reset || !this.filterRequest.agency || this.filterRequest.agency == '';
   }
 
   getEditais(filter: EditalFilter) {

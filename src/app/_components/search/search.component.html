@@ -11,11 +11,16 @@
     <div class="wrapper">
       <form [formGroup]="filterForm" (submit)="filter()">
         <div class="header">
-          <div class="search-bar">
-            <input type="text" name="" id="" placeholder="Pesquisar por nome e instituição" formControlName="agency">
-            <button class="dds__icons dds__search"></button>
+          <div class="search-components">
+            <div class="search-bar">
+              <input type="text" name="" id="" placeholder="Pesquisar por nome e instituição" formControlName="agency">
+              <button id="search" class="dds__icons dds__search"></button>
+            </div>
+            <div class="clearFilter" *ngIf="!cleanForm">
+              <i class="icon ic-delete-can" title="Limpar filtro" (click)="clearQuickFilter()"></i>
+            </div>
           </div>
-
+          
           <div class="filter">
             <div id="dropdownMenuClickableOutside" class="filter-button" data-bs-toggle="dropdown" aria-expanded="false"
               data-bs-auto-close="false">
@@ -40,6 +45,7 @@
           </div>
         </div>
       </form>
+      
       <div class="responsive-table">
         <div class="table-backgound table">
           <div class="row row-header d-flex flex-nowrap align-items-center">

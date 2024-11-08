@@ -10,7 +10,7 @@
         <div class="body">
             <div class="wrapper">
                 <label>Filtrar por temática</label>
-                <ng-select class="disabilitado" placeholder="Escolha os temas">
+                <ng-select [readonly]="true" title="Este filtro está desabilitado" placeholder="Escolha os temas">
                 </ng-select>
 
                 <label>Filtrar por instituição</label>
