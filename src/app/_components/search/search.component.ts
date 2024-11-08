@@ -205,7 +205,7 @@ export class SearchComponent {
     this.filterRequest.agency = null;
     this.filterRequest.agencyList = this.customFilter.agency;
     this.filterRequest.maturity = this.customFilter.maturity != 0 ? this.customFilter.maturity : null;
-    this.filterRequest.submission = this.customFilter.date == 'Invalid date' ? null : this.customFilter.date;
+    this.filterRequest.submission = !this.customFilter.date.includes('\\') ? null : this.customFilter.date;
     this.filterRequest.areaList = this.customFilter.areas;
     this.filterRequest.financingValueLow = !this.customFilter.value ? null : this.customFilter.value[0];
     this.filterRequest.financingValueHigh = !this.customFilter.value ? null : this.customFilter.value[1];
