@@ -18,6 +18,7 @@ export class RecomendationsComponent {
   public allEditais = [];
   public savedEditaisIds = [];
   isCollapsed = true;
+  public showRecommendations = true;
 
   constructor(
     public user: AuthService,
@@ -27,11 +28,13 @@ export class RecomendationsComponent {
     private userService: UserService,
     private editalService: EditalService,
     private recomendation: RecomendationService) { }
-    
-    ngOnInit(): void {
-      if (this.user.recomendations == undefined || this.user.recomendations.length === 0) {
+
+  ngOnInit(): void {
+    this.showRecommendations = true;
+    if (this.user.recomendations == undefined || this.user.recomendations.length === 0) {
+      if (this.user.user.segment) {
         this.collectUserSavedEditalList();
-        this.editalService.getEditais( null, { itemsPerPage : 999 }).subscribe(allEditais => {
+        this.editalService.getEditais(null, { itemsPerPage: 999 }).subscribe(allEditais => {
           this.allEditais = allEditais;
           this.recomendation.getEditalByUserAfinity({
             input_text: this.user.user.segment.name,
@@ -39,7 +42,7 @@ export class RecomendationsComponent {
           }).subscribe(data => {
             this.editais = data.map(edital => {
               const cEdital = this.allEditais.find(e => e.title == edital.ds_titulo);
-              if(cEdital){
+              if (cEdital) {
                 edital.id = cEdital.id;
               }
               let list = edital.ds_areas.split(";");
@@ -51,54 +54,57 @@ export class RecomendationsComponent {
           })
         });
       } else {
-        this.collectUserSavedEditalList();
-        setTimeout(() => {
-          this.editais = this.user.recomendations;
-          this.editais.forEach(e => {
-            e.saved = this.savedEditaisIds.includes(e.id);
-          });
-        }, 300);
+        this.showRecommendations = false;
       }
-  
+    } else {
+      this.collectUserSavedEditalList();
+      setTimeout(() => {
+        this.editais = this.user.recomendations;
+        this.editais.forEach(e => {
+          e.saved = this.savedEditaisIds.includes(e.id);
+        });
+      }, 300);
     }
 
-    reduceTitle(title) {
-      if (title.length > 20) {
-        title =  title.substring(0, 20) + "...";
+  }
+
+  reduceTitle(title) {
+    if (title.length > 20) {
+      title = title.substring(0, 20) + "...";
+    }
+    return title;
+  }
+
+  seeMore(id: number) {
+    this.router.navigate(['/details'], { queryParams: { editalId: id } });
+  }
+
+  collectUserSavedEditalList() {
+    this.userService.collectUserSavedEditaisList(this.authService.user.id).subscribe(
+      (editaisList: any[]) => {
+        this.savedEditaisIds = editaisList.map(e => e.id);
       }
-      return title;
-    }
+    );
+  }
 
-    seeMore(id : number) {
-      this.router.navigate(['/details'], { queryParams: { editalId: id } });
-    }
+  bookmarkEdital(edital: any) {
 
-    collectUserSavedEditalList() {
-      this.userService.collectUserSavedEditaisList(this.authService.user.id).subscribe(
-        (editaisList: any[]) => {
-          this.savedEditaisIds = editaisList.map(e => e.id);
+    const addToSaved = !this.savedEditaisIds.includes(edital.id);
+
+    // Incluir/remover edital na lista de favoritos :: backend
+    this.userService.updateUserSavedEditalList(this.authService.user.id, edital.id, !addToSaved).subscribe(
+      () => {
+        // Marcar item atual como favorito nos resultados atuais
+        edital.saved = addToSaved;
+
+        // Atualizar lista de favoritos local
+        if (addToSaved) {
+          this.savedEditaisIds.push(edital.id);
+        } else {
+          this.savedEditaisIds = this.savedEditaisIds.filter(e => e != edital.id);
         }
-      );
-    }
+      }
+    );
+  }
 
-    bookmarkEdital(edital: any) {
-
-      const addToSaved = !this.savedEditaisIds.includes(edital.id);
-  
-      // Incluir/remover edital na lista de favoritos :: backend
-      this.userService.updateUserSavedEditalList(this.authService.user.id , edital.id, !addToSaved).subscribe(
-        () => {
-          // Marcar item atual como favorito nos resultados atuais
-          edital.saved = addToSaved;
-      
-          // Atualizar lista de favoritos local
-          if(addToSaved){
-            this.savedEditaisIds.push(edital.id);
-          } else {
-            this.savedEditaisIds = this.savedEditaisIds.filter(e => e != edital.id);
-          }
-        }
-      );
-    }
-      
 }
