@@ -266,9 +266,8 @@
 
         <div class="row regiao-pagamento">
             <div class="col-12 col-lg-8 ">
-                <!-- <div class="plans-list"> -->
-                <div class="plan-item">
-                    <div class="item-title">
+                <div class="plan-item" [ngClass]="selectedPlan.class">
+                    <div class="item-title" [ngClass]="selectedPlan.class">
                         {{selectedPlan.nome}}
                     </div>
                     <div class="plan-body">
@@ -290,9 +289,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- </div> -->
                 <div>
-                    <button type="button" class="btn btn-secondary btn-cancel-plan">
+                    <button type="button" class="btn btn-secondary btn-cancel-plan" *ngIf="usuario.roleId == 2" >
                         Cancelar plano
                     </button>
                 </div>
@@ -309,7 +307,7 @@
 
     <div class="row payments-area" *ngIf="currentTab === tabOptions.PAYMENTS">
 
-        <div class="row payment-content">
+        <div class="row payment-content" *ngIf="usuario.roleId == 2">
 
             <div class="credit-cards">
 
@@ -415,6 +413,10 @@
                 </div>
             </div>
 
+        </div>
+
+        <div class="row" *ngIf="usuario.roleId == 3">
+            <h5>Você não possui pagamentos registrados.</h5>
         </div>
 
     </div>

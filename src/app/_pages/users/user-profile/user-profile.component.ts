@@ -34,6 +34,41 @@ export class UserProfileComponent implements OnInit {
   public passwordFieldVisible = false;
   public passwordEdit = false;
 
+  public availablePlans = [
+    {
+      id: 1,
+      class: "admin",
+      nome: "Administrador",
+      descricao: "Controle todas as seções do Capti",
+      valor: 0.0,
+      diasGratis: 1,
+      itensCobertos: ["Pesquisar"],
+      itensNaoCobertos: ["Captar (EM BREVE)", "Categorizar (EM BREVE)", "Priorizar (EM BREVE)", "Gerenciar tarefas (EM BREVE)", "Dashboard pessoal (EM BREVE)"],
+      ativo: true
+    },
+    {
+      id: 2,
+      class: "client",
+      nome: "Plano Pessoa Física",
+      descricao: "O melhor para o profissional e sua equipe.",
+      valor: 49.9,
+      diasGratis: 1,
+      itensCobertos: ["Pesquisar"],
+      itensNaoCobertos: ["Captar (EM BREVE)", "Categorizar (EM BREVE)", "Priorizar (EM BREVE)", "Gerenciar tarefas (EM BREVE)", "Dashboard pessoal (EM BREVE)"],
+      ativo: true
+    },
+    {
+      id: 3,
+      class: "guest",
+      nome: "Plano Convidado",
+      descricao: "Para você conhecer e experimentar o Capti.",
+      valor: 0.0,
+      diasGratis: 1,
+      itensCobertos: ["Pesquisar"],
+      itensNaoCobertos: ["Captar (EM BREVE)", "Categorizar (EM BREVE)", "Priorizar (EM BREVE)", "Gerenciar tarefas (EM BREVE)", "Dashboard pessoal (EM BREVE)"],
+      ativo: true
+    }
+  ];  
   public selectedPlan: SubscriptionPlan;
 
   public paymentSummary = {};
@@ -95,18 +130,6 @@ export class UserProfileComponent implements OnInit {
     });
 
     this.userProfile = document.getElementById('usar-image') as HTMLImageElement;
-
-    this.selectedPlan =
-    {
-      id: 1,
-      nome: "Plano Pessoa Física",
-      descricao: "O melhor para o profissional e sua equipe.",
-      valor: 49.9,
-      diasGratis: 1,
-      itensCobertos: ["Pesquisar"],
-      itensNaoCobertos: ["Captar (EM BREVE)", "Categorizar (EM BREVE)", "Priorizar (EM BREVE)", "Gerenciar tarefas (EM BREVE)", "Dashboard pessoal (EM BREVE)"],
-      ativo: true
-    };
   }
 
   toglePasswordField() {
@@ -151,6 +174,7 @@ export class UserProfileComponent implements OnInit {
 
   setForm(user: User) {
     this.usuario = user;
+    this.selectedPlan = this.availablePlans.find(plan => plan.id == user.roleId);
     this.userForm.patchValue(user)
     if (this.authService.user.cpfCnpj && this.authService.user.cpfCnpj.length > 11) {
       this.mask = '00.000.000/0000-00';

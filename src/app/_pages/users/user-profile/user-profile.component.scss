@@ -316,20 +316,29 @@
     }
 
     .plan-item {
-      border: 4px solid #E4531E;
       padding-bottom: 1rem;
       border-radius: 20px;
       width: 100%;
       height: auto;
       margin-bottom: 1rem;
 
+      &.admin {
+        border: 4px solid #e0a9ff;
+      }
+      
+      &.client {
+        border: 4px solid #E4531E;
+      }
+      
+      &.guest {
+        border: 4px solid #3d4af3;
+      }
+
       &.disabled {
         border: 4px solid #afafaf;
       }
 
       .item-title {
-        border: 4px solid #E4531E;
-        background-color: #E4531E;
         padding: 0.2rem 1rem;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
@@ -339,6 +348,21 @@
         color: white;
         font-weight: 500;
         height: 40px;
+
+        &.admin {
+          border: 4px solid #e0a9ff;
+          background-color: #e0a9ff;
+        }
+        
+        &.client {
+          border: 4px solid #E4531E;
+          background-color: #E4531E;
+        }
+        
+        &.guest {
+          border: 4px solid #3d4af3;
+          background-color: #3d4af3;
+        }
 
         &.disabled {
           border: 4px solid #afafaf;
