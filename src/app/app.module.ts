@@ -78,6 +78,7 @@ import { ActiviteService } from './_services/activite.service';
 import { InviteService } from './_services/invite.service';
 import { EditalService } from './_services/edital.service';
 import { UserService } from './_services/user.service';
+import { ContactService } from './_services/contact.service';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 import localePt  from '@angular/common/locales/pt';
@@ -182,6 +183,7 @@ export const customCurrencyMaskConfig = {
     ImagekitService,
     RecomendationService,
     PermissionService,
+    ContactService,
     provideNgxMask(),
     MatDatepickerModule,
     { provide: Window, useValue: window }
